@@ -43,7 +43,7 @@ export function Hero() {
             <div className="relative">
               <img
                 src="/hero/overview.jpg"
-                alt="AttracCess Platform Overview"
+                alt="Attraccess Platform Overview"
                 className="w-full rounded-lg shadow-lg object-contain"
               />
 

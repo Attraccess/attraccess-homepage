@@ -47,10 +47,10 @@ export function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const subject = encodeURIComponent("Inquiry about AttrAccess");
+    const subject = encodeURIComponent(t("contact.email.subject"));
     const body = encodeURIComponent(`Hello,
 
-I'm interested in learning more about AttrAccess. Here are my details:
+I'm interested in learning more about Attraccess. Here are my details:
 
 Name: ${formData.name}
 Email: ${formData.email}

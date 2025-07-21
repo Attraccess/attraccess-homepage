@@ -8,7 +8,10 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "translations:check": "node scripts/check-translations.cjs",
+    "translations:clean": "node scripts/clean-translations.cjs",
+    "translations:clean-force": "node scripts/clean-translations.cjs --force"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

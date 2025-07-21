@@ -17,8 +17,12 @@ const translations = {
     "nav.features": "Features",
     "nav.how-it-works": "How It Works",
     "nav.pricing": "Pricing",
+    "nav.resources": "Resources",
+    "nav.about": "About Us",
     "nav.contact": "Contact",
     "nav.demo": "Request Demo",
+    "nav.language": "EN",
+
     // Hero Section
     "hero.title": "Automate, Track & Secure Your Shared Workspace",
     "hero.subtitle":
@@ -27,6 +31,11 @@ const translations = {
     "hero.cta.secondary": "Explore Features",
 
     // Problems Section
+    "problems.title": "Transform Your Workspace Challenges",
+    "problems.unauthorized": "Unauthorized access & tool misuse",
+    "problems.billing": "Manual billing & usage disputes",
+    "problems.maintenance": "Forgotten maintenance & downtime",
+
     // Benefits Section
     "benefits.title": "Why Attraccess?",
     "benefits.access.title": "Instant Access Control",
@@ -47,6 +56,12 @@ const translations = {
     "features.access.title": "Access Control",
     "features.access.description":
       "Tap an NFC card, scan a QR code, or use the PWA to instantly unlock machines, doors, and lockers. Assign 'introduced' or 'isIntroducer' permissions in seconds.",
+    "features.tracking.title": "Usage Tracking & Billing",
+    "features.tracking.description":
+      "Automatically log every session's start/end, user, and notes. Export CSV reports or plug in power and count sensors for advanced billing.",
+    "features.maintenance.title": "Maintenance Automation",
+    "features.maintenance.description":
+      "Define multiple maintenance rules per resource—e.g. 5 run-hours or 7 days elapsed. Resources auto-disable and notify maintainers until service is confirmed.",
     "features.flows.title": "Flow-Based Automations",
     "features.flows.description":
       "Use our drag-and-drop builder to send MQTT messages, webhooks, emails, or push notifications. Build loops, variables, and conditionals with ease.",
@@ -116,6 +131,8 @@ const translations = {
     // Footer
     "footer.product": "Product",
     "footer.company": "Company",
+    "footer.cta.title": "Ready to transform your workspace?",
+    "footer.cta.button": "Start Your Free Pilot",
     "footer.toggle.theme": "Toggle Dark Mode",
     "footer.copyright": "© 2024 Attraccess. All rights reserved.",
 
@@ -133,21 +150,67 @@ const translations = {
     "contact.form.submit": "Submit",
     "contact.info.title": "Contact Information",
     "contact.info.email": "Email",
+    "contact.info.phone": "Phone",
     "contact.info.address": "Address",
+    "contact.info.hours": "Hours",
+    "contact.demo.title": "Schedule a Demo",
+    "contact.demo.subtitle": "Book a 30-minute demo call",
     "contact.email.subject": "Inquiry about Attraccess",
 
     // About
+    "about.title": "About Attraccess",
     "about.mission":
       "Empowering shared workspaces with enterprise-grade control—without the complexity.",
+    "about.mission.long":
+      "We believe that shared workspaces should be accessible, secure, and efficiently managed. Our open-source platform removes the barriers between makers and their tools, while providing operators with the insights they need to build thriving communities.",
+    "about.mission.section": "Our Mission",
+    "about.team.title": "Our Team",
+    "about.team.alex.title": "Co-Founder & CTO",
+    "about.team.alex.bio":
+      "Alex leads engineering and open-source community engagement.",
+    "about.team.sarah.title": "Co-Founder & CEO",
+    "about.team.sarah.bio":
+      "Sarah drives product strategy and business development.",
+    "about.team.marcus.title": "Lead Hardware Engineer",
+    "about.team.marcus.bio":
+      "Marcus designs our NFC readers and IoT integration systems.",
+    "about.timeline.title": "Our Journey",
+    "about.timeline.2023.title": "Project inception in Hamburg makerspace",
+    "about.timeline.2023.description":
+      "Founded by frustrated makerspace managers who needed better access control.",
+    "about.timeline.2024.title": "First public release & 5 pilot sites",
+    "about.timeline.2024.description":
+      "Open-sourced the platform and onboarded our first community deployments.",
+    "about.timeline.2025.title": "Roadmap: cloud SaaS & advanced analytics",
+    "about.timeline.2025.description":
+      "Launching commercial cloud offerings and AI-powered workspace insights.",
+    "about.careers.title": "Join Our Team",
+    "about.careers.subtitle":
+      "Join us on our open-source journey to transform shared workspaces worldwide.",
+    "about.careers.cta": "View Open Positions",
+
+    // Resources
+    "resources.title": "Resources & Support",
+    "resources.case-study.title":
+      "How Attraccess Streamlined Attraktor e.V.'s Workshop",
+    "resources.case-study.teaser":
+      "Learn how this Hamburg makerspace reduced unauthorized access by 95% and automated their entire billing process.",
+    "resources.downloads.title": "Downloads",
+    "resources.downloads.feature-sheet": "Download our Feature Sheet",
+    "resources.downloads.security": "Download Security Whitepaper",
   },
   de: {
     // Navigation
-    "nav.home": "Home",
+    "nav.home": "Startseite",
     "nav.features": "Funktionen",
     "nav.how-it-works": "So funktioniert's",
     "nav.pricing": "Preise",
+    "nav.resources": "Ressourcen",
+    "nav.about": "Über uns",
     "nav.contact": "Kontakt",
     "nav.demo": "Demo anfragen",
+    "nav.language": "DE",
+
     // Hero Section
     "hero.title":
       "Automatisieren, Verfolgen & Sichern Sie Ihre Maschinen, Türen und Werkzeuge",
@@ -157,6 +220,11 @@ const translations = {
     "hero.cta.secondary": "Funktionen ansehen",
 
     // Problems Section
+    "problems.title": "Lösen Sie Ihre Arbeitsplatz-Herausforderungen",
+    "problems.unauthorized": "Unbefugter Zugriff & Missbrauch von Werkzeugen",
+    "problems.billing": "Manuelle Abrechnung & Nutzungsstreitigkeiten",
+    "problems.maintenance": "Vergessene Wartung & Ausfallzeiten",
+
     // Benefits Section
     "benefits.title": "Warum Attraccess?",
     "benefits.access.title": "Sofortige Zugriffssteuerung",
@@ -177,6 +245,12 @@ const translations = {
     "features.access.title": "Zugriffssteuerung",
     "features.access.description":
       "Tippen Sie eine NFC-Karte, scannen Sie einen QR-Code oder nutzen Sie die PWA, um Maschinen, Türen und Schränke sofort zu entriegeln. Weisen Sie 'introduced'- oder 'isIntroducer'-Berechtigungen in Sekunden zu.",
+    "features.tracking.title": "Nutzungsverfolgung & Abrechnung",
+    "features.tracking.description":
+      "Protokollieren Sie automatisch Beginn/Ende jeder Sitzung, Benutzer und Bemerkungen. Exportieren Sie CSV-Berichte oder integrieren Sie Strom- und Zähler-Sensoren für erweiterte Abrechnung.",
+    "features.maintenance.title": "Wartungsautomatisierung",
+    "features.maintenance.description":
+      "Definieren Sie mehrere Wartungsregeln pro Ressource – z. B. 5 Betriebsstunden oder 7 Tage vergangen. Ressourcen werden automatisch gesperrt und Techniker benachrichtigt, bis die Wartung bestätigt ist.",
     "features.flows.title": "Visuelle Automatisierungen",
     "features.flows.description":
       "Verwenden Sie unseren Drag-and-Drop-Editor, um MQTT-Nachrichten, Webhooks, E-Mails oder Push-Benachrichtigungen zu senden. Erstellen Sie Schleifen, Variablen und Bedingungen ganz einfach.",
@@ -266,12 +340,55 @@ const translations = {
     "contact.form.submit": "Absenden",
     "contact.info.title": "Kontaktinformationen",
     "contact.info.email": "E-Mail",
+    "contact.info.phone": "Telefon",
     "contact.info.address": "Adresse",
+    "contact.info.hours": "Öffnungszeiten",
+    "contact.demo.title": "Demo vereinbaren",
+    "contact.demo.subtitle": "Buchen Sie einen 30-minütigen Demo-Anruf",
     "contact.email.subject": "Anfrage zu Attraccess",
 
     // About
+    "about.title": "Über Attraccess",
     "about.mission":
       "Wir ermöglichen Gemeinschaftsarbeitsplätze mit Zugangs-Kontrolle – ohne Komplexität.",
+    "about.mission.long":
+      "Wir glauben, dass gemeinsame Arbeitsplätze zugänglich, sicher und effizient verwaltet werden sollten. Unsere Open-Source-Plattform beseitigt die Barrieren zwischen Makern und ihren Werkzeugen und bietet Betreibern die Einblicke, die sie für den Aufbau florierender Gemeinschaften benötigen.",
+    "about.mission.section": "Unsere Mission",
+    "about.team.title": "Unser Team",
+    "about.team.alex.title": "Mitgründer & CTO",
+    "about.team.alex.bio":
+      "Alex leitet die Entwicklung und das Open-Source-Community-Engagement.",
+    "about.team.sarah.title": "Mitgründerin & CEO",
+    "about.team.sarah.bio":
+      "Sarah treibt die Produktstrategie und Geschäftsentwicklung voran.",
+    "about.team.marcus.title": "Leitender Hardware-Ingenieur",
+    "about.team.marcus.bio":
+      "Marcus entwirft unsere NFC-Leser und IoT-Integrationssysteme.",
+    "about.timeline.title": "Unsere Reise",
+    "about.timeline.2023.title": "Projektbeginn im Hamburger Makerspace",
+    "about.timeline.2023.description":
+      "Gegründet von frustrierten Makerspace-Managern, die bessere Zugangskontrollen benötigten.",
+    "about.timeline.2024.title":
+      "Erste öffentliche Veröffentlichung & 5 Pilotstandorte",
+    "about.timeline.2024.description":
+      "Plattform als Open Source veröffentlicht und erste Community-Implementierungen gestartet.",
+    "about.timeline.2025.title": "Roadmap: Cloud-SaaS & erweiterte Analytik",
+    "about.timeline.2025.description":
+      "Start kommerzieller Cloud-Angebote und KI-gestützter Arbeitsplatz-Einblicke.",
+    "about.careers.title": "Werden Sie Teil unseres Teams",
+    "about.careers.subtitle":
+      "Begleiten Sie uns auf unserer Open-Source-Reise zur Transformation gemeinsamer Arbeitsplätze weltweit.",
+    "about.careers.cta": "Offene Stellen ansehen",
+
+    // Resources
+    "resources.title": "Ressourcen & Support",
+    "resources.case-study.title":
+      "Wie Attraccess den Attraktor e.V. Workshop optimierte",
+    "resources.case-study.teaser":
+      "Erfahren Sie, wie dieser Hamburger Makerspace unbefugten Zugang um 95% reduzierte und den gesamten Abrechnungsprozess automatisierte.",
+    "resources.downloads.title": "Downloads",
+    "resources.downloads.feature-sheet": "Unser Datenblatt herunterladen",
+    "resources.downloads.security": "Sicherheits-Whitepaper herunterladen",
   },
 };
 
