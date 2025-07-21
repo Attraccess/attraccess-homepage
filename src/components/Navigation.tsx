@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Globe } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useI18n } from '@/contexts/i18n';
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useI18n } from "@/contexts/i18n";
+import { Logo } from "@/components/Logo";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,13 +17,11 @@ export function Navigation() {
   const location = useLocation();
 
   const navItems = [
-    { key: 'home', href: '/' },
-    { key: 'features', href: '/features' },
-    { key: 'how-it-works', href: '/how-it-works' },
-    { key: 'pricing', href: '/pricing' },
-    { key: 'resources', href: '/resources' },
-    { key: 'about', href: '/about' },
-    { key: 'contact', href: '/contact' },
+    { key: "home", href: "/" },
+    { key: "features", href: "/features" },
+    { key: "how-it-works", href: "/how-it-works" },
+    { key: "pricing", href: "/pricing" },
+    { key: "contact", href: "/contact" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -32,11 +31,8 @@ export function Navigation() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-primary rounded-md flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">Attraccess</span>
+          <Link to="/" className="flex items-center">
+            <Logo className="h-8 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -46,7 +42,7 @@ export function Navigation() {
                 key={item.key}
                 to={item.href}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive(item.href) ? 'text-primary' : 'text-muted-foreground'
+                  isActive(item.href) ? "text-primary" : "text-muted-foreground"
                 }`}
               >
                 {t(`nav.${item.key}`)}
@@ -61,24 +57,26 @@ export function Navigation() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="sm" className="gap-1">
                   <Globe className="w-4 h-4" />
-                  {language === 'en' ? 'EN' : 'DE'}
+                  {language === "en" ? "EN" : "DE"}
                   <ChevronDown className="w-3 h-3" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setLanguage('en')}>
+                <DropdownMenuItem onClick={() => setLanguage("en")}>
                   English (EN)
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage('de')}>
+                <DropdownMenuItem onClick={() => setLanguage("de")}>
                   Deutsch (DE)
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
             {/* CTA Button */}
-            <Button variant="hero" size="sm">
-              {t('nav.demo')}
-            </Button>
+            <Link to="/contact">
+              <Button variant="hero" size="sm">
+                {t("nav.demo")}
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -88,7 +86,11 @@ export function Navigation() {
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </Button>
           </div>
         </div>
@@ -101,7 +103,7 @@ export function Navigation() {
                 key={item.key}
                 to={item.href}
                 className={`block px-3 py-2 text-base font-medium transition-colors hover:text-primary ${
-                  isActive(item.href) ? 'text-primary' : 'text-muted-foreground'
+                  isActive(item.href) ? "text-primary" : "text-muted-foreground"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -113,22 +115,24 @@ export function Navigation() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="sm" className="gap-1">
                     <Globe className="w-4 h-4" />
-                    {language === 'en' ? 'EN' : 'DE'}
+                    {language === "en" ? "EN" : "DE"}
                     <ChevronDown className="w-3 h-3" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
-                  <DropdownMenuItem onClick={() => setLanguage('en')}>
+                  <DropdownMenuItem onClick={() => setLanguage("en")}>
                     English (EN)
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setLanguage('de')}>
+                  <DropdownMenuItem onClick={() => setLanguage("de")}>
                     Deutsch (DE)
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Button variant="hero" size="sm">
-                {t('nav.demo')}
-              </Button>
+              <Link to="/contact">
+                <Button variant="hero" size="sm">
+                  {t("nav.demo")}
+                </Button>
+              </Link>
             </div>
           </div>
         )}

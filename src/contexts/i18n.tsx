@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-export type Language = 'en' | 'de';
+export type Language = "en" | "de";
 
 interface I18nContextType {
   language: Language;
@@ -13,245 +13,399 @@ const I18nContext = createContext<I18nContextType | undefined>(undefined);
 const translations = {
   en: {
     // Navigation
-    'nav.home': 'Home',
-    'nav.features': 'Features',
-    'nav.how-it-works': 'How It Works',
-    'nav.pricing': 'Pricing',
-    'nav.resources': 'Resources',
-    'nav.about': 'About Us',
-    'nav.contact': 'Contact',
-    'nav.demo': 'Request Demo',
-    'nav.language': 'EN',
-    
+    "nav.home": "Home",
+    "nav.features": "Features",
+    "nav.how-it-works": "How It Works",
+    "nav.pricing": "Pricing",
+    "nav.resources": "Resources",
+    "nav.about": "About Us",
+    "nav.contact": "Contact",
+    "nav.demo": "Request Demo",
+    "nav.language": "EN",
+
     // Hero Section
-    'hero.title': 'Secure, Track & Automate Your Shared Workspace',
-    'hero.subtitle': 'Attraccess gives you fine-grained control over every machine, door, and tool—plus usage billing, maintenance automation, and custom workflows.',
-    'hero.cta.primary': 'Request Demo',
-    'hero.cta.secondary': 'Explore Features',
-    
+    "hero.title": "Secure, Track & Automate Your Shared Workspace",
+    "hero.subtitle":
+      "Attraccess gives you fine-grained control over every machine, door, and tool—plus usage billing, maintenance automation, and custom workflows.",
+    "hero.cta.primary": "Request Demo",
+    "hero.cta.secondary": "Explore Features",
+
     // Problems Section
-    'problems.title': 'Transform Your Workspace Challenges',
-    'problems.unauthorized': 'Unauthorized access & tool misuse',
-    'problems.billing': 'Manual billing & usage disputes',
-    'problems.maintenance': 'Forgotten maintenance & downtime',
-    
+    "problems.title": "Transform Your Workspace Challenges",
+    "problems.unauthorized": "Unauthorized access & tool misuse",
+    "problems.billing": "Manual billing & usage disputes",
+    "problems.maintenance": "Forgotten maintenance & downtime",
+
     // Benefits Section
-    'benefits.title': 'Why Choose Attraccess?',
-    'benefits.access.title': 'Instant Access Control',
-    'benefits.access.description': 'Manage permissions per user, per resource—no more keys or signup sheets.',
-    'benefits.revenue.title': 'Usage-Based Revenue',
-    'benefits.revenue.description': 'Track every session automatically and bill accurately by the minute.',
-    'benefits.maintenance.title': 'Zero Downtime Maintenance',
-    'benefits.maintenance.description': 'Auto-lockout on maintenance triggers; notify technicians instantly.',
-    'benefits.automation.title': 'Visual Automations',
-    'benefits.automation.description': 'Build custom workflows with drag-and-drop logic—no code required.',
-    
+    "benefits.title": "Why Choose Attraccess?",
+    "benefits.access.title": "Instant Access Control",
+    "benefits.access.description":
+      "Manage permissions per user, per resource—no more keys or signup sheets.",
+    "benefits.revenue.title": "Usage-Based Revenue",
+    "benefits.revenue.description":
+      "Track every session automatically and bill accurately by the minute.",
+    "benefits.maintenance.title": "Zero Downtime Maintenance",
+    "benefits.maintenance.description":
+      "Auto-lockout on maintenance triggers; notify technicians instantly.",
+    "benefits.automation.title": "Visual Automations",
+    "benefits.automation.description":
+      "Build custom workflows with drag-and-drop logic—no code required.",
+
     // Features Section
-    'features.title': 'Complete Workspace Management',
-    'features.access.title': 'Access Control',
-    'features.access.description': 'Tap an NFC card, scan a QR code, or use the PWA to instantly unlock machines, doors, and lockers. Assign \'introduced\' or \'isIntroducer\' permissions in seconds.',
-    'features.tracking.title': 'Usage Tracking & Billing',
-    'features.tracking.description': 'Automatically log every session\'s start/end, user, and notes. Export CSV reports or plug in power and count sensors for advanced billing.',
-    'features.maintenance.title': 'Maintenance Automation',
-    'features.maintenance.description': 'Define multiple maintenance rules per resource—e.g. 5 run-hours or 7 days elapsed. Resources auto-disable and notify maintainers until service is confirmed.',
-    'features.flows.title': 'Flow-Based Automations',
-    'features.flows.description': 'Use our drag-and-drop builder to send MQTT messages, webhooks, emails, or push notifications. Build loops, variables, and conditionals with ease.',
-    'features.security.title': 'Integrations & Security',
-    'features.security.description': 'On-prem Docker deployment with optional managed cloud coming soon. OIDC SSO, TLS encryption, auto-updating NFC reader firmware.',
-    'features.cta': 'See a Live Walkthrough',
-    
+    "features.title": "Complete Workspace Management",
+    "features.access.title": "Access Control",
+    "features.access.description":
+      "Tap an NFC card, scan a QR code, or use the PWA to instantly unlock machines, doors, and lockers. Assign 'introduced' or 'isIntroducer' permissions in seconds.",
+    "features.tracking.title": "Usage Tracking & Billing",
+    "features.tracking.description":
+      "Automatically log every session's start/end, user, and notes. Export CSV reports or plug in power and count sensors for advanced billing.",
+    "features.maintenance.title": "Maintenance Automation",
+    "features.maintenance.description":
+      "Define multiple maintenance rules per resource—e.g. 5 run-hours or 7 days elapsed. Resources auto-disable and notify maintainers until service is confirmed.",
+    "features.flows.title": "Flow-Based Automations",
+    "features.flows.description":
+      "Use our drag-and-drop builder to send MQTT messages, webhooks, emails, or push notifications. Build loops, variables, and conditionals with ease.",
+    "features.security.title": "Integrations & Security",
+    "features.security.description":
+      "On-prem Docker deployment with optional managed cloud coming soon. OIDC SSO, TLS encryption, auto-updating NFC reader firmware.",
+    "features.cta": "Request a Demo",
+
     // How It Works Section
-    'how-it-works.title': 'Simple Setup, Powerful Results',
-    'how-it-works.step1.title': 'Define Resources',
-    'how-it-works.step1.description': 'Create machines, doors, and tools in the PWA. Add name, description, image, and documentation link.',
-    'how-it-works.step2.title': 'Assign Access',
-    'how-it-works.step2.description': 'Grant \'introduced\' or \'isIntroducer\' permissions via PWA, NFC, or OIDC users.',
-    'how-it-works.step3.title': 'Deploy & Use',
-    'how-it-works.step3.description': 'Install NFC readers, print QR labels, or share PWA links. Users tap, scan, or click to start sessions.',
-    'how-it-works.step4.title': 'Track & Automate',
-    'how-it-works.step4.description': 'Monitor live sessions, export CSV logs, and trigger custom workflows like ventilation or email alerts.',
-    'how-it-works.step5.title': 'Maintain & Scale',
-    'how-it-works.step5.description': 'Set maintenance rules, auto-disable resources, notify technicians, and roll out new readers via firmware OTA.',
-    'how-it-works.cta': 'Speak to an Engineer',
-    
+    "how-it-works.title": "Simple Setup, Powerful Results",
+    "how-it-works.subtitle":
+      "Get your workspace automation running in 5 simple steps",
+    "how-it-works.step1.title": "Define Resources",
+    "how-it-works.step1.description":
+      "Create machines, doors, and tools in the PWA. Add name, description, image, and documentation link.",
+    "how-it-works.step2.title": "Assign Access",
+    "how-it-works.step2.description":
+      "Grant 'introduced' or 'isIntroducer' permissions via PWA, NFC, or OIDC users.",
+    "how-it-works.step3.title": "Deploy & Use",
+    "how-it-works.step3.description":
+      "Install NFC readers, print QR labels, or share PWA links. Users tap, scan, or click to start sessions.",
+    "how-it-works.step4.title": "Track & Automate",
+    "how-it-works.step4.description":
+      "Monitor live sessions, export CSV logs, and trigger custom workflows like ventilation or email alerts.",
+    "how-it-works.step5.title": "Maintain & Scale",
+    "how-it-works.step5.description":
+      "Set maintenance rules, auto-disable resources, notify technicians, and roll out new readers via firmware OTA.",
+
     // Pricing Section
-    'pricing.title': 'Flexible Pricing for Every Organization',
-    'pricing.nonprofit.title': 'Non-Profit & Individual',
-    'pricing.nonprofit.price': '€0 / forever',
-    'pricing.nonprofit.feature1': 'Source-available & free',
-    'pricing.nonprofit.feature2': 'Unlimited users & resources',
-    'pricing.nonprofit.feature3': 'Community support',
-    'pricing.pilot.title': 'Commercial Pilot',
-    'pricing.pilot.price': 'Free 3-month trial',
-    'pricing.pilot.feature1': 'Onboarding support',
-    'pricing.pilot.feature2': 'Usage metrics review',
-    'pricing.pilot.cta': 'Apply for Pilot',
-    'pricing.enterprise.title': 'Enterprise (Coming Soon)',
-    'pricing.enterprise.feature1': 'Hybrid cloud SaaS',
-    'pricing.enterprise.feature2': 'SLA & premium support',
-    'pricing.enterprise.feature3': 'Custom integrations',
-    
+    "pricing.title": "Flexible Pricing for Every Organization",
+    "pricing.subtitle": "Choose the plan that fits your workspace needs",
+    "pricing.popular": "Most Popular",
+    "pricing.nonprofit.title": "Non-Profit & Individual",
+    "pricing.nonprofit.price": "€0 / forever",
+    "pricing.nonprofit.feature1": "Source-available & free",
+    "pricing.nonprofit.feature2": "Unlimited users & resources",
+    "pricing.nonprofit.feature3": "Community support",
+    "pricing.pilot.title": "Commercial Pilot",
+    "pricing.pilot.price": "Free 3-month trial",
+    "pricing.pilot.feature1": "Onboarding support",
+    "pricing.pilot.feature2": "Usage metrics review",
+    "pricing.pilot.feature3": "Priority bug fixes",
+    "pricing.pilot.feature4": "Custom deployment assistance",
+    "pricing.pilot.cta": "Apply for Pilot",
+    "pricing.enterprise.title": "Enterprise (Coming Soon)",
+    "pricing.enterprise.feature1": "Hybrid cloud SaaS",
+    "pricing.enterprise.feature2": "SLA & premium support",
+    "pricing.enterprise.feature3": "Custom integrations",
+    "pricing.enterprise.feature4": "Advanced analytics",
+
+    // Pricing
+    "pricing.contact-sales": "Contact Sales",
+    "pricing.faq.title": "Frequently Asked Questions",
+    "pricing.faq.q1": "Is the source code really free?",
+    "pricing.faq.a1":
+      "Yes, Attraccess is source-available and free for non-profit and individual use.",
+    "pricing.faq.q2": "What's included in the commercial pilot?",
+    "pricing.faq.a2":
+      "Full access to all features, dedicated onboarding support, and usage metrics analysis.",
+    "pricing.faq.q3": "When will enterprise features be available?",
+    "pricing.faq.a3":
+      "Enterprise features including hybrid cloud SaaS are coming in Q2 2024.",
+    "pricing.faq.q4": "Can I upgrade or downgrade anytime?",
+    "pricing.faq.a4":
+      "Yes, you can change your plan at any time. We'll help you migrate your data.",
+
     // Footer
-    'footer.cta.title': 'Ready to transform your workspace?',
-    'footer.cta.button': 'Start Your Free Pilot',
-    'footer.newsletter.placeholder': 'Your email',
-    'footer.newsletter.button': 'Subscribe',
-    'footer.toggle.theme': 'Toggle Dark Mode',
-    'footer.copyright': '© 2024 Attraccess. All rights reserved.',
-    
+    "footer.product": "Product",
+    "footer.company": "Company",
+    "footer.cta.title": "Ready to transform your workspace?",
+    "footer.cta.button": "Start Your Free Pilot",
+    "footer.toggle.theme": "Toggle Dark Mode",
+    "footer.copyright": "© 2024 Attraccess. All rights reserved.",
+
     // Contact
-    'contact.title': 'Get Started Today',
-    'contact.subtitle': 'Ready to transform your workspace? Let\'s talk about your specific needs.',
-    'contact.form.name': 'Name',
-    'contact.form.email': 'Email',
-    'contact.form.organization': 'Organization',
-    'contact.form.role': 'Role',
-    'contact.form.usecase': 'Use Case',
-    'contact.form.usecase.placeholder': 'Describe your workspace',
-    'contact.form.submit': 'Submit',
-    
+    "contact.title": "Get Started Today",
+    "contact.subtitle":
+      "Ready to transform your workspace? Let's talk about your specific needs.",
+    "contact.form.title": "Get in Touch",
+    "contact.form.name": "Name",
+    "contact.form.email": "Email",
+    "contact.form.organization": "Organization",
+    "contact.form.role": "Role",
+    "contact.form.usecase": "Use Case",
+    "contact.form.usecase.placeholder": "Describe your workspace",
+    "contact.form.submit": "Submit",
+    "contact.info.title": "Contact Information",
+    "contact.info.email": "Email",
+    "contact.info.phone": "Phone",
+    "contact.info.address": "Address",
+    "contact.info.hours": "Hours",
+    "contact.demo.title": "Schedule a Demo",
+    "contact.demo.subtitle": "Book a 30-minute demo call",
+
     // About
-    'about.title': 'About Attraccess',
-    'about.mission': 'Empowering shared workspaces with enterprise-grade control—without the complexity.',
-    'about.team.title': 'Our Team',
-    
+    "about.title": "About Attraccess",
+    "about.mission":
+      "Empowering shared workspaces with enterprise-grade control—without the complexity.",
+    "about.mission.long":
+      "We believe that shared workspaces should be accessible, secure, and efficiently managed. Our open-source platform removes the barriers between makers and their tools, while providing operators with the insights they need to build thriving communities.",
+    "about.mission.section": "Our Mission",
+    "about.team.title": "Our Team",
+    "about.team.alex.title": "Co-Founder & CTO",
+    "about.team.alex.bio":
+      "Alex leads engineering and open-source community engagement.",
+    "about.team.sarah.title": "Co-Founder & CEO",
+    "about.team.sarah.bio":
+      "Sarah drives product strategy and business development.",
+    "about.team.marcus.title": "Lead Hardware Engineer",
+    "about.team.marcus.bio":
+      "Marcus designs our NFC readers and IoT integration systems.",
+    "about.timeline.title": "Our Journey",
+    "about.timeline.2023.title": "Project inception in Hamburg makerspace",
+    "about.timeline.2023.description":
+      "Founded by frustrated makerspace managers who needed better access control.",
+    "about.timeline.2024.title": "First public release & 5 pilot sites",
+    "about.timeline.2024.description":
+      "Open-sourced the platform and onboarded our first community deployments.",
+    "about.timeline.2025.title": "Roadmap: cloud SaaS & advanced analytics",
+    "about.timeline.2025.description":
+      "Launching commercial cloud offerings and AI-powered workspace insights.",
+    "about.careers.title": "Join Our Team",
+    "about.careers.subtitle":
+      "Join us on our open-source journey to transform shared workspaces worldwide.",
+    "about.careers.cta": "View Open Positions",
+
     // Resources
-    'resources.title': 'Resources & Support',
-    'resources.case-study.title': 'How Attraccess Streamlined Attraktor e.V.\'s Workshop',
-    'resources.case-study.teaser': 'Learn how this Hamburg makerspace reduced unauthorized access by 95% and automated their entire billing process.',
-    'resources.downloads.title': 'Downloads',
-    'resources.downloads.feature-sheet': 'Download our Feature Sheet',
-    'resources.downloads.security': 'Download Security Whitepaper',
-    'resources.blog.title': 'Latest Updates',
+    "resources.title": "Resources & Support",
+    "resources.case-study.title":
+      "How Attraccess Streamlined Attraktor e.V.'s Workshop",
+    "resources.case-study.teaser":
+      "Learn how this Hamburg makerspace reduced unauthorized access by 95% and automated their entire billing process.",
+    "resources.downloads.title": "Downloads",
+    "resources.downloads.feature-sheet": "Download our Feature Sheet",
+    "resources.downloads.security": "Download Security Whitepaper",
   },
   de: {
     // Navigation
-    'nav.home': 'Startseite',
-    'nav.features': 'Funktionen',
-    'nav.how-it-works': 'So funktioniert\'s',
-    'nav.pricing': 'Preise',
-    'nav.resources': 'Ressourcen',
-    'nav.about': 'Über uns',
-    'nav.contact': 'Kontakt',
-    'nav.demo': 'Demo anfragen',
-    'nav.language': 'DE',
-    
+    "nav.home": "Startseite",
+    "nav.features": "Funktionen",
+    "nav.how-it-works": "So funktioniert's",
+    "nav.pricing": "Preise",
+    "nav.resources": "Ressourcen",
+    "nav.about": "Über uns",
+    "nav.contact": "Kontakt",
+    "nav.demo": "Demo anfragen",
+    "nav.language": "DE",
+
     // Hero Section
-    'hero.title': 'Sichern, Verfolgen & Automatisieren Sie Ihren Gemeinschaftsarbeitsplatz',
-    'hero.subtitle': 'Attraccess bietet granulare Kontrolle über jede Maschine, Tür und jedes Werkzeug – inklusive Nutzungsabrechnung, Wartungsautomatisierung und individuelle Workflows.',
-    'hero.cta.primary': 'Demo anfragen',
-    'hero.cta.secondary': 'Funktionen ansehen',
-    
+    "hero.title":
+      "Sichern, Verfolgen & Automatisieren Sie Ihre Maschinen, Türen und Werkzeuge",
+    "hero.subtitle":
+      "Attraccess bietet granulare Kontrolle über jede Maschine, Tür und jedes Werkzeug – inklusive Nutzungsabrechnung, Wartungsautomatisierung und individuelle Workflows.",
+    "hero.cta.primary": "Demo anfragen",
+    "hero.cta.secondary": "Funktionen ansehen",
+
     // Problems Section
-    'problems.title': 'Lösen Sie Ihre Arbeitsplatz-Herausforderungen',
-    'problems.unauthorized': 'Unbefugter Zugriff & Missbrauch von Werkzeugen',
-    'problems.billing': 'Manuelle Abrechnung & Nutzungsstreitigkeiten',
-    'problems.maintenance': 'Vergessene Wartung & Ausfallzeiten',
-    
+    "problems.title": "Lösen Sie Ihre Arbeitsplatz-Herausforderungen",
+    "problems.unauthorized": "Unbefugter Zugriff & Missbrauch von Werkzeugen",
+    "problems.billing": "Manuelle Abrechnung & Nutzungsstreitigkeiten",
+    "problems.maintenance": "Vergessene Wartung & Ausfallzeiten",
+
     // Benefits Section
-    'benefits.title': 'Warum Attraccess wählen?',
-    'benefits.access.title': 'Sofortige Zugriffssteuerung',
-    'benefits.access.description': 'Vergaben Sie Berechtigungen pro Benutzer und Ressource – keine Schlüssel oder Listen mehr.',
-    'benefits.revenue.title': 'Umsatz nach Nutzung',
-    'benefits.revenue.description': 'Erfassen Sie jede Sitzung automatisch und berechnen Sie minutengenau.',
-    'benefits.maintenance.title': 'Keine Ausfallzeiten',
-    'benefits.maintenance.description': 'Automatische Sperrung bei Wartungsbedarf; Techniker sofort benachrichtigen.',
-    'benefits.automation.title': 'Visuelle Automatisierungen',
-    'benefits.automation.description': 'Erstellen Sie individuelle Abläufe per Drag-and-Drop – ganz ohne Code.',
-    
+    "benefits.title": "Warum Attraccess wählen?",
+    "benefits.access.title": "Sofortige Zugriffssteuerung",
+    "benefits.access.description":
+      "Vergaben Sie Berechtigungen pro Benutzer und Ressource – keine Schlüssel oder Listen mehr.",
+    "benefits.revenue.title": "Umsatz nach Nutzung",
+    "benefits.revenue.description":
+      "Erfassen Sie jede Sitzung automatisch und berechnen Sie minutengenau.",
+    "benefits.maintenance.title": "Keine Ausfallzeiten",
+    "benefits.maintenance.description":
+      "Automatische Sperrung bei Wartungsbedarf; Techniker sofort benachrichtigen.",
+    "benefits.automation.title": "Visuelle Automatisierungen",
+    "benefits.automation.description":
+      "Erstellen Sie individuelle Abläufe per Drag-and-Drop – ganz ohne Code.",
+
     // Features Section
-    'features.title': 'Komplette Arbeitsplatz-Verwaltung',
-    'features.access.title': 'Zugriffssteuerung',
-    'features.access.description': 'Tippen Sie eine NFC-Karte, scannen Sie einen QR-Code oder nutzen Sie die PWA, um Maschinen, Türen und Schränke sofort zu entriegeln. Weisen Sie \'introduced\'- oder \'isIntroducer\'-Berechtigungen in Sekunden zu.',
-    'features.tracking.title': 'Nutzungsverfolgung & Abrechnung',
-    'features.tracking.description': 'Protokollieren Sie automatisch Beginn/Ende jeder Sitzung, Benutzer und Bemerkungen. Exportieren Sie CSV-Berichte oder integrieren Sie Strom- und Zähler-Sensoren für erweiterte Abrechnung.',
-    'features.maintenance.title': 'Wartungsautomatisierung',
-    'features.maintenance.description': 'Definieren Sie mehrere Wartungsregeln pro Ressource – z. B. 5 Betriebsstunden oder 7 Tage vergangen. Ressourcen werden automatisch gesperrt und Techniker benachrichtigt, bis die Wartung bestätigt ist.',
-    'features.flows.title': 'Visuelle Automatisierungen',
-    'features.flows.description': 'Verwenden Sie unseren Drag-and-Drop-Editor, um MQTT-Nachrichten, Webhooks, E-Mails oder Push-Benachrichtigungen zu senden. Erstellen Sie Schleifen, Variablen und Bedingungen ganz einfach.',
-    'features.security.title': 'Integrationen & Sicherheit',
-    'features.security.description': 'On-Prem-Docker-Bereitstellung mit optionaler Managed-Cloud bald verfügbar. OIDC-SSO, TLS-Verschlüsselung, automatische Firmware-Updates für NFC-Leser.',
-    'features.cta': 'Live-Demo ansehen',
-    
+    "features.title": "Komplette Arbeitsplatz-Verwaltung",
+    "features.access.title": "Zugriffssteuerung",
+    "features.access.description":
+      "Tippen Sie eine NFC-Karte, scannen Sie einen QR-Code oder nutzen Sie die PWA, um Maschinen, Türen und Schränke sofort zu entriegeln. Weisen Sie 'introduced'- oder 'isIntroducer'-Berechtigungen in Sekunden zu.",
+    "features.tracking.title": "Nutzungsverfolgung & Abrechnung",
+    "features.tracking.description":
+      "Protokollieren Sie automatisch Beginn/Ende jeder Sitzung, Benutzer und Bemerkungen. Exportieren Sie CSV-Berichte oder integrieren Sie Strom- und Zähler-Sensoren für erweiterte Abrechnung.",
+    "features.maintenance.title": "Wartungsautomatisierung",
+    "features.maintenance.description":
+      "Definieren Sie mehrere Wartungsregeln pro Ressource – z. B. 5 Betriebsstunden oder 7 Tage vergangen. Ressourcen werden automatisch gesperrt und Techniker benachrichtigt, bis die Wartung bestätigt ist.",
+    "features.flows.title": "Visuelle Automatisierungen",
+    "features.flows.description":
+      "Verwenden Sie unseren Drag-and-Drop-Editor, um MQTT-Nachrichten, Webhooks, E-Mails oder Push-Benachrichtigungen zu senden. Erstellen Sie Schleifen, Variablen und Bedingungen ganz einfach.",
+    "features.security.title": "Integrationen & Sicherheit",
+    "features.security.description":
+      "On-Prem-Docker-Bereitstellung mit optionaler Managed-Cloud bald verfügbar. OIDC-SSO, TLS-Verschlüsselung, automatische Firmware-Updates für NFC-Leser.",
+    "features.cta": "Demo anfordern",
+
     // How It Works Section
-    'how-it-works.title': 'Einfache Einrichtung, Starke Ergebnisse',
-    'how-it-works.step1.title': 'Ressourcen definieren',
-    'how-it-works.step1.description': 'Erstellen Sie Maschinen, Türen und Werkzeuge in der PWA. Fügen Sie Name, Beschreibung, Bild und Dokumentationslink hinzu.',
-    'how-it-works.step2.title': 'Zugriffe zuweisen',
-    'how-it-works.step2.description': 'Weisen Sie \'introduced\'- oder \'isIntroducer\'-Berechtigungen per PWA, NFC oder OIDC-Benutzern zu.',
-    'how-it-works.step3.title': 'Ausrollen & Nutzen',
-    'how-it-works.step3.description': 'Installieren Sie NFC-Leser, drucken Sie QR-Etiketten aus oder teilen Sie PWA-Links. Nutzer tippen, scannen oder klicken, um Sitzungen zu starten.',
-    'how-it-works.step4.title': 'Verfolgen & Automatisieren',
-    'how-it-works.step4.description': 'Überwachen Sie Live-Sitzungen, exportieren Sie CSV-Protokolle und lösen Sie benutzerdefinierte Workflows aus, z. B. Belüftung oder E-Mail-Benachrichtigungen.',
-    'how-it-works.step5.title': 'Warten & Skalieren',
-    'how-it-works.step5.description': 'Legen Sie Wartungsregeln fest, sperren Sie Ressourcen automatisch, benachrichtigen Sie Techniker und verteilen Sie neue Firmware-Updates OTA.',
-    'how-it-works.cta': 'Mit einem Ingenieur sprechen',
-    
+    "how-it-works.title": "Einfache Einrichtung, Starke Ergebnisse",
+    "how-it-works.subtitle":
+      "Bringen Sie Ihre Arbeitsplatz-Automatisierung in 5 einfachen Schritten zum Laufen",
+    "how-it-works.step1.title": "Ressourcen definieren",
+    "how-it-works.step1.description":
+      "Erstellen Sie Maschinen, Türen und Werkzeuge in der PWA. Fügen Sie Name, Beschreibung, Bild und Dokumentationslink hinzu.",
+    "how-it-works.step2.title": "Zugriffe zuweisen",
+    "how-it-works.step2.description":
+      "Weisen Sie 'introduced'- oder 'isIntroducer'-Berechtigungen per PWA, NFC oder OIDC-Benutzern zu.",
+    "how-it-works.step3.title": "Ausrollen & Nutzen",
+    "how-it-works.step3.description":
+      "Installieren Sie NFC-Leser, drucken Sie QR-Etiketten aus oder teilen Sie PWA-Links. Nutzer tippen, scannen oder klicken, um Sitzungen zu starten.",
+    "how-it-works.step4.title": "Verfolgen & Automatisieren",
+    "how-it-works.step4.description":
+      "Überwachen Sie Live-Sitzungen, exportieren Sie CSV-Protokolle und lösen Sie benutzerdefinierte Workflows aus, z. B. Belüftung oder E-Mail-Benachrichtigungen.",
+    "how-it-works.step5.title": "Warten & Skalieren",
+    "how-it-works.step5.description":
+      "Legen Sie Wartungsregeln fest, sperren Sie Ressourcen automatisch, benachrichtigen Sie Techniker und verteilen Sie neue Firmware-Updates OTA.",
+    "how-it-works.ready.title": "Bereit anzufangen?",
+    "how-it-works.ready.subtitle":
+      "Unsere Ingenieure helfen Ihnen dabei, Ihre perfekte Arbeitsplatz-Automatisierung einzurichten.",
+
     // Pricing Section
-    'pricing.title': 'Flexible Preise für jede Organisation',
-    'pricing.nonprofit.title': 'Non-Profit & Privat',
-    'pricing.nonprofit.price': '€0 / für immer',
-    'pricing.nonprofit.feature1': 'Quelloffen & kostenlos',
-    'pricing.nonprofit.feature2': 'Unbegrenzte Benutzer & Ressourcen',
-    'pricing.nonprofit.feature3': 'Community-Support',
-    'pricing.pilot.title': 'Kommerzieller Pilot',
-    'pricing.pilot.price': 'Kostenlose 3-Monats-Testversion',
-    'pricing.pilot.feature1': 'Onboarding-Support',
-    'pricing.pilot.feature2': 'Nutzungsmetriken-Review',
-    'pricing.pilot.cta': 'Pilot beantragen',
-    'pricing.enterprise.title': 'Enterprise (Bald)',
-    'pricing.enterprise.feature1': 'Hybrid-Cloud-SaaS',
-    'pricing.enterprise.feature2': 'SLA & Premium-Support',
-    'pricing.enterprise.feature3': 'Individuelle Integrationen',
-    
-    // Footer
-    'footer.cta.title': 'Bereit, Ihren Arbeitsbereich zu transformieren?',
-    'footer.cta.button': 'Kostenlosen Pilot starten',
-    'footer.newsletter.placeholder': 'Ihre E-Mail',
-    'footer.newsletter.button': 'Anmelden',
-    'footer.toggle.theme': 'Dunkelmodus umschalten',
-    'footer.copyright': '© 2024 Attraccess. Alle Rechte vorbehalten.',
-    
+    "pricing.title": "Flexible Preise für jede Organisation",
+    "pricing.subtitle":
+      "Wählen Sie den Plan, der zu Ihren Arbeitsplatz-Bedürfnissen passt",
+    "pricing.popular": "Beliebteste",
+    "pricing.nonprofit.title": "Non-Profit & Privat",
+    "pricing.nonprofit.price": "€0 / für immer",
+    "pricing.nonprofit.feature1": "Quelloffen & kostenlos",
+    "pricing.nonprofit.feature2": "Unbegrenzte Benutzer & Ressourcen",
+    "pricing.nonprofit.feature3": "Community-Support",
+    "pricing.pilot.title": "Kommerzieller Pilot",
+    "pricing.pilot.price": "Kostenlose 3-Monats-Testversion",
+    "pricing.pilot.feature1": "Onboarding-Support",
+    "pricing.pilot.feature2": "Nutzungsmetriken-Review",
+    "pricing.pilot.feature3": "Prioritäre Fehlerbehebung",
+    "pricing.pilot.feature4": "Individuelle Bereitstellungshilfe",
+    "pricing.pilot.cta": "Pilot beantragen",
+    "pricing.enterprise.title": "Enterprise (Bald)",
+    "pricing.enterprise.feature1": "Hybrid-Cloud-SaaS",
+    "pricing.enterprise.feature2": "SLA & Premium-Support",
+    "pricing.enterprise.feature3": "Individuelle Integrationen",
+    "pricing.enterprise.feature4": "Erweiterte Analytik",
+
+    // Pricing
+    "pricing.contact-sales": "Vertrieb kontaktieren",
+    "pricing.faq.title": "Häufig gestellte Fragen",
+    "pricing.faq.q1": "Ist das Projekt Open Source?",
+    "pricing.faq.a1":
+      "Nein, Attraccess ist Source-Available mit einem kostenlosen Lizenzmodell für Non-Profit- und Einzelnutzung.",
+    "pricing.faq.q2": "Was ist im kommerziellen Pilot enthalten?",
+    "pricing.faq.a2":
+      "Vollzugriff auf alle Features, dedizierter Onboarding-Support und Nutzungsmetriken-Analyse.",
+    "pricing.faq.q3": "Wann werden Enterprise-Features verfügbar sein?",
+    "pricing.faq.a3":
+      "Enterprise-Features einschließlich Hybrid-Cloud-SaaS sind in planung, kontaktieren Sie uns für mehr Informationen.",
+    "pricing.faq.q4": "Kann ich jederzeit upgraden oder downgraden?",
+    "pricing.faq.a4":
+      "Ja, Sie können Ihren Plan jederzeit ändern. Wir helfen Ihnen bei der Datenmigration.",
+
+    "footer.product": "Produkt",
+    "footer.company": "Unternehmen",
+    "footer.toggle.theme": "Dunkelmodus umschalten",
+    "footer.copyright": "© 2024 Attraccess. Alle Rechte vorbehalten.",
+
     // Contact
-    'contact.title': 'Starten Sie noch heute',
-    'contact.subtitle': 'Bereit, Ihren Arbeitsbereich zu transformieren? Lassen Sie uns über Ihre spezifischen Bedürfnisse sprechen.',
-    'contact.form.name': 'Name',
-    'contact.form.email': 'E-Mail',
-    'contact.form.organization': 'Organisation',
-    'contact.form.role': 'Position',
-    'contact.form.usecase': 'Anwendungsfall',
-    'contact.form.usecase.placeholder': 'Beschreiben Sie Ihren Arbeitsbereich',
-    'contact.form.submit': 'Absenden',
-    
+    "contact.title": "Starten Sie noch heute",
+    "contact.subtitle":
+      "Bereit, Ihren Arbeitsbereich zu transformieren? Lassen Sie uns über Ihre spezifischen Bedürfnisse sprechen.",
+    "contact.form.title": "Kontakt aufnehmen",
+    "contact.form.name": "Name",
+    "contact.form.email": "E-Mail",
+    "contact.form.organization": "Organisation",
+    "contact.form.role": "Position",
+    "contact.form.usecase": "Anwendungsfall",
+    "contact.form.usecase.placeholder": "Beschreiben Sie Ihren Arbeitsbereich",
+    "contact.form.submit": "Absenden",
+    "contact.info.title": "Kontaktinformationen",
+    "contact.info.email": "E-Mail",
+    "contact.info.phone": "Telefon",
+    "contact.info.address": "Adresse",
+    "contact.info.hours": "Öffnungszeiten",
+    "contact.demo.title": "Demo vereinbaren",
+    "contact.demo.subtitle": "Buchen Sie einen 30-minütigen Demo-Anruf",
+
     // About
-    'about.title': 'Über Attraccess',
-    'about.mission': 'Wir ermöglichen Gemeinschaftsarbeitsplätze mit Unternehmens-Kontrolle – ohne Komplexität.',
-    'about.team.title': 'Unser Team',
-    
+    "about.title": "Über Attraccess",
+    "about.mission":
+      "Wir ermöglichen Gemeinschaftsarbeitsplätze mit Zugangs-Kontrolle – ohne Komplexität.",
+    "about.mission.long":
+      "Wir glauben, dass gemeinsame Arbeitsplätze zugänglich, sicher und effizient verwaltet werden sollten. Unsere Open-Source-Plattform beseitigt die Barrieren zwischen Makern und ihren Werkzeugen und bietet Betreibern die Einblicke, die sie für den Aufbau florierender Gemeinschaften benötigen.",
+    "about.mission.section": "Unsere Mission",
+    "about.team.title": "Unser Team",
+    "about.team.alex.title": "Mitgründer & CTO",
+    "about.team.alex.bio":
+      "Alex leitet die Entwicklung und das Open-Source-Community-Engagement.",
+    "about.team.sarah.title": "Mitgründerin & CEO",
+    "about.team.sarah.bio":
+      "Sarah treibt die Produktstrategie und Geschäftsentwicklung voran.",
+    "about.team.marcus.title": "Leitender Hardware-Ingenieur",
+    "about.team.marcus.bio":
+      "Marcus entwirft unsere NFC-Leser und IoT-Integrationssysteme.",
+    "about.timeline.title": "Unsere Reise",
+    "about.timeline.2023.title": "Projektbeginn im Hamburger Makerspace",
+    "about.timeline.2023.description":
+      "Gegründet von frustrierten Makerspace-Managern, die bessere Zugangskontrollen benötigten.",
+    "about.timeline.2024.title":
+      "Erste öffentliche Veröffentlichung & 5 Pilotstandorte",
+    "about.timeline.2024.description":
+      "Plattform als Open Source veröffentlicht und erste Community-Implementierungen gestartet.",
+    "about.timeline.2025.title": "Roadmap: Cloud-SaaS & erweiterte Analytik",
+    "about.timeline.2025.description":
+      "Start kommerzieller Cloud-Angebote und KI-gestützter Arbeitsplatz-Einblicke.",
+    "about.careers.title": "Werden Sie Teil unseres Teams",
+    "about.careers.subtitle":
+      "Begleiten Sie uns auf unserer Open-Source-Reise zur Transformation gemeinsamer Arbeitsplätze weltweit.",
+    "about.careers.cta": "Offene Stellen ansehen",
+
     // Resources
-    'resources.title': 'Ressourcen & Support',
-    'resources.case-study.title': 'Wie Attraccess den Attraktor e.V. Workshop optimierte',
-    'resources.case-study.teaser': 'Erfahren Sie, wie dieser Hamburger Makerspace unbefugten Zugang um 95% reduzierte und den gesamten Abrechnungsprozess automatisierte.',
-    'resources.downloads.title': 'Downloads',
-    'resources.downloads.feature-sheet': 'Unser Datenblatt herunterladen',
-    'resources.downloads.security': 'Sicherheits-Whitepaper herunterladen',
-    'resources.blog.title': 'Neueste Updates',
-  }
+    "resources.title": "Ressourcen & Support",
+    "resources.case-study.title":
+      "Wie Attraccess den Attraktor e.V. Workshop optimierte",
+    "resources.case-study.teaser":
+      "Erfahren Sie, wie dieser Hamburger Makerspace unbefugten Zugang um 95% reduzierte und den gesamten Abrechnungsprozess automatisierte.",
+    "resources.downloads.title": "Downloads",
+    "resources.downloads.feature-sheet": "Unser Datenblatt herunterladen",
+    "resources.downloads.security": "Sicherheits-Whitepaper herunterladen",
+  },
 };
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>("en");
 
   useEffect(() => {
     // Detect browser language
-    const browserLang = navigator.language.split('-')[0] as Language;
-    if (browserLang === 'de' || browserLang === 'en') {
+    const browserLang = navigator.language.split("-")[0] as Language;
+    if (browserLang === "de" || browserLang === "en") {
       setLanguage(browserLang);
     }
   }, []);
 
   const t = (key: string): string => {
-    const translation = translations[language][key as keyof typeof translations[typeof language]];
+    const translation =
+      translations[language][
+        key as keyof (typeof translations)[typeof language]
+      ];
     return translation || key;
   };
 
@@ -265,7 +419,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 export function useI18n() {
   const context = useContext(I18nContext);
   if (!context) {
-    throw new Error('useI18n must be used within an I18nProvider');
+    throw new Error("useI18n must be used within an I18nProvider");
   }
   return context;
 }
