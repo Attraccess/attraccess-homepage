@@ -129,7 +129,7 @@ const translations = {
     "impressum.address": "Address",
     "impressum.email": "Email",
     "impressum.vat.notice": "Small business operator according to § 19 UStG – no VAT charged.",
-    "impressum.owner.value": "Jan Jaap (sole proprietor operating as \"Attraccess\")",
+    "impressum.owner.value": "Jan Jaap",
     "impressum.address.value": "Platanenallee 2a, 22529 Hamburg, Germany",
 
     // Contact
