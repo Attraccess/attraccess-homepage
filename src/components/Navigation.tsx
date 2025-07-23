@@ -24,6 +24,10 @@ export function Navigation() {
     { key: "contact", href: "/contact" },
   ];
 
+  const externalNavItems = [
+    { key: "docs", href: "https://docs.attraccess.org", label: "Docs" },
+  ];
+
   const isActive = (path: string) => location.pathname === path;
 
   return (
@@ -47,6 +51,17 @@ export function Navigation() {
               >
                 {t(`nav.${item.key}`)}
               </Link>
+            ))}
+            {externalNavItems.map((item) => (
+              <a
+                key={item.key}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
+              >
+                {item.label}
+              </a>
             ))}
           </div>
 
@@ -109,6 +124,18 @@ export function Navigation() {
               >
                 {t(`nav.${item.key}`)}
               </Link>
+            ))}
+            {externalNavItems.map((item) => (
+              <a
+                key={item.key}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-3 py-2 text-base font-medium transition-colors hover:text-primary text-muted-foreground"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </a>
             ))}
             <div className="flex items-center justify-between px-3 py-2">
               <DropdownMenu>
