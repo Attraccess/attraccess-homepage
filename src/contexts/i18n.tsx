@@ -117,8 +117,20 @@ const translations = {
     // Footer
     "footer.product": "Product",
     "footer.company": "Company",
+    "footer.legal": "Legal",
+    "footer.impressum": "Imprint",
     "footer.toggle.theme": "Toggle Dark Mode",
     "footer.copyright": "© 2024 Attraccess. All rights reserved.",
+
+    // Impressum
+    "impressum.title": "Imprint",
+    "impressum.subtitle": "In compliance with German Telemedia Act § 5 TMG / Interstate Media Treaty § 18 MStV:",
+    "impressum.owner": "Owner",
+    "impressum.address": "Address",
+    "impressum.email": "Email",
+    "impressum.vat.notice": "Small business operator according to § 19 UStG – no VAT charged.",
+    "impressum.owner.value": "Jan Jaap (sole proprietor operating as \"Attraccess\")",
+    "impressum.address.value": "Platanenallee 2a, 22529 Hamburg, Germany",
 
     // Contact
     "contact.title": "Get Started Today",
@@ -251,8 +263,20 @@ const translations = {
 
     "footer.product": "Produkt",
     "footer.company": "Unternehmen",
+    "footer.legal": "Rechtliches",
+    "footer.impressum": "Impressum",
     "footer.toggle.theme": "Dunkelmodus umschalten",
     "footer.copyright": "© 2024 Attraccess. Alle Rechte vorbehalten.",
+
+    // Impressum
+    "impressum.title": "Impressum",
+    "impressum.subtitle": "Angaben gem. § 5 TMG / § 18 MStV:",
+    "impressum.owner": "Name",
+    "impressum.address": "Anschrift",
+    "impressum.email": "E-Mail",
+    "impressum.vat.notice": "Kleinunternehmer gemäß § 19 UStG – keine Umsatzsteuer ausgewiesen.",
+    "impressum.owner.value": "Jan Jaap (selbstständig, Einzelunternehmen \"Attraccess\")",
+    "impressum.address.value": "Platanenallee 2a, 22529 Hamburg, Deutschland",
 
     // Contact
     "contact.title": "Starten Sie noch heute",

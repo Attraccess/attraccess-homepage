@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useI18n } from "@/contexts/i18n";
 import { useTheme } from "@/contexts/theme";
 import { Logo } from "@/components/Logo";
+import { ImpressumModal } from "@/components/ImpressumModal";
 import { Sun, Moon, Github, Twitter, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
   const { t, language, setLanguage } = useI18n();
   const { actualTheme, setTheme } = useTheme();
+  const [impressumOpen, setImpressumOpen] = useState(false);
 
   return (
     <footer className="bg-muted/50 border-t border-border">
@@ -87,6 +89,23 @@ export function Footer() {
                 </li>
               </ul>
             </div>
+
+            {/* Legal Links */}
+            <div>
+              <h4 className="font-semibold text-foreground mb-4">
+                {t("footer.legal")}
+              </h4>
+              <ul className="space-y-2">
+                <li>
+                  <button
+                    onClick={() => setImpressumOpen(true)}
+                    className="footer-impressum text-muted-foreground hover:text-foreground transition-colors text-sm text-left"
+                  >
+                    {t("footer.impressum")}
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -128,6 +147,11 @@ export function Footer() {
           </div>
         </div>
       </div>
+      
+      <ImpressumModal 
+        open={impressumOpen} 
+        onOpenChange={setImpressumOpen} 
+      />
     </footer>
   );
 }
