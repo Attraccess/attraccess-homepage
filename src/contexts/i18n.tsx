@@ -275,7 +275,7 @@ const translations = {
     "impressum.address": "Anschrift",
     "impressum.email": "E-Mail",
     "impressum.vat.notice": "Kleinunternehmer gemäß § 19 UStG – keine Umsatzsteuer ausgewiesen.",
-    "impressum.owner.value": "Jan Jaap (selbstständig, Einzelunternehmen \"Attraccess\")",
+    "impressum.owner.value": "Jan Jaap",
     "impressum.address.value": "Platanenallee 2a, 22529 Hamburg, Deutschland",
 
     // Contact
