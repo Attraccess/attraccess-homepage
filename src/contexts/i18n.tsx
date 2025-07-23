@@ -19,6 +19,7 @@ const translations = {
     "nav.pricing": "Pricing",
     "nav.contact": "Contact",
     "nav.demo": "Request Demo",
+    "nav.docs": "Documentation",
     // Hero Section
     "hero.title": "Automate, Track & Secure Your Shared Workspace",
     "hero.subtitle":
@@ -148,6 +149,7 @@ const translations = {
     "nav.pricing": "Preise",
     "nav.contact": "Kontakt",
     "nav.demo": "Demo anfragen",
+    "nav.docs": "Dokumentation",
     // Hero Section
     "hero.title":
       "Automatisieren, Verfolgen & Sichern Sie Ihre Maschinen, Türen und Werkzeuge",

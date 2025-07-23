@@ -25,7 +25,7 @@ export function Navigation() {
   ];
 
   const externalNavItems = [
-    { key: "docs", href: "https://docs.attraccess.org", label: "Docs" },
+    { key: "docs", href: "https://docs.attraccess.org" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -60,7 +60,7 @@ export function Navigation() {
                 rel="noopener noreferrer"
                 className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
               >
-                {item.label}
+                {t(`nav.${item.key}`)}
               </a>
             ))}
           </div>
@@ -134,7 +134,7 @@ export function Navigation() {
                 className="block px-3 py-2 text-base font-medium transition-colors hover:text-primary text-muted-foreground"
                 onClick={() => setIsOpen(false)}
               >
-                {item.label}
+                {t(`nav.${item.key}`)}
               </a>
             ))}
             <div className="flex items-center justify-between px-3 py-2">
