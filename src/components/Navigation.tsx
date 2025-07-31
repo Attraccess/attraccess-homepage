@@ -24,9 +24,7 @@ export function Navigation() {
     { key: "contact", href: "/contact" },
   ];
 
-  const externalNavItems = [
-    { key: "docs", href: "https://docs.attraccess.org" },
-  ];
+  const externalNavItems = [];
 
   const isActive = (path: string) => location.pathname === path;
 
