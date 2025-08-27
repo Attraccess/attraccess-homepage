@@ -109,7 +109,7 @@ const translations = {
       "Full access to all features, dedicated onboarding support, and usage metrics analysis.",
     "pricing.faq.q3": "When will enterprise features be available?",
     "pricing.faq.a3":
-      "Enterprise features including hybrid cloud SaaS are coming in Q2 2024.",
+      "Enterprise features including hybrid cloud SaaS are planned, contact us for more details.",
     "pricing.faq.q4": "Can I upgrade or downgrade anytime?",
     "pricing.faq.a4":
       "Yes, you can change your plan at any time. We'll help you migrate your data.",
