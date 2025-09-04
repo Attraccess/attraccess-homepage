@@ -80,26 +80,44 @@ const translations = {
     "pricing.title": "Flexible Pricing for Every Organization",
     "pricing.subtitle": "Choose the plan that fits your workspace needs",
     "pricing.popular": "Most Popular",
-    "pricing.nonprofit.title": "Non-Profit & Individual",
-    "pricing.nonprofit.price": "€0 / forever",
-    "pricing.nonprofit.feature1": "Source-available & free",
-    "pricing.nonprofit.feature2": "Unlimited users & resources",
-    "pricing.nonprofit.feature3": "Community support",
-    "pricing.pilot.title": "Commercial Pilot",
-    "pricing.pilot.price": "Free 3-month trial",
-    "pricing.pilot.feature1": "Onboarding support",
-    "pricing.pilot.feature2": "Usage metrics review",
-    "pricing.pilot.feature3": "Priority bug fixes",
-    "pricing.pilot.feature4": "Custom deployment assistance",
-    "pricing.pilot.cta": "Apply for Pilot",
-    "pricing.enterprise.title": "Enterprise (Coming Soon)",
-    "pricing.enterprise.feature1": "Hybrid cloud SaaS",
-    "pricing.enterprise.feature2": "SLA & premium support",
-    "pricing.enterprise.feature3": "Custom integrations",
-    "pricing.enterprise.feature4": "Advanced analytics",
-
-    // Pricing
     "pricing.contact-sales": "Contact Sales",
+    "pricing.yearly-savings": "2 months free",
+    "pricing.monthly": "Monthly",
+    "pricing.yearly": "Yearly",
+    "pricing.max-users": "Max Users",
+    "pricing.max-resources": "Max Resources",
+    "pricing.features": "Features",
+    "pricing.support": "Support",
+    "pricing.get-started": "Get Started",
+    "pricing.contact-us": "Contact Us",
+    
+    // Plan names
+    "pricing.community.title": "Community",
+    "pricing.standard.title": "Standard", 
+    "pricing.small-business.title": "Small Business",
+    "pricing.business.title": "Business",
+    "pricing.enterprise.title": "Enterprise",
+    
+    // Features
+    "pricing.features.sso": "SSO",
+    "pricing.features.maintenance": "Maintenance",
+    "pricing.features.billing": "Billing",
+    "pricing.features.nfc": "NFC Reader + Hardware",
+    
+    // Support levels
+    "pricing.support.basic": "Basic",
+    "pricing.support.standard": "Standard",
+    "pricing.support.priority": "Priority", 
+    "pricing.support.sla": "SLA",
+    
+    // Support tooltips
+    "pricing.support.basic.tooltip": "GitHub Issues only",
+    "pricing.support.standard.tooltip": "Email support (within 48h)",
+    "pricing.support.priority.tooltip": "Priority email support (within 24h)", 
+    "pricing.support.sla.tooltip": "Individual SLA agreement",
+    
+    // Feature tooltips
+    "pricing.features.nfc.tooltip": "Hardware rental included",
     "pricing.faq.title": "Frequently Asked Questions",
     "pricing.faq.q1": "Is the source code really free?",
     "pricing.faq.a1":
@@ -224,29 +242,46 @@ const translations = {
 
     // Pricing Section
     "pricing.title": "Flexible Preise für jede Organisation",
-    "pricing.subtitle":
-      "Wählen Sie den Plan, der zu Ihren Arbeitsplatz-Bedürfnissen passt",
+    "pricing.subtitle": "Wählen Sie den Plan, der zu Ihren Arbeitsplatz-Bedürfnissen passt",
     "pricing.popular": "Beliebteste",
-    "pricing.nonprofit.title": "Non-Profit & Privat",
-    "pricing.nonprofit.price": "€0 / für immer",
-    "pricing.nonprofit.feature1": "Quelloffen & kostenlos",
-    "pricing.nonprofit.feature2": "Unbegrenzte Benutzer & Ressourcen",
-    "pricing.nonprofit.feature3": "Community-Support",
-    "pricing.pilot.title": "Kommerzieller Pilot",
-    "pricing.pilot.price": "Kostenlose 3-Monats-Testversion",
-    "pricing.pilot.feature1": "Onboarding-Support",
-    "pricing.pilot.feature2": "Nutzungsmetriken-Review",
-    "pricing.pilot.feature3": "Prioritäre Fehlerbehebung",
-    "pricing.pilot.feature4": "Individuelle Bereitstellungshilfe",
-    "pricing.pilot.cta": "Pilot beantragen",
-    "pricing.enterprise.title": "Enterprise (Bald)",
-    "pricing.enterprise.feature1": "Hybrid-Cloud-SaaS",
-    "pricing.enterprise.feature2": "SLA & Premium-Support",
-    "pricing.enterprise.feature3": "Individuelle Integrationen",
-    "pricing.enterprise.feature4": "Erweiterte Analytik",
-
-    // Pricing
     "pricing.contact-sales": "Vertrieb kontaktieren",
+    "pricing.yearly-savings": "2 Monate kostenlos",
+    "pricing.monthly": "Monatlich",
+    "pricing.yearly": "Jährlich",
+    "pricing.max-users": "Max. Benutzer",
+    "pricing.max-resources": "Max. Ressourcen",
+    "pricing.features": "Funktionen",
+    "pricing.support": "Support",
+    "pricing.get-started": "Jetzt starten",
+    "pricing.contact-us": "Kontakt aufnehmen",
+    
+    // Plan names
+    "pricing.community.title": "Community",
+    "pricing.standard.title": "Standard",
+    "pricing.small-business.title": "Small Business", 
+    "pricing.business.title": "Business",
+    "pricing.enterprise.title": "Enterprise",
+    
+    // Features
+    "pricing.features.sso": "SSO",
+    "pricing.features.maintenance": "Wartung",
+    "pricing.features.billing": "Abrechnung",
+    "pricing.features.nfc": "NFC Reader + Hardware",
+    
+    // Support levels
+    "pricing.support.basic": "Basic",
+    "pricing.support.standard": "Standard",
+    "pricing.support.priority": "Priority",
+    "pricing.support.sla": "SLA",
+    
+    // Support tooltips
+    "pricing.support.basic.tooltip": "Nur GitHub Issues",
+    "pricing.support.standard.tooltip": "E-Mail Support (binnen 48h)",
+    "pricing.support.priority.tooltip": "Prioritärer E-Mail Support (binnen 24h)",
+    "pricing.support.sla.tooltip": "Individuelles SLA-Agreement",
+    
+    // Feature tooltips  
+    "pricing.features.nfc.tooltip": "Hardware-Miete inklusive",
     "pricing.faq.title": "Häufig gestellte Fragen",
     "pricing.faq.q1": "Ist das Projekt Open Source?",
     "pricing.faq.a1":
