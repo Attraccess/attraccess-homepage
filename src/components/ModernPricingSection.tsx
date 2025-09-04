@@ -232,7 +232,7 @@ export function ModernPricingSection() {
                   </div>
                   {plan.monthlyPrice && (
                     <p className="text-xs text-muted-foreground">
-                      {billingCycle === "monthly" ? "/month" : "/year"}
+                      {billingCycle === "monthly" ? t("pricing.per-month") : t("pricing.per-year")}
                     </p>
                   )}
                 </CardHeader>
