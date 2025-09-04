@@ -219,4 +219,10 @@
       transform: translateY(0);
     }
   }
+  
+  /* Ensure tooltips appear above all content */
+  [data-radix-popper-content-wrapper] {
+    z-index: 9999 !important;
+  }
+}
 }
