@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Check, X, Info, Star } from "lucide-react";
+import { Check, X, Info, Star, Shield, Wrench, CreditCard, Wifi } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -104,15 +104,26 @@ export function ModernPricingSection() {
   const getSupportBadgeVariant = (support: string) => {
     switch (support) {
       case "basic":
-        return "secondary";
+        return "secondary"; // Gray
       case "standard":
-        return "default";
+        return "default"; // Blue/Primary
       case "priority":
-        return "destructive";
+        return "destructive"; // Orange/Red-ish (will customize)
       case "sla":
-        return "outline";
+        return "outline"; // Red outline
       default:
         return "secondary";
+    }
+  };
+
+  const getSupportBadgeStyle = (support: string) => {
+    switch (support) {
+      case "priority":
+        return "bg-orange-500 text-white hover:bg-orange-600";
+      case "sla":
+        return "border-red-500 text-red-500 hover:bg-red-50";
+      default:
+        return "";
     }
   };
 
@@ -124,6 +135,26 @@ export function ModernPricingSection() {
   const getResourceProgress = (resources: number | string) => {
     if (typeof resources === "string") return 100;
     return Math.min((resources / 100) * 100, 100);
+  };
+
+  const getUserProgress = (users: number | string) => {
+    if (typeof users === "string") return 100;
+    return Math.min((users / 500) * 100, 100);
+  };
+
+  const getFeatureIcon = (feature: string) => {
+    switch (feature) {
+      case "sso":
+        return Shield;
+      case "maintenance":
+        return Wrench;
+      case "billing":
+        return CreditCard;
+      case "nfc":
+        return Wifi;
+      default:
+        return Shield;
+    }
   };
 
   return (
@@ -213,12 +244,26 @@ export function ModernPricingSection() {
                       <span className="text-muted-foreground">{t("pricing.max-users")}</span>
                       <span className="font-medium">{plan.maxUsers}</span>
                     </div>
+                    <Progress
+                      value={getUserProgress(plan.maxUsers)}
+                      className="h-2"
+                    />
                   </div>
 
                   {/* Max Resources with Progress Bar */}
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">{t("pricing.max-resources")}</span>
+                      <div className="flex items-center gap-1">
+                        <span className="text-muted-foreground">{t("pricing.max-resources")}</span>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="w-3 h-3 text-muted-foreground cursor-help" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p className="max-w-xs">{t("pricing.max-resources.tooltip")}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
                       <span className="font-medium">{plan.maxResources}</span>
                     </div>
                     <Progress
@@ -233,75 +278,60 @@ export function ModernPricingSection() {
                       {t("pricing.features")}
                     </h4>
                     <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        {plan.features.sso ? (
-                          <Check className="w-4 h-4 text-green-500" />
-                        ) : (
-                          <X className="w-4 h-4 text-muted-foreground" />
-                        )}
-                        <span className="text-xs text-muted-foreground">
-                          {t("pricing.features.sso")}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {plan.features.maintenance ? (
-                          <Check className="w-4 h-4 text-green-500" />
-                        ) : (
-                          <X className="w-4 h-4 text-muted-foreground" />
-                        )}
-                        <span className="text-xs text-muted-foreground">
-                          {t("pricing.features.maintenance")}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {plan.features.billing ? (
-                          <Check className="w-4 h-4 text-green-500" />
-                        ) : (
-                          <X className="w-4 h-4 text-muted-foreground" />
-                        )}
-                        <span className="text-xs text-muted-foreground">
-                          {t("pricing.features.billing")}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        {plan.features.nfc ? (
-                          <Check className="w-4 h-4 text-green-500" />
-                        ) : (
-                          <X className="w-4 h-4 text-muted-foreground" />
-                        )}
-                        <span className="text-xs text-muted-foreground">
-                          {t("pricing.features.nfc")}
-                        </span>
-                        {plan.features.nfc && (
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <Info className="w-3 h-3 text-muted-foreground" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{t("pricing.features.nfc.tooltip")}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        )}
-                      </div>
+                      {Object.entries(plan.features).map(([feature, enabled]) => {
+                        const FeatureIcon = getFeatureIcon(feature);
+                        return (
+                          <div key={feature} className="flex items-center gap-2">
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <div className="flex items-center gap-2 cursor-help">
+                                  {enabled ? (
+                                    <Check className="w-4 h-4 text-green-500" />
+                                  ) : (
+                                    <X className="w-4 h-4 text-muted-foreground" />
+                                  )}
+                                  <FeatureIcon className="w-3 h-3 text-muted-foreground" />
+                                  <span className="text-xs text-muted-foreground">
+                                    {t(`pricing.features.${feature}`)}
+                                  </span>
+                                </div>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>{t(`pricing.features.${feature}.tooltip`)}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 
                   {/* Support */}
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">
-                        {t("pricing.support")}
-                      </span>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Badge variant={getSupportBadgeVariant(plan.support)}>
-                            {t(`pricing.support.${plan.support}`)}
-                          </Badge>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{t(`pricing.support.${plan.support}.tooltip`)}</p>
-                        </TooltipContent>
-                      </Tooltip>
+                      <div className="flex items-center gap-1">
+                        <span className="text-sm text-muted-foreground">
+                          {t("pricing.support")}
+                        </span>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="w-3 h-3 text-muted-foreground cursor-help" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{t(`pricing.support.${plan.support}.tooltip`)}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
+                      <Badge 
+                        variant={getSupportBadgeVariant(plan.support)}
+                        className={cn(
+                          "text-xs",
+                          getSupportBadgeStyle(plan.support)
+                        )}
+                        aria-label={`${t(`pricing.support.${plan.support}`)} support level`}
+                      >
+                        {t(`pricing.support.${plan.support}`)}
+                      </Badge>
                     </div>
                   </div>
 

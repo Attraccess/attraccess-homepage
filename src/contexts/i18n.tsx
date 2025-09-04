@@ -112,12 +112,18 @@ const translations = {
     
     // Support tooltips
     "pricing.support.basic.tooltip": "GitHub Issues only",
-    "pricing.support.standard.tooltip": "Email support (within 48h)",
-    "pricing.support.priority.tooltip": "Priority email support (within 24h)", 
+    "pricing.support.standard.tooltip": "Email support (response within 48h)",
+    "pricing.support.priority.tooltip": "Priority email support (response within 24h)", 
     "pricing.support.sla.tooltip": "Individual SLA agreement",
     
     // Feature tooltips
-    "pricing.features.nfc.tooltip": "Hardware rental included",
+    "pricing.features.sso.tooltip": "Single Sign-On integration",
+    "pricing.features.maintenance.tooltip": "Automated maintenance workflows",
+    "pricing.features.billing.tooltip": "Usage-based billing system",
+    "pricing.features.nfc.tooltip": "NFC Reader + Hardware rental included",
+    
+    // Other tooltips
+    "pricing.max-resources.tooltip": "Resources with rented hardware don't count towards this quota and are 'free'",
     "pricing.faq.title": "Frequently Asked Questions",
     "pricing.faq.q1": "Is the source code really free?",
     "pricing.faq.a1":
@@ -276,12 +282,18 @@ const translations = {
     
     // Support tooltips
     "pricing.support.basic.tooltip": "Nur GitHub Issues",
-    "pricing.support.standard.tooltip": "E-Mail Support (binnen 48h)",
-    "pricing.support.priority.tooltip": "Prioritärer E-Mail Support (binnen 24h)",
+    "pricing.support.standard.tooltip": "E-Mail Support (Antwort innerhalb von 48h)",
+    "pricing.support.priority.tooltip": "Prioritärer E-Mail Support (Antwort innerhalb von 24h)",
     "pricing.support.sla.tooltip": "Individuelles SLA-Agreement",
     
     // Feature tooltips  
-    "pricing.features.nfc.tooltip": "Hardware-Miete inklusive",
+    "pricing.features.sso.tooltip": "Single Sign-On Integration",
+    "pricing.features.maintenance.tooltip": "Automatisierte Wartungsabläufe",
+    "pricing.features.billing.tooltip": "Nutzungsbasierte Abrechnungssystem",
+    "pricing.features.nfc.tooltip": "NFC Reader + Hardware-Miete inklusive",
+    
+    // Other tooltips
+    "pricing.max-resources.tooltip": "Resourcen mit gemieteter Hardware zählen nicht in dieses Kontingent und sind 'umsonst'",
     "pricing.faq.title": "Häufig gestellte Fragen",
     "pricing.faq.q1": "Ist das Projekt Open Source?",
     "pricing.faq.a1":
