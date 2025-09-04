@@ -204,10 +204,10 @@ export function ModernPricingSection() {
               <Card
                 key={plan.id}
                 className={cn(
-                  "relative hover-lift fade-in",
+                  "pricing-card relative hover-lift fade-in",
                   plan.popular
                     ? "border-primary shadow-large scale-105 z-10"
-                    : "shadow-medium",
+                    : "shadow-medium z-1",
                   plan.id === "enterprise" ? "md:col-span-2 lg:col-span-1" : ""
                 )}
                 style={{ animationDelay: `${index * 0.1}s` }}

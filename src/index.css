@@ -224,4 +224,18 @@
   [data-radix-popper-content-wrapper] {
     z-index: 9999 !important;
   }
+  
+  [data-radix-tooltip-content] {
+    z-index: 9999 !important;
+  }
+  
+  [data-radix-tooltip-portal] {
+    z-index: 9999 !important;
+  }
+  
+  /* Ensure pricing cards don't create stacking contexts that interfere with tooltips */
+  .pricing-card {
+    position: relative;
+    z-index: 1;
+  }
 }
