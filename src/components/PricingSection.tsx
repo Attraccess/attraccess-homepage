@@ -104,43 +104,6 @@ export function PricingSection() {
             </Card>
           ))}
         </div>
-
-        {/* FAQ Section */}
-        <div className="mt-20">
-          <h3 className="text-2xl font-bold text-center text-foreground mb-12">
-            {t("pricing.faq.title")}
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  {t("pricing.faq.q1")}
-                </h4>
-                <p className="text-muted-foreground">{t("pricing.faq.a1")}</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  {t("pricing.faq.q2")}
-                </h4>
-                <p className="text-muted-foreground">{t("pricing.faq.a2")}</p>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  {t("pricing.faq.q3")}
-                </h4>
-                <p className="text-muted-foreground">{t("pricing.faq.a3")}</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">
-                  {t("pricing.faq.q4")}
-                </h4>
-                <p className="text-muted-foreground">{t("pricing.faq.a4")}</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

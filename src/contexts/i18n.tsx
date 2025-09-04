@@ -126,19 +126,6 @@ const translations = {
     
     // Other tooltips
     "pricing.max-resources.tooltip": "Resources with rented hardware don't count towards this quota and are 'free'",
-    "pricing.faq.title": "Frequently Asked Questions",
-    "pricing.faq.q1": "Is the source code really free?",
-    "pricing.faq.a1":
-      "Yes, Attraccess is source-available and free for non-profit and individual use.",
-    "pricing.faq.q2": "What's included in the commercial pilot?",
-    "pricing.faq.a2":
-      "Full access to all features, dedicated onboarding support, and usage metrics analysis.",
-    "pricing.faq.q3": "When will enterprise features be available?",
-    "pricing.faq.a3":
-      "Enterprise features including hybrid cloud SaaS are planned, contact us for more details.",
-    "pricing.faq.q4": "Can I upgrade or downgrade anytime?",
-    "pricing.faq.a4":
-      "Yes, you can change your plan at any time. We'll help you migrate your data.",
 
     // Footer
     "footer.product": "Product",
@@ -298,19 +285,6 @@ const translations = {
     
     // Other tooltips
     "pricing.max-resources.tooltip": "Resourcen mit gemieteter Hardware zählen nicht in dieses Kontingent und sind 'umsonst'",
-    "pricing.faq.title": "Häufig gestellte Fragen",
-    "pricing.faq.q1": "Ist das Projekt Open Source?",
-    "pricing.faq.a1":
-      "Nein, Attraccess ist Source-Available mit einem kostenlosen Lizenzmodell für Non-Profit- und Einzelnutzung.",
-    "pricing.faq.q2": "Was ist im kommerziellen Pilot enthalten?",
-    "pricing.faq.a2":
-      "Vollzugriff auf alle Features, dedizierter Onboarding-Support und Nutzungsmetriken-Analyse.",
-    "pricing.faq.q3": "Wann werden Enterprise-Features verfügbar sein?",
-    "pricing.faq.a3":
-      "Enterprise-Features einschließlich Hybrid-Cloud-SaaS sind in planung, kontaktieren Sie uns für mehr Informationen.",
-    "pricing.faq.q4": "Kann ich jederzeit upgraden oder downgraden?",
-    "pricing.faq.a4":
-      "Ja, Sie können Ihren Plan jederzeit ändern. Wir helfen Ihnen bei der Datenmigration.",
 
     "footer.product": "Produkt",
     "footer.company": "Unternehmen",
