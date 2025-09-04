@@ -232,7 +232,7 @@ export function ModernPricingSection() {
                     <h4 className="text-sm font-medium text-foreground">
                       {t("pricing.features")}
                     </h4>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         {plan.features.sso ? (
                           <Check className="w-4 h-4 text-green-500" />
