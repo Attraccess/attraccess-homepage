@@ -312,12 +312,12 @@ export function ModernPricingSection() {
                       <div className="flex items-center gap-1">
                         <Tooltip>
                           <TooltipTrigger asChild>
-                            <>
+                            <div>
                               <span className="text-sm text-muted-foreground">
                                 {t("pricing.support")}
                               </span>
                               <Info className="w-3 h-3 text-muted-foreground cursor-help" />
-                            </>
+                            </div>
                           </TooltipTrigger>
                           <TooltipContent>
                             <p>{t(`pricing.support.${plan.support}.tooltip`)}</p>
