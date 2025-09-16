@@ -253,17 +253,19 @@ export function ModernPricingSection() {
                   {/* Max Resources with Progress Bar */}
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <div className="flex items-center gap-1">
-                        <span className="text-muted-foreground">{t("pricing.max-resources")}</span>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Info className="w-3 h-3 text-muted-foreground cursor-help" />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p className="max-w-xs">{t("pricing.max-resources.tooltip")}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
+                        <div className="flex items-center gap-1">
+                          <span className="text-muted-foreground">{t("pricing.max-resources")}</span>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <button type="button" className="cursor-help">
+                                <Info className="w-3 h-3 text-muted-foreground" />
+                              </button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p className="max-w-xs">{t("pricing.max-resources.tooltip")}</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </div>
                       <span className="font-medium">{plan.maxResources}</span>
                     </div>
                     <Progress
@@ -282,24 +284,27 @@ export function ModernPricingSection() {
                         const FeatureIcon = getFeatureIcon(feature);
                         return (
                           <div key={feature} className="flex items-center gap-2">
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <div className="flex items-center gap-2 cursor-help">
-                                  {enabled ? (
-                                    <Check className="w-4 h-4 text-green-500" />
-                                  ) : (
-                                    <X className="w-4 h-4 text-muted-foreground" />
-                                  )}
-                                  <FeatureIcon className="w-3 h-3 text-muted-foreground" />
-                                  <span className="text-xs text-muted-foreground">
-                                    {t(`pricing.features.${feature}`)}
-                                  </span>
-                                </div>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>{t(`pricing.features.${feature}.tooltip`)}</p>
-                              </TooltipContent>
-                            </Tooltip>
+                            <div className="flex items-center gap-2">
+                              {enabled ? (
+                                <Check className="w-4 h-4 text-green-500" />
+                              ) : (
+                                <X className="w-4 h-4 text-muted-foreground" />
+                              )}
+                              <FeatureIcon className="w-3 h-3 text-muted-foreground" />
+                              <span className="text-xs text-muted-foreground">
+                                {t(`pricing.features.${feature}`)}
+                              </span>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <button type="button" className="cursor-help ml-1">
+                                    <Info className="w-3 h-3 text-muted-foreground" />
+                                  </button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>{t(`pricing.features.${feature}.tooltip`)}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </div>
                           </div>
                         );
                       })}
@@ -310,14 +315,14 @@ export function ModernPricingSection() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
+                        <span className="text-sm text-muted-foreground">
+                          {t("pricing.support")}
+                        </span>
                         <Tooltip>
                           <TooltipTrigger asChild>
-                            <span>
-                              <span className="text-sm text-muted-foreground">
-                                {t("pricing.support")}
-                              </span>
-                              <Info className="w-3 h-3 text-muted-foreground cursor-help" />
-                            </span>
+                            <button type="button" className="cursor-help">
+                              <Info className="w-3 h-3 text-muted-foreground" />
+                            </button>
                           </TooltipTrigger>
                           <TooltipContent>
                             <p>{t(`pricing.support.${plan.support}.tooltip`)}</p>
