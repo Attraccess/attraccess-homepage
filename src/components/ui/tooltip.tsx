@@ -9,15 +9,18 @@ const Tooltip = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Root>
 >(({ ...props }, ref) => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
+  const {children, alwaysOpen, ...tooltipProps} = props;
   
   return (
     <TooltipPrimitive.Root 
-      {...props} 
-      open={open} 
+      {...tooltipProps} 
+      open={alwaysOpen || open} 
       onOpenChange={setOpen}
       delayDuration={0}
-    />
+    >
+      <div onClick={() => setOpen(true)}>{children}</div>
+    </TooltipPrimitive.Root>
   )
 })
 Tooltip.displayName = "Tooltip"
