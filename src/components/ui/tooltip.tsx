@@ -5,9 +5,50 @@ import { cn } from "@/lib/utils"
 
 const TooltipProvider = TooltipPrimitive.Provider
 
-const Tooltip = TooltipPrimitive.Root
+const Tooltip = React.forwardRef<
+  React.ElementRef<typeof TooltipPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Root>
+>(({ ...props }, ref) => {
+  const [open, setOpen] = React.useState(false)
+  
+  return (
+    <TooltipPrimitive.Root 
+      {...props} 
+      open={open} 
+      onOpenChange={setOpen}
+      delayDuration={0}
+    />
+  )
+})
+Tooltip.displayName = "Tooltip"
 
-const TooltipTrigger = TooltipPrimitive.Trigger
+const TooltipTrigger = React.forwardRef<
+  React.ElementRef<typeof TooltipPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Trigger>
+>(({ onClick, onTouchStart, ...props }, ref) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // Prevent event from bubbling and toggle tooltip on mobile
+    e.preventDefault()
+    e.stopPropagation()
+    onClick?.(e)
+  }
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
+    // Handle touch events for mobile
+    e.preventDefault()
+    onTouchStart?.(e)
+  }
+
+  return (
+    <TooltipPrimitive.Trigger 
+      ref={ref}
+      {...props}
+      onClick={handleClick}
+      onTouchStart={handleTouchStart}
+    />
+  )
+})
+TooltipTrigger.displayName = TooltipPrimitive.Trigger.displayName
 
 const TooltipContent = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Content>,
