@@ -310,11 +310,11 @@ export function ModernPricingSection() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
+                        <Tooltip>
+                          <TooltipTrigger asChild>
                         <span className="text-sm text-muted-foreground">
                           {t("pricing.support")}
                         </span>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
                             <Info className="w-3 h-3 text-muted-foreground cursor-help" />
                           </TooltipTrigger>
                           <TooltipContent>
