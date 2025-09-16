@@ -27,6 +27,7 @@ const TooltipTrigger = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Trigger>
 >(({ onClick, onTouchStart, ...props }, ref) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    alert('click');
     // Prevent event from bubbling and toggle tooltip on mobile
     e.preventDefault()
     e.stopPropagation()
@@ -35,6 +36,7 @@ const TooltipTrigger = React.forwardRef<
 
   const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
     // Handle touch events for mobile
+    alert('touch');
     e.preventDefault()
     onTouchStart?.(e)
   }
