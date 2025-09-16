@@ -104,7 +104,7 @@ const translations = {
     "pricing.features.sso": "SSO",
     "pricing.features.maintenance": "Maintenance",
     "pricing.features.billing": "Billing",
-    "pricing.features.nfc": "NFC Reader + Hardware",
+    "pricing.features.nfc": "NFC Reader",
     
     // Support levels
     "pricing.support.basic": "Basic",
@@ -122,7 +122,7 @@ const translations = {
     "pricing.features.sso.tooltip": "Single Sign-On integration",
     "pricing.features.maintenance.tooltip": "Automated maintenance workflows",
     "pricing.features.billing.tooltip": "Usage-based billing system",
-    "pricing.features.nfc.tooltip": "NFC Reader + Hardware rental available",
+    "pricing.features.nfc.tooltip": "NFC Reader for seamless authentication",
     
     // Other tooltips
     "pricing.max-resources.tooltip": "Resources with rented hardware don't count towards this quota and are 'free'",
@@ -263,7 +263,7 @@ const translations = {
     "pricing.features.sso": "SSO",
     "pricing.features.maintenance": "Wartung",
     "pricing.features.billing": "Abrechnung",
-    "pricing.features.nfc": "NFC Reader + Hardware",
+    "pricing.features.nfc": "NFC Reader",
     
     // Support levels
     "pricing.support.basic": "Basic",
@@ -281,7 +281,7 @@ const translations = {
     "pricing.features.sso.tooltip": "Single Sign-On Integration",
     "pricing.features.maintenance.tooltip": "Automatisierte Wartungsabläufe",
     "pricing.features.billing.tooltip": "Nutzungsbasierte Abrechnungssystem",
-    "pricing.features.nfc.tooltip": "NFC Reader + Hardware-Miete verfügbar",
+    "pricing.features.nfc.tooltip": "NFC Reader für einfache Authentifizierung",
     
     // Other tooltips
     "pricing.max-resources.tooltip": "Resourcen mit gemieteter Hardware zählen nicht in dieses Kontingent und sind 'umsonst'",
