@@ -9,10 +9,10 @@ export function Home() {
   return (
     <div className="min-h-screen">
       <Hero />
+      <CustomersPartners />
       <Benefits />
       <Features />
       <HowItWorks />
-      <CustomersPartners />
     </div>
   );
 }
