@@ -28,6 +28,10 @@ const translations = {
     "hero.cta.secondary": "Explore Features",
 
     // Problems Section
+    // Customers & Partners Section
+    "customers.title": "Trusted by Leading Organizations",
+    "customers.subtitle": "Innovative companies and educational institutions rely on our solutions",
+
     // Benefits Section
     "benefits.title": "Why Attraccess?",
     "benefits.access.title": "Instant Access Control",
@@ -184,6 +188,10 @@ const translations = {
     "hero.cta.secondary": "Funktionen ansehen",
 
     // Problems Section
+    // Customers & Partners Section
+    "customers.title": "Vertraut von führenden Organisationen",
+    "customers.subtitle": "Innovative Unternehmen und Bildungseinrichtungen setzen auf unsere Lösungen",
+
     // Benefits Section
     "benefits.title": "Warum Attraccess?",
     "benefits.access.title": "Sofortige Zugriffssteuerung",

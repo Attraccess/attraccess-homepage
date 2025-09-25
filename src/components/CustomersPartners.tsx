@@ -2,8 +2,11 @@ import React from "react";
 import workingLabLogo from "@/assets/workinglab-logo.png";
 import tuhhLogo from "@/assets/tuhh-logo.svg";
 import attraktorLogo from "@/assets/attraktor-logo.svg";
+import { useI18n } from "@/contexts/i18n";
 
 export function CustomersPartners() {
+  const { t } = useI18n();
+  
   const partners = [
     {
       name: "Working Lab & Sick Makerspace",
@@ -27,10 +30,10 @@ export function CustomersPartners() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">
-            Vertraut von führenden Organisationen
+            {t("customers.title")}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Innovative Unternehmen und Bildungseinrichtungen setzen auf unsere Lösungen
+            {t("customers.subtitle")}
           </p>
         </div>
         
