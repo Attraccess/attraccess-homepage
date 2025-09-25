@@ -10,12 +10,12 @@ const Tooltip = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Root>
 >(({ ...props }, ref) => {
   const [open, setOpen] = React.useState(false);
-  const {children, alwaysOpen, ...tooltipProps} = props;
+  const {children, ...tooltipProps} = props;
   
   return (
     <TooltipPrimitive.Root 
       {...tooltipProps} 
-      open={alwaysOpen || open} 
+      open={open} 
       onOpenChange={setOpen}
       delayDuration={0}
     >
