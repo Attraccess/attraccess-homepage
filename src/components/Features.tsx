@@ -20,7 +20,7 @@ export function Features() {
       icon: Shield,
       title: t("features.access.title"),
       description: t("features.access.description"),
-      image: "features/access.jpg",
+      image: "features/reader.webp",
       gradient: "from-blue-500 to-cyan-500",
     },
     {
