@@ -1,10 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useI18n } from "@/contexts/i18n";
 
 export function AGB() {
-  const { t } = useI18n();
-
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -15,7 +12,7 @@ export function AGB() {
               Allgemeine Geschäftsbedingungen (AGB)
             </h1>
             <p className="text-lg text-muted-foreground mb-6">
-              Stand: 16. September 2025
+              Stand: 16. Januar 2026
             </p>
             
             {/* Provider Information */}
@@ -38,7 +35,7 @@ export function AGB() {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-foreground mb-4">1. Geltungsbereich</h2>
               <p className="text-foreground leading-relaxed">
-                Diese AGB gelten für alle Verträge zwischen Jan Jaap („Anbieter") und seinen Kunden über die zeitlich befristete Überlassung von Software sowie die Vermietung von Hardware, sofern nicht schriftlich etwas anderes vereinbart wurde.
+                Diese AGB gelten für alle Verträge zwischen Jan Jaap („Anbieter“) und seinen Kunden über die Überlassung von Software sowie die Vermietung von Hardware, soweit nicht schriftlich etwas anderes vereinbart wurde. Die Angebote richten sich ausschließlich an Unternehmer im Sinne des § 14 BGB.
               </p>
             </section>
 
@@ -52,9 +49,11 @@ export function AGB() {
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-foreground mb-4">3. Vertragsabschluss</h2>
-              <p className="text-foreground leading-relaxed">
-                Der Vertrag kommt durch schriftliche oder elektronische Annahme eines vom Anbieter erstellten Angebots zustande. Maßgeblich sind die im Angebot genannten Laufzeiten, Preise und Stückzahlen.
-              </p>
+              <ol className="text-foreground leading-relaxed space-y-2">
+                <li>1. Der Vertrag kommt durch schriftliche oder elektronische Annahme eines vom Anbieter erstellten Angebots zustande.</li>
+                <li>2. Mit Annahme des Angebots erkennt der Kunde diese AGB als verbindlichen Vertragsbestandteil an.</li>
+                <li>3. Maßgeblich sind die im Angebot genannten Laufzeiten, Preise und Stückzahlen.</li>
+              </ol>
             </section>
 
             <section className="mb-8">
@@ -62,6 +61,8 @@ export function AGB() {
               <ol className="text-foreground leading-relaxed space-y-2">
                 <li>1. Der Kunde darf die Software ausschließlich für eigene geschäftliche Zwecke verwenden.</li>
                 <li>2. Änderungen, Dekompilierung, Weitergabe oder Vervielfältigung über den vertraglich vorgesehenen Umfang hinaus sind unzulässig, soweit nicht gesetzlich zwingend erlaubt.</li>
+                <li>3. Mit Vertragsende oder Kündigung erlischt das Nutzungsrecht automatisch. Der Anbieter ist berechtigt, die Software bei Zahlungsverzug oder nach Vertragsende zu sperren.</li>
+                <li>4. Updates und Support sind im Angebot geregelt.</li>
               </ol>
             </section>
 
@@ -72,6 +73,8 @@ export function AGB() {
                 <li>2. Bei Verlust oder Beschädigung haftet der Kunde für den Wiederbeschaffungs- bzw. Reparaturwert.</li>
                 <li>3. Die Rückgabe hat zum vereinbarten Termin in funktionsfähigem und gereinigtem Zustand zu erfolgen.</li>
                 <li>4. Versandkosten für Rücksendung trägt der Kunde, sofern nichts anderes vereinbart ist.</li>
+                <li>5. Die Hardware bleibt Eigentum des Anbieters.</li>
+                <li>6. Der Anbieter kann nach Vertragsende oder Kündigung die Rückgabe verlangen; bei Nicht-Rückgabe behält er sich vor, Ersatz oder weitere Mietkosten geltend zu machen.</li>
               </ol>
             </section>
 
@@ -79,17 +82,19 @@ export function AGB() {
               <h2 className="text-2xl font-semibold text-foreground mb-4">6. Vergütung und Zahlung</h2>
               <ol className="text-foreground leading-relaxed space-y-2">
                 <li>1. Die im Angebot genannten Preise verstehen sich ohne Ausweis von Umsatzsteuer gemäß § 19 UStG.</li>
-                <li>2. Rechnungen sind innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug fällig, sofern nichts anderes vereinbart ist.</li>
+                <li>2. Die Zahlung erfolgt jeweils für den vereinbarten Zeitraum ohne Abzug.</li>
+                <li>3. Rechnungen sind innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug fällig, sofern nichts anderes vereinbart ist.</li>
+                <li>4. Bei Zahlungsverzug ist der Anbieter berechtigt, die Software zu sperren und/oder die Hardware zurückzufordern.</li>
               </ol>
             </section>
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-foreground mb-4">7. Laufzeit und Kündigung</h2>
               <ol className="text-foreground leading-relaxed space-y-2">
-                <li>1. Die Laufzeit ergibt sich aus dem Angebot.</li>
-                <li>2. Soweit nicht anders vereinbart, endet das Nutzungsrecht an der Software automatisch mit Ablauf der Laufzeit, ohne dass es einer Kündigung bedarf.</li>
-                <li>3. Eine ordentliche Kündigung während der vereinbarten Laufzeit ist ausgeschlossen.</li>
-                <li>4. Das Recht zur außerordentlichen Kündigung aus wichtigem Grund bleibt unberührt.</li>
+                <li>1. Die Vertragslaufzeit ergibt sich aus dem Angebot.</li>
+                <li>2. Nach Ablauf der vereinbarten Laufzeit verlängert sich der Vertrag jeweils automatisch um die ursprünglich vereinbarte Laufzeit, sofern er nicht bis zum letzten Tag der laufenden Laufzeit in Textform gekündigt wird.</li>
+                <li>3. Der Anbieter behält sich das Recht vor, eine Verlängerung aus wichtigem Grund abzulehnen. Eine Ablehnung der Verlängerung wird dem Kunden rechtzeitig schriftlich mitgeteilt.</li>
+                <li>4. Gemietete Hardware ist nach Vertragsende oder Kündigung unverzüglich, in funktionsfähigem Zustand zurückzugeben. Bei Nicht-Rückgabe behält sich der Anbieter das Recht vor, Ersatz oder weitere Mietkosten geltend zu machen.</li>
               </ol>
             </section>
 

@@ -97,6 +97,14 @@ export function Footer() {
               </h4>
               <ul className="space-y-2">
                 <li>
+                  <Link
+                    to="/agb"
+                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+                  >
+                    AGB
+                  </Link>
+                </li>
+                <li>
                   <button
                     onClick={() => setImpressumOpen(true)}
                     className="footer-impressum text-muted-foreground hover:text-foreground transition-colors text-sm text-left"
