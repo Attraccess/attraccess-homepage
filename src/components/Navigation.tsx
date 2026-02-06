@@ -24,7 +24,9 @@ export function Navigation() {
     { key: "contact", href: "/contact" },
   ];
 
-  const externalNavItems = [];
+  const externalNavItems = [
+    { key: "blog", href: "https://ghost.attraccess.apps.janjaap.de" },
+  ];
 
   const isActive = (path: string) => location.pathname === path;
 
