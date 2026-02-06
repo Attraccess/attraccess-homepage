@@ -16,17 +16,18 @@ export function Navigation() {
   const { language, setLanguage, t } = useI18n();
   const location = useLocation();
 
+  
+
   const navItems = [
     { key: "home", href: "/" },
     { key: "features", href: "/features" },
     { key: "how-it-works", href: "/how-it-works" },
     { key: "pricing", href: "/pricing" },
+    { key: "blog", href: "/blog" },
     { key: "contact", href: "/contact" },
   ];
 
-  const externalNavItems = [
-    { key: "blog", href: "https://ghost.attraccess.apps.janjaap.de" },
-  ];
+  const externalNavItems: { key: string; href: string }[] = [];
 
   const isActive = (path: string) => location.pathname === path;
 
