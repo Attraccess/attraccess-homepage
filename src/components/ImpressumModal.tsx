@@ -31,41 +31,12 @@ export function ImpressumModal({ open, onOpenChange }: ImpressumModalProps) {
           Legal information and contact details as required by German law
         </div>
 
-        <div className="space-y-4">
-          <div>
-            <p className="text-sm text-muted-foreground mb-4">
-              {t("impressum.subtitle")}
-            </p>
-          </div>
-          
-          <ul className="space-y-2 text-sm">
-            <li>
-              <strong>
-                {t("impressum.owner")}:
-              </strong>{" "}
-              {t("impressum.owner.value")}
-            </li>
-            <li>
-              <strong>
-                {t("impressum.address")}:
-              </strong>{" "}
-              {t("impressum.address.value")}
-            </li>
-            <li>
-              <strong>
-                {t("impressum.email")}:
-              </strong>{" "}
-              <a 
-                href="mailto:contact@attraccess.org" 
-                className="text-primary hover:underline"
-              >
-                contact@attraccess.org
-              </a>
-            </li>
-            <li className="italic text-muted-foreground">
-              {t("impressum.vat.notice")}
-            </li>
-          </ul>
+        <div className="w-full h-[60vh]">
+          <iframe
+            src="https://mein.online-impressum.de/jappyjan/"
+            className="w-full h-full border-0 rounded"
+            title="Impressum"
+          />
         </div>
       </DialogContent>
     </Dialog>
