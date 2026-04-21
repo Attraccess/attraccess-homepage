@@ -30,7 +30,7 @@ const translations = {
 
     // Problems Section
     // Customers & Partners Section
-    "customers.title": "Trusted by Leading Organizations",
+    "customers.title": "Leading Organizations Trust Our Solutions",
     "customers.subtitle": "Innovative companies and educational institutions rely on our solutions",
 
     // Benefits Section
