@@ -191,7 +191,7 @@ const translations = {
 
     // Problems Section
     // Customers & Partners Section
-    "customers.title": "Vertraut von führenden Organisationen",
+    "customers.title": "Führende Organisationen vertrauen auf unsere Lösungen",
     "customers.subtitle": "Innovative Unternehmen und Bildungseinrichtungen setzen auf unsere Lösungen",
 
     // Benefits Section
