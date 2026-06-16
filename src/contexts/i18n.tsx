@@ -86,18 +86,21 @@ const translations = {
     "features.flows.node1": "NFC Tap",
     "features.flows.node2": "Notify",
     "features.flows.node3": "Log",
-    "features.analytics.title": "Analytics & Reporting",
+    "features.analytics.title": "Session Logs & CSV Export",
     "features.analytics.description":
-      "Usage reports, per-member breakdowns, and activity tracking — export to CSV any time.",
-    "features.multilocation.title": "Multi-Location Support",
-    "features.multilocation.description":
-      "Manage multiple spaces from a single dashboard. Members can have different access levels per location.",
-    "features.rbac.title": "Role-Based Permissions",
+      "Every resource session is logged automatically. Export usage history to CSV at any time for reporting or billing.",
+    "features.maintenance.title": "Maintenance Workflows",
+    "features.maintenance.description":
+      "Set usage-based maintenance intervals per resource. Attraccess auto-locks resources when maintenance is due and notifies your technicians.",
+    "features.maintenance.status1": "Laser Cutter — due in 3 uses",
+    "features.maintenance.status2": "3D Printer — locked for maintenance",
+    "features.maintenance.status3": "CNC Router — OK",
+    "features.rbac.title": "Per-Resource Permissions",
     "features.rbac.description":
-      "Assign member, trainer, and admin roles. Control exactly who can access which resources.",
-    "features.rbac.admin": "Admin — full access",
-    "features.rbac.trainer": "Trainer — can authorize",
-    "features.rbac.member": "Member — resource access",
+      "Grant per-resource access with two permission levels: introduced (can use) and isIntroducer (can authorize others). Controlled individually per resource.",
+    "features.rbac.admin": "isIntroducer — can authorize others",
+    "features.rbac.trainer": "introduced — can use the resource",
+    "features.rbac.member": "no access — blocked",
     "features.selfhosted.title": "Self-Hosted & Source-Available",
     "features.selfhosted.description":
       "Your data never leaves your servers. Deploy with Docker on any hardware. The Prosperity Public License means free for non-profits, with commercial licensing available.",
@@ -122,7 +125,7 @@ const translations = {
       "Add each machine, door, or tool as a resource in the dashboard. Give it a name, description, and upload a photo. Set requirements — like requiring training before access is granted.",
     "how-it-works.step1.bullet1": "Name, photo, documentation link",
     "how-it-works.step1.bullet2": "Training & certification requirements",
-    "how-it-works.step1.bullet3": "Location & group assignment",
+    "how-it-works.step1.bullet3": "Group assignment for organization",
     "how-it-works.step2.title": "Assign Access",
     "how-it-works.step2.description":
       "Register NFC cards for each member and grant access to specific resources. Set training completion status and permission levels per resource.",
@@ -313,18 +316,21 @@ const translations = {
     "features.flows.node1": "NFC-Tap",
     "features.flows.node2": "Benachrichtigen",
     "features.flows.node3": "Protokollieren",
-    "features.analytics.title": "Analysen & Berichte",
+    "features.analytics.title": "Sitzungsprotokolle & CSV-Export",
     "features.analytics.description":
-      "Nutzungsberichte, Mitglieder-Aufschlüsselung und Aktivitätsverfolgung – jederzeit als CSV exportierbar.",
-    "features.multilocation.title": "Multi-Standort-Unterstützung",
-    "features.multilocation.description":
-      "Verwalten Sie mehrere Standorte über ein einziges Dashboard. Mitglieder können pro Standort unterschiedliche Zugriffsebenen haben.",
-    "features.rbac.title": "Rollenbasierte Berechtigungen",
+      "Jede Ressourcennutzung wird automatisch protokolliert. Exportieren Sie den Verlauf jederzeit als CSV für Berichte oder Abrechnung.",
+    "features.maintenance.title": "Wartungs-Workflows",
+    "features.maintenance.description":
+      "Legen Sie nutzungsbasierte Wartungsintervalle pro Ressource fest. Attraccess sperrt Ressourcen automatisch bei Wartungsbedarf und benachrichtigt Techniker.",
+    "features.maintenance.status1": "Lasercutter — in 3 Nutzungen fällig",
+    "features.maintenance.status2": "3D-Drucker — für Wartung gesperrt",
+    "features.maintenance.status3": "CNC-Fräse — OK",
+    "features.rbac.title": "Ressourcenbezogene Berechtigungen",
     "features.rbac.description":
-      "Weisen Sie Mitglieder-, Trainer- und Admin-Rollen zu. Steuern Sie genau, wer auf welche Ressourcen zugreifen kann.",
-    "features.rbac.admin": "Admin — voller Zugriff",
-    "features.rbac.trainer": "Trainer — kann autorisieren",
-    "features.rbac.member": "Mitglied — Ressourcenzugriff",
+      "Gewähren Sie ressourcenbezogenen Zugang mit zwei Ebenen: introduced (kann nutzen) und isIntroducer (kann andere autorisieren). Individuell pro Ressource steuerbar.",
+    "features.rbac.admin": "isIntroducer — kann andere autorisieren",
+    "features.rbac.trainer": "introduced — kann die Ressource nutzen",
+    "features.rbac.member": "kein Zugang — gesperrt",
     "features.selfhosted.title": "Self-Hosted & Source-Available",
     "features.selfhosted.description":
       "Ihre Daten verlassen nie Ihre Server. Mit Docker auf beliebiger Hardware deployen. Die Prosperity Public License bedeutet: kostenlos für Non-Profits, kommerzielle Lizenzierung verfügbar.",
@@ -349,7 +355,7 @@ const translations = {
       "Fügen Sie jede Maschine, Tür oder jedes Werkzeug als Ressource im Dashboard hinzu. Geben Sie Namen, Beschreibung und Foto an. Legen Sie Anforderungen fest – z. B. dass eine Einweisung erforderlich ist.",
     "how-it-works.step1.bullet1": "Name, Foto, Dokumentationslink",
     "how-it-works.step1.bullet2": "Einweisungs- & Zertifizierungsanforderungen",
-    "how-it-works.step1.bullet3": "Standort- & Gruppenzuweisung",
+    "how-it-works.step1.bullet3": "Gruppenzuweisung für die Organisation",
     "how-it-works.step2.title": "Zugriffe zuweisen",
     "how-it-works.step2.description":
       "Registrieren Sie NFC-Karten für jedes Mitglied und gewähren Sie Zugang zu bestimmten Ressourcen. Legen Sie Einweisungsstatus und Berechtigungsstufen pro Ressource fest.",

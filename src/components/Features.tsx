@@ -85,19 +85,19 @@ function AnalyticsChart() {
   );
 }
 
-function LocationList() {
-  const locations = [
-    { name: "Working Lab HH", bg: "rgba(242,112,0,0.15)", border: "rgba(242,112,0,0.3)", dot: "rgba(242,112,0,0.8)" },
-    { name: "TUHH Lab", bg: "rgba(250,204,21,0.1)", border: "rgba(250,204,21,0.2)", dot: "rgba(250,204,21,0.8)" },
-    { name: "Attraktor e.V.", bg: "rgba(74,222,128,0.1)", border: "rgba(74,222,128,0.2)", dot: "rgba(74,222,128,0.8)" },
+function MaintenanceViz({ t }: { t: (k: string) => string }) {
+  const items = [
+    { key: "features.maintenance.status1", color: "#f97316", bg: "rgba(249,115,22,0.15)", border: "rgba(249,115,22,0.3)" },
+    { key: "features.maintenance.status2", color: "#ef4444", bg: "rgba(239,68,68,0.15)", border: "rgba(239,68,68,0.3)" },
+    { key: "features.maintenance.status3", color: "#4ade80", bg: "rgba(74,222,128,0.1)", border: "rgba(74,222,128,0.2)" },
   ];
   return (
     <div className="flex flex-col gap-2 flex-shrink-0">
-      {locations.map((loc) => (
-        <div key={loc.name} className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: loc.dot }} />
-          <div className="px-2.5 py-1.5 rounded-lg text-xs font-medium" style={{ minWidth: "110px", background: loc.bg, border: `1px solid ${loc.border}`, color: "rgba(255,255,255,0.6)" }}>
-            {loc.name}
+      {items.map((item) => (
+        <div key={item.key} className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: item.color }} />
+          <div className="px-2.5 py-1.5 rounded-lg text-xs font-medium" style={{ minWidth: "140px", background: item.bg, border: `1px solid ${item.border}`, color: "rgba(255,255,255,0.6)" }}>
+            {t(item.key)}
           </div>
         </div>
       ))}
@@ -182,35 +182,34 @@ export function Features() {
             <AnalyticsChart />
           </div>
 
-          {/* Card 4: Multi-Location — wide, row 2, cols 2-3 */}
+          {/* Card 4: Maintenance Workflows — wide, row 2, cols 2-3 */}
           <div
             className="bento-card-4 p-6 rounded-2xl relative overflow-hidden"
-            style={{ background: "linear-gradient(135deg, #7a3300 0%, #c45800 100%)", border: "1px solid rgba(249,115,22,0.3)" }}
+            style={{ background: "linear-gradient(135deg, #2a1a00 0%, #5c3800 100%)", border: "1px solid rgba(249,115,22,0.25)" }}
           >
-            <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(242,112,0,0.1)" }} />
+            <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(242,112,0,0.08)" }} />
             <div className="flex flex-col sm:flex-row gap-6 items-start">
               <div className="flex-1">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: "rgba(242,112,0,0.2)" }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-1">{t("features.multilocation.title")}</h3>
-                <p className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{t("features.multilocation.description")}</p>
+                <h3 className="text-lg font-bold text-white mb-1">{t("features.maintenance.title")}</h3>
+                <p className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{t("features.maintenance.description")}</p>
               </div>
-              <LocationList />
+              <MaintenanceViz t={t} />
             </div>
           </div>
 
-          {/* Card 5: RBAC — row 3, col 1 */}
+          {/* Card 5: Per-Resource Permissions — row 3, col 1 */}
           <div
             className="bento-card-5 p-6 rounded-2xl relative overflow-hidden"
             style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
           >
             <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: "rgba(156,163,175,0.2)" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
             </div>
             <h3 className="text-lg font-bold text-white mb-1">{t("features.rbac.title")}</h3>
