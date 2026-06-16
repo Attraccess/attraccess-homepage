@@ -22,16 +22,39 @@ const translations = {
     "nav.docs": "Documentation",
     "nav.blog": "Blog",
     // Hero Section
-    "hero.title": "Automate, Track & Secure Your Shared Workspace",
+    "hero.badge": "Free for non-profits · Commercial license available",
+    "hero.title": "Access & Lifecycle Management for Shared Resources",
     "hero.subtitle":
-      "Attraccess gives you fine-grained control over every machine, door, and tool—plus usage billing, maintenance automation, and custom workflows.",
+      "Attraccess gives you fine-grained control over every machine, door, and tool — with usage tracking, maintenance automation, and custom workflows.",
     "hero.cta.primary": "Request Demo",
-    "hero.cta.secondary": "Explore Features",
+    "hero.cta.secondary": "View on GitHub",
+    "hero.trusted-by": "Trusted by",
+    "hero.stat1.number": "3+",
+    "hero.stat1.label": "Organizations",
+    "hero.stat2.number": "100+",
+    "hero.stat2.label": "Resources managed",
+    "hero.stat3.number": "0",
+    "hero.stat3.label": "Signup sheets",
 
-    // Problems Section
+    // Stats Bar
+    "stats.orgs.number": "3+",
+    "stats.orgs.label": "Organizations using Attraccess",
+    "stats.machines.number": "100+",
+    "stats.machines.label": "Resources managed",
+    "stats.sheets.number": "0",
+    "stats.sheets.label": "Manual signup sheets",
+    "stats.selfhosted": "Self-Hosted",
+    "stats.selfhosted.label": "Your data, your servers",
+
     // Customers & Partners Section
-    "customers.title": "Leading Organizations Trust Our Solutions",
-    "customers.subtitle": "Innovative companies and educational institutions rely on our solutions",
+    "customers.title": "Trusted by Makerspaces & Labs",
+    "customers.subtitle": "Leading hackerspaces and research institutions rely on Attraccess to manage their resources and members.",
+    "customers.workinglab.tagline": "Makerspace · Hamburg",
+    "customers.workinglab.description": "Managing machines, tools, and member access across the entire facility.",
+    "customers.tuhh.tagline": "Hamburg Univ. of Technology",
+    "customers.tuhh.description": "Role-based access control and audit trails for university lab compliance.",
+    "customers.attraktor.tagline": "Hackerspace · Hamburg",
+    "customers.attraktor.description": "Self-hosted access control for a community-run hackerspace.",
 
     // Benefits Section
     "benefits.title": "Why Attraccess?",
@@ -48,38 +71,82 @@ const translations = {
     "benefits.automation.description":
       "Build custom workflows with drag-and-drop logic—no code required.",
 
-    // Features Section
-    "features.title": "Complete Workspace Management",
-    "features.access.title": "Access Control",
+    // Features Section — Bento Grid
+    "features.title": "Everything you need to manage resource access",
+    "features.label": "Features",
+    "features.access.title": "NFC Access Control",
     "features.access.description":
-      "Tap an NFC card, scan a QR code, or use the PWA to instantly unlock machines, doors, and lockers. Assign 'introduced' or 'isIntroducer' permissions in seconds.",
-    "features.flows.title": "Flow-Based Automations",
+      "Tap any NFC card or badge to unlock machines instantly. Works with standard MIFARE and ISO 14443 cards. Also supports QR codes and PWA-based access.",
+    "features.access.bullet1": "Works with standard NFC cards & wristbands",
+    "features.access.bullet2": "Real-time relay control (GPIO, HTTP, MQTT)",
+    "features.access.bullet3": "Shelly device integration supported",
+    "features.flows.title": "Automation Flows",
     "features.flows.description":
-      "Use our drag-and-drop builder to send MQTT messages, webhooks, emails, or push notifications. Build loops, variables, and conditionals with ease.",
-    "features.security.title": "Integrations & Security",
-    "features.security.description":
-      "On-prem Docker deployment with optional managed cloud coming soon. OIDC SSO, TLS encryption, auto-updating NFC reader firmware.",
+      "Trigger actions when resources start, stop, or are accessed. Send MQTT messages, webhooks, emails, or push notifications with a visual flow builder.",
+    "features.flows.node1": "NFC Tap",
+    "features.flows.node2": "Notify",
+    "features.flows.node3": "Log",
+    "features.analytics.title": "Analytics & Reporting",
+    "features.analytics.description":
+      "Usage reports, per-member breakdowns, and activity tracking — export to CSV any time.",
+    "features.multilocation.title": "Multi-Location Support",
+    "features.multilocation.description":
+      "Manage multiple spaces from a single dashboard. Members can have different access levels per location.",
+    "features.rbac.title": "Role-Based Permissions",
+    "features.rbac.description":
+      "Assign member, trainer, and admin roles. Control exactly who can access which resources.",
+    "features.rbac.admin": "Admin — full access",
+    "features.rbac.trainer": "Trainer — can authorize",
+    "features.rbac.member": "Member — resource access",
+    "features.selfhosted.title": "Self-Hosted & Source-Available",
+    "features.selfhosted.description":
+      "Your data never leaves your servers. Deploy with Docker on any hardware. The Prosperity Public License means free for non-profits, with commercial licensing available.",
+    "features.selfhosted.deploy": "docker compose up",
+    "features.selfhosted.license": "Prosperity Public License 3.0",
     "features.cta": "Request a Demo",
 
+    // CTA Banner
+    "cta.title": "Ready to replace your signup sheets?",
+    "cta.subtitle": "Get up and running in minutes. Our team will help you configure the perfect setup for your space.",
+    "cta.primary": "Request a Demo",
+    "cta.secondary": "View Documentation",
+
     // How It Works Section
-    "how-it-works.title": "Simple Setup, Powerful Results",
+    "how-it-works.label": "How It Works",
+    "how-it-works.step-label": "Step",
+    "how-it-works.title": "Get up and running in minutes",
     "how-it-works.subtitle":
-      "Get your workspace automation running in 5 simple steps",
+      "From zero to full resource access control — no custom firmware, no engineering degree required.",
     "how-it-works.step1.title": "Define Resources",
     "how-it-works.step1.description":
-      "Create machines, doors, and tools in the PWA. Add name, description, image, and documentation link.",
+      "Add each machine, door, or tool as a resource in the dashboard. Give it a name, description, and upload a photo. Set requirements — like requiring training before access is granted.",
+    "how-it-works.step1.bullet1": "Name, photo, documentation link",
+    "how-it-works.step1.bullet2": "Training & certification requirements",
+    "how-it-works.step1.bullet3": "Location & group assignment",
     "how-it-works.step2.title": "Assign Access",
     "how-it-works.step2.description":
-      "Grant 'introduced' or 'isIntroducer' permissions via PWA, NFC, or OIDC users.",
+      "Register NFC cards for each member and grant access to specific resources. Set training completion status and permission levels per resource.",
+    "how-it-works.step2.bullet1": "Register NFC cards via tap",
+    "how-it-works.step2.bullet2": "Per-resource access grants",
+    "how-it-works.step2.bullet3": "Training completion tracking",
     "how-it-works.step3.title": "Deploy & Use",
     "how-it-works.step3.description":
-      "Install NFC readers, print QR labels, or share PWA links. Users tap, scan, or click to start sessions.",
+      "Install an NFC reader or Shelly device next to each resource. Members tap their card — access is verified in milliseconds and the relay activates.",
+    "how-it-works.step3.bullet1": "Works with AttraTap NFC readers",
+    "how-it-works.step3.bullet2": "Shelly device integration for relay control",
+    "how-it-works.step3.bullet3": "Also supports QR codes and PWA-based access",
     "how-it-works.step4.title": "Track & Automate",
     "how-it-works.step4.description":
-      "Monitor live sessions, export CSV logs, and trigger custom workflows like ventilation or email alerts.",
+      "Monitor live sessions, export CSV logs, and trigger custom automation flows for notifications, ventilation, or any webhook.",
+    "how-it-works.step4.bullet1": "Live session monitoring dashboard",
+    "how-it-works.step4.bullet2": "CSV export for usage reporting",
+    "how-it-works.step4.bullet3": "Custom automation flows (MQTT, webhook, email)",
     "how-it-works.step5.title": "Maintain & Scale",
     "how-it-works.step5.description":
-      "Set maintenance rules, auto-disable resources, notify technicians, and roll out new readers via firmware OTA.",
+      "Set maintenance rules, auto-disable resources when maintenance is due, and notify technicians. Roll out firmware updates to NFC readers over the air.",
+    "how-it-works.step5.bullet1": "Automated maintenance scheduling",
+    "how-it-works.step5.bullet2": "Auto-lockout when maintenance is due",
+    "how-it-works.step5.bullet3": "Over-the-air firmware updates for readers",
 
     // Pricing Section
     "pricing.title": "Flexible Pricing for Every Organization",
@@ -182,17 +249,39 @@ const translations = {
     "nav.docs": "Dokumentation",
     "nav.blog": "Blog",
     // Hero Section
-    "hero.title":
-      "Automatisieren, Verfolgen & Sichern Sie Ihre Maschinen, Türen und Werkzeuge",
+    "hero.badge": "Kostenlos für Non-Profits · Kommerzielle Lizenz verfügbar",
+    "hero.title": "Zugang & Lifecycle-Management für gemeinsam genutzte Ressourcen",
     "hero.subtitle":
-      "Attraccess bietet detaillierte Kontrolle über jede Maschine, Tür und jedes Werkzeug – inklusive Nutzungsabrechnung, Wartungsautomatisierung und individuelle Workflows.",
+      "Attraccess bietet detaillierte Kontrolle über jede Maschine, Tür und jedes Werkzeug – inklusive Nutzungsverfolgung, Wartungsautomatisierung und individuelle Workflows.",
     "hero.cta.primary": "Demo anfragen",
-    "hero.cta.secondary": "Funktionen ansehen",
+    "hero.cta.secondary": "Auf GitHub ansehen",
+    "hero.trusted-by": "Vertraut von",
+    "hero.stat1.number": "3+",
+    "hero.stat1.label": "Organisationen",
+    "hero.stat2.number": "100+",
+    "hero.stat2.label": "Ressourcen verwaltet",
+    "hero.stat3.number": "0",
+    "hero.stat3.label": "Anmeldelisten",
 
-    // Problems Section
+    // Stats Bar
+    "stats.orgs.number": "3+",
+    "stats.orgs.label": "Organisationen nutzen Attraccess",
+    "stats.machines.number": "100+",
+    "stats.machines.label": "Ressourcen verwaltet",
+    "stats.sheets.number": "0",
+    "stats.sheets.label": "Manuelle Anmeldelisten",
+    "stats.selfhosted": "Self-Hosted",
+    "stats.selfhosted.label": "Ihre Daten, Ihre Server",
+
     // Customers & Partners Section
-    "customers.title": "Führende Organisationen vertrauen auf unsere Lösungen",
-    "customers.subtitle": "Innovative Unternehmen und Bildungseinrichtungen setzen auf unsere Lösungen",
+    "customers.title": "Vertraut von Makerspaces & Labs",
+    "customers.subtitle": "Führende Hackerspaces und Forschungseinrichtungen nutzen Attraccess zur Verwaltung ihrer Ressourcen und Mitglieder.",
+    "customers.workinglab.tagline": "Makerspace · Hamburg",
+    "customers.workinglab.description": "Verwaltung von Maschinen, Werkzeugen und Mitgliederzugängen in der gesamten Einrichtung.",
+    "customers.tuhh.tagline": "TU Hamburg",
+    "customers.tuhh.description": "Rollenbasierte Zugriffskontrolle und Audit-Trails für Compliance-Anforderungen im Universitätslabor.",
+    "customers.attraktor.tagline": "Hackerspace · Hamburg",
+    "customers.attraktor.description": "Self-hosted Zugangskontrolle für einen gemeinschaftlich betriebenen Hackerspace.",
 
     // Benefits Section
     "benefits.title": "Warum Attraccess?",
@@ -209,38 +298,82 @@ const translations = {
     "benefits.automation.description":
       "Erstellen Sie individuelle Abläufe per Drag-and-Drop – ganz ohne Code.",
 
-    // Features Section
-    "features.title": "Komplette Arbeitsplatz-Verwaltung",
-    "features.access.title": "Zugriffssteuerung",
+    // Features Section — Bento Grid
+    "features.title": "Alles, was Sie zur Ressourcenverwaltung brauchen",
+    "features.label": "Funktionen",
+    "features.access.title": "NFC-Zugangskontrolle",
     "features.access.description":
-      "Tippen Sie eine NFC-Karte, scannen Sie einen QR-Code oder nutzen Sie die PWA, um Maschinen, Türen und Schränke sofort zu entriegeln. Weisen Sie 'introduced'- oder 'isIntroducer'-Berechtigungen in Sekunden zu.",
-    "features.flows.title": "Visuelle Automatisierungen",
+      "Tippen Sie eine NFC-Karte oder ein Armband, um Maschinen sofort zu entsperren. Kompatibel mit Standard MIFARE- und ISO 14443-Karten. Unterstützt auch QR-Codes und PWA-Zugang.",
+    "features.access.bullet1": "Kompatibel mit Standard-NFC-Karten & Armbändern",
+    "features.access.bullet2": "Echtzeit-Relaissteuerung (GPIO, HTTP, MQTT)",
+    "features.access.bullet3": "Shelly-Geräte-Integration unterstützt",
+    "features.flows.title": "Automatisierungs-Flows",
     "features.flows.description":
-      "Verwenden Sie unseren Drag-and-Drop-Editor, um MQTT-Nachrichten, Webhooks, E-Mails oder Push-Benachrichtigungen zu senden. Erstellen Sie Schleifen, Variablen und Bedingungen ganz einfach.",
-    "features.security.title": "Integrationen & Sicherheit",
-    "features.security.description":
-      "On-Prem-Docker-Bereitstellung mit optionaler Managed-Cloud bald verfügbar. OIDC-SSO, TLS-Verschlüsselung, automatische Firmware-Updates für NFC-Leser.",
+      "Aktionen auslösen, wenn Ressourcen gestartet, gestoppt oder abgerufen werden. MQTT, Webhooks, E-Mails oder Push-Benachrichtigungen mit einem visuellen Flow-Builder.",
+    "features.flows.node1": "NFC-Tap",
+    "features.flows.node2": "Benachrichtigen",
+    "features.flows.node3": "Protokollieren",
+    "features.analytics.title": "Analysen & Berichte",
+    "features.analytics.description":
+      "Nutzungsberichte, Mitglieder-Aufschlüsselung und Aktivitätsverfolgung – jederzeit als CSV exportierbar.",
+    "features.multilocation.title": "Multi-Standort-Unterstützung",
+    "features.multilocation.description":
+      "Verwalten Sie mehrere Standorte über ein einziges Dashboard. Mitglieder können pro Standort unterschiedliche Zugriffsebenen haben.",
+    "features.rbac.title": "Rollenbasierte Berechtigungen",
+    "features.rbac.description":
+      "Weisen Sie Mitglieder-, Trainer- und Admin-Rollen zu. Steuern Sie genau, wer auf welche Ressourcen zugreifen kann.",
+    "features.rbac.admin": "Admin — voller Zugriff",
+    "features.rbac.trainer": "Trainer — kann autorisieren",
+    "features.rbac.member": "Mitglied — Ressourcenzugriff",
+    "features.selfhosted.title": "Self-Hosted & Source-Available",
+    "features.selfhosted.description":
+      "Ihre Daten verlassen nie Ihre Server. Mit Docker auf beliebiger Hardware deployen. Die Prosperity Public License bedeutet: kostenlos für Non-Profits, kommerzielle Lizenzierung verfügbar.",
+    "features.selfhosted.deploy": "docker compose up",
+    "features.selfhosted.license": "Prosperity Public License 3.0",
     "features.cta": "Demo anfordern",
 
+    // CTA Banner
+    "cta.title": "Bereit, Ihre Anmeldelisten zu ersetzen?",
+    "cta.subtitle": "In wenigen Minuten startklar. Unser Team hilft Ihnen dabei, die perfekte Einrichtung für Ihren Raum zu konfigurieren.",
+    "cta.primary": "Demo anfragen",
+    "cta.secondary": "Dokumentation ansehen",
+
     // How It Works Section
-    "how-it-works.title": "Einfache Einrichtung, Starke Ergebnisse",
+    "how-it-works.label": "So funktioniert's",
+    "how-it-works.step-label": "Schritt",
+    "how-it-works.title": "In wenigen Minuten startklar",
     "how-it-works.subtitle":
-      "Bringen Sie Ihre Arbeitsplatz-Automatisierung in 5 einfachen Schritten zum Laufen",
+      "Von null zur vollständigen Ressourcenzugangskontrolle – ohne eigene Firmware, ohne Ingenieurdiplom.",
     "how-it-works.step1.title": "Ressourcen definieren",
     "how-it-works.step1.description":
-      "Erstellen Sie Maschinen, Türen und Werkzeuge in der PWA. Fügen Sie Name, Beschreibung, Bild und Dokumentationslink hinzu.",
+      "Fügen Sie jede Maschine, Tür oder jedes Werkzeug als Ressource im Dashboard hinzu. Geben Sie Namen, Beschreibung und Foto an. Legen Sie Anforderungen fest – z. B. dass eine Einweisung erforderlich ist.",
+    "how-it-works.step1.bullet1": "Name, Foto, Dokumentationslink",
+    "how-it-works.step1.bullet2": "Einweisungs- & Zertifizierungsanforderungen",
+    "how-it-works.step1.bullet3": "Standort- & Gruppenzuweisung",
     "how-it-works.step2.title": "Zugriffe zuweisen",
     "how-it-works.step2.description":
-      "Weisen Sie 'introduced'- oder 'isIntroducer'-Berechtigungen per PWA, NFC oder OIDC-Benutzern zu.",
+      "Registrieren Sie NFC-Karten für jedes Mitglied und gewähren Sie Zugang zu bestimmten Ressourcen. Legen Sie Einweisungsstatus und Berechtigungsstufen pro Ressource fest.",
+    "how-it-works.step2.bullet1": "NFC-Karten per Tap registrieren",
+    "how-it-works.step2.bullet2": "Ressourcenspezifische Zugriffsgewährung",
+    "how-it-works.step2.bullet3": "Verfolgung des Einweisungsstatus",
     "how-it-works.step3.title": "Ausrollen & Nutzen",
     "how-it-works.step3.description":
-      "Installieren Sie NFC-Leser, drucken Sie QR-Etiketten aus oder teilen Sie PWA-Links. Nutzer tippen, scannen oder klicken, um Sitzungen zu starten.",
+      "Installieren Sie einen NFC-Leser oder ein Shelly-Gerät neben jeder Ressource. Mitglieder tippen ihre Karte – der Zugang wird in Millisekunden geprüft und das Relais aktiviert.",
+    "how-it-works.step3.bullet1": "Kompatibel mit AttraTap NFC-Lesern",
+    "how-it-works.step3.bullet2": "Shelly-Geräte-Integration für Relaissteuerung",
+    "how-it-works.step3.bullet3": "Unterstützt auch QR-Codes und PWA-Zugang",
     "how-it-works.step4.title": "Verfolgen & Automatisieren",
     "how-it-works.step4.description":
-      "Überwachen Sie Live-Sitzungen, exportieren Sie CSV-Protokolle und lösen Sie benutzerdefinierte Workflows aus, z. B. Belüftung oder E-Mail-Benachrichtigungen.",
+      "Überwachen Sie Live-Sitzungen, exportieren Sie CSV-Protokolle und lösen Sie Automatisierungs-Flows für Benachrichtigungen, Belüftung oder Webhooks aus.",
+    "how-it-works.step4.bullet1": "Live-Sitzungsüberwachung im Dashboard",
+    "how-it-works.step4.bullet2": "CSV-Export für Nutzungsberichte",
+    "how-it-works.step4.bullet3": "Benutzerdefinierte Flows (MQTT, Webhook, E-Mail)",
     "how-it-works.step5.title": "Warten & Skalieren",
     "how-it-works.step5.description":
-      "Legen Sie Wartungsregeln fest, sperren Sie Ressourcen automatisch, benachrichtigen Sie Techniker und verteilen Sie neue Firmware-Updates OTA.",
+      "Legen Sie Wartungsregeln fest, sperren Sie Ressourcen bei Wartungsbedarf automatisch und benachrichtigen Sie Techniker. Verteilen Sie Firmware-Updates OTA an NFC-Leser.",
+    "how-it-works.step5.bullet1": "Automatisierte Wartungsplanung",
+    "how-it-works.step5.bullet2": "Automatische Sperrung bei Wartungsbedarf",
+    "how-it-works.step5.bullet3": "OTA-Firmware-Updates für Leser",
     "how-it-works.ready.title": "Bereit anzufangen?",
     "how-it-works.ready.subtitle":
       "Unsere Ingenieure helfen Ihnen dabei, Ihre perfekte Arbeitsplatz-Automatisierung einzurichten.",
