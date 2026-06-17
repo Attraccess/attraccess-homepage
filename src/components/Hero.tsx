@@ -4,146 +4,6 @@ import { useI18n } from "@/contexts/i18n";
 import { ArrowRight, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 
-function DashboardWireframe() {
-  return (
-    <div
-      style={{
-        background: "#0d1f35",
-        borderRadius: "12px",
-        border: "1px solid rgba(255,255,255,0.1)",
-        boxShadow: "0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05) inset",
-        overflow: "hidden",
-      }}
-      className="w-full"
-    >
-      {/* Browser titlebar */}
-      <div
-        style={{
-          background: "#081525",
-          padding: "10px 16px",
-          display: "flex",
-          alignItems: "center",
-          gap: "6px",
-          borderBottom: "1px solid rgba(255,255,255,0.07)",
-        }}
-      >
-        <div className="w-2.5 h-2.5 rounded-full bg-red-400 flex-shrink-0" />
-        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 flex-shrink-0" />
-        <div className="w-2.5 h-2.5 rounded-full bg-green-400 flex-shrink-0" />
-        <div
-          style={{
-            flex: 1,
-            background: "#0a1a2e",
-            borderRadius: "6px",
-            height: "22px",
-            marginLeft: "12px",
-            display: "flex",
-            alignItems: "center",
-            padding: "0 10px",
-            fontSize: "10px",
-            color: "rgba(255,255,255,0.3)",
-          }}
-        >
-          app.attraccess.org/dashboard
-        </div>
-      </div>
-
-      {/* Browser content */}
-      <div className="p-4">
-        <div className="flex gap-3" style={{ minHeight: "260px" }}>
-          {/* Sidebar */}
-          <div
-            style={{
-              width: "100px",
-              background: "rgba(0,107,166,0.2)",
-              borderRadius: "6px",
-              padding: "10px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "6px",
-            }}
-          >
-            <div style={{ fontSize: "7px", color: "rgba(255,255,255,0.2)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "4px", padding: "0 2px" }}>Menu</div>
-            {[true, false, false, false, false].map((active, i) => (
-              <div key={i} style={{ height: "14px", borderRadius: "3px", background: active ? "rgba(0,107,166,0.6)" : "rgba(255,255,255,0.08)" }} />
-            ))}
-            <div style={{ marginTop: "auto", paddingTop: "16px" }}>
-              <div style={{ height: "26px", borderRadius: "3px", background: "rgba(242,112,0,0.3)" }} />
-            </div>
-          </div>
-
-          {/* Main area */}
-          <div className="flex-1 flex flex-col gap-2.5">
-            <div style={{ fontSize: "9px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "rgba(255,255,255,0.5)", marginBottom: "2px" }}>
-              Overview · Working Lab
-            </div>
-
-            {/* Stats row */}
-            <div className="flex gap-2">
-              {[
-                { num: "24", label: "Machines" },
-                { num: "142", label: "Members" },
-                { num: "8", label: "Active Now", highlight: true },
-              ].map((stat, i) => (
-                <div
-                  key={i}
-                  style={{
-                    flex: 1,
-                    background: stat.highlight ? "rgba(242,112,0,0.1)" : "rgba(0,107,166,0.15)",
-                    border: `1px solid ${stat.highlight ? "rgba(242,112,0,0.4)" : "rgba(0,107,166,0.3)"}`,
-                    borderRadius: "6px",
-                    padding: "8px 10px",
-                  }}
-                >
-                  <div style={{ fontSize: "14px", fontWeight: 700, color: stat.highlight ? "#f97316" : "#fff" }}>{stat.num}</div>
-                  <div style={{ fontSize: "8px", color: "rgba(255,255,255,0.4)", marginTop: "2px" }}>{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Table */}
-            <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: "6px", overflow: "hidden" }}>
-              <div style={{ display: "flex", gap: "8px", padding: "6px 10px", background: "rgba(0,107,166,0.2)", fontSize: "8px", color: "rgba(255,255,255,0.5)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                <div style={{ flex: 1 }}>Machine</div>
-                <div style={{ flex: 1 }}>User</div>
-                <div>Status</div>
-              </div>
-              {[
-                { machine: "Laser Cutter A", user: "Maria S.", status: "Active", active: true },
-                { machine: "3D Printer #3", user: "Tobias K.", status: "Active", active: true },
-                { machine: "CNC Router B", user: "—", status: "Idle", active: false },
-                { machine: "Welding Bay 1", user: "Jonas R.", status: "Active", active: true },
-              ].map((row, i) => (
-                <div key={i} style={{ display: "flex", gap: "8px", padding: "5px 10px", borderBottom: "1px solid rgba(255,255,255,0.04)", fontSize: "9px", color: "rgba(255,255,255,0.6)", alignItems: "center" }}>
-                  <div style={{ flex: 1 }}>{row.machine}</div>
-                  <div style={{ flex: 1 }}>{row.user}</div>
-                  <span style={{ padding: "2px 6px", borderRadius: "10px", fontSize: "7px", fontWeight: 600, background: row.active ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.1)", color: row.active ? "#4ade80" : "rgba(255,255,255,0.4)" }}>
-                    {row.status}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Mini chart */}
-            <div style={{ padding: "8px", borderRadius: "6px", background: "rgba(0,0,0,0.2)" }}>
-              <div style={{ fontSize: "8px", color: "rgba(255,255,255,0.3)", marginBottom: "6px" }}>Weekly Usage</div>
-              <div style={{ display: "flex", alignItems: "flex-end", gap: "3px", height: "32px" }}>
-                {[40, 65, 80, 55, 100, 45, 20].map((h, i) => (
-                  <div key={i} style={{ flex: 1, borderRadius: "2px 2px 0 0", height: `${h}%`, background: i === 4 ? "rgba(242,112,0,0.7)" : "rgba(0,107,166,0.5)" }} />
-                ))}
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", marginTop: "4px" }}>
-                <span style={{ fontSize: "7px", color: "rgba(255,255,255,0.2)" }}>Mon</span>
-                <span style={{ fontSize: "7px", color: "rgba(255,255,255,0.2)" }}>Sun</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function Hero() {
   const { t } = useI18n();
 
@@ -253,7 +113,52 @@ export function Hero() {
               </div>
             </div>
 
-            <DashboardWireframe />
+            <div
+              style={{
+                borderRadius: "12px",
+                border: "1px solid rgba(255,255,255,0.15)",
+                boxShadow: "0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05) inset",
+                overflow: "hidden",
+              }}
+              className="w-full"
+            >
+              {/* Browser chrome */}
+              <div
+                style={{
+                  background: "#081525",
+                  padding: "10px 16px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  borderBottom: "1px solid rgba(255,255,255,0.07)",
+                }}
+              >
+                <div className="w-2.5 h-2.5 rounded-full bg-red-400 flex-shrink-0" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 flex-shrink-0" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-400 flex-shrink-0" />
+                <div
+                  style={{
+                    flex: 1,
+                    background: "#0a1a2e",
+                    borderRadius: "6px",
+                    height: "22px",
+                    marginLeft: "12px",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0 10px",
+                    fontSize: "10px",
+                    color: "rgba(255,255,255,0.3)",
+                  }}
+                >
+                  app.attraccess.org/resources
+                </div>
+              </div>
+              <img
+                src="/hero/app-screenshot.png"
+                alt="Attraccess dashboard showing resource management"
+                style={{ width: "100%", display: "block" }}
+              />
+            </div>
           </div>
         </div>
       </div>
