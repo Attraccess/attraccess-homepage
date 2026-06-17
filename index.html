@@ -3,26 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Attraccess</title>
-    <meta name="description" content="Secure, Track & Automate Your Shared Workspace" />
+
+    <!-- Primary SEO -->
+    <title>Attraccess — Access & Lifecycle Management for Shared Resources</title>
+    <meta name="description" content="Track, control and automate access to shared machines, tools and doors. Usage analytics, maintenance scheduling, RBAC and SSO — self-hosted, free for non-profits." />
     <meta name="author" content="Attraccess" />
+    <meta name="keywords" content="makerspace management, shared resource access, tool tracking, machine access control, NFC access control, makerspace software, self-hosted, lifecycle management" />
+    <link rel="canonical" href="https://attraccess.org/" />
 
-    <meta property="og:title" content="Attraccess" />
-    <meta property="og:description" content="Secure, Track & Automate Your Shared Workspace" />
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Attraccess" />
+    <meta property="og:title" content="Attraccess — Access & Lifecycle Management for Shared Resources" />
+    <meta property="og:description" content="Track, control and automate access to shared machines, tools and doors. Usage analytics, maintenance scheduling, RBAC and SSO — self-hosted, free for non-profits." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://attraccess.org/" />
+    <meta property="og:image" content="https://attraccess.org/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Attraccess — resource list showing Laser Cutter, 3D Printer, CNC Router and more with live status badges" />
+    <meta property="og:locale" content="en_US" />
 
+    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    
-    <!-- Start of HubSpot Embed Code -->
+    <meta name="twitter:site" content="@attraccess" />
+    <meta name="twitter:title" content="Attraccess — Access & Lifecycle Management for Shared Resources" />
+    <meta name="twitter:description" content="Track, control and automate access to shared machines, tools and doors. Self-hosted, free for non-profits." />
+    <meta name="twitter:image" content="https://attraccess.org/og-image.png" />
+    <meta name="twitter:image:alt" content="Attraccess app showing a live resource list" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Attraccess",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Self-hosted (Linux, Docker)",
+      "url": "https://attraccess.org",
+      "description": "Access and Lifecycle management for shared resources like machines, tools and doors. Includes usage tracking, maintenance scheduling, RBAC, SSO, NFC access control and automation flows.",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Non-Profit License",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "description": "Free perpetual license for non-profit organisations"
+        },
+        {
+          "@type": "Offer",
+          "name": "Commercial License",
+          "description": "30-day free evaluation, then paid commercial license"
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "Attraccess",
+        "url": "https://attraccess.org",
+        "email": "contact@attraccess.org",
+        "sameAs": ["https://github.com/Attraccess/Attraccess"]
+      },
+      "license": "https://github.com/Attraccess/Attraccess/blob/main/LICENSE.md",
+      "softwareVersion": "1.7.0",
+      "featureList": [
+        "Resource access control with NFC",
+        "Usage tracking and reporting",
+        "Maintenance scheduling",
+        "Role-based access control (RBAC)",
+        "Single Sign-On (SSO / OIDC / SAML)",
+        "Automation flows",
+        "MQTT integration",
+        "Plugin system",
+        "Audit log"
+      ]
+    }
+    </script>
+
+    <!-- HubSpot -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/146645261.js"></script>
-    <!-- End of HubSpot Embed Code -->
   </head>
 
   <body>
-    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -1,0 +1,1115 @@
+<!-- CONCEPT B: Real-World Visual Storytelling -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attraccess — Concept B: Real-World Visual Storytelling</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#006ba6',
+              orange: '#f27000',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Timeline vertical line */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e2e8f0;
+      transform: translateX(-50%);
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+    }
+    /* Mosaic card tilt helpers */
+    .tilt-cw   { transform: rotate(2deg); }
+    .tilt-ccw  { transform: rotate(-2deg); }
+    .tilt-cw2  { transform: rotate(1.5deg); }
+    .tilt-ccw2 { transform: rotate(-1.5deg); }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Browser frame dots */
+    .browser-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <!-- ===================== FLOATING BADGE ===================== -->
+  <div class="fixed top-4 right-4 z-50 bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg pointer-events-none">
+    Concept B — Visual Storytelling
+  </div>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#006ba6;">
+          <!-- NFC wave icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 12a6 6 0 0 1 12 0"/>
+            <path d="M3 12a9 9 0 0 1 18 0"/>
+            <circle cx="12" cy="12" r="1" fill="white"/>
+          </svg>
+        </div>
+        <span class="text-xl font-bold" style="color:#006ba6;">Attraccess</span>
+      </a>
+
+      <!-- Nav links (desktop) -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#features" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Features</a>
+        <a href="#how-it-works" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">How It Works</a>
+        <a href="#customers" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Customers</a>
+        <a href="#pricing" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
+      </div>
+
+      <!-- CTA -->
+      <a href="#demo" class="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-white px-4 py-2 rounded-lg transition-opacity hover:opacity-90" style="background:#f27000;">
+        Request Demo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO — SPLIT LAYOUT ===================== -->
+  <section class="min-h-screen md:min-h-[90vh] flex flex-col md:flex-row">
+
+    <!-- Left: Text -->
+    <div class="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16 bg-white">
+      <!-- Tag -->
+      <div class="inline-flex items-center gap-2 mb-6">
+        <span class="text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full border" style="color:#006ba6; border-color:#006ba6; background:#eff7ff;">
+          Built for Makerspaces
+        </span>
+      </div>
+
+      <!-- H1 -->
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight mb-6">
+        Tap.<br/>Access.<br/><span style="color:#006ba6;">Done.</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-lg md:text-xl text-gray-600 max-w-lg leading-relaxed mb-10">
+        Replace outdated key hooks and paper logs with modern NFC access control. Know who used every machine — and when.
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 mb-12">
+        <a href="#demo" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5" style="background:#006ba6;">
+          Request Demo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#watch" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold text-gray-700 border-2 border-gray-300 transition-all hover:border-gray-400 hover:bg-gray-50">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Watch Demo
+        </a>
+      </div>
+
+      <!-- Trust stats -->
+      <div class="flex flex-wrap gap-6 text-sm text-gray-500">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full" style="background:#006ba6;"></span>
+          <span><strong class="text-gray-900">500+</strong> machines protected</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full" style="background:#f27000;"></span>
+          <span><strong class="text-gray-900">3 countries</strong> deployed</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full" style="background:#16a34a;"></span>
+          <span><strong class="text-gray-900">Open source</strong> &amp; self-hostable</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Machine mosaic -->
+    <div class="flex-1 flex items-center justify-center p-8 md:p-12" style="background:#f1f5f9;">
+      <div class="grid grid-cols-2 gap-4 max-w-sm w-full">
+
+        <!-- Laser Cutter -->
+        <div class="tilt-ccw rounded-2xl p-5 shadow-lg flex flex-col justify-between min-h-[140px] cursor-default" style="background: linear-gradient(135deg, #1e3a5f 0%, #006ba6 100%);">
+          <div class="flex justify-between items-start">
+            <!-- Laser icon -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <!-- NFC tap -->
+            <div class="bg-white bg-opacity-20 rounded-full p-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+                <path d="M8 12a4 4 0 0 1 8 0"/><path d="M5 12a7 7 0 0 1 14 0"/><circle cx="12" cy="12" r="1" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <p class="text-white text-xs font-medium opacity-70 mb-0.5">Machine</p>
+            <p class="text-white text-sm font-bold">Laser Cutter</p>
+          </div>
+        </div>
+
+        <!-- 3D Printer -->
+        <div class="tilt-cw rounded-2xl p-5 shadow-lg flex flex-col justify-between min-h-[140px] cursor-default" style="background: linear-gradient(135deg, #7c2d12 0%, #f27000 100%);">
+          <div class="flex justify-between items-start">
+            <!-- 3D printer icon -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+              <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/>
+              <rect x="6" y="14" width="12" height="8" rx="1"/>
+            </svg>
+            <div class="bg-white bg-opacity-20 rounded-full p-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+                <path d="M8 12a4 4 0 0 1 8 0"/><path d="M5 12a7 7 0 0 1 14 0"/><circle cx="12" cy="12" r="1" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <p class="text-white text-xs font-medium opacity-70 mb-0.5">Machine</p>
+            <p class="text-white text-sm font-bold">3D Printer</p>
+          </div>
+        </div>
+
+        <!-- CNC Mill -->
+        <div class="tilt-cw2 rounded-2xl p-5 shadow-lg flex flex-col justify-between min-h-[140px] cursor-default" style="background: linear-gradient(135deg, #064e3b 0%, #059669 100%);">
+          <div class="flex justify-between items-start">
+            <!-- CNC icon -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+            </svg>
+            <div class="bg-white bg-opacity-20 rounded-full p-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+                <path d="M8 12a4 4 0 0 1 8 0"/><path d="M5 12a7 7 0 0 1 14 0"/><circle cx="12" cy="12" r="1" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <p class="text-white text-xs font-medium opacity-70 mb-0.5">Machine</p>
+            <p class="text-white text-sm font-bold">CNC Mill</p>
+          </div>
+        </div>
+
+        <!-- Lathe -->
+        <div class="tilt-ccw2 rounded-2xl p-5 shadow-lg flex flex-col justify-between min-h-[140px] cursor-default" style="background: linear-gradient(135deg, #3b0764 0%, #7c3aed 100%);">
+          <div class="flex justify-between items-start">
+            <!-- Lathe/gear icon -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+              <path d="M12 3a9 9 0 1 0 9 9"/>
+              <path d="M12 8v4l3 3"/>
+              <path d="M17 3h4v4"/>
+              <path d="M21 3l-5 5"/>
+            </svg>
+            <div class="bg-white bg-opacity-20 rounded-full p-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+                <path d="M8 12a4 4 0 0 1 8 0"/><path d="M5 12a7 7 0 0 1 14 0"/><circle cx="12" cy="12" r="1" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <p class="text-white text-xs font-medium opacity-70 mb-0.5">Machine</p>
+            <p class="text-white text-sm font-bold">Lathe</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHO IS THIS FOR ===================== -->
+  <section id="customers" class="py-24 px-6" style="background:#f8fafc;">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold uppercase tracking-widest mb-3" style="color:#006ba6;">Who it's for</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900">Built for communities that build.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Makerspaces -->
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="h-1.5 w-full" style="background:#006ba6;"></div>
+          <div class="p-8">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:#eff7ff;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#006ba6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Makerspaces</h3>
+            <p class="text-gray-500 text-sm mb-6">Protect your equipment and your community — without a full-time doorman.</p>
+            <ul class="space-y-3 text-sm text-gray-700">
+              <li class="flex items-start gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" class="mt-0.5 shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                Members tap their NFC card to unlock tools — no key handover needed
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" class="mt-0.5 shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                Restrict high-voltage or certification-required equipment automatically
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" class="mt-0.5 shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                Automate opening hours — machines only active when the space is open
+              </li>
+            </ul>
+            <div class="mt-6 pt-5 border-t border-gray-100">
+              <p class="text-xs text-gray-400 font-medium">Used by</p>
+              <p class="text-sm font-semibold text-gray-700 mt-1">Attraktor e.V., WorkingLab Hamburg</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Universities & Labs -->
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="h-1.5 w-full" style="background:#f27000;"></div>
+          <div class="p-8">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:#fff7ed;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f27000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Universities &amp; Labs</h3>
+            <p class="text-gray-500 text-sm mb-6">Give students access to the lab — not the entire building. Audit trails included.</p>
+            <ul class="space-y-3 text-sm text-gray-700">
+              <li class="flex items-start gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" class="mt-0.5 shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                Link access to course enrollment or certification completion
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" class="mt-0.5 shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                Compliance-ready usage logs for safety reports and accreditation
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" class="mt-0.5 shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                Integrates with existing university ID cards (any ISO 14443 NFC tag)
+              </li>
+            </ul>
+            <div class="mt-6 pt-5 border-t border-gray-100">
+              <p class="text-xs text-gray-400 font-medium">Used by</p>
+              <p class="text-sm font-semibold text-gray-700 mt-1">TUHH — Hamburg University of Technology</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Small Businesses -->
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="h-1.5 w-full" style="background:#7c3aed;"></div>
+          <div class="p-8">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:#f5f3ff;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Small Businesses</h3>
+            <p class="text-gray-500 text-sm mb-6">Shared workshop space, tool libraries, or co-working studios — stay in control.</p>
+            <ul class="space-y-3 text-sm text-gray-700">
+              <li class="flex items-start gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" class="mt-0.5 shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                Bill members based on actual usage time — not flat-rate guesswork
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" class="mt-0.5 shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                Self-service onboarding — new members get access in minutes
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" class="mt-0.5 shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
+                Reduce liability with certified operator requirements per machine
+              </li>
+            </ul>
+            <div class="mt-6 pt-5 border-t border-gray-100">
+              <p class="text-xs text-gray-400 font-medium">Used by</p>
+              <p class="text-sm font-semibold text-gray-700 mt-1">Sick Makerspace &amp; growing</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BEFORE / AFTER ===================== -->
+  <section class="py-24 px-6 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold uppercase tracking-widest mb-3" style="color:#f27000;">The old way vs. the new way</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900">Replace the old way.</h2>
+        <p class="text-gray-500 mt-4 max-w-2xl mx-auto text-lg">Three problems. Three one-tap solutions.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-10">
+
+        <!-- Comparison 1 -->
+        <div>
+          <div class="rounded-xl p-5 mb-3" style="background:#fef2f2;">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-lg">❌</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-red-500">Before</span>
+            </div>
+            <p class="text-base font-semibold text-gray-800">Key hooks get lost</p>
+            <p class="text-sm text-gray-500 mt-1">You spend your Saturday tracking down who borrowed the laser key. Again.</p>
+          </div>
+          <div class="flex justify-center my-2">
+            <div class="flex flex-col items-center gap-1 text-gray-400">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </div>
+          </div>
+          <div class="rounded-xl p-5" style="background:#f0fdf4;">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-lg">✅</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-green-600">After</span>
+            </div>
+            <p class="text-base font-semibold text-gray-800">Tap NFC card to access</p>
+            <p class="text-sm text-gray-500 mt-1">Members tap their card. The machine unlocks. No keys. No babysitting.</p>
+          </div>
+        </div>
+
+        <!-- Comparison 2 -->
+        <div>
+          <div class="rounded-xl p-5 mb-3" style="background:#fef2f2;">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-lg">❌</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-red-500">Before</span>
+            </div>
+            <p class="text-base font-semibold text-gray-800">Paper signup sheets</p>
+            <p class="text-sm text-gray-500 mt-1">Handwritten logs that nobody reads, get wet, and prove nothing in a dispute.</p>
+          </div>
+          <div class="flex justify-center my-2">
+            <div class="flex flex-col items-center gap-1 text-gray-400">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </div>
+          </div>
+          <div class="rounded-xl p-5" style="background:#f0fdf4;">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-lg">✅</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-green-600">After</span>
+            </div>
+            <p class="text-base font-semibold text-gray-800">Digital access logs</p>
+            <p class="text-sm text-gray-500 mt-1">Every session recorded automatically. Search, filter, export — all from your browser.</p>
+          </div>
+        </div>
+
+        <!-- Comparison 3 -->
+        <div>
+          <div class="rounded-xl p-5 mb-3" style="background:#fef2f2;">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-lg">❌</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-red-500">Before</span>
+            </div>
+            <p class="text-base font-semibold text-gray-800">No usage data</p>
+            <p class="text-sm text-gray-500 mt-1">You buy a second laser cutter — but was the first one even at capacity?</p>
+          </div>
+          <div class="flex justify-center my-2">
+            <div class="flex flex-col items-center gap-1 text-gray-400">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </div>
+          </div>
+          <div class="rounded-xl p-5" style="background:#f0fdf4;">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-lg">✅</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-green-600">After</span>
+            </div>
+            <p class="text-base font-semibold text-gray-800">Real-time analytics</p>
+            <p class="text-sm text-gray-500 mt-1">Peak hours, usage per member, machine utilization — all on a single dashboard.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURES — ALTERNATING ===================== -->
+  <section id="features" class="py-24 px-6" style="background:#f8fafc;">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20">
+        <p class="text-sm font-semibold uppercase tracking-widest mb-3" style="color:#006ba6;">What you get</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900">Powerful features,<br/>simple operation.</h2>
+      </div>
+
+      <!-- Feature 1 — Text left, wireframe right -->
+      <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
+        <div>
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background:#eff7ff;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#006ba6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 12a4 4 0 0 1 8 0"/><path d="M5 12a7 7 0 0 1 14 0"/><circle cx="12" cy="12" r="1" fill="#006ba6"/>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-bold text-gray-900 mb-4">NFC Access Control</h3>
+          <p class="text-lg text-gray-600 mb-6 leading-relaxed">Any standard NFC card — student IDs, RFID fobs, or a phone — becomes an access credential. No proprietary hardware lock-in.</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-gray-700">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#eff7ff;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#006ba6" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              Works with any ISO 14443-A/B NFC tag
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#eff7ff;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#006ba6" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              Instant relay control for power outlets or solenoid locks
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#eff7ff;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#006ba6" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              Works offline — local device handles auth, syncs when online
+            </li>
+          </ul>
+        </div>
+        <!-- Browser wireframe -->
+        <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-200" style="background:#f1f5f9;">
+            <div class="browser-dot" style="background:#ef4444;"></div>
+            <div class="browser-dot" style="background:#f59e0b;"></div>
+            <div class="browser-dot" style="background:#22c55e;"></div>
+            <div class="flex-1 mx-4 h-5 rounded-full bg-white border border-gray-200 flex items-center px-3">
+              <span class="text-xs text-gray-400">attraccess.app/admin/access</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex items-center justify-between py-2.5 px-4 rounded-lg border border-gray-100 bg-gray-50">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-700">ML</div>
+                <div>
+                  <div class="text-sm font-semibold text-gray-800">Maria L.</div>
+                  <div class="text-xs text-gray-500">Laser Cutter · just now</div>
+                </div>
+              </div>
+              <span class="text-xs font-semibold px-2 py-1 rounded-full" style="background:#dcfce7; color:#16a34a;">Granted</span>
+            </div>
+            <div class="flex items-center justify-between py-2.5 px-4 rounded-lg border border-gray-100 bg-gray-50">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-xs font-bold text-orange-700">PK</div>
+                <div>
+                  <div class="text-sm font-semibold text-gray-800">Peter K.</div>
+                  <div class="text-xs text-gray-500">CNC Mill · 5 min ago</div>
+                </div>
+              </div>
+              <span class="text-xs font-semibold px-2 py-1 rounded-full" style="background:#fef9c3; color:#ca8a04;">In Use</span>
+            </div>
+            <div class="flex items-center justify-between py-2.5 px-4 rounded-lg border border-gray-100 bg-gray-50">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-xs font-bold text-red-700">TN</div>
+                <div>
+                  <div class="text-sm font-semibold text-gray-800">Tom N.</div>
+                  <div class="text-xs text-gray-500">3D Printer · 12 min ago</div>
+                </div>
+              </div>
+              <span class="text-xs font-semibold px-2 py-1 rounded-full" style="background:#fee2e2; color:#dc2626;">Denied</span>
+            </div>
+            <div class="mt-4 rounded-lg border border-gray-200 p-4" style="background:#f8fafc;">
+              <p class="text-xs font-medium text-gray-500 mb-2">Today's activity</p>
+              <div class="flex items-end gap-1 h-12">
+                <div class="flex-1 rounded-sm" style="height:30%; background:#006ba6; opacity:0.3;"></div>
+                <div class="flex-1 rounded-sm" style="height:60%; background:#006ba6; opacity:0.5;"></div>
+                <div class="flex-1 rounded-sm" style="height:100%; background:#006ba6;"></div>
+                <div class="flex-1 rounded-sm" style="height:80%; background:#006ba6; opacity:0.7;"></div>
+                <div class="flex-1 rounded-sm" style="height:45%; background:#006ba6; opacity:0.4;"></div>
+                <div class="flex-1 rounded-sm" style="height:70%; background:#006ba6; opacity:0.6;"></div>
+                <div class="flex-1 rounded-sm" style="height:90%; background:#006ba6; opacity:0.8;"></div>
+                <div class="flex-1 rounded-sm" style="height:55%; background:#006ba6; opacity:0.5;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2 — Wireframe left, text right -->
+      <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
+        <!-- Browser wireframe -->
+        <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white order-2 md:order-1">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-200" style="background:#f1f5f9;">
+            <div class="browser-dot" style="background:#ef4444;"></div>
+            <div class="browser-dot" style="background:#f59e0b;"></div>
+            <div class="browser-dot" style="background:#22c55e;"></div>
+            <div class="flex-1 mx-4 h-5 rounded-full bg-white border border-gray-200 flex items-center px-3">
+              <span class="text-xs text-gray-400">attraccess.app/admin/automations</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-4">Automation Flows</p>
+            <!-- Flow builder mockup -->
+            <div class="space-y-2">
+              <!-- Trigger -->
+              <div class="rounded-xl border-2 p-3 flex items-center gap-3" style="border-color:#006ba6; background:#eff7ff;">
+                <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:#006ba6;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-gray-800">Trigger</p>
+                  <p class="text-xs text-gray-500">Member taps NFC reader</p>
+                </div>
+              </div>
+              <!-- Arrow -->
+              <div class="flex justify-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+              <!-- Condition -->
+              <div class="rounded-xl border-2 border-dashed p-3 flex items-center gap-3" style="border-color:#f27000; background:#fff7ed;">
+                <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:#f27000;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2l9 7-9 7-9-7z"/><path d="M3 9l9 13 9-13"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-gray-800">Condition</p>
+                  <p class="text-xs text-gray-500">Has "Laser Certified" badge?</p>
+                </div>
+              </div>
+              <!-- Arrow -->
+              <div class="flex justify-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+              <!-- Action -->
+              <div class="rounded-xl border-2 p-3 flex items-center gap-3" style="border-color:#16a34a; background:#f0fdf4;">
+                <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:#16a34a;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-gray-800">Action</p>
+                  <p class="text-xs text-gray-500">Enable relay → Power on laser</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-1 md:order-2">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background:#fff7ed;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f27000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-bold text-gray-900 mb-4">Automation Flows</h3>
+          <p class="text-lg text-gray-600 mb-6 leading-relaxed">Build "if-this-then-that" logic with a visual flow builder. No code required — but full scripting available for power users.</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-gray-700">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#fff7ed;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f27000" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              Trigger on NFC tap, schedule, or external webhook
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#fff7ed;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f27000" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              Check certifications, membership status, time-of-day
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#fff7ed;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f27000" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              Send notifications, power relays, update records
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Feature 3 — Text left, wireframe right -->
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-5" style="background:#f5f3ff;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-bold text-gray-900 mb-4">Analytics &amp; Reporting</h3>
+          <p class="text-lg text-gray-600 mb-6 leading-relaxed">Stop guessing what's popular and when. Real-time dashboards turn raw access logs into actionable insights — for your whole community.</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-gray-700">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#f5f3ff;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              Machine utilization heatmaps by hour and weekday
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#f5f3ff;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              Per-member usage history and session durations
+            </li>
+            <li class="flex items-start gap-3 text-gray-700">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#f5f3ff;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              CSV and API export for your own reporting tools
+            </li>
+          </ul>
+        </div>
+        <!-- Browser wireframe analytics -->
+        <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-200" style="background:#f1f5f9;">
+            <div class="browser-dot" style="background:#ef4444;"></div>
+            <div class="browser-dot" style="background:#f59e0b;"></div>
+            <div class="browser-dot" style="background:#22c55e;"></div>
+            <div class="flex-1 mx-4 h-5 rounded-full bg-white border border-gray-200 flex items-center px-3">
+              <span class="text-xs text-gray-400">attraccess.app/admin/analytics</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <!-- Stats row -->
+            <div class="grid grid-cols-3 gap-3 mb-5">
+              <div class="rounded-lg p-3 text-center" style="background:#eff7ff;">
+                <p class="text-2xl font-extrabold" style="color:#006ba6;">142</p>
+                <p class="text-xs text-gray-500 mt-1">Sessions this week</p>
+              </div>
+              <div class="rounded-lg p-3 text-center" style="background:#fff7ed;">
+                <p class="text-2xl font-extrabold" style="color:#f27000;">83%</p>
+                <p class="text-xs text-gray-500 mt-1">Utilization</p>
+              </div>
+              <div class="rounded-lg p-3 text-center" style="background:#f0fdf4;">
+                <p class="text-2xl font-extrabold text-green-600">27</p>
+                <p class="text-xs text-gray-500 mt-1">Active members</p>
+              </div>
+            </div>
+            <!-- Heatmap mockup -->
+            <p class="text-xs font-medium text-gray-500 mb-2">Usage heatmap — this week</p>
+            <div class="grid grid-cols-7 gap-1">
+              <div class="text-center">
+                <p class="text-xs text-gray-400 mb-1">Mo</p>
+                <div class="space-y-1">
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.2;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.6;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:1;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.8;"></div>
+                </div>
+              </div>
+              <div class="text-center">
+                <p class="text-xs text-gray-400 mb-1">Tu</p>
+                <div class="space-y-1">
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.4;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.9;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.7;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.3;"></div>
+                </div>
+              </div>
+              <div class="text-center">
+                <p class="text-xs text-gray-400 mb-1">We</p>
+                <div class="space-y-1">
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.1;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.5;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.9;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.6;"></div>
+                </div>
+              </div>
+              <div class="text-center">
+                <p class="text-xs text-gray-400 mb-1">Th</p>
+                <div class="space-y-1">
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.3;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.7;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.95;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.5;"></div>
+                </div>
+              </div>
+              <div class="text-center">
+                <p class="text-xs text-gray-400 mb-1">Fr</p>
+                <div class="space-y-1">
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.5;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:1;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.8;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.4;"></div>
+                </div>
+              </div>
+              <div class="text-center">
+                <p class="text-xs text-gray-400 mb-1">Sa</p>
+                <div class="space-y-1">
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.6;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.8;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.5;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.2;"></div>
+                </div>
+              </div>
+              <div class="text-center">
+                <p class="text-xs text-gray-400 mb-1">Su</p>
+                <div class="space-y-1">
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.1;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.2;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.3;"></div>
+                  <div class="h-4 rounded" style="background:#006ba6; opacity:0.1;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS — VERTICAL TIMELINE ===================== -->
+  <section id="how-it-works" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-20">
+        <p class="text-sm font-semibold uppercase tracking-widest mb-3" style="color:#f27000;">Getting started</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900">Up and running<br/>in under an hour.</h2>
+        <p class="text-gray-500 mt-4 text-lg max-w-xl mx-auto">Five steps. No specialist required. Your members will be tapping before the coffee's cold.</p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative">
+        <div class="timeline-line hidden md:block"></div>
+
+        <!-- Step 1 — Left -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-8 mb-16">
+          <!-- Content left -->
+          <div class="md:w-5/12 md:text-right order-2 md:order-1">
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 inline-block text-left md:text-right w-full">
+              <h4 class="text-lg font-bold text-gray-900 mb-2">1. Define your resources</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Add each machine to Attraccess — name it, describe it, upload a photo. Takes 2 minutes per machine.</p>
+              <div class="mt-4 flex flex-wrap gap-2 md:justify-end">
+                <span class="text-xs px-2 py-1 rounded-full font-medium" style="background:#eff7ff; color:#006ba6;">Laser Cutter</span>
+                <span class="text-xs px-2 py-1 rounded-full font-medium" style="background:#fff7ed; color:#f27000;">3D Printer</span>
+                <span class="text-xs px-2 py-1 rounded-full font-medium" style="background:#f0fdf4; color:#16a34a;">CNC Mill</span>
+              </div>
+            </div>
+          </div>
+          <!-- Dot -->
+          <div class="timeline-dot hidden md:flex w-10 h-10 rounded-full items-center justify-center text-white text-sm font-bold shadow-md" style="background:#006ba6; top: 50%;">1</div>
+          <!-- Wireframe placeholder right -->
+          <div class="md:w-5/12 order-1 md:order-3">
+            <div class="rounded-2xl overflow-hidden shadow-md border border-gray-200 bg-white">
+              <div class="flex items-center gap-2 px-3 py-2 border-b border-gray-200" style="background:#f1f5f9;">
+                <div class="browser-dot" style="background:#ef4444;"></div>
+                <div class="browser-dot" style="background:#f59e0b;"></div>
+                <div class="browser-dot" style="background:#22c55e;"></div>
+              </div>
+              <div class="p-4 space-y-2">
+                <div class="h-6 rounded bg-gray-100 w-2/3"></div>
+                <div class="h-4 rounded bg-gray-50 w-full"></div>
+                <div class="h-4 rounded bg-gray-50 w-5/6"></div>
+                <div class="h-8 rounded mt-3" style="background:#eff7ff;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 — Right -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-8 mb-16">
+          <!-- Wireframe placeholder left -->
+          <div class="md:w-5/12 order-1">
+            <div class="rounded-2xl overflow-hidden shadow-md border border-gray-200 bg-white">
+              <div class="flex items-center gap-2 px-3 py-2 border-b border-gray-200" style="background:#f1f5f9;">
+                <div class="browser-dot" style="background:#ef4444;"></div>
+                <div class="browser-dot" style="background:#f59e0b;"></div>
+                <div class="browser-dot" style="background:#22c55e;"></div>
+              </div>
+              <div class="p-4 space-y-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-gray-200 shrink-0"></div>
+                  <div class="h-4 rounded bg-gray-100 flex-1"></div>
+                  <div class="h-5 rounded px-2" style="background:#dcfce7; width:50px;"></div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-gray-200 shrink-0"></div>
+                  <div class="h-4 rounded bg-gray-100 flex-1"></div>
+                  <div class="h-5 rounded px-2" style="background:#dcfce7; width:50px;"></div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-gray-200 shrink-0"></div>
+                  <div class="h-4 rounded bg-gray-100 flex-1"></div>
+                  <div class="h-5 rounded px-2" style="background:#fef9c3; width:60px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Dot -->
+          <div class="timeline-dot hidden md:flex w-10 h-10 rounded-full items-center justify-center text-white text-sm font-bold shadow-md" style="background:#f27000; top: 50%;">2</div>
+          <!-- Content right -->
+          <div class="md:w-5/12 order-2">
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+              <h4 class="text-lg font-bold text-gray-900 mb-2">2. Assign member access</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Add members and grant permissions per machine. Set requirements like safety training completion before access is allowed.</p>
+              <div class="mt-4 flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f27000" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="text-xs text-gray-600">Bulk import via CSV</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 — Left -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-8 mb-16">
+          <!-- Content left -->
+          <div class="md:w-5/12 md:text-right order-2 md:order-1">
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 w-full">
+              <h4 class="text-lg font-bold text-gray-900 mb-2">3. Install NFC readers</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Plug in the reader, connect to your Wi-Fi, and pair it with a resource. Raspberry Pi or Arduino — your choice. Full docs included.</p>
+              <div class="mt-3 flex flex-wrap gap-2 md:justify-end">
+                <span class="text-xs px-2 py-1 rounded-full font-medium bg-gray-100 text-gray-600">Raspberry Pi</span>
+                <span class="text-xs px-2 py-1 rounded-full font-medium bg-gray-100 text-gray-600">Arduino</span>
+                <span class="text-xs px-2 py-1 rounded-full font-medium bg-gray-100 text-gray-600">ESP32</span>
+              </div>
+            </div>
+          </div>
+          <!-- Dot -->
+          <div class="timeline-dot hidden md:flex w-10 h-10 rounded-full items-center justify-center text-white text-sm font-bold shadow-md" style="background:#059669; top: 50%;">3</div>
+          <!-- Wireframe right -->
+          <div class="md:w-5/12 order-1 md:order-3">
+            <div class="rounded-2xl overflow-hidden shadow-md border border-gray-200 bg-white">
+              <div class="flex items-center gap-2 px-3 py-2 border-b border-gray-200" style="background:#f1f5f9;">
+                <div class="browser-dot" style="background:#ef4444;"></div>
+                <div class="browser-dot" style="background:#f59e0b;"></div>
+                <div class="browser-dot" style="background:#22c55e;"></div>
+              </div>
+              <div class="p-4">
+                <div class="h-5 rounded bg-gray-100 w-1/2 mb-3"></div>
+                <div class="flex items-center gap-3 p-3 rounded-lg border border-green-200" style="background:#f0fdf4;">
+                  <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#dcfce7;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <div class="h-3 rounded bg-green-200 w-24 mb-1"></div>
+                    <div class="h-2.5 rounded bg-green-100 w-16"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 — Right -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-8 mb-16">
+          <!-- Wireframe left -->
+          <div class="md:w-5/12 order-1">
+            <div class="rounded-2xl overflow-hidden shadow-md border border-gray-200 bg-white">
+              <div class="flex items-center gap-2 px-3 py-2 border-b border-gray-200" style="background:#f1f5f9;">
+                <div class="browser-dot" style="background:#ef4444;"></div>
+                <div class="browser-dot" style="background:#f59e0b;"></div>
+                <div class="browser-dot" style="background:#22c55e;"></div>
+              </div>
+              <div class="p-4 flex flex-col items-center py-6">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background:#eff7ff;">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#006ba6" stroke-width="1.8" stroke-linecap="round">
+                    <path d="M8 12a4 4 0 0 1 8 0"/><path d="M5 12a7 7 0 0 1 14 0"/><circle cx="12" cy="12" r="1.5" fill="#006ba6"/>
+                  </svg>
+                </div>
+                <div class="h-4 rounded bg-green-200 w-24 mb-1"></div>
+                <div class="text-xs text-center text-green-700 font-semibold mt-1">Access Granted ✓</div>
+              </div>
+            </div>
+          </div>
+          <!-- Dot -->
+          <div class="timeline-dot hidden md:flex w-10 h-10 rounded-full items-center justify-center text-white text-sm font-bold shadow-md" style="background:#7c3aed; top: 50%;">4</div>
+          <!-- Content right -->
+          <div class="md:w-5/12 order-2">
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+              <h4 class="text-lg font-bold text-gray-900 mb-2">4. Members tap to access</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Members hold their NFC card or phone to the reader. If they have permission, the machine powers on. All in under a second.</p>
+              <div class="mt-3 p-3 rounded-lg text-xs" style="background:#eff7ff; color:#006ba6;">
+                ⚡ Average access time: &lt;800ms
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 — Left -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-8">
+          <!-- Content left -->
+          <div class="md:w-5/12 md:text-right order-2 md:order-1">
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 w-full">
+              <h4 class="text-lg font-bold text-gray-900 mb-2">5. Track &amp; automate</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Watch your dashboard fill up. Set up automations. Export reports. Your data, your insights — no vendor lock-in.</p>
+              <div class="mt-3 flex items-center gap-2 md:justify-end">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="text-xs text-gray-600">Fully open source · self-host or cloud</span>
+              </div>
+            </div>
+          </div>
+          <!-- Dot -->
+          <div class="timeline-dot hidden md:flex w-10 h-10 rounded-full items-center justify-center text-white text-sm font-bold shadow-md" style="background:#006ba6; top: 50%;">5</div>
+          <!-- Wireframe right -->
+          <div class="md:w-5/12 order-1 md:order-3">
+            <div class="rounded-2xl overflow-hidden shadow-md border border-gray-200 bg-white">
+              <div class="flex items-center gap-2 px-3 py-2 border-b border-gray-200" style="background:#f1f5f9;">
+                <div class="browser-dot" style="background:#ef4444;"></div>
+                <div class="browser-dot" style="background:#f59e0b;"></div>
+                <div class="browser-dot" style="background:#22c55e;"></div>
+              </div>
+              <div class="p-4 space-y-2">
+                <div class="flex justify-between items-center mb-2">
+                  <div class="h-4 rounded bg-gray-100 w-1/3"></div>
+                  <div class="h-4 rounded bg-gray-100 w-1/4"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="h-12 rounded" style="background:#eff7ff;"></div>
+                  <div class="h-12 rounded" style="background:#fff7ed;"></div>
+                </div>
+                <div class="h-4 rounded bg-gray-50 w-full"></div>
+                <div class="h-4 rounded bg-gray-50 w-4/5"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SOCIAL PROOF — QUOTE ===================== -->
+  <section class="py-24 px-6" style="background:#006ba6;">
+    <div class="max-w-4xl mx-auto text-center">
+      <svg class="w-12 h-12 mx-auto mb-8 opacity-50" viewBox="0 0 24 24" fill="white">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+      </svg>
+      <blockquote class="text-2xl md:text-3xl font-semibold text-white leading-relaxed mb-10">
+        "Before Attraccess, I spent two hours every Saturday chasing down who had the laser key. Now I open the dashboard, see exactly who used what, and actually spend my weekend building things."
+      </blockquote>
+      <div class="flex items-center justify-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-white font-bold text-lg">T</div>
+        <div class="text-left">
+          <p class="text-white font-semibold">Thomas M.</p>
+          <p class="text-white text-sm opacity-70">Co-founder · WorkingLab Hamburg &amp; Sick Makerspace</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CUSTOMER LOGOS / SOCIAL PROOF ===================== -->
+  <section class="py-16 px-6 bg-white border-b border-gray-100">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-10">Trusted by leading makerspaces and universities</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        <!-- WorkingLab -->
+        <div class="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background:#eff7ff;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#006ba6" stroke-width="1.8" stroke-linecap="round">
+              <path d="M2 20h20M4 20V10l8-6 8 6v10"/>
+              <rect x="9" y="14" width="6" height="6"/>
+            </svg>
+          </div>
+          <p class="text-sm font-semibold text-gray-700">WorkingLab Hamburg</p>
+          <p class="text-xs text-gray-400 text-center">Hamburg's premier makerspace &amp; co-creation space</p>
+        </div>
+        <!-- TUHH -->
+        <div class="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background:#fff7ed;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f27000" stroke-width="1.8" stroke-linecap="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <p class="text-sm font-semibold text-gray-700">TUHH</p>
+          <p class="text-xs text-gray-400 text-center">Hamburg University of Technology</p>
+        </div>
+        <!-- Attraktor -->
+        <div class="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background:#f5f3ff;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round">
+              <path d="M12 2l9 7-9 7-9-7z"/>
+              <path d="M3 9l9 13 9-13"/>
+            </svg>
+          </div>
+          <p class="text-sm font-semibold text-gray-700">Attraktor e.V.</p>
+          <p class="text-xs text-gray-400 text-center">Hamburg's community hackerspace</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA BANNER ===================== -->
+  <section id="demo" class="py-24 px-6" style="background:#006ba6;">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full text-white text-sm font-medium" style="background: rgba(255,255,255,0.15);">
+        <span>🔓</span> Open source · self-hostable · no vendor lock-in
+      </div>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
+        Ready to ditch<br/>the key hooks?
+      </h2>
+      <p class="text-xl text-white opacity-80 mb-10 max-w-xl mx-auto">
+        Get a live demo tailored to your space — we'll show you how your makerspace runs Attraccess in 30 minutes flat.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-bold transition-all hover:-translate-y-0.5 hover:shadow-lg" style="background:#f27000; color:white;">
+          Request Demo
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://github.com/Attraccess/Attraccess" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold text-white border-2 border-white border-opacity-40 transition-all hover:bg-white hover:bg-opacity-10">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.3 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.53 11.53 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-white border-t border-gray-200 py-12 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-10">
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#006ba6;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round">
+                <path d="M6 12a6 6 0 0 1 12 0"/>
+                <path d="M3 12a9 9 0 0 1 18 0"/>
+                <circle cx="12" cy="12" r="1" fill="white"/>
+              </svg>
+            </div>
+            <span class="text-lg font-bold" style="color:#006ba6;">Attraccess</span>
+          </div>
+          <p class="text-gray-500 text-sm max-w-xs leading-relaxed">
+            NFC-based machine access control built for makerspaces, universities, and labs. Open source. Community-first.
+          </p>
+          <div class="mt-4 flex items-center gap-3">
+            <a href="https://github.com/Attraccess/Attraccess" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.3 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.53 11.53 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+              Open Source on GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Product -->
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Product</p>
+          <ul class="space-y-2.5 text-sm text-gray-600">
+            <li><a href="#features" class="hover:text-gray-900 transition-colors">Features</a></li>
+            <li><a href="#how-it-works" class="hover:text-gray-900 transition-colors">How It Works</a></li>
+            <li><a href="#pricing" class="hover:text-gray-900 transition-colors">Pricing</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition-colors">Documentation</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Company</p>
+          <ul class="space-y-2.5 text-sm text-gray-600">
+            <li><a href="#customers" class="hover:text-gray-900 transition-colors">Customers</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition-colors">Blog</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition-colors">Contact</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition-colors">Impressum</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-gray-400">© 2025 Attraccess. Open source under MIT License.</p>
+        <div class="flex items-center gap-6 text-xs text-gray-400">
+          <a href="#" class="hover:text-gray-600 transition-colors">Privacy</a>
+          <a href="#" class="hover:text-gray-600 transition-colors">Terms</a>
+          <a href="#" class="hover:text-gray-600 transition-colors">Impressum</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

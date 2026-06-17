@@ -1,0 +1,1688 @@
+<!-- CONCEPT D: My Recommendation — Premium Hero + Bento Grid + Vertical Timeline -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attraccess — Smart Access Control for Modern Makerspaces (Concept D)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue:      '#006ba6',
+              blueDark:  '#003d5c',
+              blueLight: '#0080c9',
+              orange:    '#f27000',
+              orangeLight: '#ff8c1a',
+            },
+          },
+          fontFamily: {
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       GLOBAL BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; margin: 0; background: #fff; color: #1a2230; }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #374151;
+      text-decoration: none;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-link:hover { color: #006ba6; border-color: #006ba6; }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero-gradient {
+      background: linear-gradient(135deg, #003d5c 0%, #004f78 40%, #006ba6 100%);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #e0f0ff;
+      letter-spacing: 0.04em;
+    }
+    .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: #f27000; display: inline-block; }
+
+    /* Browser mockup */
+    .browser-frame {
+      background: #1a2230;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .browser-bar {
+      background: #242d3d;
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-red   { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green { background: #28c840; }
+    .browser-url {
+      flex: 1;
+      background: #1a2230;
+      border-radius: 6px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.72rem;
+      color: #6b7a99;
+      margin-left: 0.5rem;
+    }
+    .browser-body { padding: 1rem; }
+
+    /* Dashboard wireframe inside browser */
+    .wf-sidebar {
+      width: 130px;
+      background: #242d3d;
+      border-radius: 8px;
+      padding: 0.75rem;
+      flex-shrink: 0;
+    }
+    .wf-sidebar-item {
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.1);
+      margin-bottom: 10px;
+    }
+    .wf-sidebar-item.active { background: #006ba6; width: 80%; }
+    .wf-main { flex: 1; }
+    .wf-stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 10px; }
+    .wf-stat-card {
+      background: #242d3d;
+      border-radius: 6px;
+      padding: 0.6rem;
+    }
+    .wf-stat-num { height: 16px; background: rgba(0,107,166,0.6); border-radius: 3px; margin-bottom: 5px; width: 60%; }
+    .wf-stat-label { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; width: 80%; }
+    .wf-table { background: #242d3d; border-radius: 6px; overflow: hidden; }
+    .wf-table-header {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      padding: 6px 8px; background: rgba(0,107,166,0.25);
+      gap: 8px;
+    }
+    .wf-th { height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px; }
+    .wf-row {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      padding: 6px 8px; gap: 8px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .wf-td { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; }
+    .wf-td.green { background: rgba(34,197,94,0.4); width: 55%; }
+    .wf-td.blue { background: rgba(0,107,166,0.5); width: 70%; }
+
+    /* Floating badges */
+    .float-badge {
+      position: absolute;
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.4rem 0.7rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #1a2230;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .float-badge .check { color: #16a34a; font-weight: 700; }
+
+    /* Stats bar */
+    .stats-bar {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.15);
+    }
+    .stat-divider { width: 1px; background: rgba(255,255,255,0.15); height: 36px; }
+
+    /* ============================================================
+       CUSTOMERS / TRUST
+    ============================================================ */
+    .customer-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.5rem;
+      background: #fff;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .customer-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .customer-logo-text {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #006ba6;
+      letter-spacing: -0.02em;
+    }
+
+    /* ============================================================
+       BENTO GRID
+    ============================================================ */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+    .bento-card {
+      border-radius: 16px;
+      padding: 1.75rem;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .bento-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+
+    /* Card A: NFC flagship — col 1-2, row 1 */
+    .bento-a {
+      grid-column: 1 / 3;
+      grid-row: 1;
+      background: linear-gradient(135deg, #003d5c 0%, #006ba6 100%);
+      color: #fff;
+      min-height: 260px;
+    }
+    /* Card B: Automation — col 3, row 1 */
+    .bento-b {
+      grid-column: 3;
+      grid-row: 1;
+      background: linear-gradient(135deg, #4f1d96 0%, #7c3aed 100%);
+      color: #fff;
+      min-height: 260px;
+    }
+    /* Card C: Analytics — col 1, row 2 */
+    .bento-c {
+      grid-column: 1;
+      grid-row: 2;
+      background: linear-gradient(135deg, #0d4b4b 0%, #0f766e 100%);
+      color: #fff;
+    }
+    /* Card D: Multi-location — col 2-3, row 2 */
+    .bento-d {
+      grid-column: 2 / 4;
+      grid-row: 2;
+      background: linear-gradient(135deg, #7c2d12 0%, #f27000 100%);
+      color: #fff;
+    }
+    /* Card E: Open Source — col 1-3, row 3 (narrow) */
+    .bento-e {
+      grid-column: 1 / 4;
+      grid-row: 3;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #1a2230;
+    }
+
+    .bento-badge {
+      display: inline-block;
+      background: rgba(242,112,0,0.85);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+    .bento-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    /* NFC reader wireframe */
+    .nfc-reader-wf {
+      position: absolute;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      width: 120px;
+      height: 120px;
+    }
+    .nfc-box {
+      width: 80px; height: 100px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .nfc-screen { width: 50px; height: 30px; background: rgba(255,255,255,0.15); border-radius: 4px; margin: 10px auto 0; }
+    .nfc-symbol {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 2px solid rgba(242,112,0,0.7);
+      position: absolute;
+      bottom: 10px; left: 50%; transform: translateX(-50%);
+    }
+    .nfc-wave {
+      position: absolute;
+      left: 90px; top: 30px;
+    }
+    .nfc-arc {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+      position: absolute;
+    }
+
+    /* Automation flow wireframe */
+    .flow-wf {
+      margin-top: 1rem;
+    }
+    .flow-node {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 8px;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      display: inline-block;
+    }
+    .flow-arrow { color: rgba(255,255,255,0.4); font-size: 0.9rem; margin: 0 0.25rem; }
+
+    /* Analytics sparkline */
+    .analytics-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      margin-top: 1rem;
+      height: 50px;
+    }
+    .a-bar {
+      flex: 1;
+      background: rgba(255,255,255,0.25);
+      border-radius: 3px 3px 0 0;
+      transition: background 0.2s;
+    }
+    .a-bar.highlight { background: rgba(255,255,255,0.65); }
+
+    /* Location map wireframe */
+    .location-wf {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .loc-pin {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 8px;
+      padding: 0.5rem;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+    }
+    .loc-count { font-size: 1.1rem; font-weight: 800; }
+
+    /* ============================================================
+       VERTICAL TIMELINE
+    ============================================================ */
+    .timeline-section { position: relative; }
+    .timeline-center-line {
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent 0%, #006ba6 8%, #006ba6 92%, transparent 100%);
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      align-items: start;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+    .timeline-number {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: #006ba6;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 4px #fff, 0 0 0 6px #006ba6;
+      position: relative;
+      z-index: 2;
+      justify-self: center;
+    }
+    .timeline-number.orange {
+      background: #f27000;
+      box-shadow: 0 0 0 4px #fff, 0 0 0 6px #f27000;
+    }
+    .timeline-content-left {
+      text-align: right;
+      padding-right: 2.5rem;
+      padding-top: 0.25rem;
+    }
+    .timeline-content-right {
+      text-align: left;
+      padding-left: 2.5rem;
+      padding-top: 0.25rem;
+    }
+    .timeline-empty { /* placeholder for alternating layout */ }
+    .timeline-mockup {
+      background: #f1f5f9;
+      border-radius: 10px;
+      padding: 0.75rem;
+      margin-top: 0.75rem;
+      border: 1px solid #e2e8f0;
+    }
+    .timeline-mockup-bar { height: 8px; border-radius: 4px; background: #cbd5e1; margin-bottom: 6px; }
+    .timeline-mockup-bar.blue { background: #006ba6; opacity: 0.6; }
+    .timeline-mockup-bar.orange { background: #f27000; opacity: 0.5; }
+    .timeline-mockup-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 6px; margin-top: 6px; }
+    .timeline-mockup-cell { height: 28px; background: #e2e8f0; border-radius: 6px; }
+    .timeline-mockup-cell.filled { background: rgba(0,107,166,0.2); }
+
+    /* Timeline connector lines */
+    .timeline-connector-left {
+      position: absolute;
+      top: 24px;
+      right: calc(50% - 40px);
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(to left, #006ba6, rgba(0,107,166,0.2));
+    }
+    .timeline-connector-right {
+      position: absolute;
+      top: 24px;
+      left: calc(50% + 0px);
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(to right, #006ba6, rgba(0,107,166,0.2));
+    }
+
+    /* ============================================================
+       BEFORE / AFTER
+    ============================================================ */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .compare-col {
+      border-radius: 16px;
+      padding: 1.75rem;
+    }
+    .compare-col.before { background: #fff1f2; border: 1px solid #fecdd3; }
+    .compare-col.after  { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .compare-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 0.9rem;
+    }
+    .compare-item:last-child { border-bottom: none; }
+    .compare-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+    /* ============================================================
+       CTA SPLIT BANNER
+    ============================================================ */
+    .cta-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .cta-left  { background: #003d5c; }
+    .cta-right { background: #f27000; }
+
+    /* ============================================================
+       MOBILE RESPONSIVE
+    ============================================================ */
+    @media (max-width: 768px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+      .bento-a, .bento-b, .bento-c, .bento-d, .bento-e {
+        grid-column: 1;
+        grid-row: auto;
+      }
+      .cta-split {
+        grid-template-columns: 1fr;
+      }
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+      /* Timeline collapses to single column */
+      .timeline-center-line { display: none; }
+      .timeline-item {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+      .timeline-number {
+        grid-row: 1;
+        grid-column: 1;
+        justify-self: flex-start;
+        margin-bottom: 0.75rem;
+      }
+      .timeline-content-left,
+      .timeline-content-right {
+        grid-row: 2;
+        grid-column: 1;
+        text-align: left;
+        padding: 0;
+      }
+      .timeline-empty { display: none; }
+      .timeline-connector-left,
+      .timeline-connector-right { display: none; }
+      .hero-two-col { flex-direction: column; }
+      .hero-mockup-col { display: none; }
+      .stats-bar-inner { flex-direction: column; gap: 1rem; align-items: flex-start; }
+      .stat-divider { display: none; }
+      nav .nav-links { display: none; }
+    }
+
+    /* ============================================================
+       MISC UTILITIES
+    ============================================================ */
+    .section-label {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .section-label.orange-label {
+      background: #fff7ed;
+      color: #c2410c;
+    }
+    .section-label.green-label {
+      background: #f0fdf4;
+      color: #15803d;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #f27000;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.8rem 1.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(242,112,0,0.35);
+    }
+    .btn-primary:hover { background: #d96400; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(242,112,0,0.45); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: transparent;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
+    .gradient-text {
+      background: linear-gradient(90deg, #fff 0%, #a8d8f0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       FIXED CONCEPT BADGE
+  ============================================================ -->
+  <div style="
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 9999;
+    background: linear-gradient(135deg, #f27000, #d96400);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    box-shadow: 0 4px 16px rgba(242,112,0,0.5);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    pointer-events: none;
+  ">
+    ⭐ Concept D — My Recommendation
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav style="
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  ">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between;">
+      <!-- Logo -->
+      <a href="#" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+        <div style="
+          width: 32px; height: 32px;
+          background: linear-gradient(135deg, #003d5c, #006ba6);
+          border-radius: 8px;
+          display: flex; align-items: center; justify-content: center;
+        ">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span style="font-size: 1.15rem; font-weight: 800; color: #006ba6; letter-spacing: -0.02em;">Attraccess</span>
+      </a>
+
+      <!-- Nav links -->
+      <div class="nav-links" style="display: flex; align-items: center; gap: 2rem;">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#customers" class="nav-link">Customers</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+      </div>
+
+      <!-- CTA -->
+      <a href="#" class="btn-primary" style="font-size: 0.875rem; padding: 0.55rem 1.25rem;">
+        Request Demo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section class="hero-gradient" style="padding: 5rem 1.5rem 0;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+
+      <!-- Two-column layout -->
+      <div class="hero-two-col" style="display: flex; align-items: center; gap: 4rem; padding-bottom: 4rem;">
+
+        <!-- LEFT: Copy -->
+        <div style="flex: 1; min-width: 0;">
+          <!-- Badge -->
+          <div style="margin-bottom: 1.5rem;">
+            <div class="hero-badge">
+              <span></span> Open Source &nbsp;·&nbsp; Self-Hosted &nbsp;·&nbsp; Free
+            </div>
+          </div>
+
+          <!-- Headline -->
+          <h1 style="
+            font-size: clamp(2.25rem, 4vw, 3.25rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: #fff;
+            margin: 0 0 1.25rem;
+          ">
+            Smart Access Control<br/>
+            <span style="color: #f27000;">for Modern</span> Makerspaces
+          </h1>
+
+          <!-- Subtitle -->
+          <p style="
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+            max-width: 520px;
+            margin: 0 0 2rem;
+          ">
+            Replace key hooks and signup sheets with NFC readers. Know who accessed every machine — and automate what happens next.
+          </p>
+
+          <!-- CTAs -->
+          <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="#" class="btn-primary" style="font-size: 1rem; padding: 0.85rem 1.9rem;">
+              Request Demo &nbsp;→
+            </a>
+            <a href="#features" class="btn-ghost">
+              Explore Features
+            </a>
+          </div>
+
+          <!-- Trust micro-copy -->
+          <p style="margin-top: 1.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.45);">
+            Trusted by TUHH, Attraktor e.V., and WorkingLab Hamburg · Apache 2.0 License
+          </p>
+        </div>
+
+        <!-- RIGHT: Browser mockup -->
+        <div class="hero-mockup-col" style="flex: 1; min-width: 0; position: relative;">
+          <div class="browser-frame">
+            <!-- Browser bar -->
+            <div class="browser-bar">
+              <div class="dot dot-red"></div>
+              <div class="dot dot-yellow"></div>
+              <div class="dot dot-green"></div>
+              <div class="browser-url">app.attraccess.org/dashboard</div>
+            </div>
+            <!-- Dashboard wireframe -->
+            <div class="browser-body" style="display: flex; gap: 0.75rem; min-height: 240px;">
+              <!-- Sidebar -->
+              <div class="wf-sidebar">
+                <div style="height: 10px; background: #006ba6; border-radius: 4px; margin-bottom: 16px; width: 70%;"></div>
+                <div class="wf-sidebar-item active"></div>
+                <div class="wf-sidebar-item" style="width:90%;"></div>
+                <div class="wf-sidebar-item" style="width:60%;"></div>
+                <div class="wf-sidebar-item" style="width:80%;"></div>
+                <div class="wf-sidebar-item" style="width:50%;"></div>
+                <div style="margin-top: 16px; height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 16px;"></div>
+                <div class="wf-sidebar-item" style="width:70%;"></div>
+                <div class="wf-sidebar-item" style="width:55%;"></div>
+              </div>
+              <!-- Main content -->
+              <div class="wf-main">
+                <!-- Stat row -->
+                <div class="wf-stat-row">
+                  <div class="wf-stat-card">
+                    <div class="wf-stat-num"></div>
+                    <div class="wf-stat-label"></div>
+                  </div>
+                  <div class="wf-stat-card">
+                    <div class="wf-stat-num" style="background: rgba(242,112,0,0.5);"></div>
+                    <div class="wf-stat-label"></div>
+                  </div>
+                  <div class="wf-stat-card">
+                    <div class="wf-stat-num" style="background: rgba(34,197,94,0.4);"></div>
+                    <div class="wf-stat-label"></div>
+                  </div>
+                </div>
+                <!-- Mini chart bar -->
+                <div style="background: #242d3d; border-radius: 6px; padding: 0.5rem; margin-bottom: 8px;">
+                  <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; width: 40%; margin-bottom: 8px;"></div>
+                  <div style="display: flex; align-items: flex-end; gap: 3px; height: 36px;">
+                    <div style="flex:1; height:40%; background: rgba(0,107,166,0.4); border-radius: 2px 2px 0 0;"></div>
+                    <div style="flex:1; height:65%; background: rgba(0,107,166,0.4); border-radius: 2px 2px 0 0;"></div>
+                    <div style="flex:1; height:50%; background: rgba(0,107,166,0.4); border-radius: 2px 2px 0 0;"></div>
+                    <div style="flex:1; height:80%; background: rgba(0,107,166,0.6); border-radius: 2px 2px 0 0;"></div>
+                    <div style="flex:1; height:70%; background: rgba(0,107,166,0.4); border-radius: 2px 2px 0 0;"></div>
+                    <div style="flex:1; height:90%; background: #006ba6; border-radius: 2px 2px 0 0;"></div>
+                    <div style="flex:1; height:75%; background: rgba(0,107,166,0.5); border-radius: 2px 2px 0 0;"></div>
+                  </div>
+                </div>
+                <!-- Table -->
+                <div class="wf-table">
+                  <div class="wf-table-header">
+                    <div class="wf-th"></div>
+                    <div class="wf-th" style="width:70%;"></div>
+                    <div class="wf-th" style="width:60%;"></div>
+                  </div>
+                  <div class="wf-row">
+                    <div class="wf-td blue"></div>
+                    <div class="wf-td green"></div>
+                    <div class="wf-td" style="width:50%;"></div>
+                  </div>
+                  <div class="wf-row">
+                    <div class="wf-td" style="width:80%;"></div>
+                    <div class="wf-td green"></div>
+                    <div class="wf-td" style="width:60%;"></div>
+                  </div>
+                  <div class="wf-row">
+                    <div class="wf-td blue" style="width:60%;"></div>
+                    <div class="wf-td" style="background: rgba(242,112,0,0.4); width:55%;"></div>
+                    <div class="wf-td" style="width:40%;"></div>
+                  </div>
+                  <div class="wf-row">
+                    <div class="wf-td" style="width:70%;"></div>
+                    <div class="wf-td green"></div>
+                    <div class="wf-td" style="width:55%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating badges -->
+          <div class="float-badge" style="top: -16px; right: -12px;">
+            <span class="check">✓</span> Real-time access
+          </div>
+          <div class="float-badge" style="top: 50%; right: -28px; transform: translateY(-50%);">
+            <span class="check">✓</span> Automation flows
+          </div>
+          <div class="float-badge" style="bottom: 24px; right: -12px;">
+            <span class="check">✓</span> Usage analytics
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats bar inside hero -->
+    <div class="stats-bar">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+        <div class="stats-bar-inner" style="display: flex; align-items: center; gap: 3rem; padding: 1.25rem 0;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span style="font-size: 1.6rem; font-weight: 800; color: #fff;">3+</span>
+            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.3;">Organizations<br/>running Attraccess</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span style="font-size: 1.6rem; font-weight: 800; color: #fff;">100+</span>
+            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.3;">Machines<br/>managed</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span style="font-size: 1.6rem; font-weight: 800; color: #f27000;">0</span>
+            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.3;">Manual signup<br/>sheets</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span style="font-size: 1.6rem; font-weight: 800; color: #fff;">Apache 2.0</span>
+            <span style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.3;">License — free<br/>forever</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CUSTOMERS / TRUST SECTION
+  ============================================================ -->
+  <section id="customers" style="padding: 5rem 1.5rem; background: #fff;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <div class="section-label">Trusted By</div>
+        <h2 style="font-size: 2rem; font-weight: 800; letter-spacing: -0.025em; color: #1a2230; margin: 0.5rem 0 0.75rem;">
+          Organizations that build trust Attraccess.
+        </h2>
+        <p style="font-size: 1rem; color: #6b7280; max-width: 500px; margin: 0 auto;">
+          From university labs to community hackerspaces — real organizations solving real access problems.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+
+        <!-- Customer 1 -->
+        <div class="customer-card">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+            <div style="
+              width: 44px; height: 44px;
+              background: linear-gradient(135deg, #003d5c, #006ba6);
+              border-radius: 10px;
+              display: flex; align-items: center; justify-content: center;
+              font-size: 1.3rem;
+            ">🔧</div>
+            <div class="customer-logo-text">Working Lab</div>
+          </div>
+          <div style="
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border-left: 3px solid #006ba6;
+            font-size: 0.875rem;
+            color: #374151;
+            font-style: italic;
+            line-height: 1.6;
+          ">
+            "Attraccess gave us full visibility into machine usage for the first time. We finally know who's using the laser cutter at 2am."
+          </div>
+          <div style="margin-top: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <div style="display: flex; gap: 2px;">
+              <span style="color:#f27000; font-size:0.8rem;">★★★★★</span>
+            </div>
+            <span style="font-size: 0.75rem; color: #9ca3af;">Hamburg, Germany</span>
+          </div>
+        </div>
+
+        <!-- Customer 2 -->
+        <div class="customer-card">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+            <div style="
+              width: 44px; height: 44px;
+              background: linear-gradient(135deg, #1e3a5f, #2563eb);
+              border-radius: 10px;
+              display: flex; align-items: center; justify-content: center;
+              font-size: 1.3rem;
+            ">🎓</div>
+            <div class="customer-logo-text" style="color: #1e3a8a;">TUHH</div>
+          </div>
+          <div style="
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border-left: 3px solid #1e3a8a;
+            font-size: 0.875rem;
+            color: #374151;
+            font-style: italic;
+            line-height: 1.6;
+          ">
+            "We use Attraccess to manage access across our engineering labs. The self-hosted nature made our IT department very happy."
+          </div>
+          <div style="margin-top: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <div style="display: flex; gap: 2px;">
+              <span style="color:#f27000; font-size:0.8rem;">★★★★★</span>
+            </div>
+            <span style="font-size: 0.75rem; color: #9ca3af;">Hamburg University of Technology</span>
+          </div>
+        </div>
+
+        <!-- Customer 3 -->
+        <div class="customer-card">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+            <div style="
+              width: 44px; height: 44px;
+              background: linear-gradient(135deg, #3b1d8a, #7c3aed);
+              border-radius: 10px;
+              display: flex; align-items: center; justify-content: center;
+              font-size: 1.3rem;
+            ">⚡</div>
+            <div class="customer-logo-text" style="color: #7c3aed;">Attraktor e.V.</div>
+          </div>
+          <div style="
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border-left: 3px solid #7c3aed;
+            font-size: 0.875rem;
+            color: #374151;
+            font-style: italic;
+            line-height: 1.6;
+          ">
+            "Setting up NFC readers took less than an afternoon. Members love tapping their cards — it's so much cleaner than paper sheets."
+          </div>
+          <div style="margin-top: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <div style="display: flex; gap: 2px;">
+              <span style="color:#f27000; font-size:0.8rem;">★★★★★</span>
+            </div>
+            <span style="font-size: 0.75rem; color: #9ca3af;">Hamburg Community Hackerspace</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sick Makerspace mention -->
+      <div style="
+        margin-top: 2rem;
+        background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+        border: 1px solid #bae6fd;
+        border-radius: 12px;
+        padding: 1.25rem 1.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      ">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <span style="font-size: 1.5rem;">🏭</span>
+          <div>
+            <div style="font-weight: 700; color: #0369a1; font-size: 0.95rem;">SICK Makerspace</div>
+            <div style="font-size: 0.8rem; color: #6b7280;">Industrial IoT maker facility</div>
+          </div>
+        </div>
+        <div style="font-size: 0.85rem; color: #374151; font-style: italic; max-width: 500px;">
+          "Integrating Attraccess with our existing RFID badges was seamless. Our engineers can now access the makerspace without extra keycards."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURES — BENTO GRID
+  ============================================================ -->
+  <section id="features" style="padding: 5rem 1.5rem; background: #f8fafc;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <div class="section-label">Features</div>
+        <h2 style="font-size: 2.25rem; font-weight: 800; letter-spacing: -0.025em; color: #1a2230; margin: 0.5rem 0 0.75rem;">
+          Everything you need to manage machine access.
+        </h2>
+        <p style="font-size: 1.05rem; color: #6b7280; max-width: 540px; margin: 0 auto;">
+          Built for the real complexity of shared workspaces — not a simplified demo.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+
+        <!-- Card A: NFC Access Control (flagship, large) -->
+        <div class="bento-card bento-a">
+          <div class="bento-badge">⭐ Flagship Feature</div>
+          <span class="bento-icon">📡</span>
+          <h3 style="font-size: 1.5rem; font-weight: 800; margin: 0 0 0.6rem; letter-spacing: -0.02em;">NFC Access Control</h3>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.75); max-width: 360px; line-height: 1.6; margin: 0;">
+            Plug an NFC reader into any machine. Members tap their card or phone. Access is granted instantly — and every tap is logged with timestamp, user, and machine.
+          </p>
+          <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 0.25rem 0.65rem; font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.85);">ISO 14443</span>
+            <span style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 0.25rem 0.65rem; font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.85);">MIFARE Classic</span>
+            <span style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 0.25rem 0.65rem; font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.85);">NFC Type A/B</span>
+          </div>
+          <!-- NFC Reader wireframe -->
+          <div class="nfc-reader-wf">
+            <div class="nfc-box">
+              <div class="nfc-screen"></div>
+              <div class="nfc-symbol"></div>
+            </div>
+            <div class="nfc-wave">
+              <div class="nfc-arc" style="width:14px;height:14px;top:10px;left:0;transform:rotate(45deg);border-color:rgba(242,112,0,0.5);"></div>
+              <div class="nfc-arc" style="width:22px;height:22px;top:6px;left:-4px;transform:rotate(45deg);border-color:rgba(242,112,0,0.35);"></div>
+              <div class="nfc-arc" style="width:30px;height:30px;top:2px;left:-8px;transform:rotate(45deg);border-color:rgba(242,112,0,0.2);"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card B: Automation Flows -->
+        <div class="bento-card bento-b">
+          <span class="bento-icon">⚡</span>
+          <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0 0 0.6rem; letter-spacing: -0.02em;">Automation Flows</h3>
+          <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 1rem;">
+            Trigger webhooks, send Slack alerts, or update spreadsheets — automatically when access events occur.
+          </p>
+          <!-- Flow wireframe -->
+          <div class="flow-wf">
+            <div style="margin-bottom: 6px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px;">
+              <div class="flow-node">🔓 Access granted</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-node">📩 Webhook</div>
+            </div>
+            <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin-bottom: 6px;">
+              <div class="flow-node">⏰ 8h usage</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-node">💬 Slack alert</div>
+            </div>
+            <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 4px;">
+              <div class="flow-node">🚫 Denied</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-node">📧 Email admin</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card C: Analytics -->
+        <div class="bento-card bento-c">
+          <span class="bento-icon">📊</span>
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0 0 0.5rem; letter-spacing: -0.02em;">Analytics & Reporting</h3>
+          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.72); line-height: 1.6; margin: 0;">
+            Understand which machines are overloaded, underused, or never booked. Export reports for safety compliance.
+          </p>
+          <div class="analytics-bars">
+            <div class="a-bar" style="height:30%;"></div>
+            <div class="a-bar" style="height:55%;"></div>
+            <div class="a-bar" style="height:45%;"></div>
+            <div class="a-bar highlight" style="height:80%;"></div>
+            <div class="a-bar" style="height:65%;"></div>
+            <div class="a-bar highlight" style="height:90%;"></div>
+            <div class="a-bar" style="height:70%;"></div>
+          </div>
+        </div>
+
+        <!-- Card D: Multi-Location -->
+        <div class="bento-card bento-d">
+          <span class="bento-icon">🗺️</span>
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 0.5rem; letter-spacing: -0.02em;">Multi-Location Support</h3>
+          <p style="font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0;">
+            Manage multiple facilities from one dashboard. Each location has its own machines, members, and access rules.
+          </p>
+          <div class="location-wf">
+            <div class="loc-pin">
+              <div class="loc-count">24</div>
+              machines
+              <div style="font-size: 0.6rem; opacity: 0.7; margin-top: 2px;">📍 Hamburg HQ</div>
+            </div>
+            <div class="loc-pin">
+              <div class="loc-count">12</div>
+              machines
+              <div style="font-size: 0.6rem; opacity: 0.7; margin-top: 2px;">📍 Campus Lab</div>
+            </div>
+            <div class="loc-pin">
+              <div class="loc-count">8</div>
+              machines
+              <div style="font-size: 0.6rem; opacity: 0.7; margin-top: 2px;">📍 Hackerspace</div>
+            </div>
+            <div class="loc-pin" style="display:flex;align-items:center;justify-content:center;opacity:0.5;border:1px dashed rgba(255,255,255,0.3);">
+              <span style="font-size:1.5rem;">+</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card E: Open Source -->
+        <div class="bento-card bento-e" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 1.25rem;">
+            <div style="
+              width: 52px; height: 52px;
+              background: linear-gradient(135deg, #1a2230, #374151);
+              border-radius: 12px;
+              display: flex; align-items: center; justify-content: center;
+              font-size: 1.6rem;
+              flex-shrink: 0;
+            ">
+              <!-- GitHub icon -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.1rem; font-weight: 800; margin: 0 0 0.25rem; color: #1a2230;">Open Source & Self-Hosted</h3>
+              <p style="font-size: 0.85rem; color: #6b7280; margin: 0;">
+                Apache 2.0 license. Deploy on your own servers. Full source available on GitHub. No vendor lock-in, ever.
+              </p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <div style="text-align: center; padding: 0.6rem 1rem; background: #f1f5f9; border-radius: 8px;">
+              <div style="font-size: 1.25rem; font-weight: 800; color: #1a2230;">Apache 2.0</div>
+              <div style="font-size: 0.7rem; color: #9ca3af; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">License</div>
+            </div>
+            <div style="text-align: center; padding: 0.6rem 1rem; background: #f1f5f9; border-radius: 8px;">
+              <div style="font-size: 1.25rem; font-weight: 800; color: #1a2230;">Self-Hosted</div>
+              <div style="font-size: 0.7rem; color: #9ca3af; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Deployment</div>
+            </div>
+            <div style="text-align: center; padding: 0.6rem 1rem; background: #f1f5f9; border-radius: 8px;">
+              <div style="font-size: 1.25rem; font-weight: 800; color: #1a2230;">100%</div>
+              <div style="font-size: 0.7rem; color: #9ca3af; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Data privacy</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS — VERTICAL TIMELINE
+  ============================================================ -->
+  <section id="how-it-works" style="padding: 5rem 1.5rem; background: #fff;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <div class="section-label">How It Works</div>
+        <h2 style="font-size: 2.25rem; font-weight: 800; letter-spacing: -0.025em; color: #1a2230; margin: 0.5rem 0 0.75rem;">
+          Get running in under an hour.
+        </h2>
+        <p style="font-size: 1.05rem; color: #6b7280; max-width: 480px; margin: 0 auto;">
+          No hardware expertise required. No complex IT setup. Just install, configure, and go.
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline-section" style="padding: 1rem 0;">
+        <div class="timeline-center-line"></div>
+
+        <!-- Step 1: Define Machines (left) -->
+        <div class="timeline-item">
+          <div class="timeline-content-left">
+            <div style="font-size: 0.75rem; font-weight: 700; color: #006ba6; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem;">Step 1</div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #1a2230; margin: 0 0 0.5rem; letter-spacing: -0.02em;">Define your machines</h3>
+            <p style="font-size: 0.9rem; color: #4b5563; line-height: 1.7; margin: 0 0 1rem;">
+              Add each machine to Attraccess with its name, location, and required safety training. Upload photos and documentation so members know exactly what they're accessing.
+            </p>
+            <!-- Mockup: resource creation -->
+            <div class="timeline-mockup">
+              <div class="timeline-mockup-bar blue" style="width: 55%;"></div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+                <div style="height: 32px; background: rgba(0,107,166,0.1); border: 1px solid rgba(0,107,166,0.2); border-radius: 6px; padding: 4px 6px;">
+                  <div style="height: 5px; background: rgba(0,107,166,0.3); border-radius: 2px; width: 70%; margin-bottom: 4px;"></div>
+                  <div style="height: 10px; background: #fff; border: 1px solid #e2e8f0; border-radius: 3px;"></div>
+                </div>
+                <div style="height: 32px; background: rgba(0,107,166,0.1); border: 1px solid rgba(0,107,166,0.2); border-radius: 6px; padding: 4px 6px;">
+                  <div style="height: 5px; background: rgba(0,107,166,0.3); border-radius: 2px; width: 60%; margin-bottom: 4px;"></div>
+                  <div style="height: 10px; background: #fff; border: 1px solid #e2e8f0; border-radius: 3px;"></div>
+                </div>
+              </div>
+              <div style="height: 24px; background: #006ba6; border-radius: 6px; display: flex; align-items: center; padding-left: 8px;">
+                <div style="height: 5px; background: rgba(255,255,255,0.7); border-radius: 2px; width: 80px;"></div>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; padding-top: 0.25rem;">
+            <div class="timeline-number">1</div>
+          </div>
+          <div class="timeline-empty"></div>
+          <div class="timeline-connector-left"></div>
+        </div>
+
+        <!-- Step 2: Assign Member Access (right) -->
+        <div class="timeline-item">
+          <div class="timeline-empty"></div>
+          <div style="display: flex; flex-direction: column; align-items: center; padding-top: 0.25rem;">
+            <div class="timeline-number orange">2</div>
+          </div>
+          <div class="timeline-content-right">
+            <div style="font-size: 0.75rem; font-weight: 700; color: #f27000; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem;">Step 2</div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #1a2230; margin: 0 0 0.5rem; letter-spacing: -0.02em;">Assign member access</h3>
+            <p style="font-size: 0.9rem; color: #4b5563; line-height: 1.7; margin: 0 0 1rem;">
+              Import your member list and assign access rules per machine. Create groups like "certified welders" or "laser training complete" to manage permissions at scale.
+            </p>
+            <!-- Mockup: access rules -->
+            <div class="timeline-mockup">
+              <div style="display: flex; gap: 6px; margin-bottom: 8px;">
+                <div style="height: 22px; flex:1; background: rgba(242,112,0,0.15); border: 1px solid rgba(242,112,0,0.3); border-radius: 5px;"></div>
+                <div style="height: 22px; width: 60px; background: #f27000; border-radius: 5px;"></div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; align-items: center; gap: 6px; padding: 5px 8px; background: #f0fdf4; border-radius: 5px; border: 1px solid #bbf7d0;">
+                  <div style="width: 8px; height: 8px; border-radius: 50%; background: #16a34a; flex-shrink:0;"></div>
+                  <div style="height: 5px; background: #9ca3af; border-radius: 2px; flex:1;"></div>
+                  <div style="font-size: 0.6rem; color: #16a34a; font-weight: 700;">ALLOWED</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; padding: 5px 8px; background: #f0fdf4; border-radius: 5px; border: 1px solid #bbf7d0;">
+                  <div style="width: 8px; height: 8px; border-radius: 50%; background: #16a34a; flex-shrink:0;"></div>
+                  <div style="height: 5px; background: #9ca3af; border-radius: 2px; flex:1;"></div>
+                  <div style="font-size: 0.6rem; color: #16a34a; font-weight: 700;">ALLOWED</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; padding: 5px 8px; background: #fff1f2; border-radius: 5px; border: 1px solid #fecdd3;">
+                  <div style="width: 8px; height: 8px; border-radius: 50%; background: #dc2626; flex-shrink:0;"></div>
+                  <div style="height: 5px; background: #9ca3af; border-radius: 2px; flex:1;"></div>
+                  <div style="font-size: 0.6rem; color: #dc2626; font-weight: 700;">PENDING</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-connector-right"></div>
+        </div>
+
+        <!-- Step 3: Install NFC Readers (left) -->
+        <div class="timeline-item">
+          <div class="timeline-content-left">
+            <div style="font-size: 0.75rem; font-weight: 700; color: #006ba6; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem;">Step 3</div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #1a2230; margin: 0 0 0.5rem; letter-spacing: -0.02em;">Install NFC readers</h3>
+            <p style="font-size: 0.9rem; color: #4b5563; line-height: 1.7; margin: 0 0 1rem;">
+              Mount the NFC reader next to each machine and connect it to power. The reader auto-discovers your Attraccess server on the local network — no manual IP configuration.
+            </p>
+            <!-- Mockup: installation map -->
+            <div class="timeline-mockup">
+              <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 6px;">
+                <div style="aspect-ratio: 1; background: linear-gradient(135deg,#dbeafe,#bfdbfe); border-radius: 6px; border: 1px solid #93c5fd; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">📡</div>
+                <div style="aspect-ratio: 1; background: linear-gradient(135deg,#dbeafe,#bfdbfe); border-radius: 6px; border: 1px solid #93c5fd; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">📡</div>
+                <div style="aspect-ratio: 1; background: #f3f4f6; border-radius: 6px; border: 2px dashed #d1d5db; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; opacity: 0.5;">+</div>
+                <div style="aspect-ratio: 1; background: linear-gradient(135deg,#dbeafe,#bfdbfe); border-radius: 6px; border: 1px solid #93c5fd; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">📡</div>
+                <div style="aspect-ratio: 1; background: #f3f4f6; border-radius: 6px; border: 2px dashed #d1d5db; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; opacity: 0.5;">+</div>
+                <div style="aspect-ratio: 1; background: #f3f4f6; border-radius: 6px; border: 2px dashed #d1d5db; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; opacity: 0.5;">+</div>
+              </div>
+              <div style="margin-top: 6px; font-size: 0.65rem; color: #6b7280; text-align: right;">3/6 readers online</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; padding-top: 0.25rem;">
+            <div class="timeline-number">3</div>
+          </div>
+          <div class="timeline-empty"></div>
+          <div class="timeline-connector-left"></div>
+        </div>
+
+        <!-- Step 4: Members tap to access (right) -->
+        <div class="timeline-item">
+          <div class="timeline-empty"></div>
+          <div style="display: flex; flex-direction: column; align-items: center; padding-top: 0.25rem;">
+            <div class="timeline-number orange">4</div>
+          </div>
+          <div class="timeline-content-right">
+            <div style="font-size: 0.75rem; font-weight: 700; color: #f27000; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem;">Step 4</div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #1a2230; margin: 0 0 0.5rem; letter-spacing: -0.02em;">Members tap to access</h3>
+            <p style="font-size: 0.9rem; color: #4b5563; line-height: 1.7; margin: 0 0 1rem;">
+              Your members tap their NFC card or phone to the reader. Access is granted or denied in under 200ms — and the event is immediately logged to your dashboard.
+            </p>
+            <!-- Mockup: access log -->
+            <div class="timeline-mockup">
+              <div style="font-size: 0.65rem; font-weight: 700; color: #374151; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em;">Live Access Log</div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; align-items: center; gap: 6px; padding: 4px 6px; background: #f0fdf4; border-radius: 4px; border-left: 3px solid #16a34a;">
+                  <span style="font-size: 0.65rem; color: #6b7280; width: 38px; flex-shrink:0;">14:22</span>
+                  <div style="height: 5px; background: #9ca3af; border-radius: 2px; flex:1;"></div>
+                  <span style="font-size: 0.6rem; font-weight: 700; color: #16a34a;">✓ IN</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; padding: 4px 6px; background: #f0fdf4; border-radius: 4px; border-left: 3px solid #16a34a;">
+                  <span style="font-size: 0.65rem; color: #6b7280; width: 38px; flex-shrink:0;">14:19</span>
+                  <div style="height: 5px; background: #9ca3af; border-radius: 2px; flex:1;"></div>
+                  <span style="font-size: 0.6rem; font-weight: 700; color: #16a34a;">✓ IN</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; padding: 4px 6px; background: #fff1f2; border-radius: 4px; border-left: 3px solid #dc2626;">
+                  <span style="font-size: 0.65rem; color: #6b7280; width: 38px; flex-shrink:0;">14:11</span>
+                  <div style="height: 5px; background: #9ca3af; border-radius: 2px; flex:1;"></div>
+                  <span style="font-size: 0.6rem; font-weight: 700; color: #dc2626;">✗ DENIED</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; padding: 4px 6px; background: #f0fdf4; border-radius: 4px; border-left: 3px solid #16a34a;">
+                  <span style="font-size: 0.65rem; color: #6b7280; width: 38px; flex-shrink:0;">13:58</span>
+                  <div style="height: 5px; background: #9ca3af; border-radius: 2px; flex:1;"></div>
+                  <span style="font-size: 0.6rem; font-weight: 700; color: #16a34a;">✓ OUT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-connector-right"></div>
+        </div>
+
+        <!-- Step 5: Track & Automate (left) -->
+        <div class="timeline-item" style="margin-bottom: 0;">
+          <div class="timeline-content-left">
+            <div style="font-size: 0.75rem; font-weight: 700; color: #006ba6; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem;">Step 5</div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #1a2230; margin: 0 0 0.5rem; letter-spacing: -0.02em;">Track & automate everything</h3>
+            <p style="font-size: 0.9rem; color: #4b5563; line-height: 1.7; margin: 0 0 1rem;">
+              Review usage analytics to optimize your space. Build automation flows that fire based on access events — notify staff, update billing systems, or trigger safety checks.
+            </p>
+            <!-- Mockup: analytics + flows -->
+            <div class="timeline-mockup">
+              <div style="display: flex; gap: 6px; margin-bottom: 8px;">
+                <!-- Mini chart -->
+                <div style="flex:1; background: #f1f5f9; border-radius: 5px; padding: 6px;">
+                  <div style="height: 4px; background: #cbd5e1; border-radius: 2px; width: 50%; margin-bottom: 6px;"></div>
+                  <div style="display: flex; align-items: flex-end; gap: 2px; height: 24px;">
+                    <div style="flex:1; height:40%; background: rgba(0,107,166,0.3); border-radius: 1px 1px 0 0;"></div>
+                    <div style="flex:1; height:70%; background: rgba(0,107,166,0.4); border-radius: 1px 1px 0 0;"></div>
+                    <div style="flex:1; height:55%; background: rgba(0,107,166,0.3); border-radius: 1px 1px 0 0;"></div>
+                    <div style="flex:1; height:90%; background: #006ba6; border-radius: 1px 1px 0 0;"></div>
+                    <div style="flex:1; height:75%; background: rgba(0,107,166,0.4); border-radius: 1px 1px 0 0;"></div>
+                  </div>
+                </div>
+                <!-- Flow builder mini -->
+                <div style="flex:1; background: #f1f5f9; border-radius: 5px; padding: 6px;">
+                  <div style="height: 4px; background: #cbd5e1; border-radius: 2px; width: 60%; margin-bottom: 6px;"></div>
+                  <div style="display: flex; flex-direction: column; gap: 3px;">
+                    <div style="height: 8px; background: rgba(242,112,0,0.3); border-radius: 2px; width: 90%;"></div>
+                    <div style="height: 8px; background: rgba(0,107,166,0.3); border-radius: 2px; width: 75%;"></div>
+                    <div style="height: 8px; background: rgba(22,163,74,0.3); border-radius: 2px; width: 80%;"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="height: 20px; background: linear-gradient(90deg, #006ba6, #0080c9); border-radius: 5px; display: flex; align-items: center; padding: 0 8px;">
+                <div style="height: 4px; background: rgba(255,255,255,0.7); border-radius: 2px; width: 120px;"></div>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; padding-top: 0.25rem;">
+            <div class="timeline-number">5</div>
+          </div>
+          <div class="timeline-empty"></div>
+          <div class="timeline-connector-left"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BEFORE / AFTER — WHY ATTRACCESS
+  ============================================================ -->
+  <section style="padding: 5rem 1.5rem; background: #f8fafc;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <div class="section-label orange-label">Why Attraccess</div>
+        <h2 style="font-size: 2.25rem; font-weight: 800; letter-spacing: -0.025em; color: #1a2230; margin: 0.5rem 0 0.75rem;">
+          The old way doesn't scale.
+        </h2>
+        <p style="font-size: 1.05rem; color: #6b7280; max-width: 500px; margin: 0 auto;">
+          Paper sheets, key boxes, and honor systems work for 5 members. Not 50. Not 500.
+        </p>
+      </div>
+
+      <div class="compare-grid">
+        <!-- Before -->
+        <div class="compare-col before">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+            <div style="
+              width: 36px; height: 36px;
+              background: #fee2e2;
+              border-radius: 8px;
+              display: flex; align-items: center; justify-content: center;
+              font-size: 1.1rem;
+            ">❌</div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; color: #991b1b; margin: 0;">Before Attraccess</h3>
+          </div>
+
+          <div class="compare-item">
+            <span class="compare-icon">❌</span>
+            <div>
+              <strong style="color: #374151; font-size: 0.9rem;">Paper signup sheets</strong>
+              <p style="margin: 0.2rem 0 0; font-size: 0.83rem; color: #6b7280;">Lost, illegible, or simply ignored. No audit trail when accidents happen.</p>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="compare-icon">❌</span>
+            <div>
+              <strong style="color: #374151; font-size: 0.9rem;">Key hooks & shared codes</strong>
+              <p style="margin: 0.2rem 0 0; font-size: 0.83rem; color: #6b7280;">Everyone "knows" the code. No way to revoke access when a member leaves.</p>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="compare-icon">❌</span>
+            <div>
+              <strong style="color: #374151; font-size: 0.9rem;">Manual training tracking</strong>
+              <p style="margin: 0.2rem 0 0; font-size: 0.83rem; color: #6b7280;">Spreadsheets drift. Uncertified members use dangerous equipment. Liability nightmare.</p>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="compare-icon">❌</span>
+            <div>
+              <strong style="color: #374151; font-size: 0.9rem;">Zero usage visibility</strong>
+              <p style="margin: 0.2rem 0 0; font-size: 0.83rem; color: #6b7280;">Which machines are bottlenecks? Which ones haven't been used in months? No idea.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- After -->
+        <div class="compare-col after">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+            <div style="
+              width: 36px; height: 36px;
+              background: #dcfce7;
+              border-radius: 8px;
+              display: flex; align-items: center; justify-content: center;
+              font-size: 1.1rem;
+            ">✓</div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; color: #15803d; margin: 0;">With Attraccess</h3>
+          </div>
+
+          <div class="compare-item">
+            <span class="compare-icon" style="color: #16a34a;">✓</span>
+            <div>
+              <strong style="color: #374151; font-size: 0.9rem;">NFC tap-in, every time</strong>
+              <p style="margin: 0.2rem 0 0; font-size: 0.83rem; color: #6b7280;">Every access event is logged with timestamp, user, and machine. Immutable, searchable.</p>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="compare-icon" style="color: #16a34a;">✓</span>
+            <div>
+              <strong style="color: #374151; font-size: 0.9rem;">Per-user, revocable access</strong>
+              <p style="margin: 0.2rem 0 0; font-size: 0.83rem; color: #6b7280;">Revoke a member's card in one click. Access denied within seconds, everywhere.</p>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="compare-icon" style="color: #16a34a;">✓</span>
+            <div>
+              <strong style="color: #374151; font-size: 0.9rem;">Training requirements enforced</strong>
+              <p style="margin: 0.2rem 0 0; font-size: 0.83rem; color: #6b7280;">Machine won't unlock until the member's training record is confirmed. Safety by design.</p>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="compare-icon" style="color: #16a34a;">✓</span>
+            <div>
+              <strong style="color: #374151; font-size: 0.9rem;">Rich usage analytics</strong>
+              <p style="margin: 0.2rem 0 0; font-size: 0.83rem; color: #6b7280;">Heatmaps, peak hours, machine utilization rates. Make data-driven facility decisions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOCIAL PROOF — TESTIMONIAL
+  ============================================================ -->
+  <section style="padding: 5rem 1.5rem; background: #fff;">
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+
+      <div style="margin-bottom: 1.5rem;">
+        <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 32V19.2C0 8.533 5.333 2.133 16 0L18.4 3.2C13.6 4.267 10.4 6.933 8.8 11.2H16V32H0ZM24 32V19.2C24 8.533 29.333 2.133 40 0L42.4 3.2C37.6 4.267 34.4 6.933 32.8 11.2H40V32H24Z" fill="#e2e8f0"/>
+        </svg>
+      </div>
+
+      <blockquote style="
+        font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+        font-weight: 600;
+        color: #1a2230;
+        line-height: 1.6;
+        letter-spacing: -0.01em;
+        margin: 0 0 2rem;
+        font-style: normal;
+      ">
+        "Attraccess transformed how we manage our laser cutters and 3D printers. Setup took less than an afternoon — and now we have full visibility into who's using what, and when."
+      </blockquote>
+
+      <div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+        <div style="
+          width: 52px; height: 52px;
+          background: linear-gradient(135deg, #003d5c, #006ba6);
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: #fff;
+        ">T</div>
+        <div style="text-align: left;">
+          <div style="font-weight: 700; color: #1a2230; font-size: 0.95rem;">Thomas K.</div>
+          <div style="font-size: 0.82rem; color: #6b7280;">Makerspace Manager · WorkingLab Hamburg</div>
+        </div>
+      </div>
+
+      <!-- Stars -->
+      <div style="margin-top: 1.25rem; font-size: 1.25rem; color: #f27000; letter-spacing: 0.1em;">★★★★★</div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA SPLIT BANNER
+  ============================================================ -->
+  <section style="overflow: hidden;">
+    <div class="cta-split">
+      <!-- Left: Deep blue -->
+      <div class="cta-left" style="padding: 4rem 3rem 4rem 2rem;">
+        <div style="max-width: 460px; margin-left: auto;">
+          <h2 style="
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin: 0 0 1rem;
+          ">
+            Ready to modernize your makerspace?
+          </h2>
+          <p style="font-size: 1rem; color: rgba(255,255,255,0.7); margin: 0 0 2rem; line-height: 1.6;">
+            Join organizations that have replaced paper sheets with real access control. Get started in under an hour.
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="#" style="
+              display: inline-flex; align-items: center; gap: 0.5rem;
+              background: #fff;
+              color: #003d5c;
+              font-weight: 700;
+              font-size: 0.95rem;
+              padding: 0.8rem 1.75rem;
+              border-radius: 8px;
+              text-decoration: none;
+              box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+              transition: transform 0.15s, box-shadow 0.15s;
+            ">
+              Request Demo
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://github.com/Attraccess/Attraccess" target="_blank" style="
+              display: inline-flex; align-items: center; gap: 0.5rem;
+              background: transparent;
+              color: rgba(255,255,255,0.8);
+              font-weight: 600;
+              font-size: 0.9rem;
+              padding: 0.75rem 1.5rem;
+              border-radius: 8px;
+              text-decoration: none;
+              border: 1.5px solid rgba(255,255,255,0.3);
+            ">
+              <!-- GitHub icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Orange -->
+      <div class="cta-right" style="padding: 4rem 2rem 4rem 3rem; display: flex; flex-direction: column; justify-content: center;">
+        <div style="max-width: 380px;">
+          <div style="
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(4px);
+          ">
+            <div style="font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">What you get</div>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0;">✓</div>
+                <span style="font-size: 0.9rem; color: #fff; font-weight: 500;">Full source code on GitHub</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0;">✓</div>
+                <span style="font-size: 0.9rem; color: #fff; font-weight: 500;">Docker compose setup included</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0;">✓</div>
+                <span style="font-size: 0.9rem; color: #fff; font-weight: 500;">Community support on Discord</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0;">✓</div>
+                <span style="font-size: 0.9rem; color: #fff; font-weight: 500;">NFC reader hardware guide</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0;">✓</div>
+                <span style="font-size: 0.9rem; color: #fff; font-weight: 500;">No licensing fees, ever</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer style="background: #0f1825; color: rgba(255,255,255,0.65); padding: 3.5rem 1.5rem 2rem;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+
+      <!-- Top row -->
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; flex-wrap: wrap;">
+
+        <!-- Brand -->
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem;">
+            <div style="
+              width: 30px; height: 30px;
+              background: linear-gradient(135deg, #003d5c, #006ba6);
+              border-radius: 7px;
+              display: flex; align-items: center; justify-content: center;
+            ">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <span style="font-size: 1.05rem; font-weight: 800; color: #fff;">Attraccess</span>
+          </div>
+          <p style="font-size: 0.85rem; line-height: 1.7; max-width: 280px; margin: 0 0 1.25rem; color: rgba(255,255,255,0.5);">
+            Open-source machine access control for makerspaces, universities, and labs. Self-hosted and free forever.
+          </p>
+          <a href="https://github.com/Attraccess/Attraccess" target="_blank" style="
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 6px;
+            padding: 0.45rem 0.9rem;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.75);
+            transition: background 0.2s;
+          ">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+
+        <!-- Product -->
+        <div>
+          <div style="font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Product</div>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <a href="#features" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s;">Features</a>
+            <a href="#how-it-works" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">How It Works</a>
+            <a href="#" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">Documentation</a>
+            <a href="#" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">Changelog</a>
+            <a href="#" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">Roadmap</a>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <div style="font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Community</div>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <a href="https://github.com/Attraccess/Attraccess" target="_blank" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">GitHub Repository</a>
+            <a href="#" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">Discord Server</a>
+            <a href="#" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">Contributing Guide</a>
+            <a href="#" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">Issue Tracker</a>
+          </div>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <div style="font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Legal</div>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <a href="#" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">Privacy Policy</a>
+            <a href="#" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">Terms of Service</a>
+            <a href="#" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">Impressum</a>
+            <a href="#" style="font-size: 0.875rem; color: rgba(255,255,255,0.55); text-decoration: none;">Apache 2.0 License</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div style="height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 1.75rem;"></div>
+
+      <!-- Bottom row -->
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.35);">
+          © 2025 Attraccess. Released under the Apache 2.0 License. Built with ❤ for the maker community.
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div style="
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(34,197,94,0.15);
+            border: 1px solid rgba(34,197,94,0.25);
+            border-radius: 999px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: rgba(34,197,94,0.8);
+          ">
+            <span style="width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
+            All systems operational
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,10 +1,16 @@
 import React from "react";
+import { useSEO } from "@/hooks/use-seo";
 import { useI18n } from "@/contexts/i18n";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Plus, Hand, Zap, BarChart, Wrench } from "lucide-react";
 
 export function HowItWorksPage() {
+  useSEO({
+    title: "How It Works",
+    description: "Learn how Attraccess works: define resources, assign access, deploy NFC/RFID, track usage, and automate maintenance — in five simple steps.",
+    canonicalPath: "/how-it-works",
+  });
   const { t } = useI18n();
 
   const steps = [
