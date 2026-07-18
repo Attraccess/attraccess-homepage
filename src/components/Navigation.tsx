@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Globe } from "lucide-react";
+import { Menu, X, ChevronDown, Globe, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/contexts/i18n";
 import { Logo } from "@/components/Logo";
@@ -46,8 +46,8 @@ export function Navigation() {
               <Link
                 key={item.key}
                 to={item.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive(item.href) ? "text-primary" : "text-muted-foreground"
+                className={`text-sm font-semibold transition-colors hover:text-primary ${
+                  isActive(item.href) ? "text-primary" : "text-foreground/70"
                 }`}
               >
                 {t(`nav.${item.key}`)}
@@ -59,7 +59,7 @@ export function Navigation() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
+                className="text-sm font-semibold transition-colors hover:text-primary text-foreground/70"
               >
                 {t(`nav.${item.key}`)}
               </a>
@@ -88,10 +88,12 @@ export function Navigation() {
             </DropdownMenu>
 
             {/* CTA Button */}
-            <Link to="/contact">
-              <Button variant="hero" size="sm">
-                {t("nav.demo")}
-              </Button>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-[10px] bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-[0_4px_14px_rgba(5,132,247,.35)] transition-all hover:-translate-y-px hover:shadow-[0_7px_20px_rgba(5,132,247,.45)]"
+            >
+              {t("nav.cta")}
+              <ArrowRight className="h-[17px] w-[17px]" />
             </Link>
           </div>
 
@@ -156,10 +158,13 @@ export function Navigation() {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Link to="/contact">
-                <Button variant="hero" size="sm">
-                  {t("nav.demo")}
-                </Button>
+              <Link
+                to="/contact"
+                onClick={() => setIsOpen(false)}
+                className="inline-flex items-center gap-2 rounded-[10px] bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-[0_4px_14px_rgba(5,132,247,.35)]"
+              >
+                {t("nav.cta")}
+                <ArrowRight className="h-[17px] w-[17px]" />
               </Link>
             </div>
           </div>
