@@ -19,6 +19,7 @@ const translations = {
     "nav.pricing": "Pricing",
     "nav.contact": "Contact",
     "nav.demo": "Request Demo",
+    "nav.cta": "Try 30 days",
     "nav.docs": "Documentation",
     "nav.blog": "Blog",
     // Hero Section
@@ -240,6 +241,113 @@ const translations = {
     // About
     "about.mission":
       "Empowering shared workspaces with enterprise-grade control—without the complexity.",
+
+    // Homepage (brand redesign)
+    "home.badge": "Source available · Free for non-profits",
+    "home.hero.title.line1": "No permission,",
+    "home.hero.title.line2": "no power.",
+    "home.hero.subtitle":
+      "Physical access control for shared machines. A machine only starts once an authorized, trained person scans their card. Impossible to bypass. Fully documented.",
+    "home.hero.cta.primary": "Try 30 days for free",
+    "home.hero.cta.secondary": "How it works",
+    "home.hero.note": "No credit card · GDPR-compliant · Made in Hamburg",
+    "home.hero.chip.available": "Available",
+    "home.hero.chip.maintenance": "In maintenance",
+    "home.hero.window": "Resources · Live status",
+
+    "home.chips.lock": "Impossible to bypass",
+    "home.chips.simple": "No IT skills needed",
+    "home.chips.onprem": "On-premise & GDPR-compliant",
+    "home.chips.source": "Source available",
+    "home.chips.hardware": "Hardware for rent",
+    "home.chips.dguv": "DGUV-compliant records",
+    "home.chips.logs": "Complete usage logs",
+    "home.chips.nonprofit": "Free for non-profits",
+
+    "home.problem.label": "The problem",
+    "home.problem.title": "A sign doesn't stop a machine.",
+    "home.problem.subtitle":
+      "Notices, trust and spreadsheets protect neither people nor revenue. Attraccess makes authorization physically enforceable.",
+    "home.problem.liability.title": "Cover your liability",
+    "home.problem.liability.text":
+      "When an accident happens, only one question matters: was the person verifiably trained? Attraccess documents every safety briefing automatically — DGUV-compliant and court-proof. Anyone without training can't even start the machine.",
+    "home.problem.liability.window": "Training records",
+    "home.problem.revenue.title": "Protect your revenue",
+    "home.problem.revenue.text":
+      "Paid machines only run for authorized users. No free rides, no arguments — every session is recorded and can be billed.",
+    "home.problem.revenue.window": "Usage session with billing",
+
+    "home.how.label": "How it works",
+    "home.how.title": "Scan your card. Machine runs. Done.",
+    "home.how.step1.title": "Scan",
+    "home.how.step1.text": "Hold your card to the Attractap next to the machine.",
+    "home.how.step2.title": "Verify",
+    "home.how.step2.text": "The system checks in real time: authorized and trained?",
+    "home.how.step3.title": "Unlock",
+    "home.how.step3.text": "The switch box releases the power — the machine starts.",
+    "home.how.step4.title": "Log",
+    "home.how.step4.text": "Every use is fully recorded in the dashboard.",
+    "home.how.chip": "Attractap · Card scanned",
+    "home.how.window": "Resource · Overview",
+    "home.how.float.title": "Power released",
+    "home.how.float.subtitle": "Session is being logged",
+
+    "home.features.label": "Everything in view",
+    "home.features.title": "From the workshop tablet to your smartphone.",
+    "home.features.subtitle":
+      "Runs in the browser, no installation — administration, maintenance and billing in one place.",
+    "home.features.maintenance.title": "Plan maintenance",
+    "home.features.maintenance.text":
+      "Maintenance KPIs and intervals at a glance — before a machine breaks down.",
+    "home.features.logs.title": "Document everything",
+    "home.features.logs.text":
+      "Every session in the usage log — who, when, how long, court-proof.",
+    "home.features.mobile.title": "In your pocket",
+    "home.features.mobile.text":
+      "Book resources, end sessions and check credit — from your phone, no app install required.",
+
+    "home.nonprofit.title": "Non-profit? Free.",
+    "home.nonprofit.text":
+      "Non-profit organizations use the self-hosted software free of charge, forever — source available under the Prosperity Public License. Only commercial use is paid. Hardware and support can be added optionally.",
+
+    "home.pricing.label": "Pricing",
+    "home.pricing.title": "Fair. Transparent. No upfront investment.",
+    "home.pricing.subtitle": "All prices net, per year. Hardware conveniently for rent.",
+    "home.pricing.nonprofit.name": "Non-Profit",
+    "home.pricing.nonprofit.price": "€0",
+    "home.pricing.nonprofit.period": "forever",
+    "home.pricing.nonprofit.desc": "If you're a non-profit, you're in. Period.",
+    "home.pricing.nonprofit.item1": "Self-hosted software, free forever",
+    "home.pricing.nonprofit.item2": "All features included",
+    "home.pricing.nonprofit.item3": "Source available (Prosperity License)",
+    "home.pricing.nonprofit.item4": "Hardware & support optional",
+    "home.pricing.nonprofit.cta": "Get started for free",
+    "home.pricing.community.name": "Community",
+    "home.pricing.community.price": "from €900",
+    "home.pricing.community.period": "/ year",
+    "home.pricing.community.badge": "Popular",
+    "home.pricing.community.desc": "For small commercial workshops and makerspaces.",
+    "home.pricing.community.item1": "All core features",
+    "home.pricing.community.item2": "Training & usage records",
+    "home.pricing.community.item3": "Guided onboarding included",
+    "home.pricing.community.item4": "Hardware conveniently for rent",
+    "home.pricing.community.cta": "Try 30 days for free",
+    "home.pricing.standard.name": "Standard",
+    "home.pricing.standard.price": "€3,500",
+    "home.pricing.standard.period": "/ year",
+    "home.pricing.standard.desc": "For companies with many machines and users.",
+    "home.pricing.standard.item1": "Everything in Community",
+    "home.pricing.standard.item2": "Priority support",
+    "home.pricing.standard.item3": "Billing & credit",
+    "home.pricing.standard.item4": "SLA with guaranteed response time",
+    "home.pricing.standard.cta": "Request a consultation",
+    "home.pricing.note": "Questions about the right license? We're happy to advise, no strings attached.",
+
+    "home.cta.title.line1": "Ready when",
+    "home.cta.title.line2": "you are.",
+    "home.cta.text":
+      "In the browser, no installation — from the workshop tablet to your smartphone. Hosted on-premise and GDPR-compliant.",
+    "home.cta.primary": "Start for free now",
   },
   de: {
     // Navigation
@@ -249,6 +357,7 @@ const translations = {
     "nav.pricing": "Preise",
     "nav.contact": "Kontakt",
     "nav.demo": "Demo anfragen",
+    "nav.cta": "30 Tage testen",
     "nav.docs": "Dokumentation",
     "nav.blog": "Blog",
     // Hero Section
@@ -472,6 +581,113 @@ const translations = {
     // About
     "about.mission":
       "Wir ermöglichen Gemeinschaftsarbeitsplätze mit Zugangs-Kontrolle – ohne Komplexität.",
+
+    // Homepage (brand redesign)
+    "home.badge": "Source Available · für Non-Profits kostenlos",
+    "home.hero.title.line1": "Nur wer darf,",
+    "home.hero.title.line2": "kann.",
+    "home.hero.subtitle":
+      "Physische Zugangskontrolle für geteilte Maschinen. Die Maschine startet erst, wenn eine berechtigte, eingewiesene Person ihre Karte scannt. Nicht umgehbar. Lückenlos dokumentiert.",
+    "home.hero.cta.primary": "30 Tage kostenlos testen",
+    "home.hero.cta.secondary": "So funktioniert's",
+    "home.hero.note": "Ohne Kreditkarte · DSGVO-konform · Made in Hamburg",
+    "home.hero.chip.available": "Verfügbar",
+    "home.hero.chip.maintenance": "In Wartung",
+    "home.hero.window": "Ressourcen · Live-Status",
+
+    "home.chips.lock": "Nicht umgehbar",
+    "home.chips.simple": "Kein IT-Wissen nötig",
+    "home.chips.onprem": "On-Premise & DSGVO-konform",
+    "home.chips.source": "Source Available",
+    "home.chips.hardware": "Hardware zur Miete",
+    "home.chips.dguv": "DGUV-konforme Nachweise",
+    "home.chips.logs": "Lückenlose Protokolle",
+    "home.chips.nonprofit": "Für Non-Profits kostenlos",
+
+    "home.problem.label": "Das Problem",
+    "home.problem.title": "Ein Zettel hält keine Maschine an.",
+    "home.problem.subtitle":
+      "Aushänge, Vertrauen und Excel-Listen schützen weder Menschen noch Umsatz. Attraccess macht Berechtigung physisch durchsetzbar.",
+    "home.problem.liability.title": "Haftung absichern",
+    "home.problem.liability.text":
+      "Kommt es zum Unfall, zählt nur eine Frage: War die Person nachweislich eingewiesen? Attraccess dokumentiert jede Einweisung automatisch – DGUV-konform und gerichtsfest. Wer nicht eingewiesen ist, bekommt die Maschine gar nicht erst an.",
+    "home.problem.liability.window": "Einweisungsnachweis",
+    "home.problem.revenue.title": "Umsatz schützen",
+    "home.problem.revenue.text":
+      "Kostenpflichtige Maschinen laufen nur für berechtigte Nutzer. Keine Gratis-Nutzung, keine Diskussionen – jede Sitzung wird erfasst und lässt sich abrechnen.",
+    "home.problem.revenue.window": "Nutzungssitzung mit Abrechnung",
+
+    "home.how.label": "So funktioniert's",
+    "home.how.title": "Karte scannen. Maschine läuft. Fertig.",
+    "home.how.step1.title": "Scannen",
+    "home.how.step1.text": "Karte an den Attractap neben der Maschine halten.",
+    "home.how.step2.title": "Prüfen",
+    "home.how.step2.text": "Das System prüft in Echtzeit: berechtigt und eingewiesen?",
+    "home.how.step3.title": "Freigeben",
+    "home.how.step3.text": "Die Schaltbox gibt den Strom frei – die Maschine startet.",
+    "home.how.step4.title": "Protokollieren",
+    "home.how.step4.text": "Jede Nutzung landet lückenlos im Dashboard.",
+    "home.how.chip": "Attractap · Karte gescannt",
+    "home.how.window": "Ressource · Übersicht",
+    "home.how.float.title": "Strom freigegeben",
+    "home.how.float.subtitle": "Sitzung wird protokolliert",
+
+    "home.features.label": "Alles im Blick",
+    "home.features.title": "Vom Werkstatt-Tablet bis zum Smartphone.",
+    "home.features.subtitle":
+      "Läuft im Browser, ohne Installation – Verwaltung, Wartung und Abrechnung an einem Ort.",
+    "home.features.maintenance.title": "Wartung planen",
+    "home.features.maintenance.text":
+      "Wartungs-KPIs und Intervalle auf einen Blick – bevor eine Maschine ausfällt.",
+    "home.features.logs.title": "Lückenlos dokumentieren",
+    "home.features.logs.text":
+      "Jede Sitzung im Nutzungsprotokoll – wer, wann, wie lange, gerichtsfest.",
+    "home.features.mobile.title": "In der Hosentasche",
+    "home.features.mobile.text":
+      "Ressourcen buchen, Sitzungen beenden und Guthaben prüfen – vom Smartphone, ganz ohne App-Installation.",
+
+    "home.nonprofit.title": "Gemeinnützig? Kostenlos.",
+    "home.nonprofit.text":
+      "Wer gemeinnützig arbeitet, nutzt die selbst-gehostete Software dauerhaft gratis – Source Available unter der Prosperity Public License. Bezahlt wird nur die gewerbliche Nutzung. Hardware und Support optional dazubuchbar.",
+
+    "home.pricing.label": "Preise",
+    "home.pricing.title": "Fair. Transparent. Ohne Kapitaleinsatz.",
+    "home.pricing.subtitle": "Alle Preise netto, pro Jahr. Hardware bequem zur Miete.",
+    "home.pricing.nonprofit.name": "Non-Profit",
+    "home.pricing.nonprofit.price": "0 €",
+    "home.pricing.nonprofit.period": "für immer",
+    "home.pricing.nonprofit.desc": "Wer gemeinnützig ist, darf. Punkt.",
+    "home.pricing.nonprofit.item1": "Selbst-gehostete Software, dauerhaft gratis",
+    "home.pricing.nonprofit.item2": "Alle Funktionen inklusive",
+    "home.pricing.nonprofit.item3": "Source Available (Prosperity License)",
+    "home.pricing.nonprofit.item4": "Hardware & Support optional",
+    "home.pricing.nonprofit.cta": "Kostenlos loslegen",
+    "home.pricing.community.name": "Community",
+    "home.pricing.community.price": "ab 900 €",
+    "home.pricing.community.period": "/ Jahr",
+    "home.pricing.community.badge": "Beliebt",
+    "home.pricing.community.desc": "Für kleine gewerbliche Werkstätten und Makerspaces.",
+    "home.pricing.community.item1": "Alle Kernfunktionen",
+    "home.pricing.community.item2": "Einweisungs- & Nutzungsnachweise",
+    "home.pricing.community.item3": "Onboarding-Begleitung inklusive",
+    "home.pricing.community.item4": "Hardware bequem zur Miete",
+    "home.pricing.community.cta": "30 Tage kostenlos testen",
+    "home.pricing.standard.name": "Standard",
+    "home.pricing.standard.price": "3.500 €",
+    "home.pricing.standard.period": "/ Jahr",
+    "home.pricing.standard.desc": "Für Unternehmen mit vielen Maschinen und Nutzern.",
+    "home.pricing.standard.item1": "Alles aus Community",
+    "home.pricing.standard.item2": "Priorisierter Support",
+    "home.pricing.standard.item3": "Abrechnung & Guthaben",
+    "home.pricing.standard.item4": "SLA mit garantierter Reaktionszeit",
+    "home.pricing.standard.cta": "Beratung anfragen",
+    "home.pricing.note": "Fragen zur passenden Lizenz? Wir beraten unverbindlich.",
+
+    "home.cta.title.line1": "Bereit, wenn",
+    "home.cta.title.line2": "Sie es sind.",
+    "home.cta.text":
+      "Im Browser, ohne Installation – vom Werkstatt-Tablet bis zum Smartphone. On-Premise gehostet und DSGVO-konform.",
+    "home.cta.primary": "Jetzt kostenlos starten",
   },
 };
 

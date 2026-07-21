@@ -1,22 +1,26 @@
 import React from "react";
 import { useSEO } from "@/hooks/use-seo";
-import { Hero } from "@/components/Hero";
-import { StatsBar } from "@/components/StatsBar";
-import { CustomersPartners } from "@/components/CustomersPartners";
-import { Features } from "@/components/Features";
-import { HowItWorks } from "@/components/HowItWorks";
-import { CTABanner } from "@/components/CTABanner";
+import { HomeHero } from "@/components/home/HomeHero";
+import { ProofMarquee } from "@/components/home/ProofMarquee";
+import { ProblemSection } from "@/components/home/ProblemSection";
+import { HowItWorksSection } from "@/components/home/HowItWorksSection";
+import { FeatureHighlights } from "@/components/home/FeatureHighlights";
+import { NonProfitBanner } from "@/components/home/NonProfitBanner";
+import { PricingTiers } from "@/components/home/PricingTiers";
+import { CtaSection } from "@/components/home/CtaSection";
 
 export function Home() {
   useSEO({ canonicalPath: "/" });
   return (
     <div className="min-h-screen">
-      <Hero />
-      <StatsBar />
-      <CustomersPartners />
-      <Features />
-      <HowItWorks />
-      <CTABanner />
+      <HomeHero />
+      <ProofMarquee />
+      <ProblemSection />
+      <HowItWorksSection />
+      <FeatureHighlights />
+      <NonProfitBanner />
+      <PricingTiers />
+      <CtaSection />
     </div>
   );
 }
