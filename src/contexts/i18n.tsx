@@ -242,6 +242,13 @@ const translations = {
     "about.mission":
       "Empowering shared workspaces with enterprise-grade control—without the complexity.",
 
+    // MakerFaire Hannover announcement banner
+    "banner.makerfaire.lead": "🎉 For the first time at MakerFaire Hannover",
+    "banner.makerfaire.booth": "Booth 135 · Eilenriedehalle",
+    "banner.makerfaire.date": "August 15–16, 2026",
+    "banner.makerfaire.cta": "Learn more",
+    "banner.makerfaire.close": "Dismiss announcement",
+
     // Homepage (brand redesign)
     "home.badge": "Source available · Free for non-profits",
     "home.hero.title.line1": "No permission,",
@@ -581,6 +588,13 @@ const translations = {
     // About
     "about.mission":
       "Wir ermöglichen Gemeinschaftsarbeitsplätze mit Zugangs-Kontrolle – ohne Komplexität.",
+
+    // MakerFaire Hannover announcement banner
+    "banner.makerfaire.lead": "🎉 Zum ersten Mal auf der MakerFaire Hannover",
+    "banner.makerfaire.booth": "Stand 135 · Eilenriedehalle",
+    "banner.makerfaire.date": "15.–16. August 2026",
+    "banner.makerfaire.cta": "Mehr erfahren",
+    "banner.makerfaire.close": "Ankündigung schließen",
 
     // Homepage (brand redesign)
     "home.badge": "Source Available · für Non-Profits kostenlos",

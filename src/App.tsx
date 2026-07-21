@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { I18nProvider } from "@/contexts/i18n";
 import { ThemeProvider } from "@/contexts/theme";
 import { Navigation } from "@/components/Navigation";
+import { AnnouncementBanner } from "@/components/AnnouncementBanner";
 import { Footer } from "@/components/Footer";
 import { Home } from "@/pages/Home";
 import { Features } from "@/pages/Features";
@@ -27,6 +28,7 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <div className="flex flex-col min-h-screen">
+              <AnnouncementBanner />
               <Navigation />
               <main className="flex-1">
                 <Routes>
