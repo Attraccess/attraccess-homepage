@@ -1,6 +1,7 @@
 import React from "react";
 import { useSEO } from "@/hooks/use-seo";
 import { HomeHero } from "@/components/home/HomeHero";
+import { MakerFaireBanner } from "@/components/home/MakerFaireBanner";
 import { ProofMarquee } from "@/components/home/ProofMarquee";
 import { ProblemSection } from "@/components/home/ProblemSection";
 import { HowItWorksSection } from "@/components/home/HowItWorksSection";
@@ -14,6 +15,7 @@ export function Home() {
   return (
     <div className="min-h-screen">
       <HomeHero />
+      <MakerFaireBanner />
       <ProofMarquee />
       <ProblemSection />
       <HowItWorksSection />
