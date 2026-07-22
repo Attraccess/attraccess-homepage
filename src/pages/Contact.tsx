@@ -51,20 +51,11 @@ export function Contact() {
     e.preventDefault();
 
     const subject = encodeURIComponent(t("contact.email.subject"));
-    const body = encodeURIComponent(`Hello,
-
-I'm interested in learning more about Attraccess. Here are my details:
-
-Name: ${formData.name}
-Email: ${formData.email}
-Organization: ${formData.organization}
-Role: ${formData.role}
-
-Use Case:
-${formData.usecase}
-
-Best regards,
-${formData.name}`);
+    const body = encodeURIComponent(
+      t("contact.email.body").replace(/\{(\w+)\}/g, (_, key) =>
+        key in formData ? formData[key as keyof typeof formData] : ""
+      )
+    );
 
     window.location.href = `mailto:contact@attraccess.org?subject=${subject}&body=${body}`;
   };
@@ -101,7 +92,7 @@ ${formData.name}`);
                       <Label htmlFor="name">{t("contact.form.name")}</Label>
                       <Input
                         id="name"
-                        placeholder="Your name"
+                        placeholder={t("contact.form.name.placeholder")}
                         value={formData.name}
                         onChange={handleInputChange}
                       />
@@ -111,7 +102,7 @@ ${formData.name}`);
                       <Input
                         id="email"
                         type="email"
-                        placeholder="you@example.com"
+                        placeholder={t("contact.form.email.placeholder")}
                         value={formData.email}
                         onChange={handleInputChange}
                       />
@@ -124,7 +115,7 @@ ${formData.name}`);
                       </Label>
                       <Input
                         id="organization"
-                        placeholder="Your organization"
+                        placeholder={t("contact.form.organization.placeholder")}
                         value={formData.organization}
                         onChange={handleInputChange}
                       />
@@ -133,7 +124,7 @@ ${formData.name}`);
                       <Label htmlFor="role">{t("contact.form.role")}</Label>
                       <Input
                         id="role"
-                        placeholder="Your role"
+                        placeholder={t("contact.form.role.placeholder")}
                         value={formData.role}
                         onChange={handleInputChange}
                       />
