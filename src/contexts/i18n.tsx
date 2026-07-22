@@ -243,11 +243,11 @@ const translations = {
       "Empowering shared workspaces with enterprise-grade control—without the complexity.",
 
     // MakerFaire Hannover announcement banner
-    "banner.makerfaire.tagline": "Exhibiting for the first time",
+    "banner.makerfaire.visit": "Visit us at",
     "banner.makerfaire.event": "Maker Faire Hannover",
-    "banner.makerfaire.booth": "Booth 135 · Eilenriedehalle",
-    "banner.makerfaire.date": "August 15–16, 2026",
-    "banner.makerfaire.cta": "Learn more",
+    "banner.makerfaire.when": "August 15–16, 2026 · Hannover",
+    "banner.makerfaire.where": "Eilenriedehalle, booth 135",
+    "banner.makerfaire.cta": "Book an appointment",
 
     // Homepage (brand redesign)
     "home.badge": "Source available · Free for non-profits",
@@ -590,11 +590,11 @@ const translations = {
       "Wir ermöglichen Gemeinschaftsarbeitsplätze mit Zugangs-Kontrolle – ohne Komplexität.",
 
     // MakerFaire Hannover announcement banner
-    "banner.makerfaire.tagline": "Zum ersten Mal dabei",
+    "banner.makerfaire.visit": "Besuchen Sie uns auf der",
     "banner.makerfaire.event": "Maker Faire Hannover",
-    "banner.makerfaire.booth": "Stand 135 · Eilenriedehalle",
-    "banner.makerfaire.date": "15.–16. August 2026",
-    "banner.makerfaire.cta": "Mehr erfahren",
+    "banner.makerfaire.when": "15.–16. August 2026 in Hannover",
+    "banner.makerfaire.where": "Eilenriedehalle, Stand 135",
+    "banner.makerfaire.cta": "Jetzt Termin vereinbaren",
 
     // Homepage (brand redesign)
     "home.badge": "Source Available · für Non-Profits kostenlos",
