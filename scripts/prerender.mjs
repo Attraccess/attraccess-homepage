@@ -5,7 +5,7 @@
 // correct per-route OG/meta (useSEO runs during the snapshot).
 // Routes come from src/lib/seo-meta.json. Third-party embeds (HubSpot chat,
 // analytics) are blocked so their markup never bakes into the static HTML.
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { preview } from "vite";
@@ -16,9 +16,17 @@ const routes = Object.keys(JSON.parse(readFileSync(join(root, "src/lib/seo-meta.
 const PORT = 4188;
 const BLOCK = /hs-scripts|hs-analytics|hs-banner|hsforms|hubspot|usemessages|hscollectedforms|google-analytics|googletagmanager|doubleclick/i;
 
+// Prefer a system Chromium (Debian build image installs it via railpack.json
+// buildAptPackages, so its shared libs are guaranteed present); fall back to
+// puppeteer's bundled download locally (macOS dev).
+const chromePath =
+  process.env.PUPPETEER_EXECUTABLE_PATH ||
+  ["/usr/bin/chromium", "/usr/bin/chromium-browser", "/usr/bin/google-chrome"].find(existsSync);
+
 const server = await preview({ root, preview: { port: PORT, strictPort: true } });
 const browser = await puppeteer.launch({
   headless: true,
+  executablePath: chromePath || undefined,
   args: ["--no-sandbox", "--disable-setuid-sandbox"],
 });
 
