@@ -1,14 +1,11 @@
 import React from "react";
 import { useSEO } from "@/hooks/use-seo";
+import seoMeta from "@/lib/seo-meta.json";
 import { useI18n } from "@/contexts/i18n";
 import { ModernPricingSection } from "@/components/ModernPricingSection";
 
 export function PricingPage() {
-  useSEO({
-    title: "Pricing",
-    description: "Attraccess is free for non-profits and open-source makerspaces. Explore community and commercial plans for your organization.",
-    canonicalPath: "/pricing",
-  });
+  useSEO(seoMeta["/pricing"]);
   const { t } = useI18n();
 
   return (

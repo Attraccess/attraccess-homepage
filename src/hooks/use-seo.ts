@@ -8,32 +8,40 @@ interface SEOProps {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  noindex?: boolean;
 }
 
-export function useSEO({ title, description, canonicalPath }: SEOProps = {}) {
+// ponytail: DOM-mutating SEO for a JS-rendering crawler (Google). Deep-link
+// OG previews for non-JS scrapers (Slack/FB/LinkedIn) need build-time prerender.
+export function useSEO({ title, description, canonicalPath, noindex }: SEOProps = {}) {
   useEffect(() => {
     const fullTitle = title ? `${title} — ${SITE_NAME}` : `${SITE_NAME} — Access & Lifecycle Management for Shared Resources`;
+    const desc = description ?? DEFAULT_DESCRIPTION;
     document.title = fullTitle;
 
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", description ?? DEFAULT_DESCRIPTION);
+    const setMeta = (selector: string, attr: string, value: string) =>
+      document.querySelector(selector)?.setAttribute(attr, value);
+
+    setMeta('meta[name="description"]', "content", desc);
+    setMeta('meta[property="og:title"]', "content", fullTitle);
+    setMeta('meta[property="og:description"]', "content", desc);
+    setMeta('meta[name="twitter:title"]', "content", fullTitle);
+    setMeta('meta[name="twitter:description"]', "content", desc);
+
+    if (canonicalPath) {
+      const url = `https://attraccess.org${canonicalPath}`;
+      setMeta('meta[property="og:url"]', "content", url);
+      setMeta('link[rel="canonical"]', "href", url);
     }
 
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", fullTitle);
-
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute("content", description ?? DEFAULT_DESCRIPTION);
-
-    const ogUrl = document.querySelector('meta[property="og:url"]');
-    if (ogUrl && canonicalPath) {
-      ogUrl.setAttribute("content", `https://attraccess.org${canonicalPath}`);
+    // Soft-404 / legal pages: keep them out of the index while mounted.
+    let robots: HTMLMetaElement | null = null;
+    if (noindex) {
+      robots = document.createElement("meta");
+      robots.name = "robots";
+      robots.content = "noindex, nofollow";
+      document.head.appendChild(robots);
     }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical && canonicalPath) {
-      canonical.setAttribute("href", `https://attraccess.org${canonicalPath}`);
-    }
-  }, [title, description, canonicalPath]);
+    return () => robots?.remove();
+  }, [title, description, canonicalPath, noindex]);
 }

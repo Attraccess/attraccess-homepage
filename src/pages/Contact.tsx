@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSEO } from "@/hooks/use-seo";
+import seoMeta from "@/lib/seo-meta.json";
 import { useI18n } from "@/contexts/i18n";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,11 +11,7 @@ import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function Contact() {
-  useSEO({
-    title: "Contact",
-    description: "Get in touch with the Attraccess team — for questions, demos, enterprise support, or partnership inquiries.",
-    canonicalPath: "/contact",
-  });
+  useSEO(seoMeta["/contact"]);
   const { t } = useI18n();
 
   const [formData, setFormData] = useState({
