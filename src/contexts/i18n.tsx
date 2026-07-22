@@ -227,9 +227,13 @@ const translations = {
       "Ready to transform your workspace? Let's talk about your specific needs.",
     "contact.form.title": "Get in Touch",
     "contact.form.name": "Name",
+    "contact.form.name.placeholder": "Your name",
     "contact.form.email": "Email",
+    "contact.form.email.placeholder": "you@example.com",
     "contact.form.organization": "Organization",
+    "contact.form.organization.placeholder": "Your organization",
     "contact.form.role": "Role",
+    "contact.form.role.placeholder": "Your role",
     "contact.form.usecase": "Use Case",
     "contact.form.usecase.placeholder": "Describe your workspace",
     "contact.form.submit": "Submit",
@@ -237,6 +241,20 @@ const translations = {
     "contact.info.email": "Email",
     "contact.info.address": "Address",
     "contact.email.subject": "Inquiry about Attraccess",
+    "contact.email.body": `Hello,
+
+I'm interested in learning more about Attraccess. Here are my details:
+
+Name: {name}
+Email: {email}
+Organization: {organization}
+Role: {role}
+
+Use Case:
+{usecase}
+
+Best regards,
+{name}`,
 
     // About
     "about.mission":
@@ -575,9 +593,13 @@ const translations = {
       "Bereit, Ihren Arbeitsbereich zu transformieren? Lassen Sie uns über Ihre spezifischen Bedürfnisse sprechen.",
     "contact.form.title": "Kontakt aufnehmen",
     "contact.form.name": "Name",
+    "contact.form.name.placeholder": "Ihr Name",
     "contact.form.email": "E-Mail",
+    "contact.form.email.placeholder": "sie@beispiel.de",
     "contact.form.organization": "Organisation",
+    "contact.form.organization.placeholder": "Ihre Organisation",
     "contact.form.role": "Position",
+    "contact.form.role.placeholder": "Ihre Position",
     "contact.form.usecase": "Anwendungsfall",
     "contact.form.usecase.placeholder": "Beschreiben Sie Ihren Arbeitsbereich",
     "contact.form.submit": "Absenden",
@@ -585,6 +607,20 @@ const translations = {
     "contact.info.email": "E-Mail",
     "contact.info.address": "Adresse",
     "contact.email.subject": "Anfrage zu Attraccess",
+    "contact.email.body": `Hallo,
+
+ich interessiere mich für Attraccess und würde gerne mehr erfahren. Hier sind meine Angaben:
+
+Name: {name}
+E-Mail: {email}
+Organisation: {organization}
+Position: {role}
+
+Anwendungsfall:
+{usecase}
+
+Mit freundlichen Grüßen,
+{name}`,
 
     // About
     "about.mission":
