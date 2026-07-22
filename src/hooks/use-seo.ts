@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 const SITE_NAME = "Attraccess";
 const DEFAULT_DESCRIPTION =
-  "Track, control and automate access to shared machines, tools and doors. Usage analytics, maintenance scheduling, RBAC and SSO — self-hosted, free for non-profits.";
+  "Control and automate access to shared machines, tools and doors. Usage analytics, maintenance scheduling, RBAC and SSO — self-hosted, free for non-profits.";
 
 interface SEOProps {
   title?: string;
@@ -15,7 +15,7 @@ interface SEOProps {
 // OG previews for non-JS scrapers (Slack/FB/LinkedIn) need build-time prerender.
 export function useSEO({ title, description, canonicalPath, noindex }: SEOProps = {}) {
   useEffect(() => {
-    const fullTitle = title ? `${title} — ${SITE_NAME}` : `${SITE_NAME} — Access & Lifecycle Management for Shared Resources`;
+    const fullTitle = title ? `${title} — ${SITE_NAME}` : `${SITE_NAME} — Access & Lifecycle for Shared Resources`;
     const desc = description ?? DEFAULT_DESCRIPTION;
     document.title = fullTitle;
 

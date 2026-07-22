@@ -12,9 +12,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
 
 const SITE_NAME = "Attraccess";
-const DEFAULT_TITLE = `${SITE_NAME} — Access & Lifecycle Management for Shared Resources`;
+const DEFAULT_TITLE = `${SITE_NAME} — Access & Lifecycle for Shared Resources`;
 const DEFAULT_DESCRIPTION =
-  "Track, control and automate access to shared machines, tools and doors. Usage analytics, maintenance scheduling, RBAC and SSO — self-hosted, free for non-profits.";
+  "Control and automate access to shared machines, tools and doors. Usage analytics, maintenance scheduling, RBAC and SSO — self-hosted, free for non-profits.";
 const ORIGIN = "https://attraccess.org";
 
 const routes = JSON.parse(readFileSync(join(root, "src/lib/seo-meta.json"), "utf8"));
