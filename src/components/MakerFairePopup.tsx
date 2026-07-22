@@ -14,6 +14,12 @@ export function MakerFairePopup() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    // Never open during the postbuild prerender/automation snapshot, otherwise
+    // the opened dialog (portaled to <body>) gets baked into the static HTML and
+    // then shows up a second time — in the prerender language — once React
+    // renders the live popup on top. navigator.webdriver is true under the
+    // headless prerender (puppeteer) and false for real visitors.
+    if (typeof navigator !== "undefined" && navigator.webdriver) return;
     if (new Date() > EVENT_END) return;
     let dismissed = false;
     try {
