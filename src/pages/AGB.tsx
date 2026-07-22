@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSEO } from "@/hooks/use-seo";
 
 export function AGB() {
+  useSEO({
+    title: "AGB",
+    description: "Allgemeine Geschäftsbedingungen für Attraccess.",
+    canonicalPath: "/agb",
+    noindex: true,
+  });
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">

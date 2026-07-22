@@ -1,5 +1,6 @@
 import React from "react";
 import { useSEO } from "@/hooks/use-seo";
+import seoMeta from "@/lib/seo-meta.json";
 import { Features as FeaturesComponent } from "@/components/Features";
 import { useI18n } from "@/contexts/i18n";
 import { Button } from "@/components/ui/button";
@@ -7,11 +8,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function Features() {
-  useSEO({
-    title: "Features",
-    description: "Explore all Attraccess features: role-based access control, NFC/RFID integration, usage analytics, maintenance scheduling, SSO, and automation for shared machines and tools.",
-    canonicalPath: "/features",
-  });
+  useSEO(seoMeta["/features"]);
   const { t } = useI18n();
 
   return (
