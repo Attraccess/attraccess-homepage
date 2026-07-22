@@ -248,6 +248,7 @@ const translations = {
     "banner.makerfaire.when": "August 15–16, 2026 · Hannover",
     "banner.makerfaire.where": "Eilenriedehalle, booth 135",
     "banner.makerfaire.cta": "Book an appointment",
+    "banner.makerfaire.close": "Close",
 
     // Homepage (brand redesign)
     "home.badge": "Source available · Free for non-profits",
@@ -595,6 +596,7 @@ const translations = {
     "banner.makerfaire.when": "15.–16. August 2026 in Hannover",
     "banner.makerfaire.where": "Eilenriedehalle, Stand 135",
     "banner.makerfaire.cta": "Jetzt Termin vereinbaren",
+    "banner.makerfaire.close": "Schließen",
 
     // Homepage (brand redesign)
     "home.badge": "Source Available · für Non-Profits kostenlos",
