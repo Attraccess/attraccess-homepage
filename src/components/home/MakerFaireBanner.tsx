@@ -13,13 +13,13 @@ export function MakerFaireBanner() {
   if (new Date() > EVENT_END) return null;
 
   return (
-    <section className="bg-background px-6 py-10 sm:px-8">
-      <Reveal className="relative mx-auto flex max-w-[1200px] flex-col items-center gap-6 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-blue to-[#0366c4] px-6 py-14 text-center text-white shadow-[0_20px_60px_-20px_rgba(5,132,247,.6)] sm:px-10 sm:py-16">
+    <section className="bg-background px-4 pt-5 pb-3 sm:px-6">
+      <Reveal className="relative mx-auto flex max-w-[1200px] flex-col items-center gap-4 overflow-hidden rounded-2xl bg-gradient-to-br from-brand-blue to-[#0366c4] px-6 py-8 text-center text-white shadow-[0_16px_44px_-18px_rgba(5,132,247,.6)] sm:py-10">
         {/* decorative glow */}
         <div className="pointer-events-none absolute -top-40 -right-24 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,.25)_0%,rgba(255,255,255,0)_70%)]" />
         <div className="pointer-events-none absolute -bottom-40 -left-24 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(0,0,0,.16)_0%,rgba(0,0,0,0)_70%)]" />
 
-        <h2 className="relative font-display text-[clamp(24px,4vw,42px)] font-bold leading-[1.15] tracking-tight [text-wrap:balance]">
+        <h2 className="relative font-display text-[clamp(22px,3.2vw,34px)] font-bold leading-[1.15] tracking-tight [text-wrap:balance]">
           <span aria-hidden="true">📢 </span>
           {t("banner.makerfaire.visit")}{" "}
           <span className="whitespace-nowrap underline decoration-white/40 decoration-2 underline-offset-4">
