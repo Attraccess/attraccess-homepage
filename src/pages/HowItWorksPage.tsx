@@ -1,125 +1,108 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { useSEO } from "@/hooks/use-seo";
 import seoMeta from "@/lib/seo-meta.json";
 import { useI18n } from "@/contexts/i18n";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Plus, Hand, Zap, BarChart, Wrench } from "lucide-react";
+import { DemoVideo } from "@/components/DemoVideo";
+import { StepList } from "@/components/how-it-works/StepList";
+import { WorkshopGallery } from "@/components/how-it-works/WorkshopGallery";
+import { HardwareSection } from "@/components/how-it-works/HardwareSection";
+
+const HERO_STATS = ["setup", "tap", "hardware"] as const;
 
 export function HowItWorksPage() {
   useSEO(seoMeta["/how-it-works"]);
   const { t } = useI18n();
 
-  const steps = [
-    {
-      id: 1,
-      icon: Plus,
-      title: t("how-it-works.step1.title"),
-      description: t("how-it-works.step1.description"),
-      image: "/how-it-works/define-resource.webp",
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      id: 2,
-      icon: Hand,
-      title: t("how-it-works.step2.title"),
-      description: t("how-it-works.step2.description"),
-      image: "/how-it-works/assign-access.webp",
-      color: "from-green-500 to-emerald-500",
-    },
-    {
-      id: 3,
-      icon: Zap,
-      title: t("how-it-works.step3.title"),
-      description: t("how-it-works.step3.description"),
-      image: "/how-it-works/deploy-use.webp",
-      color: "from-orange-500 to-red-500",
-    },
-    {
-      id: 4,
-      icon: BarChart,
-      title: t("how-it-works.step4.title"),
-      description: t("how-it-works.step4.description"),
-      image: "/how-it-works/track-automate.webp",
-      color: "from-purple-500 to-indigo-500",
-    },
-    {
-      id: 5,
-      icon: Wrench,
-      title: t("how-it-works.step5.title"),
-      description: t("how-it-works.step5.description"),
-      image: "/how-it-works/maintain-scale.webp",
-      color: "from-pink-500 to-rose-500",
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-hero">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+      {/* Hero */}
+      <section className="bg-gradient-hero py-20">
+        <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
+          <h1 className="mb-6 text-4xl font-bold text-white sm:text-5xl">
             {t("how-it-works.title")}
           </h1>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto">
+          <p className="mx-auto max-w-3xl text-xl text-white/90">
             {t("how-it-works.subtitle")}
           </p>
+
+          <dl className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
+            {HERO_STATS.map((key) => (
+              <div
+                key={key}
+                className="rounded-2xl border border-white/20 bg-white/10 px-6 py-5 backdrop-blur"
+              >
+                <dt className="font-display text-3xl font-bold text-white">
+                  {t(`how-it-works.hero.${key}.value`)}
+                </dt>
+                <dd className="mt-1 text-sm font-medium text-white/80">
+                  {t(`how-it-works.hero.${key}.label`)}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
-      {/* Steps Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-16">
-            {steps.map((step, index) => (
-              <div
-                key={step.id}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}
-              >
-                {/* Content */}
-                <div
-                  className={`fade-in ${index % 2 === 1 ? "lg:order-2" : ""}`}
-                >
-                  <div className="flex items-center mb-6">
-                    <div
-                      className={`w-12 h-12 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center text-white font-bold text-lg mr-4`}
-                    >
-                      {step.id}
-                    </div>
-                    <div
-                      className={`w-12 h-12 rounded-lg bg-gradient-to-r ${step.color} flex items-center justify-center mr-4`}
-                    >
-                      <step.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-foreground">
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p className="text-muted-foreground text-lg leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+      {/* Demo video — the fastest way to understand the whole loop */}
+      <DemoVideo />
 
-                {/* Image */}
-                <div
-                  className={`slide-up ${index % 2 === 1 ? "lg:order-1" : ""}`}
-                >
-                  <Card className="overflow-hidden shadow-medium hover:shadow-large transition-shadow duration-300">
-                    <CardContent className="p-8">
-                      <div className="aspect-video bg-gradient-card rounded-lg overflow-hidden">
-                        <img
-                          src={step.image}
-                          alt={step.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            ))}
+      {/* Real-world imagery */}
+      <WorkshopGallery />
+
+      {/* The companion gadget */}
+      <HardwareSection />
+
+      {/* The five steps */}
+      <section className="py-20" aria-labelledby="steps-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="text-[13px] font-bold uppercase tracking-[.14em] text-primary">
+              {t("how-it-works.steps.label")}
+            </div>
+            <h2
+              id="steps-heading"
+              className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+            >
+              {t("how-it-works.steps.title")}
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+              {t("how-it-works.steps.subtitle")}
+            </p>
+          </div>
+
+          <div className="mt-16">
+            <StepList />
+          </div>
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="bg-gradient-hero py-20">
+        <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+            {t("how-it-works.cta.title")}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90">
+            {t("how-it-works.cta.text")}
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button variant="cta" size="lg" className="gap-2" asChild>
+              <Link to="/contact">
+                {t("how-it-works.cta.primary")}
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              asChild
+            >
+              <Link to="/features">{t("how-it-works.cta.secondary")}</Link>
+            </Button>
           </div>
         </div>
       </section>
