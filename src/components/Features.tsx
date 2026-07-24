@@ -117,7 +117,7 @@ export function Features() {
             {t("features.label")}
           </div>
           <h2 className="text-3xl md:text-4xl font-black text-white max-w-2xl">
-            {t("features.title")}
+            {t("features.overview.title")}
           </h2>
         </div>
 

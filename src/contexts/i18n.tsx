@@ -423,6 +423,7 @@ Best regards,
     "media.workshop-floor.alt":
       "Photo needed: a workshop floor with several machines running",
     "media.team.alt": "Photo needed: the Attraccess team",
+    "features.overview.title": "The whole product at a glance",
     "features.subtitle":
       "Everything you need to manage access, track usage and automate your workspace — feature by feature, with the screens they run on.",
     "features.jump.label": "Jump to a feature",
@@ -1148,6 +1149,7 @@ Mit freundlichen Grüßen,
     "media.workshop-floor.alt":
       "Foto benötigt: Eine Werkstatt mit mehreren laufenden Maschinen",
     "media.team.alt": "Foto benötigt: Das Attraccess-Team",
+    "features.overview.title": "Das ganze Produkt auf einen Blick",
     "features.subtitle":
       "Alles, was Sie brauchen, um Zugang zu steuern, Nutzung zu erfassen und Ihre Werkstatt zu automatisieren — Funktion für Funktion, mit den Oberflächen dahinter.",
     "features.jump.label": "Direkt zu einer Funktion",
