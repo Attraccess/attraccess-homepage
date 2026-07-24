@@ -53,7 +53,15 @@ export function DemoVideo({ config = DEMO_VIDEO, className }: DemoVideoProps) {
 
         <div className="mx-auto mt-12 max-w-4xl">
           <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-large">
-            <div className="relative aspect-video w-full bg-muted">
+            <div
+              className={cn(
+                "relative aspect-video w-full bg-muted",
+                // The fallback card carries a heading, a paragraph and a
+                // button; on a narrow screen 16:9 is not tall enough for them,
+                // so a min-height takes over until the aspect ratio is taller.
+                !embedUrl && "min-h-[26rem] sm:min-h-[24rem]"
+              )}
+            >
               {embedUrl && playing ? (
                 <iframe
                   src={`${embedUrl}${embedUrl.includes("?") ? "&" : "?"}autoplay=1`}
@@ -72,7 +80,14 @@ export function DemoVideo({ config = DEMO_VIDEO, className }: DemoVideoProps) {
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                   <div
-                    className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent"
+                    className={cn(
+                      "absolute inset-0 bg-gradient-to-t",
+                      // The fallback puts a paragraph over the middle of the
+                      // photo, which needs a heavier scrim than a play button.
+                      embedUrl
+                        ? "from-black/70 via-black/25 to-transparent"
+                        : "from-black/80 via-black/60 to-black/45"
+                    )}
                     aria-hidden="true"
                   />
                   {embedUrl ? (
