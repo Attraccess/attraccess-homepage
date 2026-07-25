@@ -62,7 +62,12 @@ class TranslationAnalyzer {
         entry.name !== "node_modules"
       ) {
         files.push(...this.findSourceFiles(fullPath));
-      } else if (entry.isFile() && /\.(tsx?|jsx?)$/.test(entry.name)) {
+      } else if (
+        entry.isFile() &&
+        /\.(tsx?|jsx?)$/.test(entry.name) &&
+        // Tests assert on translated *output*, not on keys.
+        !/\.(test|spec)\.(tsx?|jsx?)$/.test(entry.name)
+      ) {
         files.push(fullPath);
       }
     }
@@ -85,10 +90,11 @@ class TranslationAnalyzer {
           continue;
         }
 
-        // Find all t("key") and t('key') patterns
+        // Find all t("key") and t('key') patterns. The lookbehind keeps
+        // getByText("…"), useSEO("…") and friends out of the results.
         const patterns = [
-          /t\("([^"]+)"\)/g, // t("key")
-          /t\('([^']+)'\)/g, // t('key')
+          /(?<![\w$.])t\("([^"]+)"\s*[,)]/g, // t("key") and t("key", params)
+          /(?<![\w$.])t\('([^']+)'\s*[,)]/g, // t('key') and t('key', params)
         ];
 
         for (const pattern of patterns) {

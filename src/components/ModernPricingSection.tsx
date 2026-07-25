@@ -4,14 +4,31 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Check, X, Info, Star, Shield, Wrench, CreditCard, Wifi } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  Check,
+  X,
+  Info,
+  Star,
+  Shield,
+  Wrench,
+  CreditCard,
+  Wifi,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { formatEur, monthlyRateEur } from "@/lib/pricing";
 
 export function ModernPricingSection() {
-  const { t } = useI18n();
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
+  const { t, language } = useI18n();
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">(
+    "monthly"
+  );
 
   const plans = [
     {
@@ -127,9 +144,32 @@ export function ModernPricingSection() {
     }
   };
 
-  const formatPrice = (price: number | null) => {
-    if (price === null) return t("pricing.contact-sales");
-    return `€${price.toLocaleString()}`;
+  /**
+   * Both billing cycles quote the same monthly rate — an annual plan charges
+   * ten of those months rather than twelve. The rate does not change; the
+   * annual note spells out the total and the two months you do not pay for.
+   */
+  const priceDisplay = (plan: {
+    monthlyPrice: number | null;
+    yearlyPrice: number | null;
+  }) => {
+    if (plan.monthlyPrice === null || plan.yearlyPrice === null) {
+      return { headline: t("pricing.contact-sales"), period: null, note: null };
+    }
+    if (billingCycle === "monthly") {
+      return {
+        headline: formatEur(plan.monthlyPrice, language),
+        period: t("pricing.per-month"),
+        note: null,
+      };
+    }
+    return {
+      headline: formatEur(monthlyRateEur(plan.yearlyPrice), language),
+      period: t("pricing.per-month"),
+      note: t("pricing.billed-annually", {
+        total: formatEur(plan.yearlyPrice, language),
+      }),
+    };
   };
 
   const getResourceProgress = (resources: number | string) => {
@@ -225,23 +265,35 @@ export function ModernPricingSection() {
                   <CardTitle className="text-lg font-bold text-foreground mb-2">
                     {plan.name}
                   </CardTitle>
-                  <div className="text-2xl font-bold text-foreground">
-                    {billingCycle === "monthly"
-                      ? formatPrice(plan.monthlyPrice)
-                      : formatPrice(plan.yearlyPrice)}
-                  </div>
-                  {plan.monthlyPrice && (
-                    <p className="text-xs text-muted-foreground">
-                      {billingCycle === "monthly" ? t("pricing.per-month") : t("pricing.per-year")}
-                    </p>
-                  )}
+                  {(() => {
+                    const price = priceDisplay(plan);
+                    return (
+                      <>
+                        <div className="text-2xl font-bold text-foreground">
+                          {price.headline}
+                        </div>
+                        {price.period && (
+                          <p className="text-xs text-muted-foreground">
+                            {price.period}
+                          </p>
+                        )}
+                        {price.note && (
+                          <p className="text-xs font-medium text-muted-foreground">
+                            {price.note}
+                          </p>
+                        )}
+                      </>
+                    );
+                  })()}
                 </CardHeader>
 
                 <CardContent className="space-y-4">
                   {/* Max Users */}
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">{t("pricing.max-users")}</span>
+                      <span className="text-muted-foreground">
+                        {t("pricing.max-users")}
+                      </span>
                       <span className="font-medium">{plan.maxUsers}</span>
                     </div>
                     <Progress
@@ -253,19 +305,23 @@ export function ModernPricingSection() {
                   {/* Max Resources with Progress Bar */}
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                        <div className="flex items-center gap-1">
-                          <span className="text-muted-foreground">{t("pricing.max-resources")}</span>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <button type="button" className="cursor-help">
-                                <Info className="w-3 h-3 text-muted-foreground" />
-                              </button>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="max-w-xs">{t("pricing.max-resources.tooltip")}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </div>
+                      <div className="flex items-center gap-1">
+                        <span className="text-muted-foreground">
+                          {t("pricing.max-resources")}
+                        </span>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <button type="button" className="cursor-help">
+                              <Info className="w-3 h-3 text-muted-foreground" />
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p className="max-w-xs">
+                              {t("pricing.max-resources.tooltip")}
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
                       <span className="font-medium">{plan.maxResources}</span>
                     </div>
                     <Progress
@@ -280,34 +336,44 @@ export function ModernPricingSection() {
                       {t("pricing.features")}
                     </h4>
                     <div className="space-y-2">
-                      {Object.entries(plan.features).map(([feature, enabled]) => {
-                        const FeatureIcon = getFeatureIcon(feature);
-                        return (
-                          <div key={feature} className="flex items-center gap-2">
-                            <div className="flex items-center gap-2">
-                              {enabled ? (
-                                <Check className="w-4 h-4 text-green-500" />
-                              ) : (
-                                <X className="w-4 h-4 text-muted-foreground" />
-                              )}
-                              <FeatureIcon className="w-3 h-3 text-muted-foreground" />
-                              <span className="text-xs text-muted-foreground">
-                                {t(`pricing.features.${feature}`)}
-                              </span>
-                              <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <button type="button" className="cursor-help ml-1">
-                                    <Info className="w-3 h-3 text-muted-foreground" />
-                                  </button>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p>{t(`pricing.features.${feature}.tooltip`)}</p>
-                                </TooltipContent>
-                              </Tooltip>
+                      {Object.entries(plan.features).map(
+                        ([feature, enabled]) => {
+                          const FeatureIcon = getFeatureIcon(feature);
+                          return (
+                            <div
+                              key={feature}
+                              className="flex items-center gap-2"
+                            >
+                              <div className="flex items-center gap-2">
+                                {enabled ? (
+                                  <Check className="w-4 h-4 text-green-500" />
+                                ) : (
+                                  <X className="w-4 h-4 text-muted-foreground" />
+                                )}
+                                <FeatureIcon className="w-3 h-3 text-muted-foreground" />
+                                <span className="text-xs text-muted-foreground">
+                                  {t(`pricing.features.${feature}`)}
+                                </span>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <button
+                                      type="button"
+                                      className="cursor-help ml-1"
+                                    >
+                                      <Info className="w-3 h-3 text-muted-foreground" />
+                                    </button>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>
+                                      {t(`pricing.features.${feature}.tooltip`)}
+                                    </p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        }
+                      )}
                     </div>
                   </div>
 
@@ -325,11 +391,13 @@ export function ModernPricingSection() {
                             </button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>{t(`pricing.support.${plan.support}.tooltip`)}</p>
+                            <p>
+                              {t(`pricing.support.${plan.support}.tooltip`)}
+                            </p>
                           </TooltipContent>
                         </Tooltip>
                       </div>
-                      <Badge 
+                      <Badge
                         variant={getSupportBadgeVariant(plan.support)}
                         className={cn(
                           "text-xs",

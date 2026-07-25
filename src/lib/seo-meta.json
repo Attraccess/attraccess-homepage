@@ -21,10 +21,5 @@
     "title": "Contact",
     "description": "Get in touch with the Attraccess team — for questions, demos, enterprise support, or partnership inquiries.",
     "canonicalPath": "/contact"
-  },
-  "/blog": {
-    "title": "Blog",
-    "description": "Read the latest news, guides, and updates from Attraccess — tips on managing shared resources, makerspace operations, and open-source tool access control.",
-    "canonicalPath": "/blog"
   }
 }
