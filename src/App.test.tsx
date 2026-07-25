@@ -10,7 +10,6 @@ const ROUTES = [
   { path: "/how-it-works", title: "How It Works — Attraccess" },
   { path: "/pricing", title: "Pricing — Attraccess" },
   { path: "/contact", title: "Contact — Attraccess" },
-  { path: "/blog", title: "Blog — Attraccess" },
 ] as const;
 
 function renderRoute(path: string, language: "en" | "de" = "en") {
@@ -33,18 +32,37 @@ describe("App routing", () => {
     expect(document.title).toBe(title);
   });
 
-  it.each(ROUTES)("renders $path in English without untranslated keys", ({ path }) => {
-    const { container } = renderRoute(path);
-    expectNoUntranslatedKeys(container);
-  });
+  it.each(ROUTES)(
+    "renders $path in English without untranslated keys",
+    ({ path }) => {
+      const { container } = renderRoute(path);
+      expectNoUntranslatedKeys(container);
+    }
+  );
 
-  it.each(ROUTES)("renders $path in German without untranslated keys", ({ path }) => {
-    const { container } = renderRoute(path, "de");
-    expectNoUntranslatedKeys(container);
-  });
+  it.each(ROUTES)(
+    "renders $path in German without untranslated keys",
+    ({ path }) => {
+      const { container } = renderRoute(path, "de");
+      expectNoUntranslatedKeys(container);
+    }
+  );
 
   it("still serves the 404 page for an unknown route", () => {
     renderRoute("/definitely-not-a-page");
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("404");
+  });
+
+  it("no longer serves /blog", () => {
+    renderRoute("/blog");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("404");
+  });
+
+  it("does not link to the blog from the navigation", () => {
+    const { container } = renderRoute("/");
+    expect(container.querySelector('a[href="/blog"]')).toBeNull();
+    expect(
+      screen.queryByRole("link", { name: /blog/i })
+    ).not.toBeInTheDocument();
   });
 });

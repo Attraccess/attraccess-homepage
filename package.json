@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/fetch-blog-posts.mjs && vite build && node scripts/prerender.mjs",
-    "build:dev": "node scripts/fetch-blog-posts.mjs && vite build --mode development && node scripts/prerender.mjs",
+    "build": "vite build && node scripts/prerender.mjs",
+    "build:dev": "vite build --mode development && node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "translations:check": "node scripts/check-translations.cjs",
@@ -14,8 +14,7 @@
     "translations:clean-force": "node scripts/clean-translations.cjs --force",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "blog:fetch": "node scripts/fetch-blog-posts.mjs"
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

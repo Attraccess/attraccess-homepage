@@ -11,7 +11,9 @@ function Probe() {
       <span data-testid="language">{language}</span>
       <span data-testid="known">{t("nav.contact")}</span>
       <span data-testid="unknown">{t("this.key.does.not.exist")}</span>
-      <span data-testid="params">{t("blog.reading-time", { minutes: 7 })}</span>
+      <span data-testid="params">
+        {t("home.pricing.billed-annually", { total: "€900" })}
+      </span>
       <button type="button" onClick={() => setLanguage("de")}>
         de
       </button>
@@ -58,7 +60,9 @@ describe("I18nProvider", () => {
 
   it("interpolates parameters through t()", () => {
     renderProbe("en-GB");
-    expect(screen.getByTestId("params")).toHaveTextContent("7 min read");
+    expect(screen.getByTestId("params")).toHaveTextContent(
+      "Billed annually · €900 / year — 2 months free"
+    );
   });
 
   it("switches language at runtime", async () => {
@@ -67,7 +71,9 @@ describe("I18nProvider", () => {
     await user.click(screen.getByRole("button", { name: "de" }));
     expect(screen.getByTestId("language")).toHaveTextContent("de");
     expect(screen.getByTestId("known")).toHaveTextContent("Kontakt");
-    expect(screen.getByTestId("params")).toHaveTextContent("7 Min. Lesezeit");
+    expect(screen.getByTestId("params")).toHaveTextContent(
+      "Jährliche Abrechnung · €900 / Jahr — 2 Monate gratis"
+    );
   });
 
   it("throws when useI18n is used outside the provider", () => {
