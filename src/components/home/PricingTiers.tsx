@@ -81,7 +81,9 @@ export function PricingTiers() {
                       : t("home.pricing.per-month")}
                   </span>
                 </div>
-                <p className="mt-2 min-h-[20px] text-[13px] font-semibold leading-snug text-muted-foreground">
+                {/* min-h holds two lines so the cards stay aligned whether or
+                  not the annual note wraps. */}
+                <p className="mt-2 min-h-[34px] text-[13px] font-semibold leading-snug text-muted-foreground">
                   {price.annualTotal
                     ? t("home.pricing.billed-annually", {
                         total: price.annualTotal,

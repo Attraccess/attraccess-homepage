@@ -1,17 +1,25 @@
 /**
  * Pricing helpers.
  *
- * Attraccess is billed annually, but the marketing pages lead with the
- * *monthly equivalent* because that is how buyers compare tools. The annual
- * total is always shown next to it so the monthly figure is never presented as
- * something you can actually pay month-to-month.
+ * Attraccess is billed annually, but the marketing pages lead with the monthly
+ * rate because that is how buyers compare tools. The annual total is always
+ * shown next to it, so the monthly figure is never presented as something you
+ * can pay month-to-month.
  *
- * Rounding is deliberately `ceil`: a rounded-down monthly figure would
- * understate what the customer pays, which is the one direction that is
- * actually misleading.
+ * An annual plan costs **ten** months, not twelve — that is the two-months-free
+ * discount. So the monthly rate behind a €900/year plan is €90, and paying
+ * annually gets you the other two months for nothing. Dividing by 12 instead
+ * would advertise a €75 rate that nobody can actually buy.
  */
 
+/** Months charged on an annually billed plan. Two are free. */
+export const MONTHS_BILLED_ANNUALLY = 10;
+
+/** Months in a year — what an annual plan actually gets you. */
 export const MONTHS_PER_YEAR = 12;
+
+/** Months an annual customer does not pay for. */
+export const FREE_MONTHS_PER_YEAR = MONTHS_PER_YEAR - MONTHS_BILLED_ANNUALLY;
 
 export type PriceLocale = "en" | "de";
 
@@ -48,12 +56,15 @@ function assertUsableAmount(amount: number, label: string): void {
 }
 
 /**
- * The monthly-equivalent price of an annually billed plan, rounded up to whole
- * euros.
+ * The monthly rate behind an annual price: the annual total divided by the ten
+ * months it actually charges for.
+ *
+ * Rounded up to whole euros, so the advertised rate never understates what is
+ * charged — the one direction that would be misleading.
  */
-export function monthlyEquivalentEur(annualEur: number): number {
+export function monthlyRateEur(annualEur: number): number {
   assertUsableAmount(annualEur, "annualEur");
-  return Math.ceil(annualEur / MONTHS_PER_YEAR);
+  return Math.ceil(annualEur / MONTHS_BILLED_ANNUALLY);
 }
 
 /** Format a whole-euro amount for the given UI language. */
@@ -80,7 +91,7 @@ export function isFreePlan(plan: Pick<AnnualPlan, "annualEur">): boolean {
 }
 
 export interface PlanPriceDisplay {
-  /** Headline figure, e.g. `€75` (or `€0` for the free tier). */
+  /** Headline figure, e.g. `€90` (or `€0` for the free tier). */
   price: string;
   /** Whether the headline should be prefixed with a "from" label. */
   from: boolean;
@@ -100,7 +111,7 @@ export function planPriceDisplay(
 ): PlanPriceDisplay {
   const free = isFreePlan(plan);
   return {
-    price: formatEur(free ? 0 : monthlyEquivalentEur(plan.annualEur), locale),
+    price: formatEur(free ? 0 : monthlyRateEur(plan.annualEur), locale),
     from: Boolean(plan.from) && !free,
     free,
     annualTotal: free ? null : formatEur(plan.annualEur, locale),

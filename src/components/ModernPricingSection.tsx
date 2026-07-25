@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { formatEur, monthlyEquivalentEur } from "@/lib/pricing";
+import { formatEur, monthlyRateEur } from "@/lib/pricing";
 
 export function ModernPricingSection() {
   const { t, language } = useI18n();
@@ -145,9 +145,9 @@ export function ModernPricingSection() {
   };
 
   /**
-   * Both billing cycles are quoted as a monthly figure — annual plans show the
-   * monthly equivalent with the annual total spelled out underneath, so the
-   * cheaper-looking number is never presented without its real commitment.
+   * Both billing cycles quote the same monthly rate — an annual plan charges
+   * ten of those months rather than twelve. The rate does not change; the
+   * annual note spells out the total and the two months you do not pay for.
    */
   const priceDisplay = (plan: {
     monthlyPrice: number | null;
@@ -164,7 +164,7 @@ export function ModernPricingSection() {
       };
     }
     return {
-      headline: formatEur(monthlyEquivalentEur(plan.yearlyPrice), language),
+      headline: formatEur(monthlyRateEur(plan.yearlyPrice), language),
       period: t("pricing.per-month"),
       note: t("pricing.billed-annually", {
         total: formatEur(plan.yearlyPrice, language),

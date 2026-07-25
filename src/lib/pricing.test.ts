@@ -1,44 +1,55 @@
 import { describe, expect, it } from "vitest";
 import {
+  FREE_MONTHS_PER_YEAR,
   HOME_PLANS,
+  MONTHS_BILLED_ANNUALLY,
   MONTHS_PER_YEAR,
   formatEur,
   isFreePlan,
-  monthlyEquivalentEur,
+  monthlyRateEur,
   planPriceDisplay,
   type AnnualPlan,
 } from "@/lib/pricing";
 
 const NBSP = " ";
 
-describe("monthlyEquivalentEur", () => {
-  it("divides an evenly divisible annual price", () => {
-    expect(monthlyEquivalentEur(900)).toBe(75);
-    expect(monthlyEquivalentEur(1200)).toBe(100);
+describe("the annual billing model", () => {
+  it("charges ten of twelve months, leaving two free", () => {
+    expect(MONTHS_BILLED_ANNUALLY).toBe(10);
+    expect(MONTHS_PER_YEAR).toBe(12);
+    expect(FREE_MONTHS_PER_YEAR).toBe(2);
+  });
+});
+
+describe("monthlyRateEur", () => {
+  it("divides the annual price by the ten months it charges for", () => {
+    expect(monthlyRateEur(900)).toBe(90);
+    expect(monthlyRateEur(3500)).toBe(350);
+    expect(monthlyRateEur(9500)).toBe(950);
+    expect(monthlyRateEur(20000)).toBe(2000);
   });
 
-  it("rounds up so the monthly figure never understates the price", () => {
-    // 3500 / 12 = 291.66… — rounding down would advertise less than is charged.
-    expect(monthlyEquivalentEur(3500)).toBe(292);
-    expect(monthlyEquivalentEur(9500)).toBe(792);
-    expect(monthlyEquivalentEur(20000)).toBe(1667);
-  });
-
-  it("never advertises less than one twelfth of the annual price", () => {
+  it("never advertises less than a tenth of the annual price", () => {
     for (let annual = 0; annual <= 5000; annual += 7) {
       expect(
-        monthlyEquivalentEur(annual) * MONTHS_PER_YEAR
+        monthlyRateEur(annual) * MONTHS_BILLED_ANNUALLY
       ).toBeGreaterThanOrEqual(annual);
     }
   });
 
   it("returns 0 for a free plan", () => {
-    expect(monthlyEquivalentEur(0)).toBe(0);
+    expect(monthlyRateEur(0)).toBe(0);
   });
 
   it("rounds any fraction of a euro up to the next whole euro", () => {
-    expect(monthlyEquivalentEur(1)).toBe(1);
-    expect(monthlyEquivalentEur(13)).toBe(2);
+    expect(monthlyRateEur(1)).toBe(1);
+    expect(monthlyRateEur(11)).toBe(2);
+    expect(monthlyRateEur(955)).toBe(96);
+  });
+
+  it("does not divide by twelve — that rate is not purchasable", () => {
+    expect(monthlyRateEur(900)).not.toBe(75);
+    expect(monthlyRateEur(3500)).not.toBe(292);
   });
 
   it.each([
@@ -47,7 +58,7 @@ describe("monthlyEquivalentEur", () => {
     Number.POSITIVE_INFINITY,
     "900" as unknown as number,
   ])("rejects unusable input %p", (value) => {
-    expect(() => monthlyEquivalentEur(value)).toThrow(RangeError);
+    expect(() => monthlyRateEur(value)).toThrow(RangeError);
   });
 });
 
@@ -98,18 +109,18 @@ describe("planPriceDisplay", () => {
   const standard: AnnualPlan = { key: "standard", annualEur: 3500 };
   const free: AnnualPlan = { key: "nonprofit", annualEur: 0 };
 
-  it("leads with the monthly figure and keeps the annual total", () => {
+  it("leads with the monthly rate and keeps the annual total", () => {
     expect(planPriceDisplay(community, "en")).toEqual({
-      price: "€75",
+      price: "€90",
       from: true,
       free: false,
       annualTotal: "€900",
     });
   });
 
-  it("rounds the monthly figure up for the standard plan", () => {
+  it("quotes the standard plan at a tenth of its annual price", () => {
     expect(planPriceDisplay(standard, "en")).toEqual({
-      price: "€292",
+      price: "€350",
       from: false,
       free: false,
       annualTotal: "€3,500",
@@ -118,7 +129,7 @@ describe("planPriceDisplay", () => {
 
   it("localises both figures", () => {
     expect(planPriceDisplay(standard, "de")).toEqual({
-      price: `292${NBSP}€`,
+      price: `350${NBSP}€`,
       from: false,
       free: false,
       annualTotal: `3.500${NBSP}€`,
@@ -155,6 +166,12 @@ describe("HOME_PLANS", () => {
     // with annual billing advertised as "2 months free".
     expect(HOME_PLANS[1].annualEur).toBe(90 * 10);
     expect(HOME_PLANS[2].annualEur).toBe(350 * 10);
+  });
+
+  it("derives exactly the monthly rate the pricing page quotes", () => {
+    // If these ever diverge, the two pages advertise different prices.
+    expect(monthlyRateEur(HOME_PLANS[1].annualEur)).toBe(90);
+    expect(monthlyRateEur(HOME_PLANS[2].annualEur)).toBe(350);
   });
 
   it("renders every tier without throwing, in both languages", () => {

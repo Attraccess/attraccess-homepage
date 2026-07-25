@@ -12,7 +12,9 @@ const NBSP = " ";
  * the card title element rather than on text anywhere in the document.
  */
 function planCard(name: string): HTMLElement {
-  const card = [...document.querySelectorAll<HTMLElement>(".pricing-card")].find(
+  const card = [
+    ...document.querySelectorAll<HTMLElement>(".pricing-card"),
+  ].find(
     (element) =>
       element.querySelector(".text-lg.font-bold")?.textContent?.trim() === name
   );
@@ -26,20 +28,25 @@ describe("ModernPricingSection", () => {
     const community = planCard("Community");
     expect(within(community).getByText("€90")).toBeInTheDocument();
     expect(within(community).getByText("/month")).toBeInTheDocument();
-    expect(within(community).queryByText(/billed annually/)).not.toBeInTheDocument();
+    expect(
+      within(community).queryByText(/billed annually/)
+    ).not.toBeInTheDocument();
   });
 
-  it("quotes annual plans as a monthly equivalent with the annual total", async () => {
+  it("keeps the monthly rate on the yearly cycle and adds the annual total", async () => {
     const user = userEvent.setup();
     renderWithProviders(<ModernPricingSection />);
 
     await user.click(screen.getByRole("button", { name: /Yearly/ }));
 
+    // The rate does not change — an annual plan simply charges ten of them.
     const community = planCard("Community");
-    expect(within(community).getByText("€75")).toBeInTheDocument();
+    expect(within(community).getByText("€90")).toBeInTheDocument();
     expect(within(community).getByText("/month")).toBeInTheDocument();
     expect(
-      within(community).getByText("billed annually · €900 / year")
+      within(community).getByText(
+        "billed annually · €900 / year — 2 months free"
+      )
     ).toBeInTheDocument();
   });
 
@@ -49,10 +56,13 @@ describe("ModernPricingSection", () => {
     await user.click(screen.getByRole("button", { name: /Yearly/ }));
 
     const standard = planCard("Standard");
-    expect(within(standard).getByText("€292")).toBeInTheDocument();
+    expect(within(standard).getByText("€350")).toBeInTheDocument();
     expect(
-      within(standard).getByText("billed annually · €3,500 / year")
+      within(standard).getByText(
+        "billed annually · €3,500 / year — 2 months free"
+      )
     ).toBeInTheDocument();
+    expect(within(standard).queryByText("€3,500")).not.toBeInTheDocument();
   });
 
   it("switches back to monthly", async () => {
@@ -72,7 +82,9 @@ describe("ModernPricingSection", () => {
     expect(within(enterprise).getByText("Contact Sales")).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /Yearly/ }));
-    expect(within(planCard("Enterprise")).getByText("Contact Sales")).toBeInTheDocument();
+    expect(
+      within(planCard("Enterprise")).getByText("Contact Sales")
+    ).toBeInTheDocument();
     expect(
       within(planCard("Enterprise")).queryByText(/billed annually/)
     ).not.toBeInTheDocument();
@@ -84,7 +96,9 @@ describe("ModernPricingSection", () => {
     await user.click(screen.getByRole("button", { name: /Jährlich/ }));
 
     expect(
-      screen.getByText(`jährliche Abrechnung · 900${NBSP}€ / Jahr`)
+      screen.getByText(
+        `jährliche Abrechnung · 900${NBSP}€ / Jahr — 2 Monate gratis`
+      )
     ).toBeInTheDocument();
   });
 
@@ -93,8 +107,11 @@ describe("ModernPricingSection", () => {
     renderWithProviders(<ModernPricingSection />);
     expect(screen.getByText("2 months free")).toBeInTheDocument();
 
-    // €90/month monthly vs €75/month billed annually is exactly 10/12.
+    // €90 × 12 = €1,080 paid monthly; €900 paid annually is €90 × 10.
     await user.click(screen.getByRole("button", { name: /Yearly/ }));
-    expect(within(planCard("Community")).getByText("€75")).toBeInTheDocument();
+    expect(within(planCard("Community")).getByText("€90")).toBeInTheDocument();
+    expect(
+      within(planCard("Community")).getByText(/€900 \/ year/)
+    ).toBeInTheDocument();
   });
 });
