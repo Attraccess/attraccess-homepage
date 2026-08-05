@@ -1,0 +1,18 @@
+name: i18n
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  translations-complete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # ponytail: no install step — the test only reads src/contexts/i18n.tsx
+      # and uses node:test. Add `pnpm install` here if it ever needs deps.
+      - run: npm test
