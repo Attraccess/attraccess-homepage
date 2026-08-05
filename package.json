@@ -8,6 +8,7 @@
     "build": "vite build && node scripts/prerender.mjs",
     "build:dev": "vite build --mode development && node scripts/prerender.mjs",
     "lint": "eslint .",
+    "test": "node --test scripts/*.test.mjs",
     "preview": "vite preview",
     "translations:check": "node scripts/check-translations.cjs",
     "translations:clean": "node scripts/clean-translations.cjs",

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Globe, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useI18n } from "@/contexts/i18n";
+import { useI18n, languageNames, type Language } from "@/contexts/i18n";
 import { Logo } from "@/components/Logo";
 import {
   DropdownMenu,
@@ -73,17 +73,19 @@ export function Navigation() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="sm" className="gap-1">
                   <Globe className="w-4 h-4" />
-                  {language === "en" ? "EN" : "DE"}
+                  {language.toUpperCase()}
                   <ChevronDown className="w-3 h-3" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setLanguage("en")}>
-                  English (EN)
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("de")}>
-                  Deutsch (DE)
-                </DropdownMenuItem>
+                {Object.entries(languageNames).map(([code, name]) => (
+                  <DropdownMenuItem
+                    key={code}
+                    onClick={() => setLanguage(code as Language)}
+                  >
+                    {name} ({code.toUpperCase()})
+                  </DropdownMenuItem>
+                ))}
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -145,17 +147,19 @@ export function Navigation() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="sm" className="gap-1">
                     <Globe className="w-4 h-4" />
-                    {language === "en" ? "EN" : "DE"}
+                    {language.toUpperCase()}
                     <ChevronDown className="w-3 h-3" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
-                  <DropdownMenuItem onClick={() => setLanguage("en")}>
-                    English (EN)
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setLanguage("de")}>
-                    Deutsch (DE)
-                  </DropdownMenuItem>
+                  {Object.entries(languageNames).map(([code, name]) => (
+                    <DropdownMenuItem
+                      key={code}
+                      onClick={() => setLanguage(code as Language)}
+                    >
+                      {name} ({code.toUpperCase()})
+                    </DropdownMenuItem>
+                  ))}
                 </DropdownMenuContent>
               </DropdownMenu>
               <Link

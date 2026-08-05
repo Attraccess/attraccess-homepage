@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useI18n } from "@/contexts/i18n";
+import { useI18n, languageNames, type Language } from "@/contexts/i18n";
 import { useTheme } from "@/contexts/theme";
 import { ImpressumModal } from "@/components/ImpressumModal";
 import { Sun, Moon, Github } from "lucide-react";
@@ -48,11 +48,16 @@ export function Footer() {
         >
           {t("footer.impressum")}
         </button>
+        {/* ponytail: cycles languages instead of a dropdown — the nav already has the full picker */}
         <button
-          onClick={() => setLanguage(language === "en" ? "de" : "en")}
+          onClick={() => {
+            const codes = Object.keys(languageNames) as Language[];
+            setLanguage(codes[(codes.indexOf(language) + 1) % codes.length]);
+          }}
           className="transition-colors hover:text-white"
+          aria-label={languageNames[language]}
         >
-          {language === "en" ? "DE" : "EN"}
+          {language.toUpperCase()}
         </button>
         <button
           onClick={() => setTheme(actualTheme === "light" ? "dark" : "light")}

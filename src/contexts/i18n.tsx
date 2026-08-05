@@ -1,6 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-export type Language = "en" | "de";
+export type Language = "en" | "de" | "fr" | "nl";
+
+export const languageNames: Record<Language, string> = {
+  en: "English",
+  de: "Deutsch",
+  fr: "Français",
+  nl: "Nederlands",
+};
 
 interface I18nContextType {
   language: Language;
@@ -524,9 +531,6 @@ Best regards,
     "how-it-works.step5.bullet1": "Automatisierte Wartungsplanung",
     "how-it-works.step5.bullet2": "Automatische Sperrung bei Wartungsbedarf",
     "how-it-works.step5.bullet3": "OTA-Firmware-Updates für Leser",
-    "how-it-works.ready.title": "Bereit anzufangen?",
-    "how-it-works.ready.subtitle":
-      "Unsere Ingenieure helfen Ihnen dabei, Ihre perfekte Arbeitsplatz-Automatisierung einzurichten.",
 
     // Pricing Section
     "pricing.title": "Flexible Preise für jede Organisation",
@@ -759,6 +763,752 @@ Mit freundlichen Grüßen,
       "Im Browser, ohne Installation – vom Werkstatt-Tablet bis zum Smartphone. On-Premise gehostet und DSGVO-konform.",
     "home.cta.primary": "Jetzt kostenlos starten",
   },
+  fr: {
+    // Navigation
+    "nav.home": "Accueil",
+    "nav.features": "Fonctionnalités",
+    "nav.how-it-works": "Comment ça marche",
+    "nav.pricing": "Tarifs",
+    "nav.contact": "Contact",
+    "nav.demo": "Demander une démo",
+    "nav.cta": "Essayer 30 jours",
+    "nav.docs": "Documentation",
+    "nav.blog": "Blog",
+    // Hero Section
+    "hero.badge": "Gratuit pour les associations · Licence commerciale disponible",
+    "hero.title": "Gestion des accès et du cycle de vie des ressources partagées",
+    "hero.subtitle":
+      "Attraccess vous donne un contrôle précis sur chaque machine, porte et outil — avec suivi d'utilisation, automatisation de la maintenance et workflows sur mesure.",
+    "hero.cta.primary": "Demander une démo",
+    "hero.cta.secondary": "Voir sur GitHub",
+    "hero.trusted-by": "Ils nous font confiance",
+    "hero.stat1.number": "3+",
+    "hero.stat1.label": "Organisations",
+    "hero.stat2.number": "100+",
+    "hero.stat2.label": "Ressources gérées",
+    "hero.stat3.number": "0",
+    "hero.stat3.label": "Feuilles d'inscription",
+
+    // Stats Bar
+    "stats.orgs.number": "3+",
+    "stats.orgs.label": "Organisations utilisent Attraccess",
+    "stats.machines.number": "100+",
+    "stats.machines.label": "Ressources gérées",
+    "stats.sheets.number": "0",
+    "stats.sheets.label": "Feuilles d'inscription manuelles",
+    "stats.selfhosted": "Auto-hébergé",
+    "stats.selfhosted.label": "Vos données, vos serveurs",
+
+    // Customers & Partners Section
+    "customers.title": "Makerspaces & laboratoires nous font confiance",
+    "customers.subtitle": "Des hackerspaces et des institutions de recherche de premier plan utilisent Attraccess pour gérer leurs ressources et leurs membres.",
+    "customers.workinglab.tagline": "Makerspace · Hambourg",
+    "customers.workinglab.description": "Gestion des machines, des outils et des accès des membres dans tout l'établissement.",
+    "customers.tuhh.tagline": "Université technique de Hambourg",
+    "customers.tuhh.description": "Contrôle d'accès basé sur les rôles et pistes d'audit pour la conformité des laboratoires universitaires.",
+    "customers.attraktor.tagline": "Hackerspace · Hambourg",
+    "customers.attraktor.description": "Contrôle d'accès auto-hébergé pour un hackerspace géré par sa communauté.",
+
+    // Benefits Section
+    "benefits.title": "Pourquoi Attraccess ?",
+    "benefits.access.title": "Contrôle d'accès instantané",
+    "benefits.access.description":
+      "Gérez les autorisations par utilisateur et par ressource — fini les clés et les feuilles d'inscription.",
+    "benefits.revenue.title": "Des revenus basés sur l'usage",
+    "benefits.revenue.description":
+      "Enregistrez chaque session automatiquement et facturez à la minute près.",
+    "benefits.maintenance.title": "Maintenance sans interruption",
+    "benefits.maintenance.description":
+      "Verrouillage automatique dès qu'une maintenance est due ; les techniciens sont prévenus immédiatement.",
+    "benefits.automation.title": "Automatisations visuelles",
+    "benefits.automation.description":
+      "Créez des workflows sur mesure en glisser-déposer — sans écrire une ligne de code.",
+
+    // Features Section — Bento Grid
+    "features.title": "Tout ce qu'il vous faut pour gérer l'accès aux ressources",
+    "features.label": "Fonctionnalités",
+    "features.access.title": "Contrôle d'accès NFC",
+    "features.access.description":
+      "Passez une carte ou un badge NFC pour déverrouiller une machine instantanément. Compatible avec les cartes MIFARE et ISO 14443 standard. Prend aussi en charge les QR codes et l'accès via PWA.",
+    "features.access.bullet1": "Compatible avec les cartes et bracelets NFC standard",
+    "features.access.bullet2": "Commande de relais en temps réel (GPIO, HTTP, MQTT)",
+    "features.access.bullet3": "Intégration des appareils Shelly prise en charge",
+    "features.flows.title": "Flux d'automatisation",
+    "features.flows.description":
+      "Déclenchez des actions au démarrage, à l'arrêt ou à l'accès d'une ressource. Envoyez des messages MQTT, des webhooks, des e-mails ou des notifications push depuis un éditeur de flux visuel.",
+    "features.flows.node1": "Tap NFC",
+    "features.flows.node2": "Notifier",
+    "features.flows.node3": "Journaliser",
+    "features.analytics.title": "Journaux de session & export CSV",
+    "features.analytics.description":
+      "Chaque session est enregistrée automatiquement. Exportez l'historique d'utilisation en CSV à tout moment pour vos rapports ou votre facturation.",
+    "features.maintenance.title": "Workflows de maintenance",
+    "features.maintenance.description":
+      "Définissez des intervalles de maintenance basés sur l'usage pour chaque ressource. Attraccess verrouille automatiquement les ressources concernées et prévient vos techniciens.",
+    "features.maintenance.status1": "Découpeuse laser — maintenance dans 3 utilisations",
+    "features.maintenance.status2": "Imprimante 3D — verrouillée pour maintenance",
+    "features.maintenance.status3": "Défonceuse CNC — OK",
+    "features.rbac.title": "Permissions par ressource",
+    "features.rbac.description":
+      "Accordez l'accès ressource par ressource avec deux niveaux : introduced (peut utiliser) et isIntroducer (peut autoriser d'autres personnes). Réglable individuellement pour chaque ressource.",
+    "features.rbac.admin": "isIntroducer — peut autoriser d'autres personnes",
+    "features.rbac.trainer": "introduced — peut utiliser la ressource",
+    "features.rbac.member": "aucun accès — bloqué",
+    "features.selfhosted.title": "Auto-hébergé & code source disponible",
+    "features.selfhosted.description":
+      "Vos données ne quittent jamais vos serveurs. Déployez avec Docker sur le matériel de votre choix. La Prosperity Public License rend le logiciel gratuit pour les associations, avec une licence commerciale disponible.",
+    "features.selfhosted.deploy": "docker compose up",
+    "features.selfhosted.license": "Prosperity Public License 3.0",
+    "features.cta": "Demander une démo",
+
+    // CTA Banner
+    "cta.title": "Prêt à remplacer vos feuilles d'inscription ?",
+    "cta.subtitle": "Opérationnel en quelques minutes. Notre équipe vous aide à configurer l'installation idéale pour votre espace.",
+    "cta.primary": "Demander une démo",
+    "cta.secondary": "Voir la documentation",
+
+    // How It Works Section
+    "how-it-works.label": "Comment ça marche",
+    "how-it-works.step-label": "Étape",
+    "how-it-works.title": "Opérationnel en quelques minutes",
+    "how-it-works.subtitle":
+      "De zéro au contrôle d'accès complet — sans firmware sur mesure ni diplôme d'ingénieur.",
+    "how-it-works.step1.title": "Définir les ressources",
+    "how-it-works.step1.description":
+      "Ajoutez chaque machine, porte ou outil comme ressource dans le tableau de bord. Donnez-lui un nom, une description et une photo. Définissez les prérequis — par exemple une formation obligatoire avant l'accès.",
+    "how-it-works.step1.bullet1": "Nom, photo, lien vers la documentation",
+    "how-it-works.step1.bullet2": "Exigences de formation et de certification",
+    "how-it-works.step1.bullet3": "Affectation à des groupes pour l'organisation",
+    "how-it-works.step2.title": "Attribuer les accès",
+    "how-it-works.step2.description":
+      "Enregistrez une carte NFC pour chaque membre et accordez l'accès à des ressources précises. Définissez le statut de formation et le niveau de permission pour chaque ressource.",
+    "how-it-works.step2.bullet1": "Enregistrement des cartes NFC par simple tap",
+    "how-it-works.step2.bullet2": "Octroi d'accès ressource par ressource",
+    "how-it-works.step2.bullet3": "Suivi de l'achèvement des formations",
+    "how-it-works.step3.title": "Déployer & utiliser",
+    "how-it-works.step3.description":
+      "Installez un lecteur NFC ou un appareil Shelly à côté de chaque ressource. Les membres passent leur carte — l'accès est vérifié en quelques millisecondes et le relais s'active.",
+    "how-it-works.step3.bullet1": "Compatible avec les lecteurs NFC AttraTap",
+    "how-it-works.step3.bullet2": "Intégration Shelly pour la commande des relais",
+    "how-it-works.step3.bullet3": "Prend aussi en charge les QR codes et l'accès via PWA",
+    "how-it-works.step4.title": "Suivre & automatiser",
+    "how-it-works.step4.description":
+      "Surveillez les sessions en direct, exportez les journaux en CSV et déclenchez des flux d'automatisation pour les notifications, la ventilation ou n'importe quel webhook.",
+    "how-it-works.step4.bullet1": "Tableau de bord de suivi des sessions en direct",
+    "how-it-works.step4.bullet2": "Export CSV pour les rapports d'utilisation",
+    "how-it-works.step4.bullet3": "Flux d'automatisation sur mesure (MQTT, webhook, e-mail)",
+    "how-it-works.step5.title": "Entretenir & passer à l'échelle",
+    "how-it-works.step5.description":
+      "Définissez des règles de maintenance, désactivez automatiquement les ressources concernées et prévenez les techniciens. Déployez les mises à jour firmware des lecteurs NFC à distance.",
+    "how-it-works.step5.bullet1": "Planification automatisée de la maintenance",
+    "how-it-works.step5.bullet2": "Verrouillage automatique en cas de maintenance due",
+    "how-it-works.step5.bullet3": "Mises à jour firmware à distance pour les lecteurs",
+
+    // Pricing Section
+    "pricing.title": "Des tarifs flexibles pour chaque organisation",
+    "pricing.subtitle": "Choisissez la formule adaptée à votre espace de travail",
+    "pricing.popular": "Le plus populaire",
+    "pricing.contact-sales": "Contacter le service commercial",
+    "pricing.yearly-savings": "2 mois offerts",
+    "pricing.monthly": "Mensuel",
+    "pricing.yearly": "Annuel",
+    "pricing.per-month": "/mois",
+    "pricing.per-year": "/an",
+    "pricing.max-users": "Utilisateurs max.",
+    "pricing.max-resources": "Ressources max.",
+    "pricing.features": "Fonctionnalités",
+    "pricing.support": "Support",
+    "pricing.get-started": "Commencer",
+    "pricing.contact-us": "Nous contacter",
+
+    // Plan names
+    "pricing.community.title": "Community",
+    "pricing.standard.title": "Standard",
+    "pricing.small-business.title": "Small Business",
+    "pricing.business.title": "Business",
+    "pricing.enterprise.title": "Enterprise",
+
+    // Features
+    "pricing.features.sso": "SSO",
+    "pricing.features.maintenance": "Maintenance",
+    "pricing.features.billing": "Facturation",
+    "pricing.features.nfc": "Lecteur NFC",
+
+    // Support levels
+    "pricing.support.basic": "Basique",
+    "pricing.support.standard": "Standard",
+    "pricing.support.priority": "Prioritaire",
+    "pricing.support.sla": "SLA",
+
+    // Support tooltips
+    "pricing.support.basic.tooltip": "Uniquement via les issues GitHub",
+    "pricing.support.standard.tooltip": "Support par e-mail (réponse sous 48 h)",
+    "pricing.support.priority.tooltip": "Support e-mail prioritaire (réponse sous 24 h)",
+    "pricing.support.sla.tooltip": "Accord de niveau de service individuel",
+
+    // Feature tooltips
+    "pricing.features.sso.tooltip": "Intégration de l'authentification unique (SSO)",
+    "pricing.features.maintenance.tooltip": "Workflows de maintenance automatisés",
+    "pricing.features.billing.tooltip": "Système de facturation basé sur l'usage",
+    "pricing.features.nfc.tooltip": "Lecteur NFC pour une authentification fluide",
+
+    // Other tooltips
+    "pricing.max-resources.tooltip": "Les ressources équipées de matériel loué ne comptent pas dans ce quota et sont « gratuites »",
+
+    // Footer
+    "footer.product": "Produit",
+    "footer.company": "Entreprise",
+    "footer.legal": "Informations légales",
+    "footer.impressum": "Mentions légales",
+    "footer.toggle.theme": "Basculer le mode sombre",
+    "footer.copyright": "© 2024 Attraccess. Tous droits réservés.",
+
+    // Impressum
+    "impressum.title": "Mentions légales",
+    "impressum.subtitle": "Informations conformément au § 5 TMG / § 18 MStV (droit allemand) :",
+    "impressum.owner": "Titulaire",
+    "impressum.address": "Adresse",
+    "impressum.email": "E-mail",
+    "impressum.vat.notice": "Micro-entrepreneur selon le § 19 UStG – TVA non applicable.",
+    "impressum.owner.value": "Jan Jaap",
+    "impressum.address.value": "Platanenallee 2a, 22529 Hambourg, Allemagne",
+
+    // Contact
+    "contact.title": "Commencez dès aujourd'hui",
+    "contact.subtitle":
+      "Prêt à transformer votre espace de travail ? Parlons de vos besoins spécifiques.",
+    "contact.form.title": "Nous contacter",
+    "contact.form.name": "Nom",
+    "contact.form.name.placeholder": "Votre nom",
+    "contact.form.email": "E-mail",
+    "contact.form.email.placeholder": "vous@exemple.fr",
+    "contact.form.organization": "Organisation",
+    "contact.form.organization.placeholder": "Votre organisation",
+    "contact.form.role": "Fonction",
+    "contact.form.role.placeholder": "Votre fonction",
+    "contact.form.usecase": "Cas d'usage",
+    "contact.form.usecase.placeholder": "Décrivez votre espace de travail",
+    "contact.form.submit": "Envoyer",
+    "contact.info.title": "Coordonnées",
+    "contact.info.email": "E-mail",
+    "contact.info.address": "Adresse",
+    "contact.email.subject": "Demande d'informations sur Attraccess",
+    "contact.email.body": `Bonjour,
+
+je souhaite en savoir plus sur Attraccess. Voici mes coordonnées :
+
+Nom : {name}
+E-mail : {email}
+Organisation : {organization}
+Fonction : {role}
+
+Cas d'usage :
+{usecase}
+
+Cordialement,
+{name}`,
+
+    // About
+    "about.mission":
+      "Donner aux espaces de travail partagés un contrôle de niveau professionnel — sans la complexité.",
+
+    // MakerFaire Hannover announcement banner
+    "banner.makerfaire.visit": "Retrouvez-nous à la",
+    "banner.makerfaire.event": "Maker Faire Hannover",
+    "banner.makerfaire.when": "15–16 août 2026 · Hanovre",
+    "banner.makerfaire.where": "Eilenriedehalle, stand 135",
+    "banner.makerfaire.cta": "Prendre rendez-vous",
+    "banner.makerfaire.close": "Fermer",
+
+    // Homepage (brand redesign)
+    "home.badge": "Code source disponible · Gratuit pour les associations",
+    "home.hero.title.line1": "Pas d'autorisation,",
+    "home.hero.title.line2": "pas de courant.",
+    "home.hero.subtitle":
+      "Contrôle d'accès physique pour les machines partagées. Une machine ne démarre que lorsqu'une personne autorisée et formée scanne sa carte. Impossible à contourner. Entièrement documenté.",
+    "home.hero.cta.primary": "Essayer 30 jours gratuitement",
+    "home.hero.cta.secondary": "Comment ça marche",
+    "home.hero.note": "Sans carte bancaire · Conforme au RGPD · Made in Hamburg",
+    "home.hero.chip.available": "Disponible",
+    "home.hero.chip.maintenance": "En maintenance",
+    "home.hero.window": "Ressources · État en direct",
+
+    "home.chips.lock": "Impossible à contourner",
+    "home.chips.simple": "Aucune compétence informatique requise",
+    "home.chips.onprem": "On-premise & conforme au RGPD",
+    "home.chips.source": "Code source disponible",
+    "home.chips.hardware": "Matériel en location",
+    "home.chips.dguv": "Preuves conformes DGUV",
+    "home.chips.logs": "Journaux d'utilisation complets",
+    "home.chips.nonprofit": "Gratuit pour les associations",
+
+    "home.problem.label": "Le problème",
+    "home.problem.title": "Une pancarte n'arrête pas une machine.",
+    "home.problem.subtitle":
+      "Les affiches, la confiance et les tableurs ne protègent ni les personnes ni le chiffre d'affaires. Attraccess rend l'autorisation physiquement contraignante.",
+    "home.problem.liability.title": "Couvrez votre responsabilité",
+    "home.problem.liability.text":
+      "En cas d'accident, une seule question compte : la personne avait-elle été formée de manière vérifiable ? Attraccess documente chaque formation automatiquement — conforme DGUV et opposable devant un tribunal. Sans formation, impossible même de démarrer la machine.",
+    "home.problem.liability.window": "Preuves de formation",
+    "home.problem.revenue.title": "Protégez votre chiffre d'affaires",
+    "home.problem.revenue.text":
+      "Les machines payantes ne fonctionnent que pour les utilisateurs autorisés. Aucune utilisation gratuite, aucune discussion — chaque session est enregistrée et peut être facturée.",
+    "home.problem.revenue.window": "Session d'utilisation avec facturation",
+
+    "home.how.label": "Comment ça marche",
+    "home.how.title": "Scannez votre carte. La machine démarre. C'est tout.",
+    "home.how.step1.title": "Scanner",
+    "home.how.step1.text": "Présentez votre carte à l'Attractap installé à côté de la machine.",
+    "home.how.step2.title": "Vérifier",
+    "home.how.step2.text": "Le système vérifie en temps réel : autorisé et formé ?",
+    "home.how.step3.title": "Déverrouiller",
+    "home.how.step3.text": "Le boîtier de commande libère le courant — la machine démarre.",
+    "home.how.step4.title": "Journaliser",
+    "home.how.step4.text": "Chaque utilisation est enregistrée intégralement dans le tableau de bord.",
+    "home.how.chip": "Attractap · Carte scannée",
+    "home.how.window": "Ressource · Vue d'ensemble",
+    "home.how.float.title": "Courant libéré",
+    "home.how.float.subtitle": "La session est enregistrée",
+
+    "home.features.label": "Tout sous contrôle",
+    "home.features.title": "De la tablette de l'atelier à votre smartphone.",
+    "home.features.subtitle":
+      "Fonctionne dans le navigateur, sans installation — administration, maintenance et facturation au même endroit.",
+    "home.features.maintenance.title": "Planifier la maintenance",
+    "home.features.maintenance.text":
+      "Indicateurs et intervalles de maintenance en un coup d'œil — avant qu'une machine ne tombe en panne.",
+    "home.features.logs.title": "Tout documenter",
+    "home.features.logs.text":
+      "Chaque session dans le journal d'utilisation — qui, quand, combien de temps, opposable devant un tribunal.",
+    "home.features.mobile.title": "Dans votre poche",
+    "home.features.mobile.text":
+      "Réservez des ressources, terminez des sessions et consultez votre crédit — depuis votre téléphone, sans installer d'application.",
+
+    "home.nonprofit.title": "Association ? Gratuit.",
+    "home.nonprofit.text":
+      "Les organisations à but non lucratif utilisent le logiciel auto-hébergé gratuitement, pour toujours — code source disponible sous la Prosperity Public License. Seul l'usage commercial est payant. Matériel et support en option.",
+
+    "home.pricing.label": "Tarifs",
+    "home.pricing.title": "Juste. Transparent. Sans investissement initial.",
+    "home.pricing.subtitle": "Tous les prix HT, par an. Matériel disponible en location.",
+    "home.pricing.nonprofit.name": "Association",
+    "home.pricing.nonprofit.price": "0 €",
+    "home.pricing.nonprofit.period": "pour toujours",
+    "home.pricing.nonprofit.desc": "Si vous êtes une association, c'est pour vous. Point.",
+    "home.pricing.nonprofit.item1": "Logiciel auto-hébergé, gratuit pour toujours",
+    "home.pricing.nonprofit.item2": "Toutes les fonctionnalités incluses",
+    "home.pricing.nonprofit.item3": "Code source disponible (Prosperity License)",
+    "home.pricing.nonprofit.item4": "Matériel & support en option",
+    "home.pricing.nonprofit.cta": "Commencer gratuitement",
+    "home.pricing.community.name": "Community",
+    "home.pricing.community.price": "à partir de 900 €",
+    "home.pricing.community.period": "/ an",
+    "home.pricing.community.badge": "Populaire",
+    "home.pricing.community.desc": "Pour les petits ateliers commerciaux et les makerspaces.",
+    "home.pricing.community.item1": "Toutes les fonctions essentielles",
+    "home.pricing.community.item2": "Preuves de formation & d'utilisation",
+    "home.pricing.community.item3": "Accompagnement à la mise en route inclus",
+    "home.pricing.community.item4": "Matériel disponible en location",
+    "home.pricing.community.cta": "Essayer 30 jours gratuitement",
+    "home.pricing.standard.name": "Standard",
+    "home.pricing.standard.price": "3 500 €",
+    "home.pricing.standard.period": "/ an",
+    "home.pricing.standard.desc": "Pour les entreprises avec de nombreuses machines et utilisateurs.",
+    "home.pricing.standard.item1": "Tout ce que contient Community",
+    "home.pricing.standard.item2": "Support prioritaire",
+    "home.pricing.standard.item3": "Facturation & crédit",
+    "home.pricing.standard.item4": "SLA avec temps de réponse garanti",
+    "home.pricing.standard.cta": "Demander un conseil",
+    "home.pricing.note": "Des questions sur la licence adaptée ? Nous vous conseillons sans engagement.",
+
+    "home.newsletter.title": "Restez informé",
+    "home.newsletter.text":
+      "Des nouvelles générales sur Attraccess — quelques fois par an, sans spam. Choisissez la langue dans laquelle vous souhaitez nous lire.",
+    "home.newsletter.email": "E-mail",
+    "home.newsletter.name": "Nom (facultatif)",
+    "home.newsletter.lists": "Langues",
+    "home.newsletter.submit": "S'abonner",
+    "home.newsletter.note": "Vous recevrez un e-mail de confirmation. Désabonnement à tout moment en un clic.",
+
+    "home.cta.title.line1": "Prêt quand",
+    "home.cta.title.line2": "vous l'êtes.",
+    "home.cta.text":
+      "Dans le navigateur, sans installation — de la tablette de l'atelier à votre smartphone. Hébergé on-premise et conforme au RGPD.",
+    "home.cta.primary": "Commencer gratuitement",
+  },
+  nl: {
+    // Navigation
+    "nav.home": "Home",
+    "nav.features": "Functies",
+    "nav.how-it-works": "Zo werkt het",
+    "nav.pricing": "Prijzen",
+    "nav.contact": "Contact",
+    "nav.demo": "Demo aanvragen",
+    "nav.cta": "30 dagen proberen",
+    "nav.docs": "Documentatie",
+    "nav.blog": "Blog",
+    // Hero Section
+    "hero.badge": "Gratis voor non-profits · Commerciële licentie beschikbaar",
+    "hero.title": "Toegangs- en levenscyclusbeheer voor gedeelde resources",
+    "hero.subtitle":
+      "Attraccess geeft je nauwkeurige controle over elke machine, deur en gereedschap — met gebruiksregistratie, onderhoudsautomatisering en eigen workflows.",
+    "hero.cta.primary": "Demo aanvragen",
+    "hero.cta.secondary": "Bekijk op GitHub",
+    "hero.trusted-by": "Vertrouwd door",
+    "hero.stat1.number": "3+",
+    "hero.stat1.label": "Organisaties",
+    "hero.stat2.number": "100+",
+    "hero.stat2.label": "Beheerde resources",
+    "hero.stat3.number": "0",
+    "hero.stat3.label": "Inschrijflijsten",
+
+    // Stats Bar
+    "stats.orgs.number": "3+",
+    "stats.orgs.label": "Organisaties gebruiken Attraccess",
+    "stats.machines.number": "100+",
+    "stats.machines.label": "Beheerde resources",
+    "stats.sheets.number": "0",
+    "stats.sheets.label": "Handmatige inschrijflijsten",
+    "stats.selfhosted": "Self-hosted",
+    "stats.selfhosted.label": "Jouw data, jouw servers",
+
+    // Customers & Partners Section
+    "customers.title": "Vertrouwd door makerspaces & labs",
+    "customers.subtitle": "Toonaangevende hackerspaces en onderzoeksinstellingen vertrouwen op Attraccess voor het beheer van hun resources en leden.",
+    "customers.workinglab.tagline": "Makerspace · Hamburg",
+    "customers.workinglab.description": "Beheer van machines, gereedschap en ledentoegang in de hele locatie.",
+    "customers.tuhh.tagline": "Technische Universiteit Hamburg",
+    "customers.tuhh.description": "Rolgebaseerde toegangscontrole en audit trails voor compliance in universitaire labs.",
+    "customers.attraktor.tagline": "Hackerspace · Hamburg",
+    "customers.attraktor.description": "Self-hosted toegangscontrole voor een hackerspace die door de community wordt gerund.",
+
+    // Benefits Section
+    "benefits.title": "Waarom Attraccess?",
+    "benefits.access.title": "Directe toegangscontrole",
+    "benefits.access.description":
+      "Beheer rechten per gebruiker en per resource — geen sleutels of inschrijflijsten meer.",
+    "benefits.revenue.title": "Omzet op basis van gebruik",
+    "benefits.revenue.description":
+      "Registreer elke sessie automatisch en factureer tot op de minuut nauwkeurig.",
+    "benefits.maintenance.title": "Onderhoud zonder stilstand",
+    "benefits.maintenance.description":
+      "Automatische vergrendeling zodra onderhoud nodig is; technici worden direct gewaarschuwd.",
+    "benefits.automation.title": "Visuele automatiseringen",
+    "benefits.automation.description":
+      "Bouw eigen workflows met drag-and-drop — zonder één regel code.",
+
+    // Features Section — Bento Grid
+    "features.title": "Alles wat je nodig hebt om toegang tot resources te beheren",
+    "features.label": "Functies",
+    "features.access.title": "NFC-toegangscontrole",
+    "features.access.description":
+      "Houd een NFC-kaart of badge voor de lezer om machines direct te ontgrendelen. Werkt met standaard MIFARE- en ISO 14443-kaarten. Ondersteunt ook QR-codes en toegang via PWA.",
+    "features.access.bullet1": "Werkt met standaard NFC-kaarten & polsbandjes",
+    "features.access.bullet2": "Realtime relaisaansturing (GPIO, HTTP, MQTT)",
+    "features.access.bullet3": "Integratie met Shelly-apparaten ondersteund",
+    "features.flows.title": "Automatiseringsflows",
+    "features.flows.description":
+      "Start acties wanneer resources beginnen, stoppen of worden gebruikt. Verstuur MQTT-berichten, webhooks, e-mails of pushmeldingen via een visuele flow-builder.",
+    "features.flows.node1": "NFC-tap",
+    "features.flows.node2": "Melden",
+    "features.flows.node3": "Loggen",
+    "features.analytics.title": "Sessielogboeken & CSV-export",
+    "features.analytics.description":
+      "Elke sessie wordt automatisch gelogd. Exporteer de gebruiksgeschiedenis op elk moment naar CSV voor rapportage of facturatie.",
+    "features.maintenance.title": "Onderhoudsworkflows",
+    "features.maintenance.description":
+      "Stel gebruiksgebaseerde onderhoudsintervallen in per resource. Attraccess vergrendelt resources automatisch wanneer onderhoud nodig is en waarschuwt je technici.",
+    "features.maintenance.status1": "Lasersnijder — onderhoud over 3 sessies",
+    "features.maintenance.status2": "3D-printer — vergrendeld voor onderhoud",
+    "features.maintenance.status3": "CNC-frees — OK",
+    "features.rbac.title": "Rechten per resource",
+    "features.rbac.description":
+      "Verleen toegang per resource met twee niveaus: introduced (mag gebruiken) en isIntroducer (mag anderen autoriseren). Per resource afzonderlijk instelbaar.",
+    "features.rbac.admin": "isIntroducer — mag anderen autoriseren",
+    "features.rbac.trainer": "introduced — mag de resource gebruiken",
+    "features.rbac.member": "geen toegang — geblokkeerd",
+    "features.selfhosted.title": "Self-hosted & source available",
+    "features.selfhosted.description":
+      "Je data verlaat nooit je eigen servers. Deploy met Docker op elke hardware. De Prosperity Public License betekent gratis voor non-profits, met commerciële licenties beschikbaar.",
+    "features.selfhosted.deploy": "docker compose up",
+    "features.selfhosted.license": "Prosperity Public License 3.0",
+    "features.cta": "Demo aanvragen",
+
+    // CTA Banner
+    "cta.title": "Klaar om je inschrijflijsten te vervangen?",
+    "cta.subtitle": "Binnen enkele minuten operationeel. Ons team helpt je bij het instellen van de perfecte configuratie voor jouw ruimte.",
+    "cta.primary": "Demo aanvragen",
+    "cta.secondary": "Documentatie bekijken",
+
+    // How It Works Section
+    "how-it-works.label": "Zo werkt het",
+    "how-it-works.step-label": "Stap",
+    "how-it-works.title": "Binnen enkele minuten aan de slag",
+    "how-it-works.subtitle":
+      "Van nul naar volledige toegangscontrole — zonder eigen firmware of technische opleiding.",
+    "how-it-works.step1.title": "Resources definiëren",
+    "how-it-works.step1.description":
+      "Voeg elke machine, deur of elk gereedschap toe als resource in het dashboard. Geef een naam, beschrijving en foto op. Stel voorwaarden in — bijvoorbeeld een verplichte instructie vóór toegang.",
+    "how-it-works.step1.bullet1": "Naam, foto, documentatielink",
+    "how-it-works.step1.bullet2": "Instructie- en certificeringseisen",
+    "how-it-works.step1.bullet3": "Groepsindeling voor de organisatie",
+    "how-it-works.step2.title": "Toegang toewijzen",
+    "how-it-works.step2.description":
+      "Registreer NFC-kaarten voor elk lid en verleen toegang tot specifieke resources. Leg de instructiestatus en het rechtenniveau per resource vast.",
+    "how-it-works.step2.bullet1": "NFC-kaarten registreren met een tap",
+    "how-it-works.step2.bullet2": "Toegang per resource verlenen",
+    "how-it-works.step2.bullet3": "Afgeronde instructies bijhouden",
+    "how-it-works.step3.title": "Uitrollen & gebruiken",
+    "how-it-works.step3.description":
+      "Installeer een NFC-lezer of Shelly-apparaat naast elke resource. Leden houden hun kaart voor de lezer — de toegang wordt in milliseconden gecontroleerd en het relais schakelt in.",
+    "how-it-works.step3.bullet1": "Werkt met AttraTap NFC-lezers",
+    "how-it-works.step3.bullet2": "Shelly-integratie voor relaisaansturing",
+    "how-it-works.step3.bullet3": "Ondersteunt ook QR-codes en toegang via PWA",
+    "how-it-works.step4.title": "Volgen & automatiseren",
+    "how-it-works.step4.description":
+      "Volg live sessies, exporteer CSV-logboeken en start automatiseringsflows voor meldingen, ventilatie of elke webhook.",
+    "how-it-works.step4.bullet1": "Dashboard voor live sessiebewaking",
+    "how-it-works.step4.bullet2": "CSV-export voor gebruiksrapportage",
+    "how-it-works.step4.bullet3": "Eigen automatiseringsflows (MQTT, webhook, e-mail)",
+    "how-it-works.step5.title": "Onderhouden & opschalen",
+    "how-it-works.step5.description":
+      "Stel onderhoudsregels in, schakel resources automatisch uit wanneer onderhoud nodig is en waarschuw technici. Rol firmware-updates voor NFC-lezers draadloos uit.",
+    "how-it-works.step5.bullet1": "Geautomatiseerde onderhoudsplanning",
+    "how-it-works.step5.bullet2": "Automatische vergrendeling bij openstaand onderhoud",
+    "how-it-works.step5.bullet3": "Firmware-updates over-the-air voor lezers",
+
+    // Pricing Section
+    "pricing.title": "Flexibele prijzen voor elke organisatie",
+    "pricing.subtitle": "Kies het plan dat bij jouw werkplek past",
+    "pricing.popular": "Populairst",
+    "pricing.contact-sales": "Neem contact op met sales",
+    "pricing.yearly-savings": "2 maanden gratis",
+    "pricing.monthly": "Maandelijks",
+    "pricing.yearly": "Jaarlijks",
+    "pricing.per-month": "/maand",
+    "pricing.per-year": "/jaar",
+    "pricing.max-users": "Max. gebruikers",
+    "pricing.max-resources": "Max. resources",
+    "pricing.features": "Functies",
+    "pricing.support": "Support",
+    "pricing.get-started": "Aan de slag",
+    "pricing.contact-us": "Neem contact op",
+
+    // Plan names
+    "pricing.community.title": "Community",
+    "pricing.standard.title": "Standard",
+    "pricing.small-business.title": "Small Business",
+    "pricing.business.title": "Business",
+    "pricing.enterprise.title": "Enterprise",
+
+    // Features
+    "pricing.features.sso": "SSO",
+    "pricing.features.maintenance": "Onderhoud",
+    "pricing.features.billing": "Facturatie",
+    "pricing.features.nfc": "NFC-lezer",
+
+    // Support levels
+    "pricing.support.basic": "Basis",
+    "pricing.support.standard": "Standaard",
+    "pricing.support.priority": "Prioriteit",
+    "pricing.support.sla": "SLA",
+
+    // Support tooltips
+    "pricing.support.basic.tooltip": "Alleen via GitHub Issues",
+    "pricing.support.standard.tooltip": "E-mailsupport (reactie binnen 48 uur)",
+    "pricing.support.priority.tooltip": "Prioritaire e-mailsupport (reactie binnen 24 uur)",
+    "pricing.support.sla.tooltip": "Individuele SLA-overeenkomst",
+
+    // Feature tooltips
+    "pricing.features.sso.tooltip": "Single sign-on-integratie",
+    "pricing.features.maintenance.tooltip": "Geautomatiseerde onderhoudsworkflows",
+    "pricing.features.billing.tooltip": "Facturatiesysteem op basis van gebruik",
+    "pricing.features.nfc.tooltip": "NFC-lezer voor moeiteloze authenticatie",
+
+    // Other tooltips
+    "pricing.max-resources.tooltip": "Resources met gehuurde hardware tellen niet mee voor dit quotum en zijn 'gratis'",
+
+    // Footer
+    "footer.product": "Product",
+    "footer.company": "Bedrijf",
+    "footer.legal": "Juridisch",
+    "footer.impressum": "Colofon",
+    "footer.toggle.theme": "Donkere modus wisselen",
+    "footer.copyright": "© 2024 Attraccess. Alle rechten voorbehouden.",
+
+    // Impressum
+    "impressum.title": "Colofon",
+    "impressum.subtitle": "Gegevens conform § 5 TMG / § 18 MStV (Duits recht):",
+    "impressum.owner": "Eigenaar",
+    "impressum.address": "Adres",
+    "impressum.email": "E-mail",
+    "impressum.vat.notice": "Kleineondernemer volgens § 19 UStG – geen btw in rekening gebracht.",
+    "impressum.owner.value": "Jan Jaap",
+    "impressum.address.value": "Platanenallee 2a, 22529 Hamburg, Duitsland",
+
+    // Contact
+    "contact.title": "Begin vandaag nog",
+    "contact.subtitle":
+      "Klaar om je werkplek te transformeren? Laten we het over jouw specifieke wensen hebben.",
+    "contact.form.title": "Neem contact op",
+    "contact.form.name": "Naam",
+    "contact.form.name.placeholder": "Je naam",
+    "contact.form.email": "E-mail",
+    "contact.form.email.placeholder": "jij@voorbeeld.nl",
+    "contact.form.organization": "Organisatie",
+    "contact.form.organization.placeholder": "Je organisatie",
+    "contact.form.role": "Functie",
+    "contact.form.role.placeholder": "Je functie",
+    "contact.form.usecase": "Toepassing",
+    "contact.form.usecase.placeholder": "Beschrijf je werkplek",
+    "contact.form.submit": "Versturen",
+    "contact.info.title": "Contactgegevens",
+    "contact.info.email": "E-mail",
+    "contact.info.address": "Adres",
+    "contact.email.subject": "Vraag over Attraccess",
+    "contact.email.body": `Hallo,
+
+ik wil graag meer weten over Attraccess. Hier zijn mijn gegevens:
+
+Naam: {name}
+E-mail: {email}
+Organisatie: {organization}
+Functie: {role}
+
+Toepassing:
+{usecase}
+
+Met vriendelijke groet,
+{name}`,
+
+    // About
+    "about.mission":
+      "Gedeelde werkplekken voorzien van professionele controle — zonder de complexiteit.",
+
+    // MakerFaire Hannover announcement banner
+    "banner.makerfaire.visit": "Bezoek ons op de",
+    "banner.makerfaire.event": "Maker Faire Hannover",
+    "banner.makerfaire.when": "15–16 augustus 2026 · Hannover",
+    "banner.makerfaire.where": "Eilenriedehalle, stand 135",
+    "banner.makerfaire.cta": "Maak een afspraak",
+    "banner.makerfaire.close": "Sluiten",
+
+    // Homepage (brand redesign)
+    "home.badge": "Source available · Gratis voor non-profits",
+    "home.hero.title.line1": "Geen toestemming,",
+    "home.hero.title.line2": "geen stroom.",
+    "home.hero.subtitle":
+      "Fysieke toegangscontrole voor gedeelde machines. Een machine start pas als een bevoegd, geïnstrueerd persoon zijn kaart scant. Onmogelijk te omzeilen. Volledig gedocumenteerd.",
+    "home.hero.cta.primary": "30 dagen gratis proberen",
+    "home.hero.cta.secondary": "Zo werkt het",
+    "home.hero.note": "Zonder creditcard · AVG-proof · Made in Hamburg",
+    "home.hero.chip.available": "Beschikbaar",
+    "home.hero.chip.maintenance": "In onderhoud",
+    "home.hero.window": "Resources · Live status",
+
+    "home.chips.lock": "Onmogelijk te omzeilen",
+    "home.chips.simple": "Geen IT-kennis nodig",
+    "home.chips.onprem": "On-premise & AVG-proof",
+    "home.chips.source": "Source available",
+    "home.chips.hardware": "Hardware te huur",
+    "home.chips.dguv": "DGUV-conforme registratie",
+    "home.chips.logs": "Volledige gebruikslogboeken",
+    "home.chips.nonprofit": "Gratis voor non-profits",
+
+    "home.problem.label": "Het probleem",
+    "home.problem.title": "Een bordje houdt geen machine tegen.",
+    "home.problem.subtitle":
+      "Aanplakbiljetten, vertrouwen en spreadsheets beschermen mensen noch omzet. Attraccess maakt autorisatie fysiek afdwingbaar.",
+    "home.problem.liability.title": "Dek je aansprakelijkheid af",
+    "home.problem.liability.text":
+      "Als er een ongeluk gebeurt, telt maar één vraag: was de persoon aantoonbaar geïnstrueerd? Attraccess documenteert elke instructie automatisch — DGUV-conform en juridisch houdbaar. Wie geen instructie heeft, krijgt de machine niet eens aan.",
+    "home.problem.liability.window": "Instructiebewijzen",
+    "home.problem.revenue.title": "Bescherm je omzet",
+    "home.problem.revenue.text":
+      "Betaalde machines draaien alleen voor bevoegde gebruikers. Geen gratis gebruik, geen discussies — elke sessie wordt vastgelegd en kan worden gefactureerd.",
+    "home.problem.revenue.window": "Gebruikssessie met facturatie",
+
+    "home.how.label": "Zo werkt het",
+    "home.how.title": "Kaart scannen. Machine draait. Klaar.",
+    "home.how.step1.title": "Scannen",
+    "home.how.step1.text": "Houd je kaart voor de Attractap naast de machine.",
+    "home.how.step2.title": "Controleren",
+    "home.how.step2.text": "Het systeem controleert realtime: bevoegd en geïnstrueerd?",
+    "home.how.step3.title": "Vrijgeven",
+    "home.how.step3.text": "De schakelkast geeft de stroom vrij — de machine start.",
+    "home.how.step4.title": "Loggen",
+    "home.how.step4.text": "Elk gebruik wordt volledig vastgelegd in het dashboard.",
+    "home.how.chip": "Attractap · Kaart gescand",
+    "home.how.window": "Resource · Overzicht",
+    "home.how.float.title": "Stroom vrijgegeven",
+    "home.how.float.subtitle": "Sessie wordt gelogd",
+
+    "home.features.label": "Alles in beeld",
+    "home.features.title": "Van de werkplaatstablet tot je smartphone.",
+    "home.features.subtitle":
+      "Draait in de browser, zonder installatie — beheer, onderhoud en facturatie op één plek.",
+    "home.features.maintenance.title": "Onderhoud plannen",
+    "home.features.maintenance.text":
+      "Onderhouds-KPI's en intervallen in één oogopslag — voordat een machine uitvalt.",
+    "home.features.logs.title": "Alles documenteren",
+    "home.features.logs.text":
+      "Elke sessie in het gebruikslogboek — wie, wanneer, hoe lang, juridisch houdbaar.",
+    "home.features.mobile.title": "In je broekzak",
+    "home.features.mobile.text":
+      "Reserveer resources, beëindig sessies en check je tegoed — vanaf je telefoon, zonder app-installatie.",
+
+    "home.nonprofit.title": "Non-profit? Gratis.",
+    "home.nonprofit.text":
+      "Non-profitorganisaties gebruiken de self-hosted software voor altijd gratis — source available onder de Prosperity Public License. Alleen commercieel gebruik is betaald. Hardware en support optioneel bij te boeken.",
+
+    "home.pricing.label": "Prijzen",
+    "home.pricing.title": "Eerlijk. Transparant. Zonder investering vooraf.",
+    "home.pricing.subtitle": "Alle prijzen exclusief btw, per jaar. Hardware eenvoudig te huur.",
+    "home.pricing.nonprofit.name": "Non-profit",
+    "home.pricing.nonprofit.price": "€ 0",
+    "home.pricing.nonprofit.period": "voor altijd",
+    "home.pricing.nonprofit.desc": "Ben je non-profit, dan mag je. Punt.",
+    "home.pricing.nonprofit.item1": "Self-hosted software, voor altijd gratis",
+    "home.pricing.nonprofit.item2": "Alle functies inbegrepen",
+    "home.pricing.nonprofit.item3": "Source available (Prosperity License)",
+    "home.pricing.nonprofit.item4": "Hardware & support optioneel",
+    "home.pricing.nonprofit.cta": "Gratis aan de slag",
+    "home.pricing.community.name": "Community",
+    "home.pricing.community.price": "vanaf € 900",
+    "home.pricing.community.period": "/ jaar",
+    "home.pricing.community.badge": "Populair",
+    "home.pricing.community.desc": "Voor kleine commerciële werkplaatsen en makerspaces.",
+    "home.pricing.community.item1": "Alle kernfuncties",
+    "home.pricing.community.item2": "Instructie- & gebruiksbewijzen",
+    "home.pricing.community.item3": "Begeleide onboarding inbegrepen",
+    "home.pricing.community.item4": "Hardware eenvoudig te huur",
+    "home.pricing.community.cta": "30 dagen gratis proberen",
+    "home.pricing.standard.name": "Standard",
+    "home.pricing.standard.price": "€ 3.500",
+    "home.pricing.standard.period": "/ jaar",
+    "home.pricing.standard.desc": "Voor bedrijven met veel machines en gebruikers.",
+    "home.pricing.standard.item1": "Alles uit Community",
+    "home.pricing.standard.item2": "Prioritaire support",
+    "home.pricing.standard.item3": "Facturatie & tegoed",
+    "home.pricing.standard.item4": "SLA met gegarandeerde reactietijd",
+    "home.pricing.standard.cta": "Adviesgesprek aanvragen",
+    "home.pricing.note": "Vragen over de juiste licentie? We adviseren je vrijblijvend.",
+
+    "home.newsletter.title": "Blijf op de hoogte",
+    "home.newsletter.text":
+      "Algemeen nieuws over Attraccess — een paar keer per jaar, geen spam. Kies de taal waarin je van ons wilt horen.",
+    "home.newsletter.email": "E-mail",
+    "home.newsletter.name": "Naam (optioneel)",
+    "home.newsletter.lists": "Talen",
+    "home.newsletter.submit": "Abonneren",
+    "home.newsletter.note": "Je ontvangt een bevestigingsmail. Afmelden kan altijd met één klik.",
+
+    "home.cta.title.line1": "Klaar wanneer",
+    "home.cta.title.line2": "jij dat bent.",
+    "home.cta.text":
+      "In de browser, zonder installatie — van de werkplaatstablet tot je smartphone. On-premise gehost en AVG-proof.",
+    "home.cta.primary": "Nu gratis starten",
+  },
 };
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
@@ -767,7 +1517,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Detect browser language
     const browserLang = navigator.language.split("-")[0] as Language;
-    if (browserLang === "de" || browserLang === "en") {
+    if (browserLang in languageNames) {
       setLanguage(browserLang);
     }
   }, []);
