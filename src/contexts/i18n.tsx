@@ -1121,6 +1121,15 @@ Cordialement,
     "home.pricing.standard.cta": "Demander un conseil",
     "home.pricing.note": "Des questions sur la licence adaptée ? Nous vous conseillons sans engagement.",
 
+    "home.newsletter.title": "Restez informé",
+    "home.newsletter.text":
+      "Des nouvelles générales sur Attraccess — quelques fois par an, sans spam. Choisissez la langue dans laquelle vous souhaitez nous lire.",
+    "home.newsletter.email": "E-mail",
+    "home.newsletter.name": "Nom (facultatif)",
+    "home.newsletter.lists": "Langues",
+    "home.newsletter.submit": "S'abonner",
+    "home.newsletter.note": "Vous recevrez un e-mail de confirmation. Désabonnement à tout moment en un clic.",
+
     "home.cta.title.line1": "Prêt quand",
     "home.cta.title.line2": "vous l'êtes.",
     "home.cta.text":
@@ -1484,6 +1493,15 @@ Met vriendelijke groet,
     "home.pricing.standard.item4": "SLA met gegarandeerde reactietijd",
     "home.pricing.standard.cta": "Adviesgesprek aanvragen",
     "home.pricing.note": "Vragen over de juiste licentie? We adviseren je vrijblijvend.",
+
+    "home.newsletter.title": "Blijf op de hoogte",
+    "home.newsletter.text":
+      "Algemeen nieuws over Attraccess — een paar keer per jaar, geen spam. Kies de taal waarin je van ons wilt horen.",
+    "home.newsletter.email": "E-mail",
+    "home.newsletter.name": "Naam (optioneel)",
+    "home.newsletter.lists": "Talen",
+    "home.newsletter.submit": "Abonneren",
+    "home.newsletter.note": "Je ontvangt een bevestigingsmail. Afmelden kan altijd met één klik.",
 
     "home.cta.title.line1": "Klaar wanneer",
     "home.cta.title.line2": "jij dat bent.",
