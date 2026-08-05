@@ -7,6 +7,7 @@ import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import { FeatureHighlights } from "@/components/home/FeatureHighlights";
 import { NonProfitBanner } from "@/components/home/NonProfitBanner";
 import { PricingTiers } from "@/components/home/PricingTiers";
+import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { CtaSection } from "@/components/home/CtaSection";
 
 export function Home() {
@@ -20,6 +21,7 @@ export function Home() {
       <FeatureHighlights />
       <NonProfitBanner />
       <PricingTiers />
+      <NewsletterSection />
       <CtaSection />
     </div>
   );

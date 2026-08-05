@@ -376,6 +376,15 @@ Best regards,
     "home.pricing.standard.cta": "Request a consultation",
     "home.pricing.note": "Questions about the right license? We're happy to advise, no strings attached.",
 
+    "home.newsletter.title": "Stay in the loop",
+    "home.newsletter.text":
+      "General news about Attraccess — a few times a year, no spam. Pick the language you want to hear from us in.",
+    "home.newsletter.email": "E-mail",
+    "home.newsletter.name": "Name (optional)",
+    "home.newsletter.lists": "Languages",
+    "home.newsletter.submit": "Subscribe",
+    "home.newsletter.note": "You'll receive a confirmation e-mail. Unsubscribe anytime with one click.",
+
     "home.cta.title.line1": "Ready when",
     "home.cta.title.line2": "you are.",
     "home.cta.text":
@@ -738,6 +747,15 @@ Mit freundlichen Grüßen,
     "home.pricing.standard.item4": "SLA mit garantierter Reaktionszeit",
     "home.pricing.standard.cta": "Beratung anfragen",
     "home.pricing.note": "Fragen zur passenden Lizenz? Wir beraten unverbindlich.",
+
+    "home.newsletter.title": "Bleib auf dem Laufenden",
+    "home.newsletter.text":
+      "Allgemeine News rund um Attraccess – ein paar Mal im Jahr, kein Spam. Wähle die Sprache, in der du von uns hören möchtest.",
+    "home.newsletter.email": "E-Mail",
+    "home.newsletter.name": "Name (optional)",
+    "home.newsletter.lists": "Sprachen",
+    "home.newsletter.submit": "Abonnieren",
+    "home.newsletter.note": "Du erhältst eine Bestätigungs-E-Mail. Abmeldung jederzeit mit einem Klick.",
 
     "home.cta.title.line1": "Bereit, wenn",
     "home.cta.title.line2": "Sie es sind.",
