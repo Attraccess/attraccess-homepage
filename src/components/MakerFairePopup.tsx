@@ -5,7 +5,6 @@ import { MapPin, CalendarDays, ArrowRight, X } from "lucide-react";
 import { useI18n } from "@/contexts/i18n";
 import { cn } from "@/lib/utils";
 
-const STORAGE_KEY = "attraccess-makerfaire-popup-2026";
 // Popup no longer shows once the fair is over (end of 16 Aug 2026).
 const EVENT_END = new Date("2026-08-17T00:00:00");
 
@@ -21,26 +20,13 @@ export function MakerFairePopup() {
     // headless prerender (puppeteer) and false for real visitors.
     if (typeof navigator !== "undefined" && navigator.webdriver) return;
     if (new Date() > EVENT_END) return;
-    let dismissed = false;
-    try {
-      dismissed = localStorage.getItem(STORAGE_KEY) === "1";
-    } catch {
-      dismissed = false;
-    }
-    if (dismissed) return;
+    // ponytail: shows on every load — no dismissal persistence by design
     // small delay so it appears gently after the page has painted
     const timer = setTimeout(() => setOpen(true), 500);
     return () => clearTimeout(timer);
   }, []);
 
-  const dismiss = () => {
-    try {
-      localStorage.setItem(STORAGE_KEY, "1");
-    } catch {
-      /* ignore storage errors (private mode) */
-    }
-    setOpen(false);
-  };
+  const dismiss = () => setOpen(false);
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={(o) => !o && dismiss()}>
