@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollText, Smartphone, Wrench, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/contexts/i18n";
 import { Reveal } from "@/components/home/Reveal";
-import { proofChips } from "@/components/home/ProofMarquee";
+import { proofChips } from "@/components/home/proof-chips";
 
 const features: { icon: LucideIcon; key: string; image: string; imageClass: string }[] = [
   {

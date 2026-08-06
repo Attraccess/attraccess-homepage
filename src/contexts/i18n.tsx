@@ -1,4 +1,7 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+// The <I18nProvider> lives in ./i18n-provider so this module exports no
+// components — that keeps react-refresh happy and lets consumers import
+// useI18n() without pulling the whole dictionary through a component module.
+import { createContext, useContext } from "react";
 
 export type Language = "en" | "de" | "fr" | "nl";
 
@@ -9,15 +12,18 @@ export const languageNames: Record<Language, string> = {
   nl: "Nederlands",
 };
 
-interface I18nContextType {
+export interface I18nContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
 }
 
-const I18nContext = createContext<I18nContextType | undefined>(undefined);
+export const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-const translations = {
+// NOTE: scripts/check-translations.cjs and scripts/i18n-complete.test.mjs slice
+// this object out of the file by matching its declaration line and closing
+// brace as raw text — keep both formatted exactly as they are.
+export const translations = {
   en: {
     // Navigation
     "nav.home": "Home",
@@ -1510,32 +1516,6 @@ Met vriendelijke groet,
     "home.cta.primary": "Nu gratis starten",
   },
 };
-
-export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("en");
-
-  useEffect(() => {
-    // Detect browser language
-    const browserLang = navigator.language.split("-")[0] as Language;
-    if (browserLang in languageNames) {
-      setLanguage(browserLang);
-    }
-  }, []);
-
-  const t = (key: string): string => {
-    const translation =
-      translations[language][
-        key as keyof (typeof translations)[typeof language]
-      ];
-    return translation || key;
-  };
-
-  return (
-    <I18nContext.Provider value={{ language, setLanguage, t }}>
-      {children}
-    </I18nContext.Provider>
-  );
-}
 
 export function useI18n() {
   const context = useContext(I18nContext);
