@@ -20,7 +20,7 @@ export function Contact() {
     email: "",
     organization: "",
     role: "",
-    usecase: "",
+    message: "",
   });
 
   const contactInfo = [
@@ -133,12 +133,12 @@ export function Contact() {
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="usecase">{t("contact.form.usecase")}</Label>
+                    <Label htmlFor="message">{t("contact.form.message")}</Label>
                     <Textarea
-                      id="usecase"
-                      placeholder={t("contact.form.usecase.placeholder")}
+                      id="message"
+                      placeholder={t("contact.form.message.placeholder")}
                       className="min-h-[120px]"
-                      value={formData.usecase}
+                      value={formData.message}
                       onChange={handleInputChange}
                     />
                   </div>
