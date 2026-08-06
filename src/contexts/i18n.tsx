@@ -146,6 +146,7 @@ export const translations = {
 
     // Footer
     "footer.impressum": "Imprint",
+    "footer.privacy": "Privacy",
     "footer.toggle.theme": "Toggle Dark Mode",
     "footer.copyright": "© 2024 Attraccess. All rights reserved.",
 
@@ -432,6 +433,7 @@ Best regards,
     "pricing.max-resources.tooltip": "Resourcen mit gemieteter Hardware zählen nicht in dieses Kontingent und sind 'umsonst'",
 
     "footer.impressum": "Impressum",
+    "footer.privacy": "Datenschutz",
     "footer.toggle.theme": "Dunkelmodus umschalten",
     "footer.copyright": "© 2024 Attraccess. Alle Rechte vorbehalten.",
 
@@ -719,6 +721,7 @@ Mit freundlichen Grüßen,
 
     // Footer
     "footer.impressum": "Mentions légales",
+    "footer.privacy": "Confidentialité",
     "footer.toggle.theme": "Basculer le mode sombre",
     "footer.copyright": "© 2024 Attraccess. Tous droits réservés.",
 
@@ -1006,6 +1009,7 @@ Cordialement,
 
     // Footer
     "footer.impressum": "Colofon",
+    "footer.privacy": "Privacy",
     "footer.toggle.theme": "Donkere modus wisselen",
     "footer.copyright": "© 2024 Attraccess. Alle rechten voorbehouden.",
 
