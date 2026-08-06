@@ -33,7 +33,7 @@ export function NewsletterSection() {
           method="post"
           action="https://listmonk.attraccess.org/subscription/form"
           className="mt-8"
-          onSubmit={() => trackEvent("newsletter", "subscribe")}
+          onSubmit={() => trackEvent("newsletter-subscribe")}
         >
           {/* honeypot — listmonk discards submissions that fill this */}
           <input type="hidden" name="nonce" />

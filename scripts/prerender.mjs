@@ -14,11 +14,11 @@ import puppeteer from "puppeteer";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const routes = Object.keys(JSON.parse(readFileSync(join(root, "src/lib/seo-meta.json"), "utf8")));
 const PORT = 4188;
-const BLOCK = /google-analytics|googletagmanager|doubleclick|matomo|piwik/i;
-// Matomo's script/endpoint can be renamed arbitrarily (VITE_MATOMO_SCRIPT), so
-// block the configured host too — window.__PRERENDER__ below is the real guard.
-const matomoHost = (process.env.VITE_MATOMO_HOST || "").replace(/^https?:\/\//, "").replace(/\/.*$/, "");
-const isBlocked = (url) => BLOCK.test(url) || (matomoHost !== "" && url.includes(matomoHost));
+const BLOCK = /google-analytics|googletagmanager|doubleclick|umami/i;
+// Umami's script can be renamed arbitrarily (VITE_UMAMI_SCRIPT), so block the
+// configured host too — window.__PRERENDER__ below is the real guard.
+const umamiHost = (process.env.VITE_UMAMI_HOST || "").replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+const isBlocked = (url) => BLOCK.test(url) || (umamiHost !== "" && url.includes(umamiHost));
 
 // Prefer a system Chromium (Debian build image installs it via railpack.json
 // buildAptPackages, so its shared libs are guaranteed present); fall back to

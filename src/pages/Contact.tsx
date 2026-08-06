@@ -50,7 +50,7 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    trackEvent("contact", "submit");
+    trackEvent("contact-submit");
 
     const subject = encodeURIComponent(t("contact.email.subject"));
     const body = encodeURIComponent(
