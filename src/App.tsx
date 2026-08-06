@@ -3,11 +3,12 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { I18nProvider } from "@/contexts/i18n";
-import { ThemeProvider } from "@/contexts/theme";
+import { I18nProvider } from "@/contexts/i18n-provider";
+import { ThemeProvider } from "@/contexts/theme-provider";
 import { Navigation } from "@/components/Navigation";
 import { MakerFairePopup } from "@/components/MakerFairePopup";
 import { Footer } from "@/components/Footer";
+import { AnalyticsTracker } from "@/components/Analytics";
 import { Home } from "@/pages/Home";
 import { Features } from "@/pages/Features";
 import { HowItWorksPage } from "@/pages/HowItWorksPage";
@@ -43,6 +44,8 @@ const App = () => (
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
+              {/* after <Routes> so the page's useSEO() has set document.title */}
+              <AnalyticsTracker />
               <Footer />
             </div>
           </BrowserRouter>

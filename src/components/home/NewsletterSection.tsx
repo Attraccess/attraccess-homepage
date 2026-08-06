@@ -2,6 +2,7 @@ import React from "react";
 import { Mail, Send } from "lucide-react";
 import { useI18n } from "@/contexts/i18n";
 import { Reveal } from "@/components/home/Reveal";
+import { trackEvent } from "@/lib/analytics";
 
 const LISTS = [
   { id: "d21f9", lang: "de", value: "d21f9904-1a25-4ad7-8e7b-24379133163f", label: "Deutsch" },
@@ -28,7 +29,12 @@ export function NewsletterSection() {
           {t("home.newsletter.text")}
         </p>
 
-        <form method="post" action="https://listmonk.attraccess.org/subscription/form" className="mt-8">
+        <form
+          method="post"
+          action="https://listmonk.attraccess.org/subscription/form"
+          className="mt-8"
+          onSubmit={() => trackEvent("newsletter", "subscribe")}
+        >
           {/* honeypot — listmonk discards submissions that fill this */}
           <input type="hidden" name="nonce" />
 

@@ -7,6 +7,10 @@ class TranslationAnalyzer {
   constructor() {
     this.definedKeys = new Set();
     this.usedKeys = new Set();
+    // t(`prefix.${expr}`) call sites, compiled to key matchers
+    this.dynamicPatterns = [];
+    // every scanned file, kept for the bare-string-literal lookup
+    this.sources = [];
     this.sourceDir = path.join(__dirname, "..", "src");
     this.i18nFile = path.join(this.sourceDir, "contexts", "i18n.tsx");
   }
@@ -77,43 +81,84 @@ class TranslationAnalyzer {
     console.log(`🔍 Scanning ${sourceFiles.length} source files...`);
 
     for (const filePath of sourceFiles) {
+      let content;
       try {
-        const content = fs.readFileSync(filePath, "utf8");
-
-        // Skip scanning the i18n context file itself to avoid false positives
-        if (filePath === this.i18nFile) {
-          continue;
-        }
-
-        // Find all t("key") and t('key') patterns
-        const patterns = [
-          /t\("([^"]+)"\)/g, // t("key")
-          /t\('([^']+)'\)/g, // t('key')
-        ];
-
-        for (const pattern of patterns) {
-          let match;
-          while ((match = pattern.exec(content)) !== null) {
-            // Filter out obvious non-translation keys (single characters, etc.)
-            const key = match[1];
-            if (key.length > 1 && !key.match(/^[\s\-_]+$/)) {
-              this.usedKeys.add(key);
-            }
-          }
-        }
+        content = fs.readFileSync(filePath, "utf8");
       } catch (error) {
         console.warn(`⚠️  Could not read file: ${filePath}`);
+        continue;
+      }
+
+      // Skip scanning the i18n context file itself to avoid false positives
+      if (filePath === this.i18nFile) {
+        continue;
+      }
+
+      this.sources.push({ filePath, content });
+
+      // Literal calls: t("key"), t('key'), t(`key`). The leading \b matters —
+      // without it, document.createElement("meta") reads as t("meta").
+      const patterns = [
+        /\bt\(\s*"([^"$]+)"\s*\)/g,
+        /\bt\(\s*'([^'$]+)'\s*\)/g,
+        /\bt\(\s*`([^`$]+)`\s*\)/g,
+      ];
+
+      for (const pattern of patterns) {
+        let match;
+        while ((match = pattern.exec(content)) !== null) {
+          // Filter out obvious non-translation keys (single characters, etc.)
+          const key = match[1];
+          if (key.length > 1 && !key.match(/^[\s\-_]+$/)) {
+            this.usedKeys.add(key);
+          }
+        }
+      }
+
+      // Interpolated calls: t(`nav.${item.key}`), t(`home.pricing.${k}.item${i}`).
+      // Each ${...} becomes a wildcard that cannot cross a dot, so the compiled
+      // pattern matches the key shapes that call site can actually produce.
+      const interpolated = /\bt\(\s*`([^`]*\$\{[^`]*)`\s*\)/g;
+      let match;
+      while ((match = interpolated.exec(content)) !== null) {
+        const template = match[1];
+        const regex = new RegExp(
+          "^" +
+            template
+              .split(/\$\{[^}]*\}/)
+              .map((part) => part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+              .join("[^.]+") +
+            "$"
+        );
+        this.dynamicPatterns.push({ regex, template, filePath });
       }
     }
 
-    console.log(`✅ Found ${this.usedKeys.size} used translation keys`);
+    console.log(
+      `✅ Found ${this.usedKeys.size} used translation keys` +
+        ` and ${this.dynamicPatterns.length} interpolated t(\`…\`) call sites`
+    );
+  }
+
+  // A key counts as used when a component asks for it by name, when an
+  // interpolated t(`…`) call can produce it, or when it appears as a plain
+  // string somewhere that later reaches t() — e.g. the key fields in
+  // components/home/proof-chips.ts.
+  isUsed(key) {
+    if (this.usedKeys.has(key)) return true;
+    if (this.dynamicPatterns.some(({ regex }) => regex.test(key))) return true;
+
+    return this.sources.some(
+      ({ content }) =>
+        content.includes(`"${key}"`) ||
+        content.includes(`'${key}'`) ||
+        content.includes(`\`${key}\``)
+    );
   }
 
   // Find keys that are defined but never used
   findUnusedKeys() {
-    const unused = [...this.definedKeys].filter(
-      (key) => !this.usedKeys.has(key)
-    );
+    const unused = [...this.definedKeys].filter((key) => !this.isUsed(key));
     return unused.sort();
   }
 
@@ -125,38 +170,33 @@ class TranslationAnalyzer {
     return missing.sort();
   }
 
-  // Check for incomplete translations (keys missing in German)
+  // Check every non-English dictionary for keys the English one defines.
+  // Returns { [lang]: string[] } — the old version only ever looked at German,
+  // so gaps in French and Dutch went unreported.
   findIncompleteTranslations() {
     try {
       const content = fs.readFileSync(this.i18nFile, "utf8");
-      const translationsMatch = content.match(
-        /const translations = \{([\s\S]*?)\};/
+
+      // Same slice-and-eval the i18n test uses: the dictionary is a plain
+      // literal, so this beats regexing each language block out by hand.
+      const start = content.indexOf("const translations = {");
+      const end = content.indexOf("\n};", start);
+      if (start === -1 || end === -1) return {};
+      const translations = eval(
+        `(${content.slice(start + "const translations = ".length, end + 2)})`
       );
-      if (!translationsMatch) return [];
 
-      const translationsContent = translationsMatch[1];
-
-      // Extract German keys
-      const deMatch = translationsContent.match(/de: \{([\s\S]*?)\},?\s*\};?/);
-      if (!deMatch) return [];
-
-      const deContent = deMatch[1];
-      const deKeys = new Set();
-
-      const keyRegex = /"([^"]+)":/g;
-      let match;
-      while ((match = keyRegex.exec(deContent)) !== null) {
-        deKeys.add(match[1]);
+      const incomplete = {};
+      for (const lang of Object.keys(translations)) {
+        if (lang === "en") continue;
+        const keys = new Set(Object.keys(translations[lang]));
+        const missing = [...this.definedKeys].filter((key) => !keys.has(key));
+        if (missing.length > 0) incomplete[lang] = missing.sort();
       }
-
-      // Find English keys missing in German
-      const missingInGerman = [...this.definedKeys].filter(
-        (key) => !deKeys.has(key)
-      );
-      return missingInGerman.sort();
+      return incomplete;
     } catch (error) {
-      console.warn("⚠️  Could not check German translations:", error.message);
-      return [];
+      console.warn("⚠️  Could not check translations:", error.message);
+      return {};
     }
   }
 
@@ -168,7 +208,8 @@ class TranslationAnalyzer {
 
     const unusedKeys = this.findUnusedKeys();
     const missingKeys = this.findMissingKeys();
-    const incompleteKeys = this.findIncompleteTranslations();
+    const incomplete = this.findIncompleteTranslations();
+    const incompleteKeys = Object.values(incomplete).flat();
 
     // Summary
     console.log("\n📈 SUMMARY:");
@@ -176,7 +217,7 @@ class TranslationAnalyzer {
     console.log(`   Total used keys: ${this.usedKeys.size}`);
     console.log(`   Unused keys: ${unusedKeys.length}`);
     console.log(`   Missing keys: ${missingKeys.length}`);
-    console.log(`   Missing German translations: ${incompleteKeys.length}`);
+    console.log(`   Incomplete translations: ${incompleteKeys.length}`);
 
     // Unused keys
     if (unusedKeys.length > 0) {
@@ -202,13 +243,15 @@ class TranslationAnalyzer {
 
     // Incomplete translations
     if (incompleteKeys.length > 0) {
-      console.log("\n🌍 MISSING GERMAN TRANSLATIONS:");
-      console.log("   These English keys have no German translation:");
-      incompleteKeys.forEach((key) => {
-        console.log(`   - "${key}"`);
-      });
+      console.log("\n🌍 INCOMPLETE TRANSLATIONS:");
+      for (const [lang, keys] of Object.entries(incomplete)) {
+        console.log(`   ${lang.toUpperCase()} is missing ${keys.length} keys:`);
+        keys.forEach((key) => {
+          console.log(`   - "${key}"`);
+        });
+      }
     } else {
-      console.log("\n✅ All English keys have German translations!");
+      console.log("\n✅ Every language defines all English keys!");
     }
 
     // Generate cleanup suggestions
@@ -269,7 +312,9 @@ if (require.main === module) {
 
   // Exit with error code if issues found
   const hasIssues =
-    result.unusedKeys.length > 0 || result.missingKeys.length > 0;
+    result.unusedKeys.length > 0 ||
+    result.missingKeys.length > 0 ||
+    result.incompleteKeys.length > 0;
   process.exit(hasIssues ? 1 : 0);
 }
 
