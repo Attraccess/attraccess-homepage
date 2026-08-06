@@ -35,55 +35,6 @@ export const translations = {
     "nav.cta": "Try 30 days",
     "nav.docs": "Documentation",
     "nav.blog": "Blog",
-    // Hero Section
-    "hero.badge": "Free for non-profits · Commercial license available",
-    "hero.title": "Access & Lifecycle Management for Shared Resources",
-    "hero.subtitle":
-      "Attraccess gives you fine-grained control over every machine, door, and tool — with usage tracking, maintenance automation, and custom workflows.",
-    "hero.cta.primary": "Request Demo",
-    "hero.cta.secondary": "View on GitHub",
-    "hero.trusted-by": "Trusted by",
-    "hero.stat1.number": "3+",
-    "hero.stat1.label": "Organizations",
-    "hero.stat2.number": "100+",
-    "hero.stat2.label": "Resources managed",
-    "hero.stat3.number": "0",
-    "hero.stat3.label": "Signup sheets",
-
-    // Stats Bar
-    "stats.orgs.number": "3+",
-    "stats.orgs.label": "Organizations using Attraccess",
-    "stats.machines.number": "100+",
-    "stats.machines.label": "Resources managed",
-    "stats.sheets.number": "0",
-    "stats.sheets.label": "Manual signup sheets",
-    "stats.selfhosted": "Self-Hosted",
-    "stats.selfhosted.label": "Your data, your servers",
-
-    // Customers & Partners Section
-    "customers.title": "Trusted by Makerspaces & Labs",
-    "customers.subtitle": "Leading hackerspaces and research institutions rely on Attraccess to manage their resources and members.",
-    "customers.workinglab.tagline": "Makerspace · Hamburg",
-    "customers.workinglab.description": "Managing machines, tools, and member access across the entire facility.",
-    "customers.tuhh.tagline": "Hamburg Univ. of Technology",
-    "customers.tuhh.description": "Role-based access control and audit trails for university lab compliance.",
-    "customers.attraktor.tagline": "Hackerspace · Hamburg",
-    "customers.attraktor.description": "Self-hosted access control for a community-run hackerspace.",
-
-    // Benefits Section
-    "benefits.title": "Why Attraccess?",
-    "benefits.access.title": "Instant Access Control",
-    "benefits.access.description":
-      "Manage permissions per user, per resource—no more keys or signup sheets.",
-    "benefits.revenue.title": "Usage-Based Revenue",
-    "benefits.revenue.description":
-      "Track every session automatically and bill accurately by the minute.",
-    "benefits.maintenance.title": "Zero Downtime Maintenance",
-    "benefits.maintenance.description":
-      "Auto-lockout on maintenance triggers; notify technicians instantly.",
-    "benefits.automation.title": "Visual Automations",
-    "benefits.automation.description":
-      "Build custom workflows with drag-and-drop logic—no code required.",
 
     // Features Section — Bento Grid
     "features.title": "Everything you need to manage resource access",
@@ -122,48 +73,25 @@ export const translations = {
     "features.selfhosted.license": "Prosperity Public License 3.0",
     "features.cta": "Request a Demo",
 
-    // CTA Banner
-    "cta.title": "Ready to replace your signup sheets?",
-    "cta.subtitle": "Get up and running in minutes. Our team will help you configure the perfect setup for your space.",
-    "cta.primary": "Request a Demo",
-    "cta.secondary": "View Documentation",
-
     // How It Works Section
-    "how-it-works.label": "How It Works",
-    "how-it-works.step-label": "Step",
     "how-it-works.title": "Get up and running in minutes",
     "how-it-works.subtitle":
       "From zero to full resource access control — no custom firmware, no engineering degree required.",
     "how-it-works.step1.title": "Define Resources",
     "how-it-works.step1.description":
       "Add each machine, door, or tool as a resource in the dashboard. Give it a name, description, and upload a photo. Set requirements — like requiring training before access is granted.",
-    "how-it-works.step1.bullet1": "Name, photo, documentation link",
-    "how-it-works.step1.bullet2": "Training & certification requirements",
-    "how-it-works.step1.bullet3": "Group assignment for organization",
     "how-it-works.step2.title": "Assign Access",
     "how-it-works.step2.description":
       "Register NFC cards for each member and grant access to specific resources. Set training completion status and permission levels per resource.",
-    "how-it-works.step2.bullet1": "Register NFC cards via tap",
-    "how-it-works.step2.bullet2": "Per-resource access grants",
-    "how-it-works.step2.bullet3": "Training completion tracking",
     "how-it-works.step3.title": "Deploy & Use",
     "how-it-works.step3.description":
       "Install an NFC reader or Shelly device next to each resource. Members tap their card — access is verified in milliseconds and the relay activates.",
-    "how-it-works.step3.bullet1": "Works with AttraTap NFC readers",
-    "how-it-works.step3.bullet2": "Shelly device integration for relay control",
-    "how-it-works.step3.bullet3": "Also supports QR codes and PWA-based access",
     "how-it-works.step4.title": "Track & Automate",
     "how-it-works.step4.description":
       "Monitor live sessions, export CSV logs, and trigger custom automation flows for notifications, ventilation, or any webhook.",
-    "how-it-works.step4.bullet1": "Live session monitoring dashboard",
-    "how-it-works.step4.bullet2": "CSV export for usage reporting",
-    "how-it-works.step4.bullet3": "Custom automation flows (MQTT, webhook, email)",
     "how-it-works.step5.title": "Maintain & Scale",
     "how-it-works.step5.description":
       "Set maintenance rules, auto-disable resources when maintenance is due, and notify technicians. Roll out firmware updates to NFC readers over the air.",
-    "how-it-works.step5.bullet1": "Automated maintenance scheduling",
-    "how-it-works.step5.bullet2": "Auto-lockout when maintenance is due",
-    "how-it-works.step5.bullet3": "Over-the-air firmware updates for readers",
 
     // Pricing Section
     "pricing.title": "Flexible Pricing for Every Organization",
@@ -188,19 +116,6 @@ export const translations = {
     "pricing.small-business.title": "Small Business",
     "pricing.business.title": "Business",
     "pricing.enterprise.title": "Enterprise",
-    "pricing.nonprofit.title": "Non-Profit",
-    "pricing.nonprofit.price": "€0",
-    "pricing.nonprofit.feature1": "Self-hosted software, free forever",
-    "pricing.nonprofit.feature2": "All features included",
-    "pricing.nonprofit.feature3": "Source available (Prosperity License)",
-    "pricing.pilot.title": "Pilot",
-    "pricing.pilot.price": "30 days free",
-    "pricing.pilot.feature1": "Full access to every feature",
-    "pricing.pilot.feature2": "No credit card required",
-    "pricing.pilot.cta": "Start your pilot",
-    "pricing.enterprise.feature1": "SSO and custom integrations",
-    "pricing.enterprise.feature2": "Individual SLA agreement",
-    "pricing.enterprise.feature3": "Hardware and onboarding support",
     
     // Features
     "pricing.features.sso": "SSO",
@@ -407,55 +322,6 @@ Best regards,
     "nav.cta": "30 Tage testen",
     "nav.docs": "Dokumentation",
     "nav.blog": "Blog",
-    // Hero Section
-    "hero.badge": "Kostenlos für Non-Profits · Kommerzielle Lizenz verfügbar",
-    "hero.title": "Zugang & Lifecycle-Management für gemeinsam genutzte Ressourcen",
-    "hero.subtitle":
-      "Attraccess bietet detaillierte Kontrolle über jede Maschine, Tür und jedes Werkzeug – inklusive Nutzungsverfolgung, Wartungsautomatisierung und individuelle Workflows.",
-    "hero.cta.primary": "Demo anfragen",
-    "hero.cta.secondary": "Auf GitHub ansehen",
-    "hero.trusted-by": "Vertraut von",
-    "hero.stat1.number": "3+",
-    "hero.stat1.label": "Organisationen",
-    "hero.stat2.number": "100+",
-    "hero.stat2.label": "Ressourcen verwaltet",
-    "hero.stat3.number": "0",
-    "hero.stat3.label": "Anmeldelisten",
-
-    // Stats Bar
-    "stats.orgs.number": "3+",
-    "stats.orgs.label": "Organisationen nutzen Attraccess",
-    "stats.machines.number": "100+",
-    "stats.machines.label": "Ressourcen verwaltet",
-    "stats.sheets.number": "0",
-    "stats.sheets.label": "Manuelle Anmeldelisten",
-    "stats.selfhosted": "Self-Hosted",
-    "stats.selfhosted.label": "Ihre Daten, Ihre Server",
-
-    // Customers & Partners Section
-    "customers.title": "Vertraut von Makerspaces & Labs",
-    "customers.subtitle": "Führende Hackerspaces und Forschungseinrichtungen nutzen Attraccess zur Verwaltung ihrer Ressourcen und Mitglieder.",
-    "customers.workinglab.tagline": "Makerspace · Hamburg",
-    "customers.workinglab.description": "Verwaltung von Maschinen, Werkzeugen und Mitgliederzugängen in der gesamten Einrichtung.",
-    "customers.tuhh.tagline": "TU Hamburg",
-    "customers.tuhh.description": "Rollenbasierte Zugriffskontrolle und Audit-Trails für Compliance-Anforderungen im Universitätslabor.",
-    "customers.attraktor.tagline": "Hackerspace · Hamburg",
-    "customers.attraktor.description": "Self-hosted Zugangskontrolle für einen gemeinschaftlich betriebenen Hackerspace.",
-
-    // Benefits Section
-    "benefits.title": "Warum Attraccess?",
-    "benefits.access.title": "Sofortige Zugriffssteuerung",
-    "benefits.access.description":
-      "Vergaben Sie Berechtigungen pro Benutzer und Ressource – keine Schlüssel oder Listen mehr.",
-    "benefits.revenue.title": "Umsatz nach Nutzung",
-    "benefits.revenue.description":
-      "Erfassen Sie jede Sitzung automatisch und berechnen Sie minutengenau.",
-    "benefits.maintenance.title": "Keine Ausfallzeiten",
-    "benefits.maintenance.description":
-      "Automatische Sperrung bei Wartungsbedarf; Techniker sofort benachrichtigen.",
-    "benefits.automation.title": "Visuelle Automatisierungen",
-    "benefits.automation.description":
-      "Erstellen Sie individuelle Abläufe per Drag-and-Drop – ganz ohne Code.",
 
     // Features Section — Bento Grid
     "features.title": "Alles, was Sie zur Ressourcenverwaltung brauchen",
@@ -494,48 +360,25 @@ Best regards,
     "features.selfhosted.license": "Prosperity Public License 3.0",
     "features.cta": "Demo anfordern",
 
-    // CTA Banner
-    "cta.title": "Bereit, Ihre Anmeldelisten zu ersetzen?",
-    "cta.subtitle": "In wenigen Minuten startklar. Unser Team hilft Ihnen dabei, die perfekte Einrichtung für Ihren Raum zu konfigurieren.",
-    "cta.primary": "Demo anfragen",
-    "cta.secondary": "Dokumentation ansehen",
-
     // How It Works Section
-    "how-it-works.label": "So funktioniert's",
-    "how-it-works.step-label": "Schritt",
     "how-it-works.title": "In wenigen Minuten startklar",
     "how-it-works.subtitle":
       "Von null zur vollständigen Ressourcenzugangskontrolle – ohne eigene Firmware, ohne Ingenieurdiplom.",
     "how-it-works.step1.title": "Ressourcen definieren",
     "how-it-works.step1.description":
       "Fügen Sie jede Maschine, Tür oder jedes Werkzeug als Ressource im Dashboard hinzu. Geben Sie Namen, Beschreibung und Foto an. Legen Sie Anforderungen fest – z. B. dass eine Einweisung erforderlich ist.",
-    "how-it-works.step1.bullet1": "Name, Foto, Dokumentationslink",
-    "how-it-works.step1.bullet2": "Einweisungs- & Zertifizierungsanforderungen",
-    "how-it-works.step1.bullet3": "Gruppenzuweisung für die Organisation",
     "how-it-works.step2.title": "Zugriffe zuweisen",
     "how-it-works.step2.description":
       "Registrieren Sie NFC-Karten für jedes Mitglied und gewähren Sie Zugang zu bestimmten Ressourcen. Legen Sie Einweisungsstatus und Berechtigungsstufen pro Ressource fest.",
-    "how-it-works.step2.bullet1": "NFC-Karten per Tap registrieren",
-    "how-it-works.step2.bullet2": "Ressourcenspezifische Zugriffsgewährung",
-    "how-it-works.step2.bullet3": "Verfolgung des Einweisungsstatus",
     "how-it-works.step3.title": "Ausrollen & Nutzen",
     "how-it-works.step3.description":
       "Installieren Sie einen NFC-Leser oder ein Shelly-Gerät neben jeder Ressource. Mitglieder tippen ihre Karte – der Zugang wird in Millisekunden geprüft und das Relais aktiviert.",
-    "how-it-works.step3.bullet1": "Kompatibel mit AttraTap NFC-Lesern",
-    "how-it-works.step3.bullet2": "Shelly-Geräte-Integration für Relaissteuerung",
-    "how-it-works.step3.bullet3": "Unterstützt auch QR-Codes und PWA-Zugang",
     "how-it-works.step4.title": "Verfolgen & Automatisieren",
     "how-it-works.step4.description":
       "Überwachen Sie Live-Sitzungen, exportieren Sie CSV-Protokolle und lösen Sie Automatisierungs-Flows für Benachrichtigungen, Belüftung oder Webhooks aus.",
-    "how-it-works.step4.bullet1": "Live-Sitzungsüberwachung im Dashboard",
-    "how-it-works.step4.bullet2": "CSV-Export für Nutzungsberichte",
-    "how-it-works.step4.bullet3": "Benutzerdefinierte Flows (MQTT, Webhook, E-Mail)",
     "how-it-works.step5.title": "Warten & Skalieren",
     "how-it-works.step5.description":
       "Legen Sie Wartungsregeln fest, sperren Sie Ressourcen bei Wartungsbedarf automatisch und benachrichtigen Sie Techniker. Verteilen Sie Firmware-Updates OTA an NFC-Leser.",
-    "how-it-works.step5.bullet1": "Automatisierte Wartungsplanung",
-    "how-it-works.step5.bullet2": "Automatische Sperrung bei Wartungsbedarf",
-    "how-it-works.step5.bullet3": "OTA-Firmware-Updates für Leser",
 
     // Pricing Section
     "pricing.title": "Flexible Preise für jede Organisation",
@@ -560,19 +403,6 @@ Best regards,
     "pricing.small-business.title": "Small Business", 
     "pricing.business.title": "Business",
     "pricing.enterprise.title": "Enterprise",
-    "pricing.nonprofit.title": "Non-Profit",
-    "pricing.nonprofit.price": "0 €",
-    "pricing.nonprofit.feature1": "Selbst-gehostete Software, dauerhaft gratis",
-    "pricing.nonprofit.feature2": "Alle Funktionen inklusive",
-    "pricing.nonprofit.feature3": "Source Available (Prosperity License)",
-    "pricing.pilot.title": "Pilotphase",
-    "pricing.pilot.price": "30 Tage gratis",
-    "pricing.pilot.feature1": "Voller Zugriff auf alle Funktionen",
-    "pricing.pilot.feature2": "Keine Kreditkarte erforderlich",
-    "pricing.pilot.cta": "Pilotphase starten",
-    "pricing.enterprise.feature1": "SSO und individuelle Integrationen",
-    "pricing.enterprise.feature2": "Individuelles SLA-Agreement",
-    "pricing.enterprise.feature3": "Hardware- und Onboarding-Support",
     
     // Features
     "pricing.features.sso": "SSO",
@@ -778,55 +608,6 @@ Mit freundlichen Grüßen,
     "nav.cta": "Essayer 30 jours",
     "nav.docs": "Documentation",
     "nav.blog": "Blog",
-    // Hero Section
-    "hero.badge": "Gratuit pour les associations · Licence commerciale disponible",
-    "hero.title": "Gestion des accès et du cycle de vie des ressources partagées",
-    "hero.subtitle":
-      "Attraccess vous donne un contrôle précis sur chaque machine, porte et outil — avec suivi d'utilisation, automatisation de la maintenance et workflows sur mesure.",
-    "hero.cta.primary": "Demander une démo",
-    "hero.cta.secondary": "Voir sur GitHub",
-    "hero.trusted-by": "Ils nous font confiance",
-    "hero.stat1.number": "3+",
-    "hero.stat1.label": "Organisations",
-    "hero.stat2.number": "100+",
-    "hero.stat2.label": "Ressources gérées",
-    "hero.stat3.number": "0",
-    "hero.stat3.label": "Feuilles d'inscription",
-
-    // Stats Bar
-    "stats.orgs.number": "3+",
-    "stats.orgs.label": "Organisations utilisent Attraccess",
-    "stats.machines.number": "100+",
-    "stats.machines.label": "Ressources gérées",
-    "stats.sheets.number": "0",
-    "stats.sheets.label": "Feuilles d'inscription manuelles",
-    "stats.selfhosted": "Auto-hébergé",
-    "stats.selfhosted.label": "Vos données, vos serveurs",
-
-    // Customers & Partners Section
-    "customers.title": "Makerspaces & laboratoires nous font confiance",
-    "customers.subtitle": "Des hackerspaces et des institutions de recherche de premier plan utilisent Attraccess pour gérer leurs ressources et leurs membres.",
-    "customers.workinglab.tagline": "Makerspace · Hambourg",
-    "customers.workinglab.description": "Gestion des machines, des outils et des accès des membres dans tout l'établissement.",
-    "customers.tuhh.tagline": "Université technique de Hambourg",
-    "customers.tuhh.description": "Contrôle d'accès basé sur les rôles et pistes d'audit pour la conformité des laboratoires universitaires.",
-    "customers.attraktor.tagline": "Hackerspace · Hambourg",
-    "customers.attraktor.description": "Contrôle d'accès auto-hébergé pour un hackerspace géré par sa communauté.",
-
-    // Benefits Section
-    "benefits.title": "Pourquoi Attraccess ?",
-    "benefits.access.title": "Contrôle d'accès instantané",
-    "benefits.access.description":
-      "Gérez les autorisations par utilisateur et par ressource — fini les clés et les feuilles d'inscription.",
-    "benefits.revenue.title": "Des revenus basés sur l'usage",
-    "benefits.revenue.description":
-      "Enregistrez chaque session automatiquement et facturez à la minute près.",
-    "benefits.maintenance.title": "Maintenance sans interruption",
-    "benefits.maintenance.description":
-      "Verrouillage automatique dès qu'une maintenance est due ; les techniciens sont prévenus immédiatement.",
-    "benefits.automation.title": "Automatisations visuelles",
-    "benefits.automation.description":
-      "Créez des workflows sur mesure en glisser-déposer — sans écrire une ligne de code.",
 
     // Features Section — Bento Grid
     "features.title": "Tout ce qu'il vous faut pour gérer l'accès aux ressources",
@@ -865,48 +646,25 @@ Mit freundlichen Grüßen,
     "features.selfhosted.license": "Prosperity Public License 3.0",
     "features.cta": "Demander une démo",
 
-    // CTA Banner
-    "cta.title": "Prêt à remplacer vos feuilles d'inscription ?",
-    "cta.subtitle": "Opérationnel en quelques minutes. Notre équipe vous aide à configurer l'installation idéale pour votre espace.",
-    "cta.primary": "Demander une démo",
-    "cta.secondary": "Voir la documentation",
-
     // How It Works Section
-    "how-it-works.label": "Comment ça marche",
-    "how-it-works.step-label": "Étape",
     "how-it-works.title": "Opérationnel en quelques minutes",
     "how-it-works.subtitle":
       "De zéro au contrôle d'accès complet — sans firmware sur mesure ni diplôme d'ingénieur.",
     "how-it-works.step1.title": "Définir les ressources",
     "how-it-works.step1.description":
       "Ajoutez chaque machine, porte ou outil comme ressource dans le tableau de bord. Donnez-lui un nom, une description et une photo. Définissez les prérequis — par exemple une formation obligatoire avant l'accès.",
-    "how-it-works.step1.bullet1": "Nom, photo, lien vers la documentation",
-    "how-it-works.step1.bullet2": "Exigences de formation et de certification",
-    "how-it-works.step1.bullet3": "Affectation à des groupes pour l'organisation",
     "how-it-works.step2.title": "Attribuer les accès",
     "how-it-works.step2.description":
       "Enregistrez une carte NFC pour chaque membre et accordez l'accès à des ressources précises. Définissez le statut de formation et le niveau de permission pour chaque ressource.",
-    "how-it-works.step2.bullet1": "Enregistrement des cartes NFC par simple tap",
-    "how-it-works.step2.bullet2": "Octroi d'accès ressource par ressource",
-    "how-it-works.step2.bullet3": "Suivi de l'achèvement des formations",
     "how-it-works.step3.title": "Déployer & utiliser",
     "how-it-works.step3.description":
       "Installez un lecteur NFC ou un appareil Shelly à côté de chaque ressource. Les membres passent leur carte — l'accès est vérifié en quelques millisecondes et le relais s'active.",
-    "how-it-works.step3.bullet1": "Compatible avec les lecteurs NFC AttraTap",
-    "how-it-works.step3.bullet2": "Intégration Shelly pour la commande des relais",
-    "how-it-works.step3.bullet3": "Prend aussi en charge les QR codes et l'accès via PWA",
     "how-it-works.step4.title": "Suivre & automatiser",
     "how-it-works.step4.description":
       "Surveillez les sessions en direct, exportez les journaux en CSV et déclenchez des flux d'automatisation pour les notifications, la ventilation ou n'importe quel webhook.",
-    "how-it-works.step4.bullet1": "Tableau de bord de suivi des sessions en direct",
-    "how-it-works.step4.bullet2": "Export CSV pour les rapports d'utilisation",
-    "how-it-works.step4.bullet3": "Flux d'automatisation sur mesure (MQTT, webhook, e-mail)",
     "how-it-works.step5.title": "Entretenir & passer à l'échelle",
     "how-it-works.step5.description":
       "Définissez des règles de maintenance, désactivez automatiquement les ressources concernées et prévenez les techniciens. Déployez les mises à jour firmware des lecteurs NFC à distance.",
-    "how-it-works.step5.bullet1": "Planification automatisée de la maintenance",
-    "how-it-works.step5.bullet2": "Verrouillage automatique en cas de maintenance due",
-    "how-it-works.step5.bullet3": "Mises à jour firmware à distance pour les lecteurs",
 
     // Pricing Section
     "pricing.title": "Des tarifs flexibles pour chaque organisation",
@@ -931,19 +689,6 @@ Mit freundlichen Grüßen,
     "pricing.small-business.title": "Small Business",
     "pricing.business.title": "Business",
     "pricing.enterprise.title": "Enterprise",
-    "pricing.nonprofit.title": "Association",
-    "pricing.nonprofit.price": "0 €",
-    "pricing.nonprofit.feature1": "Logiciel auto-hébergé, gratuit pour toujours",
-    "pricing.nonprofit.feature2": "Toutes les fonctionnalités incluses",
-    "pricing.nonprofit.feature3": "Code source disponible (Prosperity License)",
-    "pricing.pilot.title": "Pilote",
-    "pricing.pilot.price": "30 jours offerts",
-    "pricing.pilot.feature1": "Accès complet à toutes les fonctionnalités",
-    "pricing.pilot.feature2": "Sans carte bancaire",
-    "pricing.pilot.cta": "Démarrer le pilote",
-    "pricing.enterprise.feature1": "SSO et intégrations sur mesure",
-    "pricing.enterprise.feature2": "Accord de niveau de service individuel",
-    "pricing.enterprise.feature3": "Support matériel et accompagnement au démarrage",
 
     // Features
     "pricing.features.sso": "SSO",
@@ -1150,55 +895,6 @@ Cordialement,
     "nav.cta": "30 dagen proberen",
     "nav.docs": "Documentatie",
     "nav.blog": "Blog",
-    // Hero Section
-    "hero.badge": "Gratis voor non-profits · Commerciële licentie beschikbaar",
-    "hero.title": "Toegangs- en levenscyclusbeheer voor gedeelde resources",
-    "hero.subtitle":
-      "Attraccess geeft je nauwkeurige controle over elke machine, deur en gereedschap — met gebruiksregistratie, onderhoudsautomatisering en eigen workflows.",
-    "hero.cta.primary": "Demo aanvragen",
-    "hero.cta.secondary": "Bekijk op GitHub",
-    "hero.trusted-by": "Vertrouwd door",
-    "hero.stat1.number": "3+",
-    "hero.stat1.label": "Organisaties",
-    "hero.stat2.number": "100+",
-    "hero.stat2.label": "Beheerde resources",
-    "hero.stat3.number": "0",
-    "hero.stat3.label": "Inschrijflijsten",
-
-    // Stats Bar
-    "stats.orgs.number": "3+",
-    "stats.orgs.label": "Organisaties gebruiken Attraccess",
-    "stats.machines.number": "100+",
-    "stats.machines.label": "Beheerde resources",
-    "stats.sheets.number": "0",
-    "stats.sheets.label": "Handmatige inschrijflijsten",
-    "stats.selfhosted": "Self-hosted",
-    "stats.selfhosted.label": "Jouw data, jouw servers",
-
-    // Customers & Partners Section
-    "customers.title": "Vertrouwd door makerspaces & labs",
-    "customers.subtitle": "Toonaangevende hackerspaces en onderzoeksinstellingen vertrouwen op Attraccess voor het beheer van hun resources en leden.",
-    "customers.workinglab.tagline": "Makerspace · Hamburg",
-    "customers.workinglab.description": "Beheer van machines, gereedschap en ledentoegang in de hele locatie.",
-    "customers.tuhh.tagline": "Technische Universiteit Hamburg",
-    "customers.tuhh.description": "Rolgebaseerde toegangscontrole en audit trails voor compliance in universitaire labs.",
-    "customers.attraktor.tagline": "Hackerspace · Hamburg",
-    "customers.attraktor.description": "Self-hosted toegangscontrole voor een hackerspace die door de community wordt gerund.",
-
-    // Benefits Section
-    "benefits.title": "Waarom Attraccess?",
-    "benefits.access.title": "Directe toegangscontrole",
-    "benefits.access.description":
-      "Beheer rechten per gebruiker en per resource — geen sleutels of inschrijflijsten meer.",
-    "benefits.revenue.title": "Omzet op basis van gebruik",
-    "benefits.revenue.description":
-      "Registreer elke sessie automatisch en factureer tot op de minuut nauwkeurig.",
-    "benefits.maintenance.title": "Onderhoud zonder stilstand",
-    "benefits.maintenance.description":
-      "Automatische vergrendeling zodra onderhoud nodig is; technici worden direct gewaarschuwd.",
-    "benefits.automation.title": "Visuele automatiseringen",
-    "benefits.automation.description":
-      "Bouw eigen workflows met drag-and-drop — zonder één regel code.",
 
     // Features Section — Bento Grid
     "features.title": "Alles wat je nodig hebt om toegang tot resources te beheren",
@@ -1237,48 +933,25 @@ Cordialement,
     "features.selfhosted.license": "Prosperity Public License 3.0",
     "features.cta": "Demo aanvragen",
 
-    // CTA Banner
-    "cta.title": "Klaar om je inschrijflijsten te vervangen?",
-    "cta.subtitle": "Binnen enkele minuten operationeel. Ons team helpt je bij het instellen van de perfecte configuratie voor jouw ruimte.",
-    "cta.primary": "Demo aanvragen",
-    "cta.secondary": "Documentatie bekijken",
-
     // How It Works Section
-    "how-it-works.label": "Zo werkt het",
-    "how-it-works.step-label": "Stap",
     "how-it-works.title": "Binnen enkele minuten aan de slag",
     "how-it-works.subtitle":
       "Van nul naar volledige toegangscontrole — zonder eigen firmware of technische opleiding.",
     "how-it-works.step1.title": "Resources definiëren",
     "how-it-works.step1.description":
       "Voeg elke machine, deur of elk gereedschap toe als resource in het dashboard. Geef een naam, beschrijving en foto op. Stel voorwaarden in — bijvoorbeeld een verplichte instructie vóór toegang.",
-    "how-it-works.step1.bullet1": "Naam, foto, documentatielink",
-    "how-it-works.step1.bullet2": "Instructie- en certificeringseisen",
-    "how-it-works.step1.bullet3": "Groepsindeling voor de organisatie",
     "how-it-works.step2.title": "Toegang toewijzen",
     "how-it-works.step2.description":
       "Registreer NFC-kaarten voor elk lid en verleen toegang tot specifieke resources. Leg de instructiestatus en het rechtenniveau per resource vast.",
-    "how-it-works.step2.bullet1": "NFC-kaarten registreren met een tap",
-    "how-it-works.step2.bullet2": "Toegang per resource verlenen",
-    "how-it-works.step2.bullet3": "Afgeronde instructies bijhouden",
     "how-it-works.step3.title": "Uitrollen & gebruiken",
     "how-it-works.step3.description":
       "Installeer een NFC-lezer of Shelly-apparaat naast elke resource. Leden houden hun kaart voor de lezer — de toegang wordt in milliseconden gecontroleerd en het relais schakelt in.",
-    "how-it-works.step3.bullet1": "Werkt met AttraTap NFC-lezers",
-    "how-it-works.step3.bullet2": "Shelly-integratie voor relaisaansturing",
-    "how-it-works.step3.bullet3": "Ondersteunt ook QR-codes en toegang via PWA",
     "how-it-works.step4.title": "Volgen & automatiseren",
     "how-it-works.step4.description":
       "Volg live sessies, exporteer CSV-logboeken en start automatiseringsflows voor meldingen, ventilatie of elke webhook.",
-    "how-it-works.step4.bullet1": "Dashboard voor live sessiebewaking",
-    "how-it-works.step4.bullet2": "CSV-export voor gebruiksrapportage",
-    "how-it-works.step4.bullet3": "Eigen automatiseringsflows (MQTT, webhook, e-mail)",
     "how-it-works.step5.title": "Onderhouden & opschalen",
     "how-it-works.step5.description":
       "Stel onderhoudsregels in, schakel resources automatisch uit wanneer onderhoud nodig is en waarschuw technici. Rol firmware-updates voor NFC-lezers draadloos uit.",
-    "how-it-works.step5.bullet1": "Geautomatiseerde onderhoudsplanning",
-    "how-it-works.step5.bullet2": "Automatische vergrendeling bij openstaand onderhoud",
-    "how-it-works.step5.bullet3": "Firmware-updates over-the-air voor lezers",
 
     // Pricing Section
     "pricing.title": "Flexibele prijzen voor elke organisatie",
@@ -1303,19 +976,6 @@ Cordialement,
     "pricing.small-business.title": "Small Business",
     "pricing.business.title": "Business",
     "pricing.enterprise.title": "Enterprise",
-    "pricing.nonprofit.title": "Non-profit",
-    "pricing.nonprofit.price": "€ 0",
-    "pricing.nonprofit.feature1": "Self-hosted software, voor altijd gratis",
-    "pricing.nonprofit.feature2": "Alle functies inbegrepen",
-    "pricing.nonprofit.feature3": "Source available (Prosperity License)",
-    "pricing.pilot.title": "Pilot",
-    "pricing.pilot.price": "30 dagen gratis",
-    "pricing.pilot.feature1": "Volledige toegang tot alle functies",
-    "pricing.pilot.feature2": "Geen creditcard nodig",
-    "pricing.pilot.cta": "Start je pilot",
-    "pricing.enterprise.feature1": "SSO en maatwerkintegraties",
-    "pricing.enterprise.feature2": "Individuele SLA-overeenkomst",
-    "pricing.enterprise.feature3": "Hardware- en onboardingsupport",
 
     // Features
     "pricing.features.sso": "SSO",
