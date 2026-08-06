@@ -188,6 +188,19 @@ export const translations = {
     "pricing.small-business.title": "Small Business",
     "pricing.business.title": "Business",
     "pricing.enterprise.title": "Enterprise",
+    "pricing.nonprofit.title": "Non-Profit",
+    "pricing.nonprofit.price": "€0",
+    "pricing.nonprofit.feature1": "Self-hosted software, free forever",
+    "pricing.nonprofit.feature2": "All features included",
+    "pricing.nonprofit.feature3": "Source available (Prosperity License)",
+    "pricing.pilot.title": "Pilot",
+    "pricing.pilot.price": "30 days free",
+    "pricing.pilot.feature1": "Full access to every feature",
+    "pricing.pilot.feature2": "No credit card required",
+    "pricing.pilot.cta": "Start your pilot",
+    "pricing.enterprise.feature1": "SSO and custom integrations",
+    "pricing.enterprise.feature2": "Individual SLA agreement",
+    "pricing.enterprise.feature3": "Hardware and onboarding support",
     
     // Features
     "pricing.features.sso": "SSO",
@@ -217,22 +230,12 @@ export const translations = {
     "pricing.max-resources.tooltip": "Resources with rented hardware don't count towards this quota and are 'free'",
 
     // Footer
-    "footer.product": "Product",
-    "footer.company": "Company",
-    "footer.legal": "Legal",
     "footer.impressum": "Imprint",
     "footer.toggle.theme": "Toggle Dark Mode",
     "footer.copyright": "© 2024 Attraccess. All rights reserved.",
 
     // Impressum
     "impressum.title": "Imprint",
-    "impressum.subtitle": "In compliance with German Telemedia Act § 5 TMG / Interstate Media Treaty § 18 MStV:",
-    "impressum.owner": "Owner",
-    "impressum.address": "Address",
-    "impressum.email": "Email",
-    "impressum.vat.notice": "Small business operator according to § 19 UStG – no VAT charged.",
-    "impressum.owner.value": "Jan Jaap",
-    "impressum.address.value": "Platanenallee 2a, 22529 Hamburg, Germany",
 
     // Contact
     "contact.title": "Get Started Today",
@@ -268,10 +271,6 @@ Use Case:
 
 Best regards,
 {name}`,
-
-    // About
-    "about.mission":
-      "Empowering shared workspaces with enterprise-grade control—without the complexity.",
 
     // MakerFaire Hannover announcement banner
     "banner.makerfaire.visit": "Visit us at",
@@ -561,6 +560,19 @@ Best regards,
     "pricing.small-business.title": "Small Business", 
     "pricing.business.title": "Business",
     "pricing.enterprise.title": "Enterprise",
+    "pricing.nonprofit.title": "Non-Profit",
+    "pricing.nonprofit.price": "0 €",
+    "pricing.nonprofit.feature1": "Selbst-gehostete Software, dauerhaft gratis",
+    "pricing.nonprofit.feature2": "Alle Funktionen inklusive",
+    "pricing.nonprofit.feature3": "Source Available (Prosperity License)",
+    "pricing.pilot.title": "Pilotphase",
+    "pricing.pilot.price": "30 Tage gratis",
+    "pricing.pilot.feature1": "Voller Zugriff auf alle Funktionen",
+    "pricing.pilot.feature2": "Keine Kreditkarte erforderlich",
+    "pricing.pilot.cta": "Pilotphase starten",
+    "pricing.enterprise.feature1": "SSO und individuelle Integrationen",
+    "pricing.enterprise.feature2": "Individuelles SLA-Agreement",
+    "pricing.enterprise.feature3": "Hardware- und Onboarding-Support",
     
     // Features
     "pricing.features.sso": "SSO",
@@ -589,22 +601,12 @@ Best regards,
     // Other tooltips
     "pricing.max-resources.tooltip": "Resourcen mit gemieteter Hardware zählen nicht in dieses Kontingent und sind 'umsonst'",
 
-    "footer.product": "Produkt",
-    "footer.company": "Unternehmen",
-    "footer.legal": "Rechtliches",
     "footer.impressum": "Impressum",
     "footer.toggle.theme": "Dunkelmodus umschalten",
     "footer.copyright": "© 2024 Attraccess. Alle Rechte vorbehalten.",
 
     // Impressum
     "impressum.title": "Impressum",
-    "impressum.subtitle": "Angaben gem. § 5 TMG / § 18 MStV:",
-    "impressum.owner": "Name",
-    "impressum.address": "Anschrift",
-    "impressum.email": "E-Mail",
-    "impressum.vat.notice": "Kleinunternehmer gemäß § 19 UStG – keine Umsatzsteuer ausgewiesen.",
-    "impressum.owner.value": "Jan Jaap",
-    "impressum.address.value": "Platanenallee 2a, 22529 Hamburg, Deutschland",
 
     // Contact
     "contact.title": "Starten Sie noch heute",
@@ -640,10 +642,6 @@ Anwendungsfall:
 
 Mit freundlichen Grüßen,
 {name}`,
-
-    // About
-    "about.mission":
-      "Wir ermöglichen Gemeinschaftsarbeitsplätze mit Zugangs-Kontrolle – ohne Komplexität.",
 
     // MakerFaire Hannover announcement banner
     "banner.makerfaire.visit": "Besuchen Sie uns auf der",
@@ -933,6 +931,19 @@ Mit freundlichen Grüßen,
     "pricing.small-business.title": "Small Business",
     "pricing.business.title": "Business",
     "pricing.enterprise.title": "Enterprise",
+    "pricing.nonprofit.title": "Association",
+    "pricing.nonprofit.price": "0 €",
+    "pricing.nonprofit.feature1": "Logiciel auto-hébergé, gratuit pour toujours",
+    "pricing.nonprofit.feature2": "Toutes les fonctionnalités incluses",
+    "pricing.nonprofit.feature3": "Code source disponible (Prosperity License)",
+    "pricing.pilot.title": "Pilote",
+    "pricing.pilot.price": "30 jours offerts",
+    "pricing.pilot.feature1": "Accès complet à toutes les fonctionnalités",
+    "pricing.pilot.feature2": "Sans carte bancaire",
+    "pricing.pilot.cta": "Démarrer le pilote",
+    "pricing.enterprise.feature1": "SSO et intégrations sur mesure",
+    "pricing.enterprise.feature2": "Accord de niveau de service individuel",
+    "pricing.enterprise.feature3": "Support matériel et accompagnement au démarrage",
 
     // Features
     "pricing.features.sso": "SSO",
@@ -962,22 +973,12 @@ Mit freundlichen Grüßen,
     "pricing.max-resources.tooltip": "Les ressources équipées de matériel loué ne comptent pas dans ce quota et sont « gratuites »",
 
     // Footer
-    "footer.product": "Produit",
-    "footer.company": "Entreprise",
-    "footer.legal": "Informations légales",
     "footer.impressum": "Mentions légales",
     "footer.toggle.theme": "Basculer le mode sombre",
     "footer.copyright": "© 2024 Attraccess. Tous droits réservés.",
 
     // Impressum
     "impressum.title": "Mentions légales",
-    "impressum.subtitle": "Informations conformément au § 5 TMG / § 18 MStV (droit allemand) :",
-    "impressum.owner": "Titulaire",
-    "impressum.address": "Adresse",
-    "impressum.email": "E-mail",
-    "impressum.vat.notice": "Micro-entrepreneur selon le § 19 UStG – TVA non applicable.",
-    "impressum.owner.value": "Jan Jaap",
-    "impressum.address.value": "Platanenallee 2a, 22529 Hambourg, Allemagne",
 
     // Contact
     "contact.title": "Commencez dès aujourd'hui",
@@ -1013,10 +1014,6 @@ Cas d'usage :
 
 Cordialement,
 {name}`,
-
-    // About
-    "about.mission":
-      "Donner aux espaces de travail partagés un contrôle de niveau professionnel — sans la complexité.",
 
     // MakerFaire Hannover announcement banner
     "banner.makerfaire.visit": "Retrouvez-nous à la",
@@ -1306,6 +1303,19 @@ Cordialement,
     "pricing.small-business.title": "Small Business",
     "pricing.business.title": "Business",
     "pricing.enterprise.title": "Enterprise",
+    "pricing.nonprofit.title": "Non-profit",
+    "pricing.nonprofit.price": "€ 0",
+    "pricing.nonprofit.feature1": "Self-hosted software, voor altijd gratis",
+    "pricing.nonprofit.feature2": "Alle functies inbegrepen",
+    "pricing.nonprofit.feature3": "Source available (Prosperity License)",
+    "pricing.pilot.title": "Pilot",
+    "pricing.pilot.price": "30 dagen gratis",
+    "pricing.pilot.feature1": "Volledige toegang tot alle functies",
+    "pricing.pilot.feature2": "Geen creditcard nodig",
+    "pricing.pilot.cta": "Start je pilot",
+    "pricing.enterprise.feature1": "SSO en maatwerkintegraties",
+    "pricing.enterprise.feature2": "Individuele SLA-overeenkomst",
+    "pricing.enterprise.feature3": "Hardware- en onboardingsupport",
 
     // Features
     "pricing.features.sso": "SSO",
@@ -1335,22 +1345,12 @@ Cordialement,
     "pricing.max-resources.tooltip": "Resources met gehuurde hardware tellen niet mee voor dit quotum en zijn 'gratis'",
 
     // Footer
-    "footer.product": "Product",
-    "footer.company": "Bedrijf",
-    "footer.legal": "Juridisch",
     "footer.impressum": "Colofon",
     "footer.toggle.theme": "Donkere modus wisselen",
     "footer.copyright": "© 2024 Attraccess. Alle rechten voorbehouden.",
 
     // Impressum
     "impressum.title": "Colofon",
-    "impressum.subtitle": "Gegevens conform § 5 TMG / § 18 MStV (Duits recht):",
-    "impressum.owner": "Eigenaar",
-    "impressum.address": "Adres",
-    "impressum.email": "E-mail",
-    "impressum.vat.notice": "Kleineondernemer volgens § 19 UStG – geen btw in rekening gebracht.",
-    "impressum.owner.value": "Jan Jaap",
-    "impressum.address.value": "Platanenallee 2a, 22529 Hamburg, Duitsland",
 
     // Contact
     "contact.title": "Begin vandaag nog",
@@ -1386,10 +1386,6 @@ Toepassing:
 
 Met vriendelijke groet,
 {name}`,
-
-    // About
-    "about.mission":
-      "Gedeelde werkplekken voorzien van professionele controle — zonder de complexiteit.",
 
     // MakerFaire Hannover announcement banner
     "banner.makerfaire.visit": "Bezoek ons op de",
