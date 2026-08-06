@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/contexts/theme";
 import { Navigation } from "@/components/Navigation";
 import { MakerFairePopup } from "@/components/MakerFairePopup";
 import { Footer } from "@/components/Footer";
+import { AnalyticsTracker } from "@/components/Analytics";
 import { Home } from "@/pages/Home";
 import { Features } from "@/pages/Features";
 import { HowItWorksPage } from "@/pages/HowItWorksPage";
@@ -43,6 +44,8 @@ const App = () => (
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
+              {/* after <Routes> so the page's useSEO() has set document.title */}
+              <AnalyticsTracker />
               <Footer />
             </div>
           </BrowserRouter>

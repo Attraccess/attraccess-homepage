@@ -14,7 +14,11 @@ import puppeteer from "puppeteer";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const routes = Object.keys(JSON.parse(readFileSync(join(root, "src/lib/seo-meta.json"), "utf8")));
 const PORT = 4188;
-const BLOCK = /hs-scripts|hs-analytics|hs-banner|hsforms|hubspot|usemessages|hscollectedforms|google-analytics|googletagmanager|doubleclick/i;
+const BLOCK = /hs-scripts|hs-analytics|hs-banner|hsforms|hubspot|usemessages|hscollectedforms|google-analytics|googletagmanager|doubleclick|matomo|piwik/i;
+// Matomo's script/endpoint can be renamed arbitrarily (VITE_MATOMO_SCRIPT), so
+// block the configured host too — window.__PRERENDER__ below is the real guard.
+const matomoHost = (process.env.VITE_MATOMO_HOST || "").replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+const isBlocked = (url) => BLOCK.test(url) || (matomoHost !== "" && url.includes(matomoHost));
 
 // Prefer a system Chromium (Debian build image installs it via railpack.json
 // buildAptPackages, so its shared libs are guaranteed present); fall back to
@@ -34,7 +38,12 @@ let failed = false;
 for (const path of routes) {
   const page = await browser.newPage();
   await page.setRequestInterception(true);
-  page.on("request", (req) => (BLOCK.test(req.url()) ? req.abort() : req.continue()));
+  page.on("request", (req) => (isBlocked(req.url()) ? req.abort() : req.continue()));
+  // keeps src/lib/analytics.ts inert: no tracker <script> in the snapshot, no
+  // page views recorded for the build-time crawl
+  await page.evaluateOnNewDocument(() => {
+    window.__PRERENDER__ = true;
+  });
 
   try {
     await page.goto(`http://localhost:${PORT}${path}`, { waitUntil: "networkidle2", timeout: 45000 });

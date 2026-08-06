@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { trackEvent } from "@/lib/analytics";
 
 export function Contact() {
   useSEO(seoMeta["/contact"]);
@@ -49,6 +50,7 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    trackEvent("contact", "submit");
 
     const subject = encodeURIComponent(t("contact.email.subject"));
     const body = encodeURIComponent(
