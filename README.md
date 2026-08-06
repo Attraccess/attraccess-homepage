@@ -28,25 +28,27 @@ pnpm lint
 
 ## Analytics
 
-Page views and a couple of conversion events go to a self-hosted [Matomo](https://matomo.org/).
+Page views and a couple of conversion events go to a self-hosted [Umami](https://umami.is/).
 Configuration lives in `src/lib/analytics.ts`; copy `.env.example` to `.env` (or set the
 variables in the build environment) to enable it:
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
-| `VITE_MATOMO_HOST` | — | Matomo host, e.g. `analytics.attraccess.org`. **Analytics is disabled when unset.** |
-| `VITE_MATOMO_SITE_ID` | `1` | Site id in Matomo |
-| `VITE_MATOMO_SCRIPT` | `not_matomo.js` | Renamed `matomo.js` on the instance |
-| `VITE_MATOMO_TRACKER` | `matomo.php` | Renamed `matomo.php` on the instance |
+| `VITE_UMAMI_HOST` | — | Umami host, e.g. `umami.apps.janjaap.de`. **Analytics is disabled when unset.** |
+| `VITE_UMAMI_WEBSITE_ID` | — | Website id (uuid) from Umami's *Settings → Websites*. **Analytics is disabled when unset.** |
+| `VITE_UMAMI_SCRIPT` | `script.js` | Renamed `script.js` on the instance (adblock evasion) |
 
 These are inlined at build time, so they must be set for `pnpm build` — not at runtime.
 
 Notes:
 
-- Cookies are disabled (`disableCookies`), so no consent banner is required.
+- Umami stores no cookies and no IP addresses, so no consent banner is required.
+- Do Not Track is honoured (`data-do-not-track`), as promised on the Datenschutz page.
+- Umami's own SPA auto-tracking is off (`data-auto-track="false"`); `<AnalyticsTracker />`
+  reports each route change itself, after `useSEO()` has set the page title.
 - Nothing is tracked in dev (`pnpm dev`) or during the prerender crawl, so builds
   don't show up as traffic and the tracker never bakes into the static HTML.
-- `trackEvent(category, action)` from `@/lib/analytics` is the way to add further events.
+- `trackEvent(name, data?)` from `@/lib/analytics` is the way to add further events.
 
 ## i18n
 

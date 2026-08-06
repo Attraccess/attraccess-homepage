@@ -157,30 +157,30 @@ export function Datenschutz() {
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-foreground mb-4">
-                5. Reichweitenmessung mit Matomo (selbst gehostet, ohne Cookies)
+                5. Reichweitenmessung mit Umami (selbst gehostet, ohne Cookies)
               </h2>
               <p className="text-foreground leading-relaxed mb-3">
                 Wir nutzen die Open-Source-Analysesoftware{" "}
                 <a
-                  href="https://matomo.org/"
+                  href="https://umami.is/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:text-primary/80 transition-colors"
                 >
-                  Matomo
+                  Umami
                 </a>
                 , um die Nutzung unserer Website statistisch auszuwerten und unser Angebot zu
-                verbessern. Matomo läuft auf einer{" "}
+                verbessern. Umami läuft auf einer{" "}
                 <span className="font-medium">von uns selbst betriebenen Instanz</span>. Es
-                besteht keine Verbindung zu Matomo als Unternehmen und keine Weitergabe der
+                besteht keine Verbindung zu Umami als Unternehmen und keine Weitergabe der
                 erhobenen Daten an Dritte; die Daten verlassen unsere eigene Infrastruktur nicht.
               </p>
               <p className="text-foreground leading-relaxed mb-3">
-                Matomo ist in unserer Konfiguration ausdrücklich{" "}
-                <span className="font-medium">ohne Cookies</span> eingebunden
-                (<code>disableCookies</code>). Es werden also keine Informationen auf Ihrem
-                Endgerät gespeichert oder ausgelesen, sodass nach § 25 Abs. 1 TDDDG keine
-                Einwilligung erforderlich ist.
+                Umami arbeitet{" "}
+                <span className="font-medium">ohne Cookies</span> und ohne vergleichbare
+                Speichertechniken. Es werden also keine Informationen auf Ihrem Endgerät
+                gespeichert oder ausgelesen, sodass nach § 25 Abs. 1 TDDDG keine Einwilligung
+                erforderlich ist.
               </p>
               <p className="text-foreground leading-relaxed mb-2">
                 Bei einem Seitenaufruf werden insbesondere folgende Daten verarbeitet:
@@ -189,15 +189,25 @@ export function Datenschutz() {
                 <li>aufgerufene Seiten-URL und Seitentitel, auch bei Seitenwechseln innerhalb der Anwendung</li>
                 <li>Zeitpunkt und Dauer des Aufrufs</li>
                 <li>Referrer-URL (die zuvor besuchte Seite)</li>
-                <li>Browser, Betriebssystem, Gerätetyp und Bildschirmauflösung</li>
-                <li>gekürzte bzw. anonymisierte IP-Adresse, aus der eine grobe regionale Zuordnung abgeleitet wird</li>
-                <li>Klicks auf externe Links und Downloads (Link-Tracking)</li>
+                <li>Browser, Betriebssystem, Gerätetyp, Bildschirmauflösung und Spracheinstellung</li>
+                <li>
+                  eine grobe regionale Zuordnung (Land/Region), die serverseitig aus der
+                  IP-Adresse abgeleitet wird
+                </li>
                 <li>
                   einzelne Interaktionsereignisse, konkret das Absenden des Kontaktformulars
-                  (<code>contact / submit</code>) und das Absenden des Newsletter-Formulars
-                  (<code>newsletter / subscribe</code>)
+                  (<code>contact-submit</code>) und das Absenden des Newsletter-Formulars
+                  (<code>newsletter-subscribe</code>)
                 </li>
               </ul>
+              <p className="text-foreground leading-relaxed mb-3">
+                Ihre <span className="font-medium">IP-Adresse wird nicht gespeichert</span>. Sie
+                wird ausschließlich flüchtig für die regionale Zuordnung und für die Bildung einer
+                pseudonymen Besuchskennung verwendet: Aus IP-Adresse, Browserkennung, Website und
+                einem geheimen, täglich wechselnden Wert wird ein nicht umkehrbarer Hashwert
+                gebildet. Da sich dieser Wert täglich ändert, ist eine Wiedererkennung über den
+                Tag hinaus technisch ausgeschlossen.
+              </p>
               <p className="text-foreground leading-relaxed mb-3">
                 Die Auswertung erfolgt ausschließlich statistisch und pseudonym; eine
                 Identifizierung einzelner Personen ist damit nicht beabsichtigt und findet nicht
@@ -205,11 +215,11 @@ export function Datenschutz() {
                 Art. 22 DSGVO erfolgt nicht.
               </p>
               <p className="text-foreground leading-relaxed mb-3">
-                Transparenzhinweis: Das Tracking-Skript und der Empfangs-Endpunkt unserer
-                Matomo-Instanz können unter von den Matomo-Standardnamen abweichenden Dateinamen
-                ausgeliefert werden (z. B. <code>not_matomo.js</code> statt{" "}
-                <code>matomo.js</code>). Es handelt sich dabei ausschließlich um die hier
-                beschriebene eigene Reichweitenmessung und um keinen weiteren Dienst.
+                Transparenzhinweis: Das Tracking-Skript unserer Umami-Instanz kann unter einem
+                vom Standardnamen abweichenden Dateinamen ausgeliefert werden (z. B.{" "}
+                <code>not_umami.js</code> statt <code>script.js</code>). Es handelt sich dabei
+                ausschließlich um die hier beschriebene eigene Reichweitenmessung und um keinen
+                weiteren Dienst.
               </p>
               <p className="text-foreground leading-relaxed mb-3">
                 Die Messung ist nur in der veröffentlichten Fassung der Website aktiv. In
