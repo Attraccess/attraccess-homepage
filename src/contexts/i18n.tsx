@@ -166,8 +166,9 @@ export const translations = {
     "contact.form.organization.placeholder": "Your organization",
     "contact.form.role": "Role",
     "contact.form.role.placeholder": "Your role",
-    "contact.form.usecase": "Use Case",
-    "contact.form.usecase.placeholder": "Describe your workspace",
+    "contact.form.message": "Your Message",
+    "contact.form.message.placeholder":
+      "How can we help? Tell us about your inquiry.",
     "contact.form.submit": "Submit",
     "contact.info.title": "Contact Information",
     "contact.info.email": "Email",
@@ -182,8 +183,8 @@ Email: {email}
 Organization: {organization}
 Role: {role}
 
-Use Case:
-{usecase}
+Message:
+{message}
 
 Best regards,
 {name}`,
@@ -453,8 +454,9 @@ Best regards,
     "contact.form.organization.placeholder": "Ihre Organisation",
     "contact.form.role": "Position",
     "contact.form.role.placeholder": "Ihre Position",
-    "contact.form.usecase": "Anwendungsfall",
-    "contact.form.usecase.placeholder": "Beschreiben Sie Ihren Arbeitsbereich",
+    "contact.form.message": "Ihre Nachricht",
+    "contact.form.message.placeholder":
+      "Wie können wir helfen? Beschreiben Sie Ihre Anfrage.",
     "contact.form.submit": "Absenden",
     "contact.info.title": "Kontaktinformationen",
     "contact.info.email": "E-Mail",
@@ -469,8 +471,8 @@ E-Mail: {email}
 Organisation: {organization}
 Position: {role}
 
-Anwendungsfall:
-{usecase}
+Nachricht:
+{message}
 
 Mit freundlichen Grüßen,
 {name}`,
@@ -741,8 +743,9 @@ Mit freundlichen Grüßen,
     "contact.form.organization.placeholder": "Votre organisation",
     "contact.form.role": "Fonction",
     "contact.form.role.placeholder": "Votre fonction",
-    "contact.form.usecase": "Cas d'usage",
-    "contact.form.usecase.placeholder": "Décrivez votre espace de travail",
+    "contact.form.message": "Votre message",
+    "contact.form.message.placeholder":
+      "Comment pouvons-nous vous aider ? Décrivez votre demande.",
     "contact.form.submit": "Envoyer",
     "contact.info.title": "Coordonnées",
     "contact.info.email": "E-mail",
@@ -757,8 +760,8 @@ E-mail : {email}
 Organisation : {organization}
 Fonction : {role}
 
-Cas d'usage :
-{usecase}
+Message :
+{message}
 
 Cordialement,
 {name}`,
@@ -1029,8 +1032,9 @@ Cordialement,
     "contact.form.organization.placeholder": "Je organisatie",
     "contact.form.role": "Functie",
     "contact.form.role.placeholder": "Je functie",
-    "contact.form.usecase": "Toepassing",
-    "contact.form.usecase.placeholder": "Beschrijf je werkplek",
+    "contact.form.message": "Je bericht",
+    "contact.form.message.placeholder":
+      "Hoe kunnen we helpen? Beschrijf je vraag.",
     "contact.form.submit": "Versturen",
     "contact.info.title": "Contactgegevens",
     "contact.info.email": "E-mail",
@@ -1045,8 +1049,8 @@ E-mail: {email}
 Organisatie: {organization}
 Functie: {role}
 
-Toepassing:
-{usecase}
+Bericht:
+{message}
 
 Met vriendelijke groet,
 {name}`,

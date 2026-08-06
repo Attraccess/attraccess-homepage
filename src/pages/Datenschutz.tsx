@@ -241,8 +241,8 @@ export function Datenschutz() {
               <p className="text-foreground leading-relaxed mb-3">
                 Das Kontaktformular auf dieser Website{" "}
                 <span className="font-medium">überträgt keine Daten an unsere Server</span>. Ihre
-                Eingaben (Name, E-Mail-Adresse, Organisation, Rolle und Beschreibung des
-                Anwendungsfalls) verbleiben ausschließlich in Ihrem Browser. Beim Absenden wird
+                Eingaben (Name, E-Mail-Adresse, Organisation, Rolle und Ihre Nachricht)
+                verbleiben ausschließlich in Ihrem Browser. Beim Absenden wird
                 lediglich das E-Mail-Programm Ihres Geräts mit einer vorausgefüllten Nachricht an{" "}
                 <span className="font-medium">contact@attraccess.org</span> geöffnet. Ob und mit
                 welchem Inhalt Sie die E-Mail tatsächlich versenden, entscheiden Sie selbst.
