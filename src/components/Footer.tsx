@@ -42,6 +42,9 @@ export function Footer() {
         <Link to="/agb" className="transition-colors hover:text-white">
           AGB
         </Link>
+        <Link to="/datenschutz" className="transition-colors hover:text-white">
+          {t("footer.privacy")}
+        </Link>
         <button
           onClick={() => setImpressumOpen(true)}
           className="footer-impressum transition-colors hover:text-white"

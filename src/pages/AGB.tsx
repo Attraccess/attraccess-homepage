@@ -118,7 +118,11 @@ export function AGB() {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-foreground mb-4">9. Datenschutz</h2>
               <p className="text-foreground leading-relaxed">
-                Der Anbieter verarbeitet personenbezogene Daten ausschließlich im Rahmen der geltenden Datenschutzgesetze. Näheres regelt die Datenschutzerklärung auf der Website des Anbieters.
+                Der Anbieter verarbeitet personenbezogene Daten ausschließlich im Rahmen der geltenden Datenschutzgesetze. Näheres regelt die{" "}
+                <Link to="/datenschutz" className="text-primary hover:text-primary/80 transition-colors">
+                  Datenschutzerklärung
+                </Link>{" "}
+                auf der Website des Anbieters.
               </p>
             </section>
 

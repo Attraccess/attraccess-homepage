@@ -15,6 +15,7 @@ import { HowItWorksPage } from "@/pages/HowItWorksPage";
 import { PricingPage } from "@/pages/PricingPage";
 import { Contact } from "@/pages/Contact";
 import { AGB } from "@/pages/AGB";
+import { Datenschutz } from "@/pages/Datenschutz";
 import { Blog } from "@/pages/Blog";
 import NotFound from "./pages/NotFound";
 
@@ -39,6 +40,7 @@ const App = () => (
                   <Route path="/pricing" element={<PricingPage />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/agb" element={<AGB />} />
+                  <Route path="/datenschutz" element={<Datenschutz />} />
                   <Route path="/blog" element={<Blog />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
