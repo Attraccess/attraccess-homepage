@@ -3,8 +3,8 @@
 // dist/<route>/index.html. This gives non-JS crawlers/scanners real content
 // (H1, headings, internal links, text) — not just the empty SPA shell — and
 // correct per-route OG/meta (useSEO runs during the snapshot).
-// Routes come from src/lib/seo-meta.json. Third-party embeds (HubSpot chat,
-// analytics) are blocked so their markup never bakes into the static HTML.
+// Routes come from src/lib/seo-meta.json. Third-party embeds (analytics) are
+// blocked so their markup never bakes into the static HTML.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -14,7 +14,7 @@ import puppeteer from "puppeteer";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const routes = Object.keys(JSON.parse(readFileSync(join(root, "src/lib/seo-meta.json"), "utf8")));
 const PORT = 4188;
-const BLOCK = /hs-scripts|hs-analytics|hs-banner|hsforms|hubspot|usemessages|hscollectedforms|google-analytics|googletagmanager|doubleclick|matomo|piwik/i;
+const BLOCK = /google-analytics|googletagmanager|doubleclick|matomo|piwik/i;
 // Matomo's script/endpoint can be renamed arbitrarily (VITE_MATOMO_SCRIPT), so
 // block the configured host too — window.__PRERENDER__ below is the real guard.
 const matomoHost = (process.env.VITE_MATOMO_HOST || "").replace(/^https?:\/\//, "").replace(/\/.*$/, "");
