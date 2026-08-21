@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useI18n, languageNames, type Language } from "@/contexts/i18n";
-import { useTheme } from "@/contexts/theme";
 import { ImpressumModal } from "@/components/ImpressumModal";
-import { Sun, Moon, Github } from "lucide-react";
+import { Github } from "lucide-react";
 
 export function Footer() {
   const { t, language, setLanguage } = useI18n();
-  const { actualTheme, setTheme } = useTheme();
   const [impressumOpen, setImpressumOpen] = useState(false);
 
   return (
@@ -61,13 +59,6 @@ export function Footer() {
           aria-label={languageNames[language]}
         >
           {language.toUpperCase()}
-        </button>
-        <button
-          onClick={() => setTheme(actualTheme === "light" ? "dark" : "light")}
-          aria-label={t("footer.toggle.theme")}
-          className="transition-colors hover:text-white"
-        >
-          {actualTheme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
         </button>
       </div>
 

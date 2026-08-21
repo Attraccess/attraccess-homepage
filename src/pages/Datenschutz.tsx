@@ -49,7 +49,7 @@ export function Datenschutz() {
           </header>
 
           {/* Content */}
-          <div className="prose prose-lg dark:prose-invert max-w-none">
+          <div className="prose prose-lg max-w-none">
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-foreground mb-4">
                 1. Geltungsbereich und Grundsätzliches

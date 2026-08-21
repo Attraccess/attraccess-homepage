@@ -20,16 +20,16 @@ export function Navigation() {
 
   const navItems = [
     { key: "home", href: "/" },
-    { key: "features", href: "/features" },
-    { key: "how-it-works", href: "/how-it-works" },
-    { key: "pricing", href: "/pricing" },
+    { key: "features", href: "/#proof" },
+    { key: "how-it-works", href: "/#control-loop" },
+    { key: "pricing", href: "/#pilot" },
     { key: "blog", href: "/blog" },
     { key: "contact", href: "/contact" },
   ];
 
   const externalNavItems: { key: string; href: string }[] = [];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => path === "/" ? location.pathname === path : location.pathname === "/" && location.hash === path.slice(1);
 
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
