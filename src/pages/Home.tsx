@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -11,6 +12,7 @@ import {
   ShieldCheck,
   Sun,
   Wrench,
+  X,
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { useI18n } from "@/contexts/i18n";
@@ -87,8 +89,10 @@ const copy = {
 type PageCopy = (typeof copy)[keyof typeof copy];
 
 function HomeHeader({ c }: { c: PageCopy }) {
+  const [menuOpen, setMenuOpen] = useState(false);
   const { language, setLanguage } = useI18n();
   const { actualTheme, setTheme } = useTheme();
+  const navigationLinks = ["#system", "#loop", "#deployment", "#pilot"];
 
   return (
     <header className="prototype-header prototype-header--dossier">
@@ -97,7 +101,7 @@ function HomeHeader({ c }: { c: PageCopy }) {
       </Link>
       <nav aria-label="Primary navigation">
         {c.nav.map((item, index) => (
-          <a key={item} href={["#system", "#loop", "#deployment", "#pilot"][index]}>
+          <a key={item} href={navigationLinks[index]}>
             {item}
           </a>
         ))}
@@ -112,7 +116,27 @@ function HomeHeader({ c }: { c: PageCopy }) {
         <Link className="prototype-header__cta" to="/contact">
           {c.cta}<ArrowRight />
         </Link>
-        <button className="prototype-menu" aria-label="Open menu"><Menu /></button>
+        <button
+          className="prototype-menu"
+          aria-controls="home-mobile-navigation"
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? <X /> : <Menu />}
+        </button>
+      </div>
+      <div id="home-mobile-navigation" className="prototype-mobile-navigation" hidden={!menuOpen}>
+        <nav aria-label="Mobile navigation">
+          {c.nav.map((item, index) => (
+            <a key={item} href={navigationLinks[index]} onClick={() => setMenuOpen(false)}>
+              {item}
+            </a>
+          ))}
+          <Link className="prototype-header__cta" to="/contact" onClick={() => setMenuOpen(false)}>
+            {c.cta}<ArrowRight />
+          </Link>
+        </nav>
       </div>
     </header>
   );
