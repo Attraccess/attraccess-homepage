@@ -322,7 +322,7 @@
 
   @media (max-width: 640px) {
     .prototype-field-v2 .prototype-header,
-    .prototype-dossier-v2 .prototype-header { min-height: 64px; }
+    .prototype-dossier-v2 .prototype-header.prototype-header--dossier { min-height: 64px; }
     .calm-field-hero, .calm-product-hero { padding: 62px 18px 85px; }
     .calm-field-hero h1, .calm-product-hero h1 { font-size: 42px; }
     .calm-field-hero .prototype-lede, .calm-product-hero .prototype-lede { font-size: 17px; }
@@ -817,7 +817,7 @@
     .prototype-header { grid-template-columns: 1fr auto; padding: 0 24px; }
     .prototype-header nav, .prototype-header__cta { display: none; }
     .prototype-menu { display: grid !important; }
-    .prototype-header .prototype-mobile-navigation { display: block; grid-column: 1 / -1; padding: 16px 0 20px; border-top: 1px solid var(--proto-line); }
+    .prototype-header .prototype-mobile-navigation:not([hidden]) { display: block; grid-column: 1 / -1; padding: 16px 0 20px; border-top: 1px solid var(--proto-line); }
     .prototype-header .prototype-mobile-navigation nav { display: flex; flex-direction: column; align-items: stretch; gap: 4px; }
     .prototype-header .prototype-mobile-navigation nav a { padding: 12px 0; font-size: 15px; }
     .prototype-header .prototype-mobile-navigation .prototype-header__cta { display: flex; justify-content: center; margin: 12px 0 0; }
