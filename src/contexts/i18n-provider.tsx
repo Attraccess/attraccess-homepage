@@ -3,13 +3,20 @@ import { I18nContext, type Language } from "@/contexts/i18n";
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>(() => {
-    const saved = localStorage.getItem("language");
-    return saved === "en" ? "en" : "de";
+    try {
+      return localStorage.getItem("language") === "en" ? "en" : "de";
+    } catch {
+      return "de";
+    }
   });
 
   useEffect(() => {
     document.documentElement.lang = language;
-    localStorage.setItem("language", language);
+    try {
+      localStorage.setItem("language", language);
+    } catch {
+      // Storage access can be disabled by browser privacy settings.
+    }
   }, [language]);
 
   return (
