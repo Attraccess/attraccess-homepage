@@ -1,30 +1,18 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { MarketingFooter, MarketingHeader, marketingCopy } from "@/pages/Home";
+import { useI18n } from "@/contexts/i18n";
 import { useSEO } from "@/hooks/use-seo";
 
 const NotFound = () => {
-  const location = useLocation();
-
   useSEO({ title: "Page not found", noindex: true });
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
-
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
-      </div>
-    </div>
-  );
+  const { language } = useI18n();
+  const locale = language === "de" ? "de" : "en";
+  const c = marketingCopy[locale];
+  return <div className="prototype-homepage"><div className="prototype prototype-dossier prototype-dossier-v2">
+    <MarketingHeader c={c} />
+    <main className="contact-page"><section className="contact-intro"><p className="prototype-eyebrow"><span />404</p><h1>{locale === "de" ? "Diese Seite gibt es nicht." : "This page does not exist."}</h1><p>{locale === "de" ? "Zurück zur Übersicht der Maschinenfreigabe und zum Pilot." : "Return to the machine authorization overview and pilot."}</p><Link className="prototype-button" to="/">{locale === "de" ? "Zur Startseite" : "Back to home"}</Link></section></main>
+    <MarketingFooter c={c} />
+  </div></div>;
 };
 
 export default NotFound;

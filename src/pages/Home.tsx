@@ -18,10 +18,12 @@ import { Logo } from "@/components/Logo";
 import { useI18n } from "@/contexts/i18n";
 import { useTheme } from "@/contexts/theme";
 import { useSEO } from "@/hooks/use-seo";
+import { trackEvent } from "@/lib/analytics";
 
-const copy = {
+// eslint-disable-next-line react-refresh/only-export-components
+export const marketingCopy = {
   de: {
-    nav: ["System", "Ablauf", "Einsatz", "Pilot"],
+    nav: ["System", "Ablauf", "Einsatzfelder", "Pilot"],
     cta: "3-Maschinen-Pilot planen",
     eyebrow: "Maschinenfreigabe für gemeinsam genutzte Werkstätten",
     headline: "Berechtigung, die bis zur Maschine reicht.",
@@ -51,9 +53,10 @@ const copy = {
       "Wir wählen drei repräsentative Maschinen, definieren Freigabe- und Fehlerverhalten und testen den vollständigen Ablauf mit Werkstattleitung, IT und Arbeitssicherheit.",
     pilotPoints: ["3–5 repräsentative Maschinen", "Technischer Fit vor der Installation", "Auswertung mit vereinbarten Kriterien"],
     footer: "Maschinenautorisierung und Nutzungskontrolle für Lehre, Forschung und geteilte Werkstätten.",
+    privacy: "Datenschutz", terms: "AGB",
   },
   en: {
-    nav: ["System", "Control loop", "Deployment", "Pilot"],
+    nav: ["System", "Control loop", "Use cases", "Pilot"],
     cta: "Plan a 3-machine pilot",
     eyebrow: "Machine authorization for shared workshops",
     headline: "Authorization that reaches the machine.",
@@ -83,16 +86,17 @@ const copy = {
       "We select three representative machines, define release and failure behavior, and test the complete workflow with workshop management, IT and safety stakeholders.",
     pilotPoints: ["3–5 representative machines", "Technical fit before installation", "Review against agreed criteria"],
     footer: "Machine authorization and usage control for teaching, research and shared workshops.",
+    privacy: "Privacy", terms: "Terms",
   },
 } as const;
 
-type PageCopy = (typeof copy)[keyof typeof copy];
+export type PageCopy = (typeof marketingCopy)[keyof typeof marketingCopy];
 
-function HomeHeader({ c }: { c: PageCopy }) {
+export function MarketingHeader({ c }: { c: PageCopy }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const { language, setLanguage } = useI18n();
   const { actualTheme, setTheme } = useTheme();
-  const navigationLinks = ["#system", "#loop", "#deployment", "#pilot"];
+  const navigationLinks = ["/#system", "/#loop", "/#use-cases", "/#pilot"];
 
   return (
     <header className="prototype-header prototype-header--dossier">
@@ -142,15 +146,15 @@ function HomeHeader({ c }: { c: PageCopy }) {
   );
 }
 
-function HomeFooter({ c }: { c: PageCopy }) {
+export function MarketingFooter({ c }: { c: PageCopy }) {
   return (
     <footer className="prototype-footer prototype-footer--dossier">
       <div className="prototype-footer__mark">AA</div>
       <p>{c.footer}</p>
       <div className="prototype-footer__links">
         <a href="https://github.com/attraccess/attraccess" target="_blank" rel="noreferrer"><Github /> GitHub</a>
-        <Link to="/datenschutz">Datenschutz</Link>
-        <Link to="/agb">AGB</Link>
+        <Link to="/datenschutz">{c.privacy}</Link>
+        <Link to="/agb">{c.terms}</Link>
         <span>Hamburg, DE</span>
       </div>
     </footer>
@@ -162,14 +166,18 @@ function PilotButton({ c }: { c: PageCopy }) {
 }
 
 export function Home() {
-  useSEO({ canonicalPath: "/" });
   const { language } = useI18n();
-  const c = language === "de" ? copy.de : copy.en;
+  useSEO({
+    title: language === "de" ? "Maschinenfreigabe für gemeinsame Werkstätten" : "Machine authorization for shared workshops",
+    description: language === "de" ? "Attraccess verbindet Identität, Einweisung und Maschinenfreigabe in einem nachvollziehbaren Ablauf für gemeinsam genutzte Werkstätten." : "Attraccess connects identity, training and machine authorization in a traceable workflow for shared workshops.",
+    canonicalPath: "/",
+  });
+  const c = language === "de" ? marketingCopy.de : marketingCopy.en;
 
   return (
     <div className="prototype-homepage">
       <div className="prototype prototype-dossier prototype-dossier-v2">
-        <HomeHeader c={c} />
+        <MarketingHeader c={c} />
         <main>
           <section className="calm-product-hero" id="system">
             <div className="calm-product-hero__copy">
@@ -181,28 +189,59 @@ export function Home() {
             <div className="calm-product-stage">
               <div className="calm-product-stage__screen"><img src="/hero/app-screenshot.png" alt="Attraccess resource overview" /></div>
               <div className="calm-product-stage__reader"><img src="/features/reader.webp" alt="Attraccess NFC reader" /></div>
-              <div className="calm-product-stage__session"><span /><b>Session aktiv</b><small>CNC-04 · 00:42:16</small></div>
+              <div className="calm-product-stage__session"><span /><b>{language === "de" ? "Session aktiv" : "Session active"}</b><small>CNC-04 · 00:42:16</small></div>
             </div>
           </section>
 
           <section className="calm-product-loop" id="loop">
-            <div className="calm-section-heading"><p className="prototype-eyebrow"><span />Vom Scan zur Session</p><h2>Vier Schritte. Ein zusammenhängender Ablauf.</h2></div>
+            <div className="calm-section-heading"><p className="prototype-eyebrow"><span />{language === "de" ? "Vom Scan zur Session" : "From scan to session"}</p><h2>{language === "de" ? "Vier Schritte. Ein zusammenhängender Ablauf." : "Four steps. One connected workflow."}</h2></div>
             <div>{c.loop.map(([number, title, text], index) => <article key={number}><span>{index === 0 ? <ScanLine /> : index === 1 ? <ShieldCheck /> : index === 2 ? <CircleDot /> : <Wrench />}</span><b>{number}</b><h3>{title}</h3><p>{text}</p></article>)}</div>
           </section>
 
-          <section className="calm-product-proof" id="deployment">
-            <div><p className="prototype-eyebrow"><span />Technischer Fit</p><h2>{c.proofTitle}</h2><p>{c.proofIntro}</p></div>
+          <section className="calm-product-proof" id="operations">
+            <div><p className="prototype-eyebrow"><span />{language === "de" ? "Technischer Fit" : "Technical fit"}</p><h2>{c.proofTitle}</h2><p>{c.proofIntro}</p></div>
             <div className="calm-product-proof__list">{c.proof.map(([title, text]) => <article key={title}><Check /><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+          </section>
+
+          <section className="calm-use-cases" id="use-cases" aria-labelledby="use-cases-title">
+            <div className="calm-section-heading">
+              <p className="prototype-eyebrow"><span />{language === "de" ? "Einsatzfelder" : "Use cases"}</p>
+              <h2 id="use-cases-title">{language === "de" ? "Ein Ablauf, passend für verschiedene Werkstattrealitäten." : "One workflow, adapted to different workshop realities."}</h2>
+            </div>
+            <div className="calm-use-cases__grid">
+              {(language === "de" ? [
+                ["Hochschulen & Forschung", "Einweisungen, Rollen und Aufsicht bleiben an der Maschine nachvollziehbar - auch bei wechselnden Kursen, Projekten und Nutzergruppen."],
+                ["Makerspaces & Fab Labs", "Regeln werden am Einsatzort geprüft. Teams sehen echte Nutzung und organisieren Maschinenbetrieb ohne separate Listen."],
+                ["Industrie & Ausbildung", "Maschinenpools und Trainingsflächen erhalten einen klaren Freigabeablauf, der Verantwortlichkeiten und Nutzung zusammenführt."],
+              ] : [
+                ["Universities & research", "Training, roles and supervision remain traceable at the machine, even with changing courses, projects and user groups."],
+                ["Makerspaces & fab labs", "Rules are evaluated at the point of use. Teams see actual usage and operate machines without separate lists."],
+                ["Industry & training", "Machine pools and training areas receive a clear release workflow that brings responsibilities and usage together."],
+              ]).map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p><a href="#pilot">{language === "de" ? "Pilot besprechen" : "Discuss a pilot"}<ChevronRight /></a></article>)}
+            </div>
           </section>
 
           <section className="calm-boundary"><ShieldCheck /><div><strong>{c.boundaryTitle}</strong><p>{c.boundary}</p></div></section>
 
           <section className="calm-product-pilot" id="pilot">
-            <div><p className="prototype-eyebrow"><span />Gemeinsam prüfen</p><h2>{c.pilotTitle}</h2><p>{c.pilotText}</p></div>
+            <div><p className="prototype-eyebrow"><span />{language === "de" ? "Gemeinsam prüfen" : "Assess together"}</p><h2>{c.pilotTitle}</h2><p>{c.pilotText}</p></div>
             <div><ul>{c.pilotPoints.map((point) => <li key={point}><Check />{point}</li>)}</ul><PilotButton c={c} /></div>
           </section>
+
+          <section className="calm-newsletter" aria-labelledby="newsletter-title">
+            <div><p className="prototype-eyebrow"><span />Newsletter</p><h2 id="newsletter-title">{language === "de" ? "Produkt- und Betriebsupdates erhalten" : "Receive product and operations updates"}</h2><p>{language === "de" ? "Gelegentliche Hinweise zu Verfügbarkeit, Weiterentwicklung und dem Betrieb gemeinsamer Werkstätten. Kein Blog-Abo." : "Occasional notes on availability, product development and operating shared workshops. Not a blog subscription."}</p></div>
+            <form method="post" action="https://listmonk.attraccess.org/subscription/form" onSubmit={() => trackEvent("newsletter-subscribe")}>
+              <input type="hidden" name="nonce" />
+              <label><span>{language === "de" ? "E-Mail-Adresse" : "Email address"}</span><input type="email" name="email" required autoComplete="email" /></label>
+              <label><span>{language === "de" ? "Name (optional)" : "Name (optional)"}</span><input type="text" name="name" autoComplete="name" /></label>
+              <input type="hidden" name="l" value={language === "de" ? "d21f9904-1a25-4ad7-8e7b-24379133163f" : "9764fb4c-fddd-43eb-9eaf-5c7c3265940e"} />
+              <label className="calm-newsletter__consent"><input type="checkbox" required /> <span>{language === "de" ? "Ich willige ein, dass meine Angaben für den Newsletter verarbeitet werden." : "I consent to my details being processed for the newsletter."} <Link to="/datenschutz">{c.privacy}</Link>.</span></label>
+              <button type="submit" className="prototype-button">{language === "de" ? "Updates abonnieren" : "Subscribe to updates"}<ArrowRight /></button>
+              <p className="calm-newsletter__note">{language === "de" ? "Bestätigung per E-Mail, Abmeldung jederzeit möglich." : "Confirmation by email. Unsubscribe at any time."}</p>
+            </form>
+          </section>
         </main>
-        <HomeFooter c={c} />
+        <MarketingFooter c={c} />
       </div>
     </div>
   );

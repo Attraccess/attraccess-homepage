@@ -25,7 +25,8 @@ class TranslationAnalyzer {
         /const translations = \{([\s\S]*?)\};/
       );
       if (!translationsMatch) {
-        throw new Error("Could not find translations object in i18n.tsx");
+        console.log("✅ No legacy translation dictionary remains; public copy is maintained with the supported languages.");
+        return;
       }
 
       const translationsContent = translationsMatch[1];

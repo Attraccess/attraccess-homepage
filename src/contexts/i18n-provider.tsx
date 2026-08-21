@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { I18nContext, translations, type Language } from "@/contexts/i18n";
+import React, { useEffect, useState } from "react";
+import { I18nContext, type Language } from "@/contexts/i18n";
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("de");
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved = localStorage.getItem("language");
+    return saved === "en" ? "en" : "de";
+  });
 
-  const t = (key: string): string => {
-    const translation =
-      translations[language][
-        key as keyof (typeof translations)[typeof language]
-      ];
-    return translation || key;
-  };
+  useEffect(() => {
+    document.documentElement.lang = language;
+    localStorage.setItem("language", language);
+  }, [language]);
 
   return (
-    <I18nContext.Provider value={{ language, setLanguage, t }}>
+    <I18nContext.Provider value={{ language, setLanguage }}>
       {children}
     </I18nContext.Provider>
   );
