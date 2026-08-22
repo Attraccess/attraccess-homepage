@@ -105,9 +105,10 @@ export function Datenschutz() {
                 Cookies. Ein Cookie-Banner ist daher nicht erforderlich.
               </p>
               <p className="text-foreground leading-relaxed mb-3">
-                Im lokalen Speicher (localStorage) Ihres Browsers wird lediglich Ihre Auswahl des
-                hellen oder dunklen Designs unter dem Schlüssel <code>theme</code> abgelegt. Diese
-                Information wird nicht an uns übertragen, enthält keinen Personenbezug und kann
+                Im lokalen Speicher (localStorage) Ihres Browsers werden Ihre Auswahl des hellen
+                oder dunklen Designs unter dem Schlüssel <code>theme</code> sowie die gewählte
+                Sprache unter <code>language</code> abgelegt. Diese Informationen werden nicht an
+                uns übertragen, enthalten keinen Personenbezug und können
                 jederzeit über die Einstellungen Ihres Browsers gelöscht werden. Die Speicherung
                 erfolgt auf Ihre ausdrückliche Anforderung hin (§ 25 Abs. 2 Nr. 2 TDDDG).
               </p>
@@ -251,7 +252,7 @@ export function Datenschutz() {
               <p className="text-foreground leading-relaxed mb-3">
                 Das Kontaktformular auf dieser Website{" "}
                 <span className="font-medium">überträgt keine Daten an unsere Server</span>. Ihre
-                Eingaben (Name, E-Mail-Adresse, Organisation, Rolle und Ihre Nachricht)
+                Eingaben (Name, E-Mail-Adresse, Organisation und Ihre Nachricht)
                 verbleiben ausschließlich in Ihrem Browser. Beim Absenden wird
                 lediglich das E-Mail-Programm Ihres Geräts mit einer vorausgefüllten Nachricht an{" "}
                 <span className="font-medium">contact@attraccess.org</span> geöffnet. Ob und mit
@@ -305,16 +306,6 @@ export function Datenschutz() {
               <h2 className="text-2xl font-semibold text-foreground mb-4">
                 8. Eingebundene Inhalte Dritter
               </h2>
-
-              <h3 className="text-xl font-semibold text-foreground mb-2 mt-4">Blog</h3>
-              <p className="text-foreground leading-relaxed mb-3">
-                Die Seite <span className="font-medium">/blog</span> bindet unseren eigenen
-                Ghost-Blog unter <code>ghost.attraccess.apps.janjaap.de</code> in einem Rahmen
-                (iframe) ein. Beim Öffnen dieser Seite baut Ihr Browser eine Verbindung zu diesem
-                – ebenfalls von uns betriebenen – Server auf; dabei fallen die unter Ziffer 2
-                beschriebenen Server-Logdaten an. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
-                (Interesse an der Bereitstellung redaktioneller Inhalte).
-              </p>
 
               <h3 className="text-xl font-semibold text-foreground mb-2 mt-4">Impressum</h3>
               <p className="text-foreground leading-relaxed mb-3">

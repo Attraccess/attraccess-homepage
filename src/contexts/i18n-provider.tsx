@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { I18nContext, languageNames, translations, type Language } from "@/contexts/i18n";
+import { I18nContext, type Language } from "@/contexts/i18n";
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>(() => {
+    try {
+      return localStorage.getItem("language") === "en" ? "en" : "de";
+    } catch {
+      return "de";
+    }
+  });
 
   useEffect(() => {
-    // Detect browser language
-    const browserLang = navigator.language.split("-")[0] as Language;
-    if (browserLang in languageNames) {
-      setLanguage(browserLang);
+    document.documentElement.lang = language;
+    try {
+      localStorage.setItem("language", language);
+    } catch {
+      // Storage access can be disabled by browser privacy settings.
     }
-  }, []);
-
-  const t = (key: string): string => {
-    const translation =
-      translations[language][
-        key as keyof (typeof translations)[typeof language]
-      ];
-    return translation || key;
-  };
+  }, [language]);
 
   return (
-    <I18nContext.Provider value={{ language, setLanguage, t }}>
+    <I18nContext.Provider value={{ language, setLanguage }}>
       {children}
     </I18nContext.Provider>
   );

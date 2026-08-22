@@ -1,187 +1,50 @@
-import React, { useState } from "react";
-import { useSEO } from "@/hooks/use-seo";
-import seoMeta from "@/lib/seo-meta.json";
-import { useI18n } from "@/contexts/i18n";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, Check, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import { MarketingFooter, MarketingHeader, marketingCopy } from "@/pages/Home";
+import { useI18n } from "@/contexts/i18n";
 import { trackEvent } from "@/lib/analytics";
+import { useSEO } from "@/hooks/use-seo";
+
+const copy = {
+  de: { eyebrow: "Pilot besprechen", title: "Lassen Sie uns den Einsatz an Ihren Maschinen prüfen.", intro: "Ein Pilot beginnt mit repräsentativen Maschinen, Ihren Rollen und vorhandenen Abläufen. Den technischen Fit klären wir vor einer Installation.", form: "Pilot anfragen", submit: "E-Mail vorbereiten", privacy: "Beim Absenden öffnet sich Ihr E-Mail-Programm. Ihre Eingaben werden nicht an unsere Website übertragen.", sent: "Wir haben Ihr E-Mail-Programm mit einer vorbereiteten Nachricht angefordert. Falls nichts passiert, schreiben Sie direkt an contact@attraccess.org.", next: "Was als Nächstes passiert", steps: ["Sie schildern kurz Ihre Ausgangslage.", "Wir prüfen gemeinsam Maschinen, Schnittstellen und Zuständigkeiten.", "Sie entscheiden anhand vereinbarter Kriterien über den Pilot."] },
+  en: { eyebrow: "Discuss a pilot", title: "Let's assess the fit for your machines.", intro: "A pilot starts with representative machines, your roles and existing workflows. We clarify technical fit before any installation.", form: "Request a pilot", submit: "Prepare email", privacy: "Submitting opens your email app. Your entries are not sent to this website.", sent: "We requested your email app with a prepared message. If nothing opens, email contact@attraccess.org directly.", next: "What happens next", steps: ["You briefly describe your starting point.", "Together, we assess machines, interfaces and responsibilities.", "You decide on the pilot against agreed criteria."] },
+} as const;
 
 export function Contact() {
-  useSEO(seoMeta["/contact"]);
-  const { t } = useI18n();
+  const { language } = useI18n();
+  const locale = language === "de" ? "de" : "en";
+  useSEO({ title: locale === "de" ? "Pilot planen" : "Plan a pilot", description: locale === "de" ? "Planen Sie einen fokussierten Attraccess-Pilot für gemeinsam genutzte Maschinen und Werkstattabläufe." : "Plan a focused Attraccess pilot for shared machines and workshop operations.", canonicalPath: "/contact" });
+  const c = copy[locale];
+  const marketing = marketingCopy[locale];
+  const [submitted, setSubmitted] = useState(false);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    organization: "",
-    role: "",
-    message: "",
-  });
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: t("contact.info.email"),
-      value: "contact@attraccess.org",
-      href: "mailto:contact@attraccess.org",
-    },
-    {
-      icon: MapPin,
-      title: t("contact.info.address"),
-      value: "Hamburg, Germany",
-      href: "#",
-    },
-  ];
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { id, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  function submit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const subject = encodeURIComponent(locale === "de" ? "Pilotanfrage Attraccess" : "Attraccess pilot inquiry");
+    const body = encodeURIComponent(`Name: ${data.get("name")}\nOrganization: ${data.get("organization")}\nEmail: ${data.get("email")}\n\n${data.get("message")}`);
     trackEvent("contact-submit");
-
-    const subject = encodeURIComponent(t("contact.email.subject"));
-    const body = encodeURIComponent(
-      t("contact.email.body").replace(/\{(\w+)\}/g, (_, key) =>
-        key in formData ? formData[key as keyof typeof formData] : ""
-      )
-    );
-
+    setSubmitted(true);
     window.location.href = `mailto:contact@attraccess.org?subject=${subject}&body=${body}`;
-  };
+  }
 
-  return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-hero">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            {t("contact.title")}
-          </h1>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            {t("contact.subtitle")}
-          </p>
-        </div>
+  return <div className="prototype-homepage"><div className="prototype prototype-dossier prototype-dossier-v2">
+    <MarketingHeader c={marketing} />
+    <main className="contact-page">
+      <section className="contact-intro"><p className="prototype-eyebrow"><span />{c.eyebrow}</p><h1>{c.title}</h1><p>{c.intro}</p></section>
+      <section className="contact-grid">
+        <form className="contact-form" onSubmit={submit} aria-describedby="contact-privacy"><h2>{c.form}</h2>
+          <label><span>{locale === "de" ? "Name" : "Name"}</span><input name="name" required autoComplete="name" /></label>
+          <label><span>{locale === "de" ? "Organisation" : "Organization"}</span><input name="organization" required autoComplete="organization" /></label>
+          <label><span>{locale === "de" ? "E-Mail-Adresse" : "Email address"}</span><input name="email" type="email" required autoComplete="email" /></label>
+          <label><span>{locale === "de" ? "Worum geht es?" : "What would you like to discuss?"}</span><textarea name="message" required rows={5} placeholder={locale === "de" ? "Zum Beispiel Maschinen, Nutzergruppen oder bestehende Prozesse." : "For example machines, user groups or existing workflows."} /></label>
+          <button className="prototype-button" type="submit">{c.submit}<ArrowRight /></button><p id="contact-privacy">{c.privacy} <Link to="/datenschutz">{marketing.privacy}</Link>.</p>
+          {submitted && <p className="contact-form__success" role="status"><Check />{c.sent}</p>}
+        </form>
+        <aside className="contact-aside"><Mail /><h2>{c.next}</h2><ol>{c.steps.map((step) => <li key={step}>{step}</li>)}</ol><a href="mailto:contact@attraccess.org">contact@attraccess.org</a></aside>
       </section>
-
-      {/* Contact Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <Card className="shadow-medium">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold text-foreground">
-                  {t("contact.form.title")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="name">{t("contact.form.name")}</Label>
-                      <Input
-                        id="name"
-                        placeholder={t("contact.form.name.placeholder")}
-                        value={formData.name}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="email">{t("contact.form.email")}</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder={t("contact.form.email.placeholder")}
-                        value={formData.email}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="organization">
-                        {t("contact.form.organization")}
-                      </Label>
-                      <Input
-                        id="organization"
-                        placeholder={t("contact.form.organization.placeholder")}
-                        value={formData.organization}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="role">{t("contact.form.role")}</Label>
-                      <Input
-                        id="role"
-                        placeholder={t("contact.form.role.placeholder")}
-                        value={formData.role}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="message">{t("contact.form.message")}</Label>
-                    <Textarea
-                      id="message"
-                      placeholder={t("contact.form.message.placeholder")}
-                      className="min-h-[120px]"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <Button
-                    variant="hero"
-                    size="lg"
-                    className="w-full"
-                    type="submit"
-                  >
-                    {t("contact.form.submit")}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-6">
-                  {t("contact.info.title")}
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {contactInfo.map((item, index) => (
-                    <Link to={item.href} key={index}>
-                      <Card className="shadow-soft hover-lift">
-                        <CardContent className="p-6">
-                          <div className="flex items-center gap-3 mb-2">
-                            <item.icon className="w-5 h-5 text-primary" />
-                            <h4 className="font-semibold text-foreground">
-                              {item.title}
-                            </h4>
-                          </div>
-                          <p className="text-muted-foreground">{item.value}</p>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+    </main>
+    <MarketingFooter c={marketing} />
+  </div></div>;
 }
