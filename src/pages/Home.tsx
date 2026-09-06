@@ -114,7 +114,7 @@ export function MarketingHeader({ c }: { c: PageCopy }) {
         <button onClick={() => setLanguage(language === "de" ? "en" : "de")} aria-label="Change language">
           {language === "de" ? "EN" : "DE"}
         </button>
-        <button onClick={() => setTheme(actualTheme === "light" ? "dark" : "light")} aria-label="Change color scheme">
+        <button onClick={() => setTheme(actualTheme === "light" ? "dark" : "light")} aria-label="Change color scheme" aria-pressed={actualTheme === "dark"}>
           {actualTheme === "light" ? <Moon /> : <Sun />}
         </button>
         <Link className="prototype-header__cta" to="/contact">
@@ -187,7 +187,10 @@ export function Home() {
               <div className="prototype-actions"><PilotButton c={c} /><a href="#loop">{c.secondary}<ChevronRight /></a></div>
             </div>
             <div className="calm-product-stage">
-              <div className="calm-product-stage__screen"><img src="/hero/app-screenshot.png" alt="Attraccess resource overview" /></div>
+              <div className="calm-product-stage__screen">
+                <picture className="block dark:hidden"><img src="/hero/app-screenshot.png" width={1440} height={1000} alt="Attraccess resource overview" /></picture>
+                <picture className="hidden dark:block"><img src="/hero/app-screenshot-dark.png" width={1440} height={1000} alt="Attraccess resource overview in dark mode" /></picture>
+              </div>
               <div className="calm-product-stage__reader"><img src="/features/reader.webp" alt="Attraccess NFC reader" /></div>
               <div className="calm-product-stage__session"><span /><b>{language === "de" ? "Session aktiv" : "Session active"}</b><small>CNC-04 · 00:42:16</small></div>
             </div>

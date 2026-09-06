@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { ThemeContext, type Theme } from '@/contexts/theme';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('system');
-  const [actualTheme, setActualTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    // Check for saved theme preference or default to system
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme) {
-      setTheme(savedTheme);
+  const [theme, setTheme] = useState<Theme>(() => {
+    try {
+      const saved = localStorage.getItem('theme');
+      return saved === 'dark' || saved === 'system' ? saved : 'light';
+    } catch {
+      return 'light';
     }
-  }, []);
+  });
+  const [actualTheme, setActualTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     const updateActualTheme = () => {
@@ -27,9 +26,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
       // Update DOM
       document.documentElement.classList.toggle('dark', newTheme === 'dark');
+      document.documentElement.style.colorScheme = newTheme;
 
-      // Save to localStorage
-      localStorage.setItem('theme', theme);
+      try {
+        localStorage.setItem('theme', theme);
+      } catch {
+        // Appearance can still change for this session when storage is blocked.
+      }
     };
 
     updateActualTheme();
