@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ThemeContext, type Theme } from '@/contexts/theme';
 
+function resolveActualTheme(theme: Theme): 'light' | 'dark' {
+  if (theme !== 'system') return theme;
+  return typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     try {
@@ -10,17 +15,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       return 'light';
     }
   });
-  const [actualTheme, setActualTheme] = useState<'light' | 'dark'>('light');
+  const [actualTheme, setActualTheme] = useState<'light' | 'dark'>(() => resolveActualTheme(theme));
 
   useEffect(() => {
     const updateActualTheme = () => {
-      let newTheme: 'light' | 'dark';
-
-      if (theme === 'system') {
-        newTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      } else {
-        newTheme = theme === 'dark' ? 'dark' : 'light';
-      }
+      const newTheme = resolveActualTheme(theme);
 
       setActualTheme(newTheme);
 

@@ -167,6 +167,7 @@ function PilotButton({ c }: { c: PageCopy }) {
 
 export function Home() {
   const { language } = useI18n();
+  const { actualTheme } = useTheme();
   useSEO({
     title: language === "de" ? "Maschinenfreigabe für gemeinsame Werkstätten" : "Machine authorization for shared workshops",
     description: language === "de" ? "Attraccess verbindet Identität, Einweisung und Maschinenfreigabe in einem nachvollziehbaren Ablauf für gemeinsam genutzte Werkstätten." : "Attraccess connects identity, training and machine authorization in a traceable workflow for shared workshops.",
@@ -188,8 +189,7 @@ export function Home() {
             </div>
             <div className="calm-product-stage">
               <div className="calm-product-stage__screen">
-                <picture className="block dark:hidden"><img src="/hero/app-screenshot.png" width={1440} height={1000} alt="Attraccess resource overview" /></picture>
-                <picture className="hidden dark:block"><img src="/hero/app-screenshot-dark.png" width={1440} height={1000} alt="Attraccess resource overview in dark mode" /></picture>
+                <img src={actualTheme === "dark" ? "/hero/app-screenshot-dark.png" : "/hero/app-screenshot.png"} width={1440} height={1000} alt="Attraccess resource overview" />
               </div>
               <div className="calm-product-stage__reader"><img src="/features/reader.webp" alt="Attraccess NFC reader" /></div>
               <div className="calm-product-stage__session"><span /><b>{language === "de" ? "Session aktiv" : "Session active"}</b><small>CNC-04 · 00:42:16</small></div>
