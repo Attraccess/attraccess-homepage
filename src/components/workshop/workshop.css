@@ -141,7 +141,7 @@
   .workshop-page .prototype-header .prototype-mobile-navigation { position: absolute; top: 100%; left: 0; width: 100%; padding: 12px 22px 20px; background: var(--work-paper); border-bottom: 1px solid var(--work-line); }
 }
 @media (max-width: 760px) {
-  .prototype-homepage.workshop-page { --work-header: 64px; --work-nav: 48px; --scene-height: clamp(310px, 42svh, 380px); --scene-scroll-offset: var(--scene-height); }
+  .prototype-homepage.workshop-page { --work-header: 64px; --work-nav: 48px; }
   .workshop-page .prototype-header.prototype-header--dossier { padding-inline: 20px; }
   .workshop-page .prototype-header .prototype-logo { width: 123px; }
   .workshop-page .prototype-header__tools { gap: 0; }
@@ -154,21 +154,8 @@
   .workshop-chapters__select svg { width: 12px; height: 12px; pointer-events: none; position: absolute; right: 0; }
   .workshop-motion { font-size: 10px; gap: 5px; }
   .workshop-layout { grid-template-columns: minmax(0, 1fr); }
-  .workshop-stage { --stage-bottom: 125px; grid-column: 1; grid-row: 1; z-index: 10; height: var(--scene-height); min-height: 0; border-left: 0; border-bottom: 1px solid var(--work-line); }
-  .workshop-stage:is([data-chapter-view="overview"], [data-chapter-view="pilot"]) { --stage-bottom: 165px; }
-  .workshop-stage__heading { left: 16px; right: 16px; top: 11px; gap: 10px; }
-  .workshop-stage__heading .workshop-label, .workshop-stage__mode { font-size: 8px; }
-  .workshop-visual { top: 30px; }
-  .workshop-stage__bottom { left: 12px; right: 12px; bottom: 9px; gap: 6px; }
-  .workshop-cue { padding: 10px 12px; gap: 8px; }
-  .workshop-cue__index { display: none; }
-  .workshop-cue strong { font-size: 12px; line-height: 1.4; }
-  .workshop-page .workshop-cue p { font-size: 10px; line-height: 1.5; margin-top: 3px; }
-  .workshop-machines { padding: 2px; }
-  .workshop-machines button { min-height: 44px; padding: 0 10px; font-size: 10px; }
-  .workshop-page .workshop-stage__note { font-size: 8px; }
-  .workshop-story { grid-column: 1; grid-row: 2; }
-  .workshop-chapter { min-height: 0; padding: 40px 24px 55px; scroll-margin-top: calc(var(--work-header) + var(--work-nav) + var(--scene-scroll-offset)); }
+  .workshop-story { grid-column: 1; grid-row: 1; }
+  .workshop-chapter { min-height: 0; padding: 40px 24px 55px; scroll-margin-top: calc(var(--work-header) + var(--work-nav) + 16px); }
   .workshop-page .workshop-chapter h1 { font-size: clamp(40px, 10.5vw, 58px); max-width: 530px; margin-block: 22px; }
   .workshop-page .workshop-chapter h2 { font-size: clamp(34px, 8.8vw, 50px); max-width: 500px; margin-block: 22px; }
   .workshop-page .workshop-lede { font-size: 15px; margin-bottom: 23px; }
@@ -190,9 +177,35 @@
   .workshop-machines button { padding-inline: 8px; font-size: 9px; }
   .workshop-newsletter form { grid-template-columns: 1fr; }
 }
-@media (max-height: 700px) and (max-width: 760px) {
-  .prototype-homepage.workshop-page { --scene-scroll-offset: 0px; }
-  .workshop-stage { position: relative; top: 0; }
+.workshop-mobile-preview { width: 100%; margin-top: 18px; overflow: hidden; border: 1px solid var(--work-line); border-radius: 8px; text-align: left; background: var(--work-surface); }
+.workshop-mobile-preview > img { width: 100%; height: auto; aspect-ratio: 1.35; object-fit: contain; }
+.workshop-mobile-preview > span { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px; background: var(--work-paper); border-top: 1px solid var(--work-line); font-size: 14px; font-weight: 600; color: var(--work-accent); }
+.workshop-mobile-preview small { display: block; margin-top: 5px; font-size: 12px; line-height: 1.5; font-weight: 400; color: var(--work-muted); }
+.workshop-mobile-overlay { position: fixed; inset: 0; z-index: 60; background: rgb(0 0 0 / .5); }
+.workshop-mobile-dialog { position: fixed; inset: 0; z-index: 61; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+.workshop-mobile-dialog__header { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 12px; padding: max(12px, env(safe-area-inset-top)) 18px 12px; border-bottom: 1px solid var(--work-line); }
+.workshop-page .workshop-mobile-dialog__header h2 { font-size: 19px; font-weight: 600; letter-spacing: -.02em; }
+.workshop-page .workshop-mobile-dialog__header p { font-size: 12px; line-height: 1.5; color: var(--work-muted); margin-top: 3px; }
+.workshop-mobile-dialog__header > button { display: grid; place-items: center; min-width: 44px; height: 44px; border: 1px solid var(--work-line); border-radius: 50%; }
+.workshop-mobile-dialog__body { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+.workshop-mobile-dialog .workshop-stage { position: relative; top: auto; flex-shrink: 0; width: 100%; height: auto; min-height: 0; max-height: none; border: 0; border-bottom: 1px solid var(--work-line); }
+.workshop-mobile-dialog .workshop-stage__heading { position: relative; inset: auto; padding: 12px 18px 0; }
+.workshop-mobile-dialog .workshop-visual { position: relative; inset: auto; width: 100%; height: min(29dvh, 280px); }
+.workshop-mobile-dialog .workshop-stage__bottom { position: relative; inset: auto; padding: 0 16px 12px; gap: 10px; }
+.workshop-mobile-dialog .workshop-cue { padding: 12px; gap: 0; }
+.workshop-mobile-dialog .workshop-cue__index, .workshop-mobile-dialog .workshop-stage__note { display: none; }
+.workshop-mobile-dialog .workshop-cue strong { font-size: 13px; }
+.workshop-page.workshop-mobile-dialog .workshop-cue p { font-size: 12px; line-height: 1.5; }
+.workshop-mobile-dialog .workshop-machines button { padding-inline: 9px; }
+.workshop-mobile-dialog__controls { overflow-y: auto; overscroll-behavior: contain; min-height: 0; padding: 20px 20px max(24px, env(safe-area-inset-bottom)); }
+.workshop-mobile-dialog__controls > .workshop-motion { margin-block: 12px; font-size: 12px; }
+.workshop-mobile-dialog__controls > .workshop-button { width: 100%; }
+.workshop-mobile-dialog .demo-context-note { display: none; }
+.workshop-mobile-dialog .demo-workflow { margin-top: 0; padding-top: 0; border-top: 0; }
+@media (height < 650px) {
+  .workshop-mobile-dialog__body { overflow-y: auto; display: block; }
+  .workshop-mobile-dialog__controls { overflow: visible; }
+  .workshop-mobile-dialog .workshop-visual { height: 240px; }
 }
 @media (max-height: 600px) and (min-width: 761px) {
   .workshop-stage { min-height: 0; --stage-bottom: 80px; }

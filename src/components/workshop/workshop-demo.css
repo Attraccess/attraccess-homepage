@@ -71,7 +71,7 @@
   cursor: pointer;
 }
 .demo-workflow .demo-link:hover { text-decoration-thickness: 2px; }
-.demo-workflow :is(.demo-button, .demo-link, .demo-summary, input):focus-visible { outline: 2px solid var(--demo-brand); outline-offset: 3px; }
+.demo-workflow :is(.demo-button, .demo-link, .demo-summary, .demo-title, input):focus-visible { outline: 2px solid var(--demo-brand); outline-offset: 3px; }
 .demo-workflow svg { width: 18px; height: 18px; flex-shrink: 0; }
 .demo-workflow .demo-card { justify-content: space-between; text-align: left; min-height: 76px; }
 .demo-card > span { flex: 1; min-width: 0; }
@@ -103,10 +103,10 @@
 .demo-status { display: flex; align-items: flex-start; gap: 8px; font-weight: 600; }
 .demo-status > svg { margin-top: 2px; color: var(--demo-brand); }
 .demo-time { font-variant-numeric: tabular-nums; }
-.demo-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 0; border-block: 1px solid var(--demo-line); }
-.demo-flow > span { display: inline-flex; align-items: center; gap: 6px; }
+.demo-flow { display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-block: 1px solid var(--demo-line); }
+.demo-flow > .demo-text { min-width: 0; }
 .demo-flow[data-enabled="true"] { border-color: var(--demo-brand); }
-.demo-flow > svg { color: var(--demo-brand); }
+.demo-flow > svg { margin-top: 2px; color: var(--demo-brand); }
 .demo-workflow .demo-benefit { padding: 13px 0 13px 12px; border-left: 2px solid var(--demo-brand); }
 
 .demo-record { display: grid; gap: 12px; padding-top: 12px; border-top: 1px solid var(--demo-line); }
@@ -134,8 +134,6 @@
 .demo-capture > img { display: block; width: 100%; height: auto; border: 1px solid var(--demo-line); border-radius: 4px; background: #fff; }
 .demo-capture > figcaption { margin-top: 10px; color: var(--demo-muted); font-size: 14px; line-height: 1.5; }
 .demo-capture .demo-link { display: flex; }
-.demo-sources { margin: 8px 0 0; padding: 0; list-style: none; }
-.demo-sources .demo-link { width: 100%; justify-content: space-between; }
 
 @media (forced-colors: active) {
   .demo-bars > span { border: 1px solid CanvasText; }

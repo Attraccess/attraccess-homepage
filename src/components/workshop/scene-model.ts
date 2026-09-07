@@ -201,22 +201,6 @@ export function createWorkshop(): {
     }) });
   }
 
-  function annotation(title: string, detail: string, color = teal) {
-    return basic({ map: texture(512, 144, (ctx) => {
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, 512, 144);
-      ctx.fillStyle = color;
-      ctx.fillRect(0, 0, 10, 144);
-      ctx.strokeStyle = "#d5dede";
-      ctx.strokeRect(11, 1, 500, 142);
-      ctx.font = "600 32px sans-serif";
-      ctx.fillText(title, 28, 59, 456);
-      ctx.fillStyle = "#5d6b6e";
-      ctx.font = "24px sans-serif";
-      ctx.fillText(detail, 28, 106, 456);
-    }) });
-  }
-
   const contactTexture = texture(128, 128, (ctx) => {
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, 128, 128);
@@ -634,14 +618,6 @@ export function createWorkshop(): {
   const accessory = group("Schiebestock / Lea inspects and returns this accessory", saw);
   mesh(accessory, pushstickGeometry, m.wood, [0, 0, 0]);
   const accessoryFocus = group("Illustration / human pre-use inspection", saw);
-  const inspectionMaterials = {
-    pending: annotation("Schiebestock ansehen", "Lea prueft das Zubehoer", amber),
-    checked: annotation("Von Lea geprueft", "Antwort noch nicht abgesendet"),
-    submitted: annotation("Antwort erfasst", "Zubehoer von Lea geprueft"),
-  };
-  const inspectionLabel = plane(accessoryFocus, 1.04, 0.2925, [-0.35, 1.57, 0.78], inspectionMaterials.pending);
-  inspectionLabel.userData.keepSeparate = true;
-  rod(accessoryFocus, [-0.45, 1.415, 0.77], [-0.45, 1.1, 0.47], 0.006, m.teal);
   const focusMaterials = [amber, teal].map((color) => basic({ map: texture(256, 160, (ctx) => {
     ctx.strokeStyle = color;
     ctx.lineWidth = 10;
@@ -707,16 +683,6 @@ export function createWorkshop(): {
   box(brush, [0.25, 0.033, 0.05], [-0.21, 0.016, 0], m.wood, 0.014);
   for (let i = 0; i < 9; i++) box(brush, [0.017, 0.037, 0.095], [-0.102 + i * 0.025, -0.019, 0], m.graphite);
 
-  const cleanupFocus = group("Illustration / physical cleanup before the end form", saw);
-  const cleanupMaterials = {
-    dirty: annotation("Lea raeumt selbst auf", "Spaene weg, Zubehoer zurueck", amber),
-    cleaned: annotation("Von Lea aufgeraeumt", "Sitzung noch nicht beendet"),
-    form: annotation("Jetzt am Leser bestaetigen", "Leas Antwort, keine Messung"),
-    confirmed: annotation("Bereit fuer die Uebergabe", "Lea hat die Sitzung beendet"),
-  };
-  const cleanupLabel = plane(cleanupFocus, 1.22, 0.343, [-0.29, 1.95, 0.52], cleanupMaterials.dirty);
-  cleanupLabel.userData.keepSeparate = true;
-
   const band = machine("bandsaw", "02 / Bandsaw");
   shadow(band, 0.03, 0.04, 1.7, 1.4);
   box(band, [0.99, 0.08, 0.72], [0, 0.06, 0], m.graphite, 0.025);
@@ -751,18 +717,6 @@ export function createWorkshop(): {
   reader(band, "bandsaw", [0.9, 1.35, 0.58]);
   controlBox(band, [0.5, 0.66, 0.08], "02");
   pipe(band, [[0.9, 1.08, 0.51], [0.85, 0.78, 0.42], [0.64, 0.47, 0.16], [0.58, 0.44, 0.08]], 0.014, m.graphite, 16);
-
-  // Observation/report annotations belong to the illustration, not a fabricated reader-native report UI.
-  const maintenanceFocus = group("Illustration / observation, web request and authorized maintenance", band);
-  const maintenanceMaterials = {
-    observed: annotation("Problem beobachtet", "Noch keine Wartung", amber),
-    reported: annotation("Im Web gemeldet", "Meldung allein sperrt nicht", amber),
-    active: annotation("Wartung aktiv", "Neue Nutzung gesperrt", danger),
-    resolved: annotation("Wartung beendet", "Nach Reparatur durch Personal"),
-  };
-  const maintenanceLabel = plane(maintenanceFocus, 1.15, 0.323, [0.13, 1.84, 0.48], maintenanceMaterials.observed);
-  maintenanceLabel.userData.keepSeparate = true;
-  rod(maintenanceFocus, [0.13, 1.666, 0.48], [0.15, 1.42, 0.3], 0.007, m.steelDark);
 
   const cnc = machine("cnc", "03 / CNC router");
   shadow(cnc, 0, 0, 3.45, 2.45);
@@ -936,17 +890,11 @@ export function createWorkshop(): {
     routeGroups[id] = routeGroup;
   }
   pipe(routeGroups["table-saw"], [[-0.5, 1.06, 1.83], [-0.51, 0.95, 1.79], [-0.59, 0.67, 1.64], [-0.63, 0.4, 1.45]], 0.023, routeMaterial, 16);
-  const controlTrace = group("Configured flow, not proof of machine actuation", saw);
+  const controlTrace = group("Configured control route, not proof of machine actuation", saw);
   const controlColors = { configured: basic({ color: teal }), unconfigured: basic({ color: "#d5dede" }) };
   const controlOutline = plane(controlTrace, 0.48, 0.56, [0.81, 0.62, 0.44], controlColors.unconfigured);
   controlOutline.userData.keepSeparate = true;
   controlOutline.raycast = () => undefined;
-  const controlMaterials = {
-    configured: annotation("Flow konfiguriert", "Nutzung -> MQTT"),
-    unconfigured: annotation("Sitzung aktiv", "Schaltung nur mit Flow", "#5d6b6e"),
-  };
-  const controlLabel = plane(controlTrace, 0.83, 0.234, [0.79, 0.24, 0.69], controlMaterials.unconfigured);
-  controlLabel.userData.keepSeparate = true;
 
   const planning = group("Pilot planning table");
   worktable(planning, 1.49, 2.54, 1.91, 1.02, 0.91);
@@ -1095,27 +1043,21 @@ export function createWorkshop(): {
     accessory.position.set(...(cleaned ? [-0.595, 0.64, 0.614] as Point : [-0.46, 1.055, 0.4] as Point));
     accessory.rotation.set(...(cleaned ? [0, 0, Math.PI / 2] as Point : [-Math.PI / 2, 0, -0.12] as Point));
     accessoryFocus.visible = view === "evaluate";
-    inspectionLabel.material = inspectionMaterials[story.preflight];
     accessoryMarker.material = focusMaterials[story.preflight === "pending" ? 0 : 1];
-    cleanupFocus.visible = view === "record";
-    cleanupLabel.material = cleanupMaterials[story.handoff];
-    maintenanceFocus.visible = view === "connect" || view === "bandsaw";
-    maintenanceLabel.material = maintenanceMaterials[story.maintenance];
 
     // Action ownership survives batching on these groups; invisible ancestors must be filtered by the renderer.
     delete readerFaces["table-saw"].userData.storyAction;
     if (view === "identify" && story.identity === "locked") readerFaces["table-saw"].userData.storyAction = "tap-card";
-    for (const prop of [debris, accessory, brush, cleanupFocus, accessoryFocus]) delete prop.userData.storyAction;
+    for (const prop of [debris, accessory, brush, accessoryFocus]) delete prop.userData.storyAction;
     if (view === "evaluate" && story.preflight !== "submitted") {
       accessory.userData.storyAction = accessoryFocus.userData.storyAction = "check-accessory";
     }
     if (view === "record" && story.handoff === "dirty") {
-      for (const prop of [debris, accessory, brush, cleanupFocus]) prop.userData.storyAction = "clean-workspace";
+      for (const prop of [debris, accessory, brush]) prop.userData.storyAction = "clean-workspace";
     }
     card.visible = view === "identify" && story.identity !== "locked";
     const controlState = story.automation ? "configured" : "unconfigured";
     controlTrace.visible = view === "apply" || (view === "table-saw" && activeSession);
-    controlLabel.material = controlMaterials[controlState];
     controlOutline.material = controlColors[controlState];
 
     for (const id of ["table-saw", "bandsaw", "cnc"] as const) {
@@ -1129,7 +1071,7 @@ export function createWorkshop(): {
       readers[id].lamp.color.set(color);
       readers[id].lamp.emissive.set(color);
       readers[id].ring.visible = selected === id;
-      // A session/report does not imply physical switching. Colored signal paths require the configured-flow toggle.
+      // A session/report does not imply physical switching. Colored signal paths require configured automation.
       routeGroups[id].visible = story.automation && (view === "pilot" || (id === "table-saw" && activeSession));
     }
     root.updateMatrixWorld(true);

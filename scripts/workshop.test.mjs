@@ -165,21 +165,36 @@ async function sceneState(page, key, live = false) {
   }
 }
 
-async function chapter(page, anchor) {
-  if (await page.evaluate(() => innerWidth <= 760)) await page.select(".workshop-chapters select", String(Object.keys(chapters).indexOf(anchor)));
+async function closeMobileDemo(page) {
+  await page.locator('.workshop-mobile-dialog__header button[aria-label]').click();
+  await page.waitForSelector('.workshop-mobile-dialog', { hidden: true });
+}
+
+async function chapter(page, anchor, { preview = true } = {}) {
+  const mobile = await page.evaluate(() => innerWidth <= 760);
+  if (mobile && await page.$('.workshop-mobile-dialog')) await closeMobileDemo(page);
+  if (mobile) await page.select(".workshop-chapters select", String(Object.keys(chapters).indexOf(anchor)));
   else await page.locator(`.workshop-chapters__links a[href="#${anchor}"]`).click();
   try {
     await page.waitForFunction((anchor) => location.hash === `#${anchor}` && document.querySelector(`.workshop-chapters a[href="#${anchor}"]`)?.getAttribute("aria-current") === "step", {}, anchor);
   } catch (cause) {
-    const state = await page.evaluate(() => ({ hash: location.hash, scrollY, selected: document.querySelector(".workshop-chapters select").value, chapter: document.querySelector(".workshop-stage").dataset.chapterView }));
+    const state = await page.evaluate(() => ({ hash: location.hash, scrollY, selected: document.querySelector(".workshop-chapters select").value, chapter: document.querySelector(".workshop-stage")?.dataset.chapterView }));
     throw new Error(`Chapter navigation to #${anchor} failed: ${JSON.stringify(state)}`, { cause });
+  }
+  if (mobile && preview) {
+    await page.locator(`#${anchor} .workshop-mobile-preview`).click();
+    await page.waitForSelector('.workshop-mobile-dialog', { visible: true });
+    assert.equal(await page.$$eval('.workshop-stage', (elements) => elements.length), 1);
+    assert.equal(await page.$$eval('.workshop-mobile-dialog .demo-workflow', (elements) => elements.length), ['system', 'pilot'].includes(anchor) ? 0 : 1);
+    assert.equal(await page.$('.workshop-mobile-dialog a[href^="http"]'), null);
+    assert.doesNotMatch(await page.$eval('.workshop-mobile-dialog', (element) => element.textContent), /github|pull request|issuecomment|\b\S+\.tsx\b/i);
   }
 }
 
 async function activate(page, name, key, { live = false, touch = false } = {}) {
   const selector = actionSelector(name);
   await page.waitForSelector(selector, { visible: true });
-  // Put controls below the sticky mobile illustration, not underneath its midpoint.
+  // Scroll the controls pane on mobile without moving its independent illustration.
   await page.$eval(selector, (element) => element.scrollIntoView({ behavior: "instant", block: "end" }));
   if (touch) assert.ok(await page.$eval(selector, (element) => (element.labels?.[0] ?? element).getBoundingClientRect().height >= 44), `${name} needs a 44px touch target`);
   const draws = live ? await page.evaluate(() => window.workshopDraws) : 0;
@@ -243,22 +258,22 @@ const workflows = {
     await chapter(page, "loop");
     await sceneState(page, "identify", options.live);
     await activate(page, "tap-card", "identify-identified", options);
-    assert.match(await page.$eval('#loop [role="status"]', (element) => element.innerText), /hasn't started a session|startet noch keine Nutzung/i);
-    assert.equal(await page.$eval('#loop .demo-reader', (element) => element.lang), "de");
-    assert.match(await page.$eval('#loop .demo-reader', (element) => element.innerText), /Lea/);
+    assert.match(await page.$eval('[data-testid="demo-identify"] [role="status"]', (element) => element.innerText), /hasn't started a session|startet noch keine Nutzung/i);
+    assert.equal(await page.$eval('[data-testid="demo-identify"] .demo-reader', (element) => element.lang), "de");
+    assert.match(await page.$eval('[data-testid="demo-identify"] .demo-reader', (element) => element.innerText), /Lea/);
     await activate(page, "next-permissions");
     await sceneState(page, "evaluate", options.live);
     assert.equal(await page.$eval(actionSelector("submit-check"), (button) => button.disabled), true);
     await chapter(page, "loop");
     await sceneState(page, "identify-identified", options.live);
     await activate(page, "show-supervision", "identify-supervision", options);
-    const image = `#loop img[src="${supervisionImage}"]`;
+    const image = `[data-testid="demo-identify"] img[src="${supervisionImage}"]`;
     await page.$eval(image, (element) => element.scrollIntoView({ behavior: "instant", block: "end" }));
     await imageLoaded(page, image);
     assert.deepEqual(await page.$eval(image, (image) => [image.naturalWidth, image.naturalHeight]), [480, 480]);
     if (options.live) assert.ok(await page.evaluate((path) => window.workshopTextures.some((image) => image.path === path && image.width === 480 && image.height === 480), supervisionImage), "The actual supervision PNG must reach the GPU, not just the HTML example");
-    assert.match(await page.$eval('#loop .demo-capture a', (link) => link.href), /\/pull\/1816#issuecomment-/);
-    assert.equal(await page.$('#loop [data-action="next-permissions"]'), null, "A supervision prompt must not approve usage");
+    assert.match(await page.$eval('[data-testid="demo-identify"] .demo-capture', (element) => element.innerText), /Alex/);
+    assert.equal(await page.$('[data-testid="demo-identify"] [data-action="next-permissions"]'), null, "A supervision prompt must not approve usage");
     await activate(page, "reset-identity", "identify", options);
   },
   "preflight requires a deliberate answer and local submit": async (page, options) => {
@@ -281,13 +296,13 @@ const workflows = {
     await sceneState(page, "evaluate-submitted", options.live);
     await activate(page, "reset-check", "evaluate", options);
   },
-  "configured MQTT flow can be enabled and disabled independently": async (page, options) => {
+  "configured extraction control can be enabled and disabled independently": async (page, options) => {
     await chapter(page, "release");
     await sceneState(page, "apply", options.live);
     assert.equal(await page.$eval(actionSelector("toggle-automation"), (input) => input.checked), false);
     await activate(page, "toggle-automation", "apply-automation", options);
-    assert.match(await page.$eval('.demo-flow[data-enabled="true"]', (element) => element.innerText), /Usage Started.*MQTT/s);
-    assert.match(await page.$eval('#release .demo-reader', (element) => element.innerText), /Lea.*00:18:42/s);
+    assert.match(await page.$eval('.demo-flow[data-enabled="true"]', (element) => element.innerText), /starting a session.*signal.*extraction|Sitzungsstart.*Einschaltsignal.*Absaugung/s);
+    assert.match(await page.$eval('[data-testid="demo-apply"] .demo-reader', (element) => element.innerText), /Lea.*00:18:42/s);
     await activate(page, "toggle-automation", "apply", options);
     assert.equal(await page.$eval(".demo-flow", (element) => element.dataset.enabled), "false");
   },
@@ -324,16 +339,16 @@ const workflows = {
     await prepareReport(page, options);
     await activate(page, "report-problem", "connect-reported", options);
     assert.ok(await page.evaluate(() => window.workshopSubmits.includes("demo-connect")));
-    assert.match(await page.$eval('#operations [role="status"]', (element) => element.innerText), /not.*blocked|nicht.*gesperrt/i);
+    assert.match(await page.$eval('[data-testid="demo-connect"] [role="status"]', (element) => element.innerText), /not.*blocked|nicht.*gesperrt/i);
     assert.equal(await page.$eval(".workshop-cue", (element) => element.dataset.tone), "normal");
     assert.equal(await page.$eval(".demo-reason", (element) => element.innerText), "Blade chipped during inspection");
     assert.equal(await page.$(actionSelector("complete-maintenance")), null);
     await activate(page, "start-maintenance", "connect-active", options);
     assert.equal(await page.$eval(".workshop-cue", (element) => element.dataset.tone), "danger");
-    assert.match(await page.$eval('#operations [role="status"]', (element) => element.innerText), /blocked|gesperrt/i);
+    assert.match(await page.$eval('[data-testid="demo-connect"] [role="status"]', (element) => element.innerText), /blocked|gesperrt/i);
     await activate(page, "complete-maintenance", "connect-resolved", options);
     assert.equal(await page.$eval(".workshop-cue", (element) => element.dataset.tone), "normal");
-    assert.match(await page.$eval('#operations [role="status"]', (element) => element.innerText), /available again|wieder/i);
+    assert.match(await page.$eval('[data-testid="demo-connect"] [role="status"]', (element) => element.innerText), /available again|wieder/i);
     await activate(page, "reset-maintenance", "connect", options);
     assert.equal(await page.$(".demo-reason"), null);
   },
@@ -528,7 +543,8 @@ for (const mode of ["reduced", "prerender", "save-data"]) {
 for (const width of [390, 320]) {
   test(`mobile ${width}px: touch story, bilingual menu, keyboard access and overflow`, { timeout: 90000 }, async (t) => {
     const { page, requests } = await openPage(t, { width, height: 844, language: "de" });
-    await sceneState(page, "overview");
+    assert.equal(await page.$('.workshop-stage, .demo-workflow'), null, 'Mobile articles have no permanent stage or inline demos');
+    assert.equal(await page.$$eval('[data-chapter] .workshop-mobile-preview', (elements) => elements.length), 7);
     await noRendererRequests(page, requests);
     await noOverflow(page);
     const smallTargets = await page.$$eval('.workshop-machines button, .prototype-header__tools > button, .workshop-motion, .workshop-chapters select, .demo-button, .demo-link, .demo-check', (elements) => elements.filter((element) => {
@@ -542,10 +558,10 @@ for (const width of [390, 320]) {
     await page.waitForFunction(() => document.documentElement.lang === "en");
     assert.equal(await page.$eval(".prototype-menu", (button) => button.getAttribute("aria-expanded")), "true");
     assert.equal(await page.$eval(".prototype-menu", (button) => button.getAttribute("aria-label")), "Close menu");
-    assert.equal(await page.$eval('#home-mobile-navigation a[href="/#loop"]', (link) => link.innerText), "Control loop");
+    assert.equal(await page.$eval('#home-mobile-navigation a[href="/#loop"]', (link) => link.innerText), "Workflow");
     await page.tap('#home-mobile-navigation a[href="/#loop"]');
     await page.waitForSelector("#home-mobile-navigation[hidden]");
-    await sceneState(page, "identify");
+    assert.equal(await page.$('.workshop-mobile-dialog, .workshop-stage'), null, 'Article links must not open the demo');
     for (const run of Object.values(workflows)) { await run(page, { touch: true }); await noOverflow(page); }
     await chapter(page, "permissions");
     await page.focus(actionSelector("check-accessory"));
@@ -556,7 +572,8 @@ for (const width of [390, 320]) {
     assert.equal(await page.evaluate(() => document.activeElement.matches(":focus-visible")), true);
     await page.keyboard.press("Enter");
     await sceneState(page, "evaluate-submitted");
-    await chapter(page, "system");
+    await page.waitForFunction(() => document.activeElement?.matches('[data-testid="demo-evaluate"] .demo-title'));
+    await chapter(page, "system", { preview: false });
     await page.tap(".prototype-menu");
     await page.keyboard.press("Escape");
     await page.waitForSelector("#home-mobile-navigation[hidden]");
@@ -564,6 +581,166 @@ for (const width of [390, 320]) {
     await noRendererRequests(page, requests);
   });
 }
+
+for (const language of ['en', 'de']) {
+  test(`mobile dialog ${language}: Escape, focus restoration, persistent state and cross-step links`, { timeout: 60000 }, async (t) => {
+    const { page } = await openPage(t, { width: 390, language });
+    await chapter(page, 'loop');
+    const closeLabel = language === 'de' ? 'Zurück zum Artikel' : 'Back to the story';
+    assert.equal(await page.$eval('.workshop-mobile-dialog__header button', (button) => button.getAttribute('aria-label')), closeLabel);
+    const article = await page.evaluate(() => ({ hash: location.hash, scrollY, chapter: document.querySelector('.workshop-chapters select').value }));
+    await page.focus(actionSelector('tap-card'));
+    await page.keyboard.press('Enter');
+    await sceneState(page, 'identify-identified');
+    await page.waitForFunction(() => document.activeElement?.matches('[data-testid="demo-identify"] .demo-title'));
+    for (const [action, state] of [['next-permissions', 'evaluate'], ['next-operations', 'connect']]) {
+      await activate(page, action, state);
+      assert.deepEqual(await page.evaluate(() => ({ hash: location.hash, scrollY, chapter: document.querySelector('.workshop-chapters select').value })), article, 'Modal links must not navigate the underlying article');
+      assert.equal(await page.$$eval('.workshop-mobile-dialog .demo-workflow', (elements) => elements.length), 1);
+    }
+    await page.keyboard.press('Escape');
+    await page.waitForSelector('.workshop-mobile-dialog', { hidden: true });
+    await page.waitForFunction(() => document.activeElement?.matches('#loop .workshop-mobile-preview'));
+    await page.keyboard.press('Enter');
+    await sceneState(page, 'identify-identified');
+    await activate(page, 'next-permissions', 'evaluate');
+    await activate(page, 'check-accessory', 'evaluate-checked');
+    await activate(page, 'submit-check', 'evaluate-submitted');
+    await activate(page, 'next-release', 'apply');
+    await activate(page, 'toggle-automation', 'apply-automation');
+    await activate(page, 'next-sessions', 'record');
+    await activate(page, 'clean-workspace', 'record-cleaned');
+    await activate(page, 'end-session', 'record-form');
+    await activate(page, 'handoff-answer', 'record-form-checked');
+    await closeMobileDemo(page);
+    await page.waitForFunction(() => document.activeElement?.matches('#loop .workshop-mobile-preview'));
+    for (const [anchor, key] of [['permissions', 'evaluate-submitted'], ['release', 'apply-automation'], ['sessions', 'record-form-checked']]) {
+      await chapter(page, anchor);
+      await sceneState(page, key);
+    }
+    assert.equal(await page.$eval(actionSelector('handoff-answer'), (input) => input.checked), true);
+    assert.equal(await page.$eval(actionSelector('confirm-handoff'), (button) => button.disabled), false);
+    const close = '.workshop-mobile-dialog__header button';
+    await page.focus(close);
+    await page.keyboard.down('Shift');
+    await page.keyboard.press('Tab');
+    await page.keyboard.up('Shift');
+    assert.equal(await page.evaluate(() => Boolean(document.activeElement?.closest('.workshop-mobile-dialog'))), true, 'Tab must remain trapped in the dialog');
+    await page.keyboard.press('Tab');
+    assert.equal(await page.evaluate(() => document.activeElement?.matches('.workshop-mobile-dialog__header button')), true);
+    await chapter(page, 'operations');
+    await activate(page, 'open-report');
+    await fillText(page, actionSelector('problem-reason'), 'Blade needs inspection');
+    await activate(page, 'report-problem', 'connect-reported');
+    await closeMobileDemo(page);
+    await chapter(page, 'operations');
+    assert.equal(await page.$eval('.demo-reason', (element) => element.textContent), 'Blade needs inspection');
+  });
+}
+
+test('mobile live renderer downloads only on opening a preview and unmounts on close', { timeout: 60000 }, async (t) => {
+  const { page, requests } = await openPage(t, { width: 390, mode: 'live' });
+  await noRendererRequests(page, requests);
+  for (const anchor of Object.keys(chapters)) await chapter(page, anchor, { preview: false });
+  await noRendererRequests(page, requests);
+  await chapter(page, 'loop');
+  await sceneState(page, 'identify', true);
+  assert.ok(requests.some((url) => rendererModule.test(url)));
+  await activate(page, 'tap-card', 'identify-identified', { live: true, touch: true });
+  const canvas = await page.$('canvas');
+  await closeMobileDemo(page);
+  assert.equal(await canvas.evaluate((element) => element.isConnected), false);
+  assert.equal(await page.$('.workshop-stage, canvas'), null);
+  const draws = await page.evaluate(() => window.workshopDraws);
+  await page.evaluate(async () => { for (let i = 0; i < 12; i++) await new Promise(requestAnimationFrame); });
+  assert.equal(await page.evaluate(() => window.workshopDraws), draws);
+  await page.locator('#loop .workshop-mobile-preview').click();
+  await sceneState(page, 'identify-identified', true);
+});
+
+test('loaded assets do not time out while the workshop is offscreen', { timeout: 45000 }, async (t) => {
+  const { page, releaseTextures } = await openPage(t, { mode: 'live', gateTextures: true });
+  await page.$eval('.workshop-newsletter', (element) => element.scrollIntoView({ behavior: 'instant' }));
+  await page.waitForFunction(() => document.querySelector('.workshop-stage').getBoundingClientRect().bottom <= 0);
+  await releaseTextures();
+  await delay(11000);
+  assert.ok(await page.$('.workshop-canvas'), 'An offscreen scene with loaded assets must not fall back');
+  await chapter(page, 'system');
+  await sceneState(page, 'overview', true);
+});
+
+for (const [width, height] of [[390, 844], [320, 700], [390, 650], [320, 500]]) {
+  test(`mobile ${width}x${height}: modal scene and controls scroll in the correct container`, { timeout: 45000 }, async (t) => {
+    const { page } = await openPage(t, { width, height });
+    await chapter(page, 'permissions');
+    const layout = await page.evaluate(() => {
+      const controls = document.querySelector('.workshop-mobile-dialog__controls');
+      const body = document.querySelector('.workshop-mobile-dialog__body');
+      const stage = document.querySelector('.workshop-stage');
+      const before = stage.getBoundingClientRect().top;
+      const scroll = innerHeight >= 650 ? controls : body;
+      scroll.scrollTop = scroll.scrollHeight;
+      return { controlsOverflow: getComputedStyle(controls).overflowY, bodyOverflow: getComputedStyle(body).overflowY, scrolled: scroll.scrollTop, before, after: stage.getBoundingClientRect().top, bottom: stage.getBoundingClientRect().bottom, viewport: innerHeight };
+    });
+    assert.ok(layout.scrolled > 0, JSON.stringify(layout));
+    if (height >= 650) {
+      assert.equal(layout.controlsOverflow, 'auto');
+      assert.equal(layout.after, layout.before, 'The scene must stay visible while controls scroll');
+      assert.ok(layout.after >= 0 && layout.bottom <= layout.viewport);
+    } else {
+      assert.equal(layout.bodyOverflow, 'auto');
+      assert.equal(layout.controlsOverflow, 'visible');
+      assert.ok(layout.after < layout.before, 'Short screens scroll the whole dialog body');
+    }
+    await activate(page, 'check-accessory', 'evaluate-checked', { touch: true });
+    await activate(page, 'submit-check', 'evaluate-submitted', { touch: true });
+    await noOverflow(page);
+  });
+}
+
+test('keyboard replacement focus stays in the active desktop workflow', { timeout: 60000 }, async (t) => {
+  const { page } = await openPage(t);
+  for (const [anchor, actions] of [
+    ['loop', [['tap-card', '.demo-title'], ['show-supervision', '.demo-title']]],
+    ['permissions', [['check-accessory', actionSelector('check-accessory')], ['submit-check', '.demo-title']]],
+    ['operations', [['open-report', actionSelector('problem-reason')], ['cancel-report', actionSelector('open-report')], ['open-report', actionSelector('problem-reason')], ['report-problem', '.demo-title'], ['start-maintenance', '.demo-title'], ['complete-maintenance', '.demo-title']]],
+  ]) {
+    await chapter(page, anchor);
+    for (const [action, focus] of actions) {
+      await page.focus(actionSelector(action));
+      await page.keyboard.press(action === 'check-accessory' ? 'Space' : 'Enter');
+      await page.waitForFunction((selector) => document.activeElement?.matches(selector), {}, `[data-testid="demo-${chapters[anchor]}"] ${focus}`);
+    }
+  }
+});
+
+test('contact starts at the top and privacy opens a new tab without losing form drafts', { timeout: 60000 }, async (t) => {
+  const { page } = await openPage(t);
+  for (const [form, privacy, fields] of [
+    ['.workshop-newsletter', '.workshop-newsletter a[href="/datenschutz"]', { email: 'draft@example.invalid', name: 'Draft owner' }],
+    ['.contact-form', '#contact-privacy a', { name: 'Draft owner', organization: 'Workshop', email: 'draft@example.invalid', message: 'Please retain this draft.' }],
+  ]) {
+    if (form === '.contact-form') {
+      await chapter(page, 'pilot');
+      assert.ok(await page.evaluate(() => scrollY > 500));
+      await page.locator('#pilot a[href="/contact"]').click();
+      await page.waitForSelector('.contact-form');
+      await page.waitForFunction(() => scrollY === 0);
+    }
+    for (const [name, value] of Object.entries(fields)) await fillText(page, `${form} [name="${name}"]`, value);
+    assert.deepEqual(await page.$eval(privacy, (link) => [link.target, link.relList.contains('noopener'), link.relList.contains('noreferrer')]), ['_blank', true, true]);
+    const popupReady = new Promise((resolve) => page.once('popup', resolve));
+    await page.locator(privacy).click();
+    const popup = await popupReady;
+    try {
+      await popup.waitForSelector('h1');
+      assert.equal(new URL(popup.url()).pathname, '/datenschutz');
+      assert.match(await popup.$eval('h1', (element) => element.innerText), /Datenschutzerkl/);
+      assert.equal(await popup.evaluate(() => window.opener), null);
+      for (const [name, value] of Object.entries(fields)) assert.equal(await page.$eval(`${form} [name="${name}"]`, (input) => input.value), value);
+    } finally { await popup.close(); }
+  }
+});
 
 test("WebGL failure leaves the story usable with real posters", { timeout: 90000 }, async (t) => {
   const { page, requests } = await openPage(t, { mode: "webgl-failure" });
@@ -584,12 +761,12 @@ test("failed required reader texture uses illustrations rather than a fabricated
 
 test("mobile chapter picker returns to the current hash after ordinary scrolling", { timeout: 45000 }, async (t) => {
   const { page } = await openPage(t, { width: 390, height: 844 });
-  await chapter(page, "system");
+  await chapter(page, "system", { preview: false });
   await page.$eval("#features", (section) => section.scrollIntoView({ behavior: "instant", block: "start" }));
-  await page.waitForSelector('.workshop-stage[data-chapter-view="pilot"]');
+  await page.waitForFunction(() => document.querySelector('.workshop-chapters select').value === '6');
   assert.equal(new URL(page.url()).hash, "#system");
-  await chapter(page, "system");
-  await sceneState(page, "overview");
+  await chapter(page, "system", { preview: false });
+  assert.equal(await page.$('.workshop-stage, .workshop-mobile-dialog'), null);
 });
 
 for (const preference of ["absent", "invalid", "blocked"]) {
@@ -619,6 +796,7 @@ test("light/dark contrast, white reader UI, actual app assets and short-screen r
   for (const theme of ["light", "dark"]) {
     if (theme === "dark") await page.locator('button[aria-label="Change color scheme"]').click();
     await page.waitForFunction((theme) => document.documentElement.classList.contains("dark") === (theme === "dark"), {}, theme);
+    await chapter(page, "permissions");
     const contrasts = await page.evaluate(() => {
       function luminance(color) {
         const channels = color.match(/[\d.]+/g).slice(0, 3).map(Number).map((value) => {
@@ -627,7 +805,7 @@ test("light/dark contrast, white reader UI, actual app assets and short-screen r
         });
         return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
       }
-      return ["h1", "h1 em", ".workshop-lede", ".workshop-motion", ".prototype-header__tools > button", ".demo-note", ".demo-reader", ".demo-reader .demo-note"].map((selector) => {
+      return ["h1", "h1 em", ".workshop-lede", ".workshop-motion", ".prototype-header__tools > button", ".workshop-mobile-dialog__header h2", ".workshop-mobile-dialog__header p", ".workshop-mobile-dialog .workshop-motion", ".workshop-mobile-dialog .workshop-cue p", ".demo-note", ".demo-reader", ".demo-reader .demo-note"].map((selector) => {
         const element = document.querySelector(selector);
         let background = element;
         while (getComputedStyle(background).backgroundColor === "rgba(0, 0, 0, 0)") background = background.parentElement;
@@ -637,22 +815,22 @@ test("light/dark contrast, white reader UI, actual app assets and short-screen r
     });
     for (const [selector, ratio] of contrasts) assert.ok(ratio >= (selector.startsWith("h1") ? 3 : 4.5), `${theme} ${selector}: contrast ${ratio}`);
     assert.deepEqual(await page.$eval(".demo-reader", (element) => [getComputedStyle(element).backgroundColor, getComputedStyle(element).borderTopColor, element.lang]), ["rgb(255, 255, 255)", "rgb(37, 109, 123)", "de"]);
+    await closeMobileDemo(page);
     const image = `.workshop-app-preview img[src="/hero/app-screenshot${theme === "dark" ? "-dark" : ""}.png"]`;
     await page.waitForSelector(image);
     await page.$eval(image, (element) => element.scrollIntoView({ behavior: "instant", block: "end" }));
     await imageLoaded(page, image);
-    await page.waitForSelector('.workshop-stage[data-chapter-view="pilot"]');
+    await page.waitForFunction(() => document.querySelector('.workshop-chapters select').value === '6');
     await page.$eval("#system", (section) => section.scrollIntoView({ behavior: "instant", block: "start" }));
-    await page.waitForSelector('.workshop-stage[data-chapter-view="overview"]');
+    await page.waitForFunction(() => document.querySelector('.workshop-chapters select').value === '0');
   }
   for (const [width, height] of [[390, 700], [320, 500], [844, 390]]) {
     await page.setViewport({ width, height, deviceScaleFactor: 1, isMobile: true, hasTouch: true });
-    if (width <= 760) await page.waitForFunction(() => getComputedStyle(document.querySelector(".workshop-stage")).position === "relative");
-    await chapter(page, "permissions");
+    await chapter(page, "permissions", { preview: false });
     const bounds = await page.evaluate(() => ({ title: document.querySelector("#evaluate-title").getBoundingClientRect().top, nav: document.querySelector(".workshop-chapters").getBoundingClientRect().bottom }));
     assert.ok(bounds.title >= bounds.nav - 1, `Short-screen heading covered at ${width}x${height}: ${JSON.stringify(bounds)}`);
     await noOverflow(page);
-    await chapter(page, "system");
+    await chapter(page, "system", { preview: false });
     if (width > 760) assert.ok(await page.$eval(".workshop-machines", (element) => element.getBoundingClientRect().bottom <= innerHeight), "Landscape machine controls must fit on screen");
   }
   await noRendererRequests(page, requests);
@@ -663,20 +841,22 @@ test("bilingual owner information, feature accordions, audiences, newsletter and
   for (const language of ["de", "en"]) {
     if (language === "en") await page.locator('button[aria-label="Switch to English"]').click();
     await page.waitForFunction((language) => document.documentElement.lang === language, {}, language);
-    assert.match(await page.$eval("h1", (element) => element.innerText), language === "de" ? /Mehr Werkstatt/ : /More workshop/);
+    assert.match(await page.$eval("h1", (element) => element.innerText), language === "de" ? /Mehr Werkstatt/ : /More time making/);
     assert.equal(await page.$$eval("main", (elements) => elements.length), 1);
     assert.equal(await page.$$eval("[data-chapter] h1, [data-chapter] h2", (elements) => elements.filter((element) => element.innerText.trim()).length), 7);
     assert.equal(await page.$$eval("#features .workshop-feature-list details", (elements) => elements.length), 8);
     for (const details of await page.$$("#features .workshop-feature-list details")) {
       await (await details.$("summary")).click();
       assert.ok(await details.$eval("p", (element) => element.innerText.length > 20));
-      assert.ok(await details.$eval("a", (link) => link.href.startsWith(`https://docs.attraccess.org/#/${document.documentElement.lang}/`)));
+      assert.equal(await details.$("a"), null, 'Feature explanations stay on the page');
       await (await details.$("summary")).click();
     }
     assert.equal(await page.$$eval("#use-cases article", (elements) => elements.length), 3);
     assert.equal(await page.$$eval('#use-cases article a[href="/contact"]', (elements) => elements.length), 3);
     assert.match(await page.$eval(".workshop-safety", (element) => element.innerText), language === "de" ? /ersetzt keine Schutzvorrichtung/ : /does not replace guarding/);
-    assert.match(await page.$eval("#pilot", (element) => element.innerText), language === "de" ? /90 Tage/ : /90 days/);
+    assert.doesNotMatch(await page.$eval("#pilot", (element) => element.innerText), /90 (?:Tage|days)/);
+    assert.equal(await page.$$eval('.workshop-page a[href^="http"]', (links) => links.length), 0, 'Marketing pages must not send visitors to documentation, GitHub or other external resources');
+    assert.doesNotMatch(await page.$eval('main', (element) => element.textContent), /github|pull request|issuecomment|\b\S+\.tsx\b/i);
     const form = await page.$eval(".workshop-newsletter form", (form) => ({
       method: form.method, action: form.action, list: form.elements.namedItem("l").value,
       email: [form.elements.namedItem("email").type, form.elements.namedItem("email").required],
@@ -699,14 +879,14 @@ test("bilingual owner information, feature accordions, audiences, newsletter and
     assert.equal(await page.$eval(".workshop-newsletter form", (form) => form.checkValidity()), true);
     await page.locator('.workshop-newsletter input[type="checkbox"]').click();
     await fillText(page, '.workshop-newsletter input[name="email"]', "");
-    assert.deepEqual(await page.$$eval('.prototype-footer__links a[href^="/"]', (links) => links.map((link) => link.innerText)), language === "de" ? ["Datenschutz", "AGB"] : ["Privacy", "Terms"]);
+    assert.deepEqual(await page.$$eval('.prototype-footer__links a[href^="/"]', (links) => links.map((link) => link.innerText)), language === "de" ? ["Datenschutz", "AGB"] : ["Privacy (German)", "Terms (German)"]);
   }
   await chapter(page, "operations");
   await activate(page, "show-maintenance-source");
   const maintenanceImage = '#operations img[src="/reader-ui/brand-resource-maintenance.png"]';
   await page.$eval(maintenanceImage, (image) => image.scrollIntoView({ behavior: "instant", block: "end" }));
   await imageLoaded(page, maintenanceImage);
-  for (const [selector, path, title] of [['.workshop-newsletter a[href="/datenschutz"]', "/datenschutz", /Datenschutzerkl/], ['.prototype-footer__links a[href="/agb"]', "/agb", /Allgemeine.*AGB/]]) {
+  for (const [selector, path, title] of [['.prototype-footer__links a[href="/datenschutz"]', "/datenschutz", /Datenschutzerkl/], ['.prototype-footer__links a[href="/agb"]', "/agb", /Allgemeine.*AGB/]]) {
     await page.locator(selector).click();
     await page.waitForFunction((path) => location.pathname === path, {}, path);
     assert.match(await page.$eval("h1", (element) => element.innerText), title);

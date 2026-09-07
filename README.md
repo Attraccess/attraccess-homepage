@@ -49,16 +49,24 @@ Machine operation is never animated as an automatic consequence of authorization
 - `public/workshop/`: generated WebP stills for loading, reduced motion, data-saving,
   prerendering, explicit illustrated mode, and WebGL failures.
 
-The scene is downloaded only when enabled. Rendering stops when settled, hidden,
-or offscreen; stalled startup falls back to illustrations. All marketing content
-remains HTML, and the complete interactive story works without WebGL. On short
-phone screens the illustration stops sticking so it cannot cover the reading area.
+The scene is downloaded only when enabled, and on mobile only after opening a step.
+Rendering stops when settled, hidden, or offscreen; stalled asset loading falls back
+to illustrations. All marketing content remains HTML, and the complete interactive
+story works without WebGL.
+
+On phones, each chapter has a state-aware preview card instead of a tiny sticky
+workshop. Opening it shows a full-screen step with a larger scene and matching HTML
+controls. At heights of 650px and above, the controls scroll independently below
+the scene. Shorter screens scroll the whole view so controls remain reachable.
+Closing restores focus to the preview and keeps demo progress. Cross-step links
+stay within the focused view. Desktop retains the side-by-side scroll story.
 
 Examples are self-contained so readers can skip chapters. Physical cleanup is
 performed by the example person and does not automatically check the closing form.
 Reporting a fault is a separate web-app workflow; it does not block new usage until
 authorized personnel start maintenance. Source/capability boundaries and the PR
-artwork provenance are recorded in `docs/research/` and linked from the UI.
+artwork provenance are recorded in `docs/research/`, not exposed as customer copy.
+The marketing story is self-contained, without documentation, code or pull-request links.
 
 White/RAL 5021 branding uses the approved assets from homepage PR #24. The original
 supervision image is an LVGL host render from app PR #1816, not a device photo.

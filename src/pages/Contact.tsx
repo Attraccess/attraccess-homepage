@@ -39,7 +39,7 @@ export function Contact() {
           <label><span>{locale === "de" ? "Organisation" : "Organization"}</span><input name="organization" required autoComplete="organization" /></label>
           <label><span>{locale === "de" ? "E-Mail-Adresse" : "Email address"}</span><input name="email" type="email" required autoComplete="email" /></label>
           <label><span>{locale === "de" ? "Worum geht es?" : "What would you like to discuss?"}</span><textarea name="message" required rows={5} placeholder={locale === "de" ? "Zum Beispiel Maschinen, Nutzergruppen oder bestehende Prozesse." : "For example machines, user groups or existing workflows."} /></label>
-          <button className="prototype-button" type="submit">{c.submit}<ArrowRight /></button><p id="contact-privacy">{c.privacy} <Link to="/datenschutz">{marketing.privacy}</Link>.</p>
+          <button className="prototype-button" type="submit">{c.submit}<ArrowRight /></button><p id="contact-privacy">{c.privacy} <Link to="/datenschutz" hrefLang="de" target="_blank" rel="noopener noreferrer">{marketing.privacy} ({locale === "de" ? "öffnet in neuem Tab" : "opens in a new tab"})</Link>.</p>
           {submitted && <p className="contact-form__success" role="status"><Check />{c.sent}</p>}
         </form>
         <aside className="contact-aside"><Mail /><h2>{c.next}</h2><ol>{c.steps.map((step) => <li key={step}>{step}</li>)}</ol><a href="mailto:contact@attraccess.org">contact@attraccess.org</a></aside>
