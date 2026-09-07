@@ -9,6 +9,7 @@ The marketing homepage for [Attraccess](https://github.com/Attraccess/Attraccess
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
+- [Three.js](https://threejs.org/) (lazy-loaded workshop scene)
 
 ## Development
 
@@ -24,7 +25,64 @@ pnpm build
 
 # Lint
 pnpm lint
+
+# Unit and browser regression tests
+pnpm test
 ```
+
+## Workshop Tour
+
+The homepage is a seven-chapter, native-scroll story about shared-workshop operation:
+arrive, identify, check, use, clean up, confirm the handoff, and handle maintenance.
+The table saw, bandsaw, CNC router, Attractap Touch readers, and control boxes are
+procedural illustrations, not CAD models or installation/wiring instructions.
+Machine operation is never animated as an automatic consequence of authorization.
+
+- `src/components/workshop/WorkshopTour.tsx`: accessible HTML, chapter selection,
+  machine inspection, and the authorization examples.
+- `src/components/workshop/content.ts`: operator-focused German and English copy.
+- `src/components/workshop/WorkshopDemo.tsx` and `story.ts`: local workflow examples
+  and guarded transitions, shared with the scene. They never contact the product API.
+- `src/components/workshop/scene-model.ts`: geometry, materials, and camera views.
+- `src/components/workshop/WorkshopScene.tsx`: on-demand rendering, camera
+  transitions, bounded pixel ratio, and GPU cleanup.
+- `public/workshop/`: generated WebP stills for loading, reduced motion, data-saving,
+  prerendering, explicit illustrated mode, and WebGL failures.
+
+The scene is downloaded only when enabled, and on mobile only after opening a step.
+Rendering stops when settled, hidden, or offscreen; stalled asset loading falls back
+to illustrations. All marketing content remains HTML, and the complete interactive
+story works without WebGL.
+
+On phones, each chapter has a state-aware preview card instead of a tiny sticky
+workshop. Opening it shows a full-screen step with a larger scene and matching HTML
+controls. At heights of 650px and above, the controls scroll independently below
+the scene. Shorter screens scroll the whole view so controls remain reachable.
+Closing restores focus to the preview and keeps demo progress. Cross-step links
+stay within the focused view. Desktop retains the side-by-side scroll story.
+
+Examples are self-contained so readers can skip chapters. Physical cleanup is
+performed by the example person and does not automatically check the closing form.
+Reporting a fault is a separate web-app workflow; it does not block new usage until
+authorized personnel start maintenance. Source/capability boundaries and the PR
+artwork provenance are recorded in `docs/research/`, not exposed as customer copy.
+The marketing story is self-contained, without documentation, code or pull-request links.
+
+White/RAL 5021 branding uses the approved assets from homepage PR #24. The original
+supervision image is an LVGL host render from app PR #1816, not a device photo.
+Other interactive reader views are labeled illustrations. Reader screens remain
+light when the website uses dark mode. Verify the pinned, unmodified brand assets
+with `node scripts/sync-brand-assets.mjs --check`.
+
+After changing geometry, lighting, or camera framing, regenerate the stills:
+
+```sh
+pnpm workshop:posters
+```
+
+This starts a temporary Vite server on port 4191 and captures the real scene with
+Puppeteer. Browser tests use port 4193 and never submit forms or contact external
+services. Both support `PUPPETEER_EXECUTABLE_PATH` for a system Chromium installation.
 
 ## Analytics
 
@@ -52,4 +110,8 @@ Notes:
 
 ## i18n
 
-All user-facing strings go through `useI18n()`. Translations live in `src/contexts/i18n.tsx`. Run `pnpm translations:check` to verify all keys are present in both languages.
+`useI18n()` selects the language. Marketing copy is in
+`src/components/MarketingLayout.tsx`, workshop copy in
+`src/components/workshop/content.ts`, and contact copy in `src/pages/Contact.tsx`.
+The browser tests exercise both languages. `pnpm translations:check` checks the
+legacy translation dictionaries, not the page-local marketing copy.
