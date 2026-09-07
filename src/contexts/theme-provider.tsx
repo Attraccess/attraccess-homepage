@@ -1,35 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { ThemeContext, type Theme } from '@/contexts/theme';
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('system');
-  const [actualTheme, setActualTheme] = useState<'light' | 'dark'>('light');
+function resolveActualTheme(theme: Theme): 'light' | 'dark' {
+  if (theme !== 'system') return theme;
+  return typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
 
-  useEffect(() => {
-    // Check for saved theme preference or default to system
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme) {
-      setTheme(savedTheme);
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setTheme] = useState<Theme>(() => {
+    try {
+      const saved = localStorage.getItem('theme');
+      return saved === 'dark' || saved === 'system' ? saved : 'light';
+    } catch {
+      return 'light';
     }
-  }, []);
+  });
+  const [actualTheme, setActualTheme] = useState<'light' | 'dark'>(() => resolveActualTheme(theme));
 
   useEffect(() => {
     const updateActualTheme = () => {
-      let newTheme: 'light' | 'dark';
-
-      if (theme === 'system') {
-        newTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      } else {
-        newTheme = theme === 'dark' ? 'dark' : 'light';
-      }
+      const newTheme = resolveActualTheme(theme);
 
       setActualTheme(newTheme);
 
       // Update DOM
       document.documentElement.classList.toggle('dark', newTheme === 'dark');
+      document.documentElement.style.colorScheme = newTheme;
 
-      // Save to localStorage
-      localStorage.setItem('theme', theme);
+      try {
+        localStorage.setItem('theme', theme);
+      } catch {
+        // Appearance can still change for this session when storage is blocked.
+      }
     };
 
     updateActualTheme();

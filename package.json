@@ -9,6 +9,7 @@
     "build:dev": "vite build --mode development && node scripts/prerender.mjs",
     "lint": "eslint .",
     "test": "node --test scripts/*.test.mjs",
+    "workshop:posters": "node scripts/workshop-posters.mjs",
     "preview": "vite preview",
     "translations:check": "node scripts/check-translations.cjs",
     "translations:clean": "node scripts/clean-translations.cjs",
@@ -62,6 +63,7 @@
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.180.0",
     "vaul": "^0.9.3",
     "zod": "^3.23.8"
   },
@@ -71,6 +73,7 @@
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/three": "^0.180.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.9.0",
@@ -86,6 +89,8 @@
   },
   "packageManager": "pnpm@10.12.4+sha512.5ea8b0deed94ed68691c9bad4c955492705c5eeb8a87ef86bc62c74a26b037b08ff9570f108b2e4dbd1dd1a9186fea925e527f141c648e85af45631074680184",
   "pnpm": {
-    "onlyBuiltDependencies": ["puppeteer"]
+    "onlyBuiltDependencies": [
+      "puppeteer"
+    ]
   }
 }

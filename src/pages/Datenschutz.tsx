@@ -10,7 +10,7 @@ export function Datenschutz() {
     noindex: true,
   });
   return (
-    <div className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -402,6 +402,6 @@ export function Datenschutz() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

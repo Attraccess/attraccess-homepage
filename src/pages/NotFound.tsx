@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MarketingFooter, MarketingHeader, marketingCopy } from "@/pages/Home";
+import { MarketingFooter, MarketingHeader, marketingCopy } from "@/components/MarketingLayout";
 import { useI18n } from "@/contexts/i18n";
 import { useSEO } from "@/hooks/use-seo";
 

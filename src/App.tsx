@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 function SiteFrame() {
   return (
     <div className="flex min-h-screen flex-col">
-       <main className="flex-1">
+       <div className="flex-1">
          <Routes>
            <Route path="/" element={<Home />} />
            <Route path="/contact" element={<Contact />} />
@@ -25,7 +25,7 @@ function SiteFrame() {
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-       </main>
+       </div>
        <AnalyticsTracker />
     </div>
   );

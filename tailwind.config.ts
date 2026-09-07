@@ -26,8 +26,8 @@ export default {
 			},
 			colors: {
 				brand: {
-					blue: '#0584F7',
-					ink: '#18191A',
+					blue: 'hsl(var(--primary))',
+					ink: 'hsl(var(--foreground))',
 					green: '#17C964',
 					'green-dark': '#0E8C43',
 					amber: '#F4A525',
@@ -36,6 +36,9 @@ export default {
 					rose: '#C57881'
 				},
 				border: 'hsl(var(--border))',
+				separator: 'hsl(var(--separator))',
+				surface: 'hsl(var(--card))',
+				tertiary: 'hsl(var(--tertiary))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
@@ -43,7 +46,8 @@ export default {
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
-					hover: 'hsl(var(--primary-hover))'
+					hover: 'hsl(var(--primary-hover))',
+					soft: 'hsl(var(--primary-soft))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -60,7 +64,8 @@ export default {
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))',
-					hover: 'hsl(var(--accent-hover))'
+					hover: 'hsl(var(--accent-hover))',
+					soft: 'hsl(var(--primary-soft))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -92,8 +97,8 @@ export default {
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				md: 'var(--radius-control)',
+				sm: 'var(--radius-control)'
 			},
 			keyframes: {
 				'accordion-down': {
