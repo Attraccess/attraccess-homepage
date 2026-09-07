@@ -73,14 +73,31 @@ export default function WorkshopScene(props: WorkshopSceneProps) {
     let previousTime = 0;
     let assetsReady = false;
     let readyReported = false;
-    // A stalled GPU or asset load must not leave visitors waiting instead of using the illustrated tour.
-    const startupTimer = window.setTimeout(() => {
-      if (!readyReported && !lost) { lost = true; latest.current.onUnavailable(); }
-    }, 10000);
+    let startupTimer: number | undefined;
+    let startupStarted = 0;
+    let startupRemaining = 10000;
+
+    function canRender() { return visible && !document.hidden && !lost; }
+    function pauseStartupWatchdog() {
+      if (startupTimer === undefined) return;
+      startupRemaining -= performance.now() - startupStarted;
+      clearTimeout(startupTimer);
+      startupTimer = undefined;
+    }
+    // Only time an eligible render. Hidden or offscreen scenes cannot draw a first frame.
+    function updateStartupWatchdog() {
+      if (readyReported || lost || assetsReady || !canRender()) { pauseStartupWatchdog(); return; }
+      if (startupTimer !== undefined) return;
+      startupStarted = performance.now();
+      startupTimer = window.setTimeout(() => {
+        startupTimer = undefined;
+        if (!readyReported && !lost && canRender()) { lost = true; latest.current.onUnavailable(); }
+      }, startupRemaining);
+    }
 
     function draw(time: number) {
       frame = 0;
-      if (!visible || document.hidden || lost) return;
+      if (!canRender()) return;
       const delta = Math.min((time - previousTime) / 1000 || 1 / 60, 0.05);
       previousTime = time;
       const blend = first ? 1 : 1 - Math.exp(-7 * delta);
@@ -100,7 +117,7 @@ export default function WorkshopScene(props: WorkshopSceneProps) {
         latest.current.onUnavailable();
         return;
       }
-      if (assetsReady && !readyReported) { clearTimeout(startupTimer); latest.current.onReady(); readyReported = true; }
+      if (assetsReady && !readyReported) { readyReported = true; updateStartupWatchdog(); latest.current.onReady(); }
       first = false;
       const moving = camera.position.distanceTo(goalPosition) + target.distanceTo(goalTarget) + Math.abs(span - goalSpan) > 0.008;
       container.dataset.settled = String(!moving && assetsReady);
@@ -108,7 +125,8 @@ export default function WorkshopScene(props: WorkshopSceneProps) {
     }
 
     function requestDraw() {
-      if (!frame && visible && !document.hidden && !lost) {
+      updateStartupWatchdog();
+      if (!frame && canRender()) {
         previousTime = performance.now();
         frame = requestAnimationFrame(draw);
       }
@@ -140,10 +158,14 @@ export default function WorkshopScene(props: WorkshopSceneProps) {
     const intersection = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       if (visible) requestDraw();
-      else { cancelAnimationFrame(frame); frame = 0; }
+      else { pauseStartupWatchdog(); cancelAnimationFrame(frame); frame = 0; }
     });
     intersection.observe(container);
-    document.addEventListener("visibilitychange", requestDraw);
+    function visibilityChange() {
+      if (document.hidden) pauseStartupWatchdog();
+      else requestDraw();
+    }
+    document.addEventListener("visibilitychange", visibilityChange);
 
     const raycaster = new THREE.Raycaster();
     let pointerStart: [number, number] = [0, 0];
@@ -192,11 +214,11 @@ export default function WorkshopScene(props: WorkshopSceneProps) {
     return () => {
       update.current = undefined;
       lost = true;
-      clearTimeout(startupTimer);
+      pauseStartupWatchdog();
       cancelAnimationFrame(frame);
       resize.disconnect();
       intersection.disconnect();
-      document.removeEventListener("visibilitychange", requestDraw);
+      document.removeEventListener("visibilitychange", visibilityChange);
       canvas.removeEventListener("pointerdown", pointerDown);
       canvas.removeEventListener("pointerup", pointerUp);
       canvas.removeEventListener("webglcontextlost", contextLost);
