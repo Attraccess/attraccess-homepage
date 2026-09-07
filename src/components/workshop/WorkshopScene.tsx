@@ -86,7 +86,7 @@ export default function WorkshopScene(props: WorkshopSceneProps) {
     }
     // Only time an eligible render. Hidden or offscreen scenes cannot draw a first frame.
     function updateStartupWatchdog() {
-      if (readyReported || lost || assetsReady || !canRender()) { pauseStartupWatchdog(); return; }
+      if (readyReported || lost || !canRender()) { pauseStartupWatchdog(); return; }
       if (startupTimer !== undefined) return;
       startupStarted = performance.now();
       startupTimer = window.setTimeout(() => {
