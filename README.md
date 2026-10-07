@@ -17,6 +17,26 @@ pnpm lint && pnpm typecheck && pnpm test
 pnpm check:links    # after a build; add --external to also request every outside URL
 ```
 
+## Deployment
+
+Production runs in the `netcup` Coolify context at `https://coolify.apps.janjaap.de`.
+The `attraccess-homepage` application (`fas9ni9lacimviajcp3cjx3a`) deploys this
+repository's `main` branch automatically with Railpack, static hosting, and `/dist`
+as the publish directory. Keep SPA fallback disabled: all pages are prerendered.
+Its custom nginx configuration is versioned in `deployment/nginx.conf`, including
+the custom error page and real HTTP 404 responses for missing routes and assets.
+
+```sh
+coolify --context netcup app get fas9ni9lacimviajcp3cjx3a
+coolify --context netcup app deployments list fas9ni9lacimviajcp3cjx3a
+# Only when a main-branch push did not already queue a deployment:
+coolify --context netcup deploy uuid fas9ni9lacimviajcp3cjx3a
+```
+
+Keep the existing `VITE_UMAMI_*` variables enabled at build time. Deploying only
+requires the production build; the screenshot pipeline runs locally when product
+captures need refreshing.
+
 ## Pages
 
 | Path | Page |

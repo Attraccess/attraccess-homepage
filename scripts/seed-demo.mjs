@@ -411,7 +411,7 @@ async function seedExtras(db, catalogue, resources, users) {
   await insert(db, 'form_field', { formId, name: catalogue.form.material, type: 'select', isRequired: 1, options: JSON.stringify(catalogue.form.options), position: 0 });
   await insert(db, 'form_field', { formId, name: catalogue.form.ok, type: 'boolean', isRequired: 1, position: 1 });
   for (const [index, user] of users.entries()) {
-    const uid = crypto.createHash('sha1').update(user.username).digest('hex').slice(0, 14).toUpperCase();
+    const uid = crypto.createHash('sha256').update(user.username).digest('hex').slice(0, 14).toUpperCase();
     await insert(db, 'nfc_card', { uid, userId: user.id, isActive: index === 7 ? 0 : 1, keyNo: 1, key: crypto.randomBytes(16).toString('hex'), lastSeen: ts(NOW - between(1, 4000) * MIN) });
   }
 }
