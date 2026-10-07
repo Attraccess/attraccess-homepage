@@ -1,91 +1,69 @@
-<!DOCTYPE html>
-<html lang="de">
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Attraccess – Access & machine management for makerspaces</title>
+    <meta name="description" content="Introductions, NFC access, maintenance, usage billing and automation for makerspaces, FabLabs and school workshops." />
     <meta name="theme-color" content="#256d7b" />
-    <script id="theme-init">
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!--head-meta-->
+    <script>
+      // Runs before first paint. Storage keys `theme` and `language` are documented in the privacy policy.
       (() => {
-        let theme = 'light';
+        const root = document.documentElement;
+        let stored = {};
         try {
-          const saved = localStorage.getItem('theme');
-          if (saved === 'dark' || (saved === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) theme = 'dark';
-        } catch {}
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-        document.documentElement.style.colorScheme = theme;
+          stored = { theme: localStorage.getItem('theme'), language: localStorage.getItem('language') };
+        } catch {
+          // Storage unavailable: fall back to system settings.
+        }
+
+        // Theme: explicit choice, otherwise the operating system's preference.
+        const theme =
+          stored.theme === 'light' || stored.theme === 'dark'
+            ? stored.theme
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+        root.classList.add(theme);
+        root.dataset.theme = theme;
+
+        // Language: ?lang= from the language switch wins, then an earlier choice, then the browser's
+        // preferred languages. Crawlers are never redirected so both language versions stay indexable.
+        const url = new URL(window.location.href);
+        const fromLink = url.searchParams.get('lang');
+        if (fromLink === 'en' || fromLink === 'de') {
+          try {
+            localStorage.setItem('language', fromLink);
+          } catch {
+            // Private mode: this navigation still lands on the chosen language.
+          }
+          url.searchParams.delete('lang');
+          window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+          return;
+        }
+        if (/bot|crawl|spider|slurp|preview|lighthouse/i.test(navigator.userAgent) || navigator.webdriver) return;
+
+        let language = stored.language === 'en' || stored.language === 'de' ? stored.language : null;
+        if (!language) {
+          const preferred = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+          const match = preferred.map((tag) => String(tag).toLowerCase().slice(0, 2)).find((tag) => tag === 'de' || tag === 'en');
+          language = match || 'en';
+        }
+        const pairs = /*language-pairs*/ { '/': '/de/', '/contact': '/de/contact', '/credits': '/de/credits' };
+        let path = url.pathname.replace(/index\.html$/, '');
+        if (path === '/de') path = '/de/';
+        else if (path.length > 1 && path.endsWith('/') && path !== '/de/') path = path.slice(0, -1);
+        const target = language === 'de' ? pairs[path] : Object.keys(pairs).find((en) => pairs[en] === path);
+        if (target && target !== path) window.location.replace(target + url.search + url.hash);
       })();
     </script>
-
-    <!-- Primary SEO -->
-    <title>Attraccess — Maschinenfreigabe für gemeinsame Werkstätten</title>
-    <meta name="description" content="Attraccess verbindet Identität, Einweisung und Maschinenfreigabe in einem nachvollziehbaren Ablauf für gemeinsam genutzte Werkstätten." />
-    <meta name="author" content="Attraccess" />
-    <meta name="keywords" content="makerspace management, shared resource access, tool tracking, machine access control, NFC access control, makerspace software, self-hosted, lifecycle management" />
-    <link rel="canonical" href="https://attraccess.org/" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Open Graph -->
-    <meta property="og:site_name" content="Attraccess" />
-    <meta property="og:title" content="Attraccess — Maschinenfreigabe für gemeinsame Werkstätten" />
-    <meta property="og:description" content="Identität, Einweisung und Maschinenfreigabe in einem nachvollziehbaren Ablauf." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://attraccess.org/" />
-    <meta property="og:image" content="https://attraccess.org/og-image.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1440" />
-    <meta property="og:image:height" content="1000" />
-    <meta property="og:image:alt" content="Attraccess resource overview showing workshop equipment and availability" />
-    <meta property="og:logo" content="https://attraccess.org/logo.svg" />
-    <meta property="og:locale" content="de_DE" />
-
-    <!-- Twitter / X Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@attraccess" />
-    <meta name="twitter:title" content="Attraccess — Maschinenfreigabe für gemeinsame Werkstätten" />
-    <meta name="twitter:description" content="Identität, Einweisung und Maschinenfreigabe in einem nachvollziehbaren Ablauf." />
-    <meta name="twitter:image" content="https://attraccess.org/og-image.png" />
-    <meta name="twitter:image:alt" content="Attraccess resource overview showing workshop equipment and availability" />
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Attraccess",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Self-hosted (Linux, Docker)",
-      "url": "https://attraccess.org",
-       "description": "Machine authorization and usage records for shared workshops, teaching and research facilities.",
-      "author": {
-        "@type": "Organization",
-        "name": "Attraccess",
-        "url": "https://attraccess.org",
-        "logo": "https://attraccess.org/logo.svg",
-        "email": "contact@attraccess.org",
-        "sameAs": ["https://github.com/Attraccess/Attraccess"]
-      },
-      "license": "https://github.com/Attraccess/Attraccess/blob/main/LICENSE.md",
-       "featureList": [
-         "Resource access control with NFC",
-         "Usage tracking and reporting",
-         "Role-based access control (RBAC)",
-         "Single Sign-On (SSO / OIDC / SAML)",
-         "Audit log"
-      ]
-    }
-    </script>
   </head>
-
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
