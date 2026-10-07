@@ -1,0 +1,146 @@
+@import 'tailwindcss';
+@import '@heroui/styles';
+@import './tokens.css';
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
+@import '@fontsource-variable/montserrat';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-device: 'Montserrat Variable', ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand extras on top of the app tokens: the reader's neon and the mascot's original rosé. */
+  --color-neon: #5ee6f2;
+  --color-rose: #c57881;
+  --color-ink: #0e1719;
+
+  /* Attractap firmware theme (apps/attractap/firmware/src/display/theme.hpp). */
+  --color-fw-bg: #162124;
+  --color-fw-surface: #1e2c2f;
+  --color-fw-surface-2: #26363a;
+  --color-fw-text: #f4f8f8;
+  --color-fw-muted: #afc0c3;
+  --color-fw-primary: #82c4ce;
+  --color-fw-on-primary: #142e34;
+  --color-fw-success: #74d99f;
+  --color-fw-warning: #f5c578;
+  --color-fw-danger: #ff9b9b;
+
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: auto;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    /* Decorative glows and floating chips may poke out sideways; never let them cause sideways scrolling. */
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--accent) 30%, transparent);
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+}
+
+/* A faint cutting-mat grid that fades out towards the edges. */
+.mat-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 70%);
+}
+
+.neon-text {
+  color: var(--color-neon);
+  text-shadow:
+    0 0 12px color-mix(in oklab, var(--color-neon) 60%, transparent),
+    0 0 32px color-mix(in oklab, var(--color-neon) 30%, transparent);
+}
+
+.shadow-float {
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, white 40%, transparent) inset,
+    0 30px 80px -20px rgb(14 23 25 / 35%),
+    0 12px 24px -12px rgb(14 23 25 / 25%);
+}
+
+.dark .shadow-float {
+  box-shadow:
+    0 1px 0 0 rgb(255 255 255 / 6%) inset,
+    0 30px 80px -20px rgb(0 0 0 / 70%),
+    0 0 0 1px rgb(255 255 255 / 6%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+/* Legal pages: long-form German text ported verbatim, styled here instead of per element. */
+.legal h1 {
+  @apply font-display text-4xl font-extrabold tracking-tight sm:text-5xl;
+}
+.legal h2 {
+  @apply mt-10 mb-3 font-display text-2xl font-bold tracking-tight;
+}
+.legal h3 {
+  @apply mt-6 mb-2 text-lg font-semibold;
+}
+.legal p,
+.legal li {
+  @apply leading-relaxed text-foreground/85;
+}
+.legal p + p {
+  @apply mt-3;
+}
+.legal ul,
+.legal ol {
+  @apply my-3 list-disc space-y-1 pl-6;
+}
+.legal a {
+  @apply text-accent underline underline-offset-2;
+}
+.legal code {
+  @apply rounded bg-default px-1 py-0.5 font-mono text-[0.9em];
+}
+.legal header > p {
+  @apply mt-3 text-muted;
+}
+.legal header > div {
+  @apply mt-8 space-y-1 rounded-2xl border border-border bg-surface-secondary p-6;
+}
+.legal header > div h2 {
+  @apply mt-0;
+}
+.legal header > div p + p {
+  @apply mt-0;
+}

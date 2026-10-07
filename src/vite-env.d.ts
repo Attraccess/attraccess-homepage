@@ -1,14 +1,10 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  /** Umami host, e.g. "umami.apps.janjaap.de". Analytics is off when unset. */
+  /** Umami host, e.g. `umami.example.org`. Analytics stays off when unset. */
   readonly VITE_UMAMI_HOST?: string;
-  /** Umami website id (uuid). Analytics is off when unset. */
+  /** Umami website id. Analytics stays off when unset. */
   readonly VITE_UMAMI_WEBSITE_ID?: string;
-  /** renamed script.js, defaults to "script.js" */
+  /** Renamed tracker script on the Umami instance (default `script.js`). */
   readonly VITE_UMAMI_SCRIPT?: string;
-}
-
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
 }

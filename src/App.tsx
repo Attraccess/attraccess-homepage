@@ -1,48 +1,69 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { I18nProvider } from "@/contexts/i18n-provider";
-import { ThemeProvider } from "@/contexts/theme-provider";
-import { AnalyticsTracker } from "@/components/Analytics";
-import { Home } from "@/pages/Home";
-import { Contact } from "@/pages/Contact";
-import { AGB } from "@/pages/AGB";
-import { Datenschutz } from "@/pages/Datenschutz";
-import NotFound from "./pages/NotFound";
+import Lenis from 'lenis';
+import { useEffect } from 'react';
+import { SiteProvider, type Locale } from './lib/site';
+import type { PageId } from './lib/routes';
+import { Nav } from './sections/Nav';
+import { Hero } from './sections/Hero';
+import { Audience } from './sections/Audience';
+import { TapDemo } from './sections/TapDemo';
+import { Tour } from './sections/Tour';
+import { Automation } from './sections/Automation';
+import { Hardware } from './sections/Hardware';
+import { Themes } from './sections/Themes';
+import { Newsletter } from './sections/Newsletter';
+import { Faq, FinalCta, Footer, Pricing, Trust } from './sections/Closing';
+import { ContactPage } from './pages/Contact';
+import { CreditsPage } from './pages/Credits';
+import { ImprintPage, PrivacyPage, TermsPage } from './pages/Legal';
+import { NotFoundPage } from './pages/NotFound';
 
-const queryClient = new QueryClient();
+function useSmoothScroll() {
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const lenis = new Lenis({ autoRaf: true, anchors: { offset: -80 }, lerp: 0.12 });
+    return () => lenis.destroy();
+  }, []);
+}
 
-function SiteFrame() {
+function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col">
-       <main className="flex-1">
-         <Routes>
-           <Route path="/" element={<Home />} />
-           <Route path="/contact" element={<Contact />} />
-          <Route path="/agb" element={<AGB />} />
-          <Route path="/datenschutz" element={<Datenschutz />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-       </main>
-       <AnalyticsTracker />
-    </div>
+    <>
+      <Hero />
+      <Audience />
+      <TapDemo />
+      <Tour />
+      <Automation />
+      <Hardware />
+      <Themes />
+      <Trust />
+      <Pricing />
+      <Faq />
+      <Newsletter />
+      <FinalCta />
+    </>
   );
 }
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <ThemeProvider>
-        <I18nProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter><SiteFrame /></BrowserRouter>
-        </I18nProvider>
-      </ThemeProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const PAGES: Record<PageId, () => React.JSX.Element> = {
+  home: HomePage,
+  contact: ContactPage,
+  credits: CreditsPage,
+  privacy: PrivacyPage,
+  terms: TermsPage,
+  imprint: ImprintPage,
+  notFound: NotFoundPage,
+};
 
-export default App;
+export function App({ page, locale }: { page: PageId; locale: Locale }) {
+  useSmoothScroll();
+  const Page = PAGES[page];
+  return (
+    <SiteProvider page={page} locale={locale}>
+      <Nav />
+      <main id="main">
+        <Page />
+      </main>
+      <Footer />
+    </SiteProvider>
+  );
+}

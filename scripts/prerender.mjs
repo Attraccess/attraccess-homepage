@@ -1,76 +1,131 @@
-// Postbuild full-page prerender: serve the built SPA, render each route in a
-// headless browser, and write the fully-rendered HTML (body + head meta) to
-// dist/<route>/index.html. This gives non-JS crawlers/scanners real content
-// (H1, headings, internal links, text) — not just the empty SPA shell — and
-// correct per-route OG/meta (useSEO runs during the snapshot).
-// Routes come from src/lib/seo-meta.json. Third-party embeds (analytics) are
-// blocked so their markup never bakes into the static HTML.
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
-import { preview } from "vite";
-import puppeteer from "puppeteer";
+#!/usr/bin/env node
+// Turns the client build into static, crawlable HTML for every route in src/lib/routes.ts, plus
+// sitemap.xml and robots.txt. Runs after `vite build` and `vite build --ssr src/entry-server.tsx`.
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const routes = Object.keys(JSON.parse(readFileSync(join(root, "src/lib/seo-meta.json"), "utf8")));
-const PORT = 4188;
-const BLOCK = /google-analytics|googletagmanager|doubleclick|umami/i;
-// Umami's script can be renamed arbitrarily (VITE_UMAMI_SCRIPT), so block the
-// configured host too — window.__PRERENDER__ below is the real guard.
-const umamiHost = (process.env.VITE_UMAMI_HOST || "").replace(/^https?:\/\//, "").replace(/\/.*$/, "");
-const isBlocked = (url) => BLOCK.test(url) || (umamiHost !== "" && url.includes(umamiHost));
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const dist = path.join(root, 'dist');
+const ssrDir = path.join(root, 'dist-ssr');
+const SITE = (process.env.SITE_URL ?? 'https://attraccess.org').replace(/\/+$/, '');
 
-// Prefer a system Chromium (Debian build image installs it via railpack.json
-// buildAptPackages, so its shared libs are guaranteed present); fall back to
-// puppeteer's bundled download locally (macOS dev).
-const chromePath =
-  process.env.PUPPETEER_EXECUTABLE_PATH ||
-  ["/usr/bin/chromium", "/usr/bin/chromium-browser", "/usr/bin/google-chrome"].find(existsSync);
+const { render, COPY, ROUTES } = await import(pathToFileURL(path.join(ssrDir, 'entry-server.js')).href);
+const template = readFileSync(path.join(dist, 'index.html'), 'utf8');
+const escape = (value) => String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
-const server = await preview({ root, preview: { port: PORT, strictPort: true } });
-const browser = await puppeteer.launch({
-  headless: true,
-  executablePath: chromePath || undefined,
-  args: ["--no-sandbox", "--disable-setuid-sandbox"],
-});
-
-let failed = false;
-for (const path of routes) {
-  const page = await browser.newPage();
-  await page.setRequestInterception(true);
-  page.on("request", (req) => (isBlocked(req.url()) ? req.abort() : req.continue()));
-  // keeps src/lib/analytics.ts inert: no tracker <script> in the snapshot, no
-  // page views recorded for the build-time crawl
-  await page.evaluateOnNewDocument(() => {
-    window.__PRERENDER__ = true;
-  });
-
-  try {
-    await page.goto(`http://localhost:${PORT}${path}`, { waitUntil: "networkidle2", timeout: 45000 });
-    await page.waitForSelector("#root > *", { timeout: 15000 });
-    await page.waitForSelector("h1", { timeout: 15000 }).catch(() => {});
-
-    const html = "<!DOCTYPE html>\n" + (await page.evaluate(() => document.documentElement.outerHTML));
-
-    // Self-check: the snapshot must contain real rendered content, not the shell.
-    if (/<div id="root">\s*<\/div>/.test(html)) throw new Error("empty #root");
-
-    const outDir = path === "/" ? join(root, "dist") : join(root, "dist", path);
-    mkdirSync(outDir, { recursive: true });
-    writeFileSync(join(outDir, "index.html"), html);
-    console.log(`prerendered ${path} (${(html.length / 1024).toFixed(0)} kB)`);
-  } catch (err) {
-    failed = true;
-    console.error(`prerender FAILED for ${path}: ${err.message}`);
-  } finally {
-    await page.close();
+function titleFor(id, copy) {
+  switch (id) {
+    case 'home':
+      return { title: copy.meta.title, description: copy.meta.description };
+    case 'contact':
+      return { title: copy.contact.metaTitle, description: copy.contact.metaDescription };
+    case 'credits':
+      return { title: copy.credits.metaTitle, description: copy.credits.metaDescription };
+    case 'privacy':
+      return { title: 'Datenschutzerklärung – Attraccess', description: 'Informationen zur Verarbeitung personenbezogener Daten auf attraccess.org.' };
+    case 'terms':
+      return { title: 'AGB – Attraccess', description: 'Allgemeine Geschäftsbedingungen für Attraccess.' };
+    case 'imprint':
+      return { title: 'Impressum – Attraccess', description: 'Impressum von attraccess.org.' };
+    default:
+      return { title: `404 – ${copy.notFound.title}`, description: copy.notFound.lead };
   }
 }
 
-await browser.close();
-await server.httpServer.close();
-if (failed) {
-  console.error("prerender: one or more routes failed — build aborted.");
-  process.exit(1);
+const structuredData = (locale) =>
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Attraccess',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Self-hosted (Linux, Docker)',
+    url: SITE,
+    inLanguage: locale,
+    description: COPY[locale].meta.description,
+    image: `${SITE}/og-${locale}.png`,
+    license: 'https://github.com/Attraccess/Attraccess/blob/main/LICENSE.md',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Free for non-profit organisations' },
+    author: { '@type': 'Organization', name: 'Attraccess', url: SITE, email: 'contact@attraccess.org', sameAs: ['https://github.com/Attraccess/Attraccess'] },
+  });
+
+// The browser-language redirect in index.html needs the en ↔ de path pairs; keep them in sync with ROUTES.
+const languagePairs = Object.fromEntries(ROUTES.filter((r) => r.paths.en !== r.paths.de).map((r) => [r.paths.en, r.paths.de]));
+
+const outputFile = (urlPath) => {
+  if (urlPath === '/404') return path.join(dist, '404.html');
+  return path.join(dist, urlPath, 'index.html');
+};
+
+const written = new Set();
+for (const route of ROUTES) {
+  const translated = route.paths.en !== route.paths.de;
+  for (const locale of translated ? ['en', 'de'] : [route.contentLocale ?? 'en']) {
+    const urlPath = route.paths[locale];
+    if (written.has(urlPath)) continue;
+    written.add(urlPath);
+    const copy = COPY[locale];
+    const { title, description } = titleFor(route.id, copy);
+    const url = `${SITE}${urlPath}`;
+    const head = [
+      route.indexable ? `<link rel="canonical" href="${url}" />` : '<meta name="robots" content="noindex, follow" />',
+      ...(translated && route.indexable
+        ? [
+            `<link rel="alternate" hreflang="en" href="${SITE}${route.paths.en}" />`,
+            `<link rel="alternate" hreflang="de" href="${SITE}${route.paths.de}" />`,
+            `<link rel="alternate" hreflang="x-default" href="${SITE}${route.paths.en}" />`,
+          ]
+        : []),
+      '<meta property="og:site_name" content="Attraccess" />',
+      '<meta property="og:type" content="website" />',
+      `<meta property="og:url" content="${url}" />`,
+      `<meta property="og:title" content="${escape(title)}" />`,
+      `<meta property="og:description" content="${escape(description)}" />`,
+      `<meta property="og:image" content="${SITE}/og-${locale}.png" />`,
+      '<meta property="og:image:width" content="1200" />',
+      '<meta property="og:image:height" content="630" />',
+      `<meta property="og:locale" content="${locale === 'en' ? 'en_US' : 'de_DE'}" />`,
+      '<meta name="twitter:card" content="summary_large_image" />',
+      ...(route.id === 'home' ? [`<script type="application/ld+json">${structuredData(locale)}</script>`] : []),
+    ].join('\n    ');
+
+    const html = template
+      .replace('<html lang="en">', `<html lang="${route.contentLocale ?? locale}">`)
+      .replace(/<title>[^<]*<\/title>/, `<title>${escape(title)}</title>`)
+      .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${escape(description)}" />`)
+      .replace('<!--head-meta-->', head)
+      .replace(/\/\*language-pairs\*\/ \{[^}]*\}/, JSON.stringify(languagePairs))
+      .replace('<div id="root"><!--app-html--></div>', `<div id="root" data-page="${route.id}" data-locale="${locale}">${render(route.id, locale)}</div>`);
+    if (html.includes('<!--app-html-->') || html.includes('/*language-pairs*/')) throw new Error(`Template placeholders left in ${urlPath}`);
+
+    const file = outputFile(urlPath);
+    mkdirSync(path.dirname(file), { recursive: true });
+    writeFileSync(file, html);
+    console.info(`prerendered ${urlPath.padEnd(14)} → ${path.relative(root, file)}`);
+  }
 }
-process.exit(0);
+
+const today = new Date().toISOString().slice(0, 10);
+const urls = ROUTES.filter((r) => r.indexable).flatMap((route) =>
+  ['en', 'de'].map(
+    (locale) => `  <url>
+    <loc>${SITE}${route.paths[locale]}</loc>
+    <lastmod>${today}</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="${SITE}${route.paths.en}"/>
+    <xhtml:link rel="alternate" hreflang="de" href="${SITE}${route.paths.de}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${route.paths.en}"/>
+  </url>`,
+  ),
+);
+writeFileSync(
+  path.join(dist, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls.join('\n')}
+</urlset>
+`,
+);
+writeFileSync(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
+console.info('wrote sitemap.xml and robots.txt');
+
+rmSync(ssrDir, { recursive: true, force: true });

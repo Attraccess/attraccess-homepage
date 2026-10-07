@@ -1,50 +1,105 @@
-import { useState } from "react";
-import { ArrowRight, Check, Mail } from "lucide-react";
-import { Link } from "react-router-dom";
-import { MarketingFooter, MarketingHeader, marketingCopy } from "@/pages/Home";
-import { useI18n } from "@/contexts/i18n";
-import { trackEvent } from "@/lib/analytics";
-import { useSEO } from "@/hooks/use-seo";
+import { Button, Input, Label, TextArea, TextField } from '@heroui/react';
+import { ArrowRight, Check, Mail } from 'lucide-react';
+import { useState, type FormEvent } from 'react';
+import { Reveal } from '../components/primitives';
+import { trackEvent } from '../lib/analytics';
+import { pathFor } from '../lib/routes';
+import { useSite } from '../lib/site';
 
-const copy = {
-  de: { eyebrow: "Pilot besprechen", title: "Lassen Sie uns den Einsatz an Ihren Maschinen prüfen.", intro: "Ein Pilot beginnt mit repräsentativen Maschinen, Ihren Rollen und vorhandenen Abläufen. Den technischen Fit klären wir vor einer Installation.", form: "Pilot anfragen", submit: "E-Mail vorbereiten", privacy: "Beim Absenden öffnet sich Ihr E-Mail-Programm. Ihre Eingaben werden nicht an unsere Website übertragen.", sent: "Wir haben Ihr E-Mail-Programm mit einer vorbereiteten Nachricht angefordert. Falls nichts passiert, schreiben Sie direkt an contact@attraccess.org.", next: "Was als Nächstes passiert", steps: ["Sie schildern kurz Ihre Ausgangslage.", "Wir prüfen gemeinsam Maschinen, Schnittstellen und Zuständigkeiten.", "Sie entscheiden anhand vereinbarter Kriterien über den Pilot."] },
-  en: { eyebrow: "Discuss a pilot", title: "Let's assess the fit for your machines.", intro: "A pilot starts with representative machines, your roles and existing workflows. We clarify technical fit before any installation.", form: "Request a pilot", submit: "Prepare email", privacy: "Submitting opens your email app. Your entries are not sent to this website.", sent: "We requested your email app with a prepared message. If nothing opens, email contact@attraccess.org directly.", next: "What happens next", steps: ["You briefly describe your starting point.", "Together, we assess machines, interfaces and responsibilities.", "You decide on the pilot against agreed criteria."] },
-} as const;
+const CONTACT_EMAIL = 'contact@attraccess.org';
 
-export function Contact() {
-  const { language } = useI18n();
-  const locale = language === "de" ? "de" : "en";
-  useSEO({ title: locale === "de" ? "Pilot planen" : "Plan a pilot", description: locale === "de" ? "Planen Sie einen fokussierten Attraccess-Pilot für gemeinsam genutzte Maschinen und Werkstattabläufe." : "Plan a focused Attraccess pilot for shared machines and workshop operations.", canonicalPath: "/contact" });
-  const c = copy[locale];
-  const marketing = marketingCopy[locale];
-  const [submitted, setSubmitted] = useState(false);
+export function ContactPage() {
+  const { copy, locale } = useSite();
+  const c = copy.contact;
+  const [sent, setSent] = useState(false);
 
-  function submit(event: React.FormEvent<HTMLFormElement>) {
+  // Nothing is sent to this website: the form only prepares an email (privacy policy, section 5).
+  function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(locale === "de" ? "Pilotanfrage Attraccess" : "Attraccess pilot inquiry");
-    const body = encodeURIComponent(`Name: ${data.get("name")}\nOrganization: ${data.get("organization")}\nEmail: ${data.get("email")}\n\n${data.get("message")}`);
-    trackEvent("contact-submit");
-    setSubmitted(true);
-    window.location.href = `mailto:contact@attraccess.org?subject=${subject}&body=${body}`;
+    const body = [
+      `${c.name}: ${data.get('name')}`,
+      `${c.organization}: ${data.get('organization')}`,
+      `${c.email}: ${data.get('email')}`,
+      '',
+      String(data.get('message') ?? ''),
+    ].join('\n');
+    trackEvent('contact-submit');
+    setSent(true);
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(c.subject)}&body=${encodeURIComponent(body)}`;
   }
 
-  return <div className="prototype-homepage"><div className="prototype prototype-dossier prototype-dossier-v2">
-    <MarketingHeader c={marketing} />
-    <main className="contact-page">
-      <section className="contact-intro"><p className="prototype-eyebrow"><span />{c.eyebrow}</p><h1>{c.title}</h1><p>{c.intro}</p></section>
-      <section className="contact-grid">
-        <form className="contact-form" onSubmit={submit} aria-describedby="contact-privacy"><h2>{c.form}</h2>
-          <label><span>{locale === "de" ? "Name" : "Name"}</span><input name="name" required autoComplete="name" /></label>
-          <label><span>{locale === "de" ? "Organisation" : "Organization"}</span><input name="organization" required autoComplete="organization" /></label>
-          <label><span>{locale === "de" ? "E-Mail-Adresse" : "Email address"}</span><input name="email" type="email" required autoComplete="email" /></label>
-          <label><span>{locale === "de" ? "Worum geht es?" : "What would you like to discuss?"}</span><textarea name="message" required rows={5} placeholder={locale === "de" ? "Zum Beispiel Maschinen, Nutzergruppen oder bestehende Prozesse." : "For example machines, user groups or existing workflows."} /></label>
-          <button className="prototype-button" type="submit">{c.submit}<ArrowRight /></button><p id="contact-privacy">{c.privacy} <Link to="/datenschutz">{marketing.privacy}</Link>.</p>
-          {submitted && <p className="contact-form__success" role="status"><Check />{c.sent}</p>}
-        </form>
-        <aside className="contact-aside"><Mail /><h2>{c.next}</h2><ol>{c.steps.map((step) => <li key={step}>{step}</li>)}</ol><a href="mailto:contact@attraccess.org">contact@attraccess.org</a></aside>
-      </section>
-    </main>
-    <MarketingFooter c={marketing} />
-  </div></div>;
+  return (
+    <div className="relative overflow-hidden px-6 pb-24 pt-36">
+      <div className="mat-grid pointer-events-none absolute inset-0" aria-hidden />
+      <div className="relative mx-auto max-w-6xl">
+        <Reveal className="max-w-2xl">
+          <p className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-accent">{c.eyebrow}</p>
+          <h1 className="mt-4 text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl">{c.title}</h1>
+          <p className="mt-5 text-lg leading-relaxed text-muted">{c.lead}</p>
+        </Reveal>
+        <div className="mt-14 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+          <Reveal delay={0.1}>
+            <form onSubmit={submit} className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-6 shadow-float sm:p-8" aria-describedby="contact-privacy">
+              <h2 className="text-2xl font-bold">{c.formTitle}</h2>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <TextField name="name" isRequired autoComplete="name">
+                  <Label>{c.name}</Label>
+                  <Input />
+                </TextField>
+                <TextField name="organization" isRequired autoComplete="organization">
+                  <Label>{c.organization}</Label>
+                  <Input />
+                </TextField>
+              </div>
+              <TextField name="email" type="email" isRequired autoComplete="email">
+                <Label>{c.email}</Label>
+                <Input />
+              </TextField>
+              <TextField name="message" isRequired>
+                <Label>{c.message}</Label>
+                <TextArea rows={5} placeholder={c.messagePlaceholder} />
+              </TextField>
+              <Button type="submit" variant="primary" size="lg" className="mt-2 self-start">
+                {c.submit}
+                <ArrowRight className="size-4" aria-hidden />
+              </Button>
+              <p id="contact-privacy" className="text-sm text-muted">
+                {c.privacy}{' '}
+                <a href={pathFor('privacy', locale)} className="text-accent underline underline-offset-2">
+                  {c.privacyLink}
+                </a>
+                .
+              </p>
+              {sent && (
+                <p role="status" className="flex items-start gap-2 rounded-xl bg-success/10 p-3 text-sm text-success">
+                  <Check className="mt-0.5 size-4 shrink-0" aria-hidden />
+                  {c.sent}
+                </p>
+              )}
+            </form>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <aside className="h-full rounded-3xl bg-ink p-8 text-white">
+              <img src="/brand/mascot.webp" alt="" aria-hidden className="w-16" />
+              <h2 className="mt-6 text-2xl font-bold">{c.nextTitle}</h2>
+              <ol className="mt-5 space-y-4">
+                {c.next.map((step, index) => (
+                  <li key={step} className="flex gap-3">
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-neon/15 font-mono text-sm text-neon">{index + 1}</span>
+                    <span className="text-white/80">{step}</span>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-8 text-sm text-white/60">{c.direct}</p>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 inline-flex items-center gap-2 font-semibold text-neon hover:underline">
+                <Mail className="size-4" aria-hidden />
+                {CONTACT_EMAIL}
+              </a>
+            </aside>
+          </Reveal>
+        </div>
+      </div>
+    </div>
+  );
 }
