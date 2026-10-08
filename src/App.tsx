@@ -4,12 +4,11 @@ import { SiteProvider, type Locale } from './lib/site';
 import type { PageId } from './lib/routes';
 import { Nav } from './sections/Nav';
 import { Hero } from './sections/Hero';
-import { Audience } from './sections/Audience';
+import { Story } from './sections/Story';
+import { Devices } from './sections/Devices';
+import { Companion } from './sections/Companion';
+import { Integrations } from './sections/Integrations';
 import { TapDemo } from './sections/TapDemo';
-import { Tour } from './sections/Tour';
-import { Automation } from './sections/Automation';
-import { Hardware } from './sections/Hardware';
-import { Themes } from './sections/Themes';
 import { Newsletter } from './sections/Newsletter';
 import { Faq, FinalCta, Footer, Pricing, Trust } from './sections/Closing';
 import { ContactPage } from './pages/Contact';
@@ -29,12 +28,11 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <Audience />
+      <Story />
+      <Devices />
+      <Companion />
+      <Integrations />
       <TapDemo />
-      <Tour />
-      <Automation />
-      <Hardware />
-      <Themes />
       <Trust />
       <Pricing />
       <Faq />

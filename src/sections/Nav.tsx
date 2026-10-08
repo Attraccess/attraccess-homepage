@@ -16,11 +16,13 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 24));
+  // The home page opens on a dark hero; until the bar gets its own background it follows that.
+  const overDarkHero = page === 'home' && !scrolled;
 
   const links = [
     { href: anchor('features'), label: copy.nav.features },
     { href: anchor('reader'), label: copy.nav.reader },
-    { href: anchor('automation'), label: copy.nav.automation },
+    { href: anchor('integrations'), label: copy.nav.integrations },
     { href: anchor('pricing'), label: copy.nav.pricing },
     { href: pathFor('contact', locale), label: copy.nav.contact },
   ];
@@ -37,7 +39,7 @@ export function Nav() {
           paddingBottom: scrolled ? 8 : 14,
         }}
         transition={{ type: 'spring', stiffness: 260, damping: 30 }}
-        className={`mx-auto flex items-center gap-4 rounded-2xl px-4 transition-colors duration-300 ${
+        className={`mx-auto flex items-center gap-4 rounded-2xl px-4 text-foreground transition-colors duration-300 ${overDarkHero ? 'dark' : ''} ${
           scrolled ? 'border border-border bg-background/75 shadow-float backdrop-blur-xl' : 'border border-transparent'
         }`}
       >
@@ -92,7 +94,7 @@ export function Nav() {
               </motion.span>
             </AnimatePresence>
           </Button>
-          <a href={anchor('pricing')} className={`${buttonVariants({ variant: 'primary', size: 'sm' })} hidden sm:inline-flex`}>
+          <a href={pathFor('contact', locale)} className={`${buttonVariants({ variant: 'primary', size: 'sm' })} hidden sm:inline-flex`}>
             {copy.nav.cta}
           </a>
           <Button variant="ghost" size="sm" isIconOnly className="lg:hidden" aria-label={copy.nav.menu} aria-expanded={open} onPress={() => setOpen((v) => !v)}>

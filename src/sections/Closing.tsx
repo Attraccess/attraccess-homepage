@@ -172,12 +172,12 @@ export function FinalCta() {
             <h2 className="text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl">{copy.cta.title}</h2>
             <p className="mt-5 text-lg text-white/70">{copy.cta.lead}</p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href={`https://docs.attraccess.org/#/${locale}/getting-started/quick-start`} className={`${buttonVariants({ variant: 'primary', size: 'lg' })} group`}>
+              <a href={pathFor('contact', locale)} className={`${buttonVariants({ variant: 'primary', size: 'lg' })} group`}>
                 {copy.cta.primary}
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </a>
               <a
-                href={pathFor('contact', locale)}
+                href={`https://docs.attraccess.org/#/${locale}/home`}
                 className={`${buttonVariants({ variant: 'outline', size: 'lg' })} border-white/30 text-white hover:bg-white/10`}
               >
                 {copy.cta.secondary}
@@ -201,7 +201,7 @@ export function Footer() {
       links: [
         { label: copy.nav.features, href: anchor('features') },
         { label: copy.nav.reader, href: anchor('reader') },
-        { label: copy.nav.automation, href: anchor('automation') },
+        { label: copy.nav.integrations, href: anchor('integrations') },
         { label: copy.nav.pricing, href: anchor('pricing') },
         { label: copy.newsletter.eyebrow, href: anchor('newsletter') },
       ],

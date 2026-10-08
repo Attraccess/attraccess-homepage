@@ -1,8 +1,8 @@
 # Attraccess homepage
 
 The marketing site for [Attraccess](https://github.com/Attraccess/Attraccess) at
-[attraccess.org](https://attraccess.org): access & machine management for makerspaces, FabLabs and
-school workshops.
+[attraccess.org](https://attraccess.org): machine access control for companies, research labs and
+universities.
 
 Vite + React + [HeroUI](https://heroui.com) + Tailwind, with [Motion](https://motion.dev) and
 [Lenis](https://lenis.darkroom.engineering) for animation. `pnpm build` prerenders every page to static

@@ -15,8 +15,8 @@ const fontFile = (pkg, file) => pathToFileURL(path.join(path.dirname(require.res
 const asset = (file) => pathToFileURL(path.join(publicDir, file)).href;
 
 const COPY = {
-  en: { title: ['Every machine.', 'Every member.', 'One tap.'], tagline: 'Access & machine management for makerspaces, FabLabs and school workshops.' },
-  de: { title: ['Jede Maschine.', 'Jedes Mitglied.', 'Ein Tap.'], tagline: 'Zugangs- & Maschinenverwaltung für Makerspaces, FabLabs und Schulwerkstätten.' },
+  en: { title: ['Every machine.', 'Every operator.', 'One tap.'], tagline: 'Machine access control for industry, R&amp;D and universities.' },
+  de: { title: ['Jede Maschine.', 'Jede Fachkraft.', 'Ein Tap.'], tagline: 'Maschinenzugang für Industrie, Forschung und Hochschulen.' },
 };
 
 function html(locale) {

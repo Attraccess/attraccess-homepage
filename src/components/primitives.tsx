@@ -92,14 +92,4 @@ export function BrowserFrame({ url, children, className = '' }: { url: string; c
   );
 }
 
-/** A phone silhouette around a mobile screenshot. */
-export function PhoneFrame({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return (
-    <div className={`relative rounded-[2.6rem] border border-black/20 bg-ink p-2.5 shadow-float dark:border-white/10 ${className}`}>
-      <div className="absolute left-1/2 top-4 z-10 h-5 w-20 -translate-x-1/2 rounded-full bg-ink" aria-hidden />
-      <div className="overflow-hidden rounded-[2.1rem]">{children}</div>
-    </div>
-  );
-}
-
 export { EASE };
