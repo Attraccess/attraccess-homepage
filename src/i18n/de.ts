@@ -35,6 +35,11 @@ export const de: Copy = {
     primary: 'Kostenloses Erstgespräch',
     secondary: 'Leser ausprobieren',
     note: ['30 Tage testen', 'On-Premises, deine Daten', 'Single Sign-on per OIDC & SAML'],
+    film: {
+      label: 'Produktfilm: Ein Kartentap am Attractap-Leser wird zur geprüften Einweisung, zur laufenden Sitzung, zu einem Flow, der Strom schaltet und den PC entsperrt, zur Abrechnung und zur geplanten Wartung – dann öffnet sich der Blick auf die Integrationen rund um den Attraccess-Kreislauf.',
+      pause: 'Film pausieren',
+      play: 'Film abspielen',
+    },
     references: 'Im produktiven Einsatz bei',
     outcomes: [
       { value: '100 %', label: 'der Maschinensitzungen einer qualifizierten Person zugeordnet' },

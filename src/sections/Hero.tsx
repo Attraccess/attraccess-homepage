@@ -2,6 +2,7 @@ import { buttonVariants } from '@heroui/react';
 import { ArrowRight, BadgeCheck, Check, Nfc } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useState } from 'react';
+import { HeroFilm } from '../components/HeroFilm';
 import { EASE } from '../components/primitives';
 import { REFERENCE_KEYS, ReferenceLogo } from '../components/ReferenceLogo';
 import { TapHeadline } from '../components/TapHeadline';
@@ -88,6 +89,10 @@ export function Hero() {
             </li>
           ))}
         </motion.ul>
+      </div>
+
+      <div className="relative px-4 sm:px-6">
+        <HeroFilm />
       </div>
 
       <div className="relative mx-auto mt-20 max-w-5xl px-6">

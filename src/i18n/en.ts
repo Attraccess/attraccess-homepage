@@ -33,6 +33,11 @@ export const en = {
     primary: 'Book a free intro call',
     secondary: 'Try the reader',
     note: ['30-day evaluation', 'On-premises, your data', 'Single sign-on via OIDC & SAML'],
+    film: {
+      label: 'Product film: a card tap at an Attractap reader becomes a checked introduction, a live session, a flow that switches power and unlocks the PC, a bill and scheduled maintenance – then the view widens to the integrations around the Attraccess loop.',
+      pause: 'Pause film',
+      play: 'Play film',
+    },
     references: 'Trusted in production at',
     outcomes: [
       { value: '100 %', label: 'of machine sessions tied to a qualified person' },
