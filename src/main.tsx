@@ -12,6 +12,8 @@ const container = document.getElementById('root') as HTMLElement;
 // unknown paths); the dev server renders from the URL instead.
 const prerendered = container.dataset.page as PageId | undefined;
 const { route, locale } = resolveRoute(window.location.pathname);
+// Prerendered pages already carry the right lang; the dev server's template doesn't, and hyphenation depends on it.
+document.documentElement.lang = route.contentLocale ?? locale;
 const app = (
   <StrictMode>
     <App page={prerendered ?? route.id} locale={(container.dataset.locale as Locale | undefined) ?? locale} />

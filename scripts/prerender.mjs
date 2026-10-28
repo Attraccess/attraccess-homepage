@@ -18,6 +18,10 @@ function titleFor(id, copy) {
   switch (id) {
     case 'home':
       return { title: copy.meta.title, description: copy.meta.description };
+    case 'kritis':
+    case 'industry':
+    case 'research':
+      return { title: copy.useCases.pages[id].metaTitle, description: copy.useCases.pages[id].metaDescription };
     case 'contact':
       return { title: copy.contact.metaTitle, description: copy.contact.metaDescription };
     case 'credits':

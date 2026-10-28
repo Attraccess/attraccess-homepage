@@ -50,6 +50,25 @@
     @apply bg-background text-foreground font-sans;
     /* Decorative glows and floating chips may poke out sideways; never let them cause sideways scrolling. */
     overflow-x: clip;
+    /* Long compounds (German) and URLs break instead of overflowing narrow screens. */
+    overflow-wrap: break-word;
+  }
+
+  /* German compounds like „Sicherheitsunterweisungen“ need hyphenation to fit a phone – but only long
+     words in running text; headings, buttons and labels wrap whole words. */
+  :lang(de) :is(p, li, dd) {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    hyphenate-limit-chars: 12 5 5;
+    -webkit-hyphenate-limit-before: 5;
+    -webkit-hyphenate-limit-after: 5;
+  }
+
+  p,
+  li,
+  dd,
+  blockquote {
+    text-wrap: pretty;
   }
 
   ::selection {

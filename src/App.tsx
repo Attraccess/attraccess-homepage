@@ -15,6 +15,7 @@ import { ContactPage } from './pages/Contact';
 import { CreditsPage } from './pages/Credits';
 import { ImprintPage, PrivacyPage, TermsPage } from './pages/Legal';
 import { NotFoundPage } from './pages/NotFound';
+import { SmallTeam, UseCasePage, UseCases } from './pages/UseCase';
 
 function useSmoothScroll() {
   useEffect(() => {
@@ -28,12 +29,14 @@ function HomePage() {
   return (
     <>
       <Hero />
+      <UseCases />
       <Story />
       <Devices />
       <Companion />
       <Integrations />
       <TapDemo />
       <Trust />
+      <SmallTeam />
       <Pricing />
       <Faq />
       <Newsletter />
@@ -44,6 +47,9 @@ function HomePage() {
 
 const PAGES: Record<PageId, () => React.JSX.Element> = {
   home: HomePage,
+  kritis: () => <UseCasePage id="kritis" />,
+  industry: () => <UseCasePage id="industry" />,
+  research: () => <UseCasePage id="research" />,
   contact: ContactPage,
   credits: CreditsPage,
   privacy: PrivacyPage,

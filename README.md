@@ -42,6 +42,9 @@ captures need refreshing.
 | Path | Page |
 | --- | --- |
 | `/`, `/de/` | Home (English, German) |
+| `/use-cases/critical-infrastructure`, `/de/einsatzbereiche/kritis` | Use case: airports, utilities & KRITIS (German page uses “Sie”) |
+| `/use-cases/manufacturing`, `/de/einsatzbereiche/produktion` | Use case: manufacturing & production |
+| `/use-cases/labs-and-universities`, `/de/einsatzbereiche/labore-und-hochschulen` | Use case: labs, workshops & universities |
 | `/contact`, `/de/contact` | Contact – prepares an email, nothing is sent to the site |
 | `/credits`, `/de/credits` | Image credits & licenses |
 | `/datenschutz`, `/agb`, `/impressum` | Legal pages (German only) |
