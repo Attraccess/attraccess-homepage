@@ -17,6 +17,11 @@ export function Reveal({ delay = 0, y = 24, ...props }: HTMLMotionProps<'div'> &
   );
 }
 
+/** Keeps a spaced dash on the line of the word before it, so no line starts with “– ”. */
+export function keepDash(text: string): string {
+  return text.replace(/ ([–—]) /g, '\u00a0$1 ');
+}
+
 export function SectionHeading({
   eyebrow,
   title,
@@ -36,9 +41,9 @@ export function SectionHeading({
       <p className={`font-mono text-xs font-medium uppercase tracking-[0.2em] ${tone === 'night' ? 'text-neon' : 'text-accent'}`}>
         {eyebrow}
       </p>
-      <h2 className="mt-4 text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl">{title}</h2>
+      <h2 className="mt-4 text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl">{keepDash(title)}</h2>
       {lead && (
-        <p className={`mt-5 text-lg leading-relaxed ${tone === 'night' ? 'text-white/70' : 'text-muted'}`}>{lead}</p>
+        <p className={`mt-5 text-lg leading-relaxed ${tone === 'night' ? 'text-white/70' : 'text-muted'}`}>{keepDash(lead)}</p>
       )}
     </Reveal>
   );

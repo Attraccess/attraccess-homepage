@@ -291,6 +291,396 @@ export const en = {
     note: 'You will get a confirmation email. Unsubscribe at any time.',
     list: '9764fb4c-fddd-43eb-9eaf-5c7c3265940e',
   },
+  useCases: {
+    nav: 'Use cases',
+    other: 'Other use cases',
+    checkStates: { passed: 'passed', failed: 'failed', skipped: 'Not checked' },
+    overview: {
+      eyebrow: 'Use cases',
+      title: 'Different rules. Same check.',
+      lead: 'Production halls, campus workshops and critical infrastructure follow different rules. The principle stays the same: only qualified people, and a record of every use.',
+    },
+    status: {
+      available: 'Available',
+      pilot: 'Set up in the pilot',
+      planned: 'Planned',
+      notYet: 'Not available yet',
+      legend: '“Set up in the pilot” means the software side exists, and we wire, configure and test it with you on site.',
+    },
+    smallTeam: {
+      eyebrow: 'Why a small team',
+      title: 'Small team. Direct answers.',
+      lead: 'Attraccess is built by a small company in Hamburg. For you, that means fewer layers between your problem and the fix.',
+      items: [
+        { key: 'engineers', title: 'The engineer on the call wrote the code', body: 'No ticket ping-pong through support tiers. You know the people by name – and for the pilot we commission the first readers with you on site.' },
+        { key: 'speed', title: 'Your gap becomes our sprint', body: 'Missing an interface? We build it with you in the pilot instead of putting it on a roadmap slide. Scope, cost and ownership agreed in writing.' },
+        { key: 'shape', title: 'You shape the product', body: 'Pilot partners have a direct say in what we build next. Your requirements end up in the product, not at the bottom of a feature-request queue.' },
+        { key: 'source', title: 'Code your security team can read', body: 'Attraccess is source-available. Your IT security can review the source code of the server and the reader firmware.' },
+      ],
+      honest: {
+        title: 'The questions procurement will ask, answered upfront',
+        items: [
+          { q: 'No ISO 27001 certificate.', a: 'We answer your security questionnaire in full – including the answers that are “no” – and show how we scan our dependencies.' },
+          { q: 'No 24/7 call centre.', a: 'Support hours, response times and escalation are agreed in the contract – and you reach an engineer directly.' },
+          { q: 'What if we’re gone?', a: 'Attraccess runs on your servers, with your data in one folder. Data export, licence continuation and source-code escrow can be part of the contract.' },
+        ],
+      },
+    },
+    pages: {
+      kritis: {
+        metaTitle: 'Attraccess for airports, utilities and critical infrastructure',
+        metaDescription:
+          'Apron permits, vehicle-type trainings and departure checks verified at a reader in the cab before a ground vehicle’s engine can start. On-premises, with your badges.',
+        card: {
+          title: 'Airports & critical infrastructure',
+          body: 'Apron permits and type trainings checked before the engine starts. Ground support equipment, utility workshops and plant rooms – documented on your own servers.',
+          tags: ['Ground support equipment', 'Engine start release', 'Utility workshops', 'On-premises'],
+        },
+        hero: {
+          eyebrow: 'Airports, utilities & critical infrastructure',
+          title: 'No valid permit. No engine start.',
+          lead: 'A reader in the cab checks apron permit, type training and departure check before a ground vehicle’s engine can start – and Attraccess records who drove what, when and in what condition. The same rules cover workshop equipment. For airports, ground handlers and utilities, on your own servers.',
+          primary: 'Book a free intro call',
+          secondary: 'See how it works',
+          note: ['On-premises, no cloud account', 'Your DESFire badges or ours', 'Source code available to your security review'],
+          trace: {
+            label: 'Access decision · example',
+            pick: 'Choose a person',
+            resource: 'Pushback tug PB-07',
+            resourceDetail: 'Reader in the cab · start released via relay',
+            people: [
+              {
+                name: 'M. Yilmaz',
+                role: 'Ramp agent · pushback',
+                ok: true,
+                checks: [
+                  { label: 'Apron driving permit', detail: 'Valid until 04/2027', ok: true },
+                  { label: 'Type training · pushback tug', detail: 'Refreshed 02/2026', ok: true },
+                  { label: 'Vehicle status', detail: 'No open maintenance', ok: true },
+                  { label: 'Departure check on the reader', detail: '6 of 6 items confirmed', ok: true },
+                ],
+                result: 'Engine start released',
+                resultDetail: '05:42 · session started and logged',
+              },
+              {
+                name: 'T. Brandt',
+                role: 'Ramp agent · week 2',
+                ok: false,
+                checks: [
+                  { label: 'Apron driving permit', detail: 'Valid until 09/2028', ok: true },
+                  { label: 'Type training · pushback tug', detail: 'Not completed yet', ok: false },
+                  { label: 'Vehicle status', detail: 'Not checked', ok: true },
+                  { label: 'Departure check on the reader', detail: 'Not started', ok: true },
+                ],
+                result: 'Engine start stays blocked',
+                resultDetail: 'A trainer can approve a supervised session',
+              },
+            ],
+          },
+        },
+        problems: {
+          eyebrow: 'Today',
+          title: 'Three lists, one key board, no check.',
+          lead: 'In most depots and plant workshops the rules are right. They just aren’t enforced at the moment someone turns the key.',
+          items: [
+            { title: 'Permits and trainings live apart', body: 'The apron permit sits with the airport’s ID office, type trainings and welding certificates in a spreadsheet, keys on a board. Nobody cross-checks all three at 5 a.m. before the first turnaround.' },
+            { title: 'Expiry dates expire silently', body: 'A refresher lapses and the person keeps driving – until an audit or an incident finds out.' },
+            { title: 'After an incident, everyone searches', body: 'Who had the de-icer at 06:10? Was the departure check done? Paper logs are incomplete, illegible or missing.' },
+          ],
+        },
+        scenario: {
+          eyebrow: 'How it works',
+          title: 'From badge to engine start in seconds.',
+          lead: 'The example is a pushback tug. The same steps work for de-icers, high loaders and baggage tractors – and for the lifts, tyre changers and welding gear in the GSE workshop.',
+          steps: [
+            { key: 'qualify', label: 'Beforehand', title: 'Permits and trainings, with expiry', body: 'Record apron permits, vehicle-type trainings and safety briefings per person, with an expiry date or a refresher interval. Trainers sign off in the app; if you want, supervised first drives count towards the introduction.' },
+            { key: 'tap', label: 'In the cab', title: 'Tap before you start', body: 'An Attractap reader in the cab reads DESFire EV2/EV3 badges – your existing ones if your issuer provisions an application, otherwise cards issued by Attraccess. It checks every requirement for this vehicle.' },
+            { key: 'check', label: 'On the reader', title: 'A departure check, not a clipboard', body: 'A checklist on the reader’s touchscreen: tyres, lights, hitch, fluids. Required items have to be confirmed before the vehicle is released.' },
+            { key: 'enable', label: 'At the starter', title: 'Start released, never cut', body: 'A relay in the starter or start-enable circuit releases the start. Once the engine runs it stays untouched – Attraccess never switches off a moving vehicle.' },
+            { key: 'record', label: 'On return', title: 'Return, report, maintain', body: 'Ending the session records duration and the return checklist. Defects become maintenance requests for the workshop, usage hours trigger inspections – and a vehicle in maintenance can’t be checked out.' },
+          ],
+        },
+        capabilities: {
+          eyebrow: 'Honest status',
+          title: 'What works today – and what we build with you.',
+          lead: 'Critical infrastructure deserves precise answers. Here is what Attraccess does now, what we set up together in a pilot, and what doesn’t exist yet.',
+          note: 'Attraccess decides who may use a resource. It is not a safety function and has no PL or SIL rating.',
+          items: [
+            { status: 'available', title: 'Qualifications with expiry and refreshers', body: 'Expiry by date or after a period without use, trainers per resource or group, supervised sessions that turn into an introduction.' },
+            { status: 'available', title: 'Checklists at session start and end', body: 'Required checkboxes and fields on the reader and in the app – the departure check and the return report.' },
+            { status: 'available', title: 'Existing badges, secured with AES', body: 'MIFARE DESFire EV2/EV3 with an application from your badge issuer, or DESFire and NTAG 424 DNA cards issued by Attraccess.' },
+            { status: 'available', title: 'Maintenance that blocks use', body: 'Inspections by usage hours, number of uses or interval. Anything in maintenance stays locked for everyone except the workshop.' },
+            { status: 'available', title: 'Audit log and exports', body: 'Every sensitive change with who, what and when, with configurable retention. Session exports per resource as CSV.' },
+            { status: 'available', title: 'On-premises with single sign-on', body: 'One Docker container in your data centre, no cloud account. OIDC and SAML with Entra ID, Keycloak & co., passkeys and 2FA.' },
+            { status: 'pilot', title: 'Engine start release on the vehicle', body: 'Reader in the cab, relay in the starter or start-enable circuit, powered from the vehicle. We fit, commission and test it with you on the first vehicles of one class.' },
+            { status: 'pilot', title: 'Workshop equipment, lockers and gates', body: 'Relays and PLC outputs switched by flows. We wire, commission and test them with you on site.' },
+            { status: 'pilot', title: 'Your telematics and training systems', body: 'A REST API and MQTT/HTTP flows pass go/no-go decisions to systems you already run. We build the connector with you.' },
+            { status: 'notYet', title: 'Offline operation on the apron', body: 'Today the reader needs network at the moment someone taps, so vehicles are released where they park: at the depot, the charging point or wherever your WiFi reaches. Starting without any network isn’t available yet.' },
+          ],
+        },
+        faq: {
+          title: 'Questions from security, operations and the works council.',
+          items: [
+            {
+              q: 'Does Attraccess make us KRITIS or NIS2 compliant?',
+              a: 'No software does that on its own, and we won’t claim it. Attraccess supports your documentation of duties such as regular instruction and special assignment for hazardous equipment (BetrSichV § 12) or the written assignment of industrial truck drivers (DGUV Vorschrift 68): who was qualified, who used what and when, and who changed which rule. The assignment and your ISMS stay yours.',
+            },
+            {
+              q: 'What happens if the server or network is down?',
+              a: 'A vehicle that is already running is not affected. To start, the reader needs a connection to the Attraccess server – there is no offline mode today, and no high-availability cluster either. That’s why vehicles are released where they park, and we define a written manual fallback with you, such as an override held by the shift lead, that you test before go-live.',
+            },
+            {
+              q: 'Can Attraccess switch off a vehicle while it’s moving?',
+              a: 'No. The relay sits in the starter or start-enable circuit: it decides whether the vehicle may start, nothing more. It is an enable signal, not a safety function – emergency stops and the vehicle’s own safety systems stay as they are.',
+            },
+            {
+              q: 'What does the works council need to know?',
+              a: 'Attraccess records sessions: person, resource, start, end and checklist answers. There is no continuous tracking – only where and when a session started and ended – and no performance scores. Roles decide who can see histories. A configurable deletion period for session history doesn’t exist yet; we agree on a deletion routine and provide a description of all stored data for your works agreement.',
+            },
+            {
+              q: 'Can we use our airport or company ID badges?',
+              a: 'If they are MIFARE DESFire EV2/EV3 and your badge issuer provisions an application, yes. At airports the ID office usually owns the badge, so many pilots start with AES-secured cards issued by Attraccess. The airport keeps issuing permits; Attraccess records their validity and enforces it at the point of use.',
+            },
+            {
+              q: 'Does it need internet access?',
+              a: 'No cloud service is involved. Attraccess runs in your own network; we document its few outbound requests, such as the update check, for your IT before the pilot.',
+            },
+          ],
+        },
+        cta: {
+          title: 'Start with a handful of vehicles.',
+          lead: 'We’re looking for pilot partners: a few vehicles of one class at one depot, or one plant workshop. Engineers on site for commissioning, success criteria you define – and a say in what we build next.',
+          steps: ['Free intro call about vehicles, equipment, permits and badges', 'Site visit and a written pilot plan with success criteria', 'Pilot on a few vehicles of one class or in one workshop', 'You decide – based on your data, not our slides'],
+          primary: 'Talk to us about a pilot',
+        },
+      },
+      industry: {
+        metaTitle: 'Attraccess for manufacturing – qualified operators only, enabled through your PLC',
+        metaDescription:
+          'Safety briefings and machine introductions checked at the badge reader, machines enabled through your PLC, control PCs locked by the Companion app, and every session recorded for audits and cost centres.',
+        card: {
+          title: 'Manufacturing & production',
+          body: 'Only briefed operators start the CNC, laser or press. Enabled through your PLC, control PCs locked until a session runs, every session on record for audits and cost centres.',
+          tags: ['CNC, laser & presses', 'PLC enablement', 'Written assignment', 'Cost centres'],
+        },
+        hero: {
+          eyebrow: 'Manufacturing & production',
+          title: 'No briefing. No spindle.',
+          lead: 'Attraccess checks safety briefings and machine introductions at the badge reader, enables the machine through your PLC and records every session – the written assignment your safety officer needs, without a binder.',
+          primary: 'Book a free intro call',
+          secondary: 'See how it works',
+          note: ['30-day evaluation', 'On-premises, your data', 'Existing DESFire badges'],
+          trace: {
+            label: 'Access decision · example',
+            pick: 'Choose a person',
+            resource: 'CNC milling machine · hall 2',
+            resourceDetail: 'Enabled through a PLC output',
+            people: [
+              {
+                name: 'J. Weber',
+                role: 'Operator · late shift',
+                ok: true,
+                checks: [
+                  { label: 'Annual safety briefing', detail: 'Valid until 03/2027', ok: true },
+                  { label: 'Machine introduction', detail: 'Signed off by trainer K. Lenz', ok: true },
+                  { label: 'Machine status', detail: 'No open maintenance', ok: true },
+                  { label: 'Start-of-shift check', detail: '4 of 4 items confirmed', ok: true },
+                ],
+                result: 'Machine enabled',
+                resultDetail: 'PLC output on · session booked to cost centre 4711',
+              },
+              {
+                name: 'L. Schulz',
+                role: 'Temporary worker · week 1',
+                ok: false,
+                checks: [
+                  { label: 'Annual safety briefing', detail: 'Valid until 10/2027', ok: true },
+                  { label: 'Machine introduction', detail: 'Missing', ok: false },
+                  { label: 'Machine status', detail: 'Not checked', ok: true },
+                  { label: 'Start-of-shift check', detail: 'Not started', ok: true },
+                ],
+                result: 'Machine stays locked',
+                resultDetail: 'A trainer can approve a supervised session',
+              },
+            ],
+          },
+        },
+        problems: {
+          eyebrow: 'Today',
+          title: 'Paper doesn’t stop a machine.',
+          lead: 'The rules exist. What’s missing is a check at the moment someone presses start.',
+          items: [
+            { title: 'Briefings in a binder', body: 'The yearly instruction is signed on paper. Whether it’s still valid at the machine, nobody knows until the auditor asks.' },
+            { title: 'Shared keys and passwords', body: 'The key switch hangs next to the machine, the control PC password is on a sticky note. Anyone can start anything.' },
+            { title: 'Usage hours are guesswork', body: 'Maintenance runs on calendar intervals, and machine time is split across cost centres by gut feeling.' },
+          ],
+        },
+        scenario: {
+          eyebrow: 'How it works',
+          title: 'Qualify. Tap. Enable. Record.',
+          lead: 'From the safety briefing to the cost-centre report – one system instead of binders, key switches and spreadsheets.',
+          steps: [
+            { key: 'qualify', label: 'Beforehand', title: 'Briefings with an expiry date', body: 'Record the yearly safety briefing and machine introductions with expiry and refresher intervals. Appoint trainers per machine or machine group.' },
+            { key: 'tap', label: 'At the machine', title: 'Tap the company badge', body: 'Operators tap the badge they already have at the Attractap next to the machine. Attraccess checks briefing, introduction and machine status.' },
+            { key: 'enable', label: 'In the control cabinet', title: 'Enabled through your PLC', body: 'A PLC output, a relay or an MQTT message switches the machine on. If the work starts on a control PC, the Companion app unlocks that instead.' },
+            { key: 'record', label: 'Afterwards', title: 'Session, report, maintenance', body: 'Every session with person, duration and cost centre. Usage hours trigger maintenance, and a machine in maintenance stays locked.' },
+          ],
+        },
+        capabilities: {
+          eyebrow: 'Honest status',
+          title: 'What works today – and what’s next.',
+          lead: 'Everything below is either in the product today, set up with you in the pilot or clearly marked as planned.',
+          note: 'Attraccess decides who may use a machine. It is not a safety function: emergency stops and safety interlocks stay as they are.',
+          items: [
+            { status: 'available', title: 'Briefings and introductions with expiry', body: 'Expiry by date or after a period without use, trainers per machine or group, supervised sessions that turn into an introduction.' },
+            { status: 'available', title: 'Companion app for control PCs', body: 'Locks the CNC’s control PC or a shared CAD workstation until a qualified person starts a session. Windows, macOS and Linux.' },
+            { status: 'available', title: 'Maintenance by usage hours', body: 'By operating hours, number of uses or interval. A machine in maintenance stays locked for everyone except maintenance staff.' },
+            { status: 'available', title: 'Exports for audits and cost centres', body: 'Sessions per machine, person or project as CSV, plus an audit log of every rule change.' },
+            { status: 'pilot', title: 'PLC, relays and MQTT', body: 'WAGO PLC outputs, Modbus, relays and MQTT/HTTP flows. We wire and commission the first machines with you.' },
+            { status: 'planned', title: 'OPC UA', body: 'Talk to machine controllers directly over OPC UA.' },
+            { status: 'planned', title: 'ERP / SAP export', body: 'Machine time per cost centre straight into your ERP.' },
+          ],
+        },
+        faq: {
+          title: 'Questions from the shop floor.',
+          items: [
+            {
+              q: 'Do we have to touch the machine’s safety circuit?',
+              a: 'No. Attraccess switches an enable signal or a control PC – emergency stops and safety interlocks stay untouched. For PC-controlled machines, the Companion app means no wiring in the control cabinet at all.',
+            },
+            {
+              q: 'Does it help with the written assignment for forklifts and cranes?',
+              a: 'Yes. A qualification with an expiry date, signed off by a trainer and enforced at the reader, supports your documentation of who was assigned to which equipment and when. The assignment itself stays with you.',
+            },
+            {
+              q: 'What about temporary workers and contractors?',
+              a: 'They get an account and a badge like everyone else – with their own briefings and expiry dates. When a briefing expires, the machine stays locked.',
+            },
+            {
+              q: 'What does the works council need to know?',
+              a: 'Attraccess records sessions: person, machine, start, end and form answers. No performance scores and no location tracking. Roles decide who sees histories, and we provide a description of all stored data.',
+            },
+          ],
+        },
+        cta: {
+          title: 'Pilot it on three machines.',
+          lead: 'Start with a free, no-obligation call. We help you pick the machines, wire the PLC and connect your identity provider – and you decide after 30 days.',
+          steps: ['Free intro call about your machines', 'Pick three machines and agree on criteria', 'Wire, connect SSO, brief the operators', 'Decide after 30 days'],
+          primary: 'Book a free intro call',
+        },
+      },
+      research: {
+        metaTitle: 'Attraccess for labs, workshops and universities',
+        metaDescription:
+          'Introductions that scale to a whole campus: campus badges, single sign-on, supervised first sessions and billing for external users. In use at Hamburg University of Technology.',
+        card: {
+          title: 'Labs & universities',
+          body: 'Students and staff only use what they’ve been introduced to. Campus badges, sign-in with the university account, supervised first sessions and billing for external users.',
+          tags: ['Workshops & labs', 'Campus badges', 'SAML & OIDC', 'Supervised sessions'],
+        },
+        hero: {
+          eyebrow: 'Labs, workshops & universities',
+          title: 'Introduce once. Enforce at every machine.',
+          lead: 'Hundreds of new people every semester, a handful of trainers, expensive machines. Attraccess tracks who has been introduced to what, lets trainers supervise first sessions and enables the machine only for those who are qualified.',
+          primary: 'Book a free intro call',
+          secondary: 'See how it works',
+          note: ['In use at TUHH', 'Sign in with the university account', 'Free for non-profits'],
+          trace: {
+            label: 'Access decision · example',
+            pick: 'Choose a person',
+            resource: 'Laser cutter · makerspace, building D',
+            resourceDetail: 'Laser and exhaust fan switched by flows',
+            people: [
+              {
+                name: 'S. Okafor',
+                role: 'Student · mechanical engineering',
+                ok: true,
+                checks: [
+                  { label: 'Lab safety briefing', detail: 'Valid until 09/2027', ok: true },
+                  { label: 'Laser introduction', detail: 'Last used 3 weeks ago', ok: true },
+                  { label: 'Machine status', detail: 'No open maintenance', ok: true },
+                  { label: 'Material on the reader', detail: 'Plywood, 4 mm', ok: true },
+                ],
+                result: 'Laser enabled · exhaust fan on',
+                resultDetail: 'Session booked to the project “Formula Student”',
+              },
+              {
+                name: 'P. Lindqvist',
+                role: 'Exchange student · week 2',
+                ok: false,
+                checks: [
+                  { label: 'Lab safety briefing', detail: 'Valid until 02/2027', ok: true },
+                  { label: 'Laser introduction', detail: '2 of 3 supervised sessions done', ok: false },
+                  { label: 'Machine status', detail: 'Not checked', ok: true },
+                  { label: 'Material on the reader', detail: 'Not started', ok: true },
+                ],
+                result: 'Supervisor needed',
+                resultDetail: 'A trainer taps in – after the 3rd session the introduction is automatic',
+              },
+            ],
+          },
+        },
+        problems: {
+          eyebrow: 'Today',
+          title: 'Every semester starts from zero.',
+          lead: 'Workshops grow, trainers rotate, and the list of who may use what lives in someone’s head.',
+          items: [
+            { title: 'Hundreds of new people', body: 'Every semester brings new students, every project new external partners. Paper lists can’t keep up.' },
+            { title: 'Trainers leave, knowledge leaves', body: 'When a tutor graduates, so does the knowledge of who they introduced to which machine.' },
+            { title: 'External users and billing', body: 'Partners, start-ups and other faculties use the machines too. Machine time has to be billed somehow.' },
+          ],
+        },
+        scenario: {
+          eyebrow: 'How it works',
+          title: 'From semester start to billing.',
+          lead: 'Students sign in with the university account and tap the campus badge they already carry.',
+          steps: [
+            { key: 'qualify', label: 'At the start of term', title: 'Briefings and introductions', body: 'Lab briefings with an expiry date, machine introductions by trainers per machine or group. Introductions can lapse after months without use.' },
+            { key: 'tap', label: 'At the machine', title: 'Tap the campus badge', body: 'The Attractap reads DESFire campus badges. Not introduced yet? A trainer taps in to supervise – after a set number of supervised sessions, the introduction is granted automatically.' },
+            { key: 'enable', label: 'In the lab', title: 'Machine and extraction on', body: 'Flows switch the machine, the exhaust fan or the dust extraction – and switch them off again after the session.' },
+            { key: 'record', label: 'Afterwards', title: 'Projects, billing, maintenance', body: 'Sessions are booked to projects and, for external users, billed. Usage hours trigger maintenance.' },
+          ],
+        },
+        capabilities: {
+          eyebrow: 'What you get',
+          title: 'Made with a university workshop.',
+          lead: 'Attraccess grew up in makerspaces and runs at Hamburg University of Technology. These are the features campuses use most.',
+          note: 'Non-profit organisations use every feature for free. Whether a university needs a commercial license depends on how it runs Attraccess – let’s talk about it.',
+          items: [
+            { status: 'available', title: 'Supervised sessions and auto-introduction', body: 'Trainers confirm supervised sessions at the reader or in the app; after a set number the introduction is granted automatically.' },
+            { status: 'available', title: 'Single sign-on with the campus account', body: 'SAML and OIDC with your university identity provider. Groups map to roles automatically.' },
+            { status: 'available', title: 'Campus badges', body: 'MIFARE DESFire EV2/EV3 campus badges with an application from your badge issuer.' },
+            { status: 'available', title: 'Projects and billing', body: 'Book sessions to projects, charge external users by use and by minute.' },
+            { status: 'available', title: 'Kiosk and printable QR codes', body: 'Start a session on a shared tablet or by scanning the QR code at the machine.' },
+            { status: 'pilot', title: 'Machines, fans and extraction', body: 'Relays, PLC outputs and MQTT flows – we set up the first machines with your workshop team.' },
+          ],
+        },
+        faq: {
+          title: 'Questions from campus.',
+          items: [
+            {
+              q: 'Is Attraccess free for universities?',
+              a: 'Non-profit organisations use it for free. For universities it depends on how you run it – tell us about your setup and we’ll find a fair answer together.',
+            },
+            {
+              q: 'Can students use their campus card?',
+              a: 'If your campus card is MIFARE DESFire EV2/EV3: yes, with an application from your card issuer. Otherwise Attraccess issues its own cards.',
+            },
+            {
+              q: 'Who runs it – our IT or the workshop?',
+              a: 'Usually the central IT hosts the Docker container and connects SSO; the workshop team manages machines, trainers and introductions themselves.',
+            },
+          ],
+        },
+        cta: {
+          title: 'Start with one workshop.',
+          lead: 'A free call, then a pilot in one lab or workshop with the machines that matter most.',
+          steps: ['Free intro call with workshop and IT', 'Pick a workshop and the machines', 'Connect SSO and campus badges', 'Roll out to more labs when it works'],
+          primary: 'Book a free intro call',
+        },
+      },
+    },
+  },
   contact: {
     metaTitle: 'Contact – Attraccess',
     metaDescription: 'A pilot on a few machines, a commercial license or questions about integration? Write to the Attraccess team.',

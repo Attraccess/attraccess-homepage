@@ -293,6 +293,398 @@ export const de: Copy = {
     note: 'Du bekommst eine Bestätigungs-E-Mail. Abmeldung jederzeit möglich.',
     list: 'd21f9904-1a25-4ad7-8e7b-24379133163f',
   },
+  // Die KRITIS-Seite siezt: Einkauf, IT-Sicherheit und Betriebsrat erwarten das von einem Lieferanten.
+  // Gemeinsame Texte (Übersicht, Status, kleines Team) vermeiden deshalb die direkte Anrede.
+  useCases: {
+    nav: 'Einsatzbereiche',
+    other: 'Weitere Einsatzbereiche',
+    checkStates: { passed: 'bestanden', failed: 'nicht bestanden', skipped: 'Nicht geprüft' },
+    overview: {
+      eyebrow: 'Einsatzbereiche',
+      title: 'Andere Regeln. Dieselbe Prüfung.',
+      lead: 'Produktionshalle, Campuswerkstatt und kritische Infrastruktur folgen unterschiedlichen Regeln. Das Prinzip bleibt: nur qualifizierte Personen – und jede Nutzung dokumentiert.',
+    },
+    status: {
+      available: 'Verfügbar',
+      pilot: 'Im Pilotprojekt eingerichtet',
+      planned: 'Geplant',
+      notYet: 'Noch nicht verfügbar',
+      legend: '„Im Pilotprojekt eingerichtet“ heißt: Die Software ist fertig; Verdrahtung, Konfiguration und Tests erfolgen gemeinsam vor Ort.',
+    },
+    smallTeam: {
+      eyebrow: 'Warum ein kleines Team',
+      title: 'Kleines Team. Direkte Antworten.',
+      lead: 'Attraccess wird von einem kleinen Unternehmen in Hamburg entwickelt. Das heißt: weniger Ebenen zwischen Problem und Lösung.',
+      items: [
+        { key: 'engineers', title: 'Wer im Call sitzt, hat den Code geschrieben', body: 'Kein Ticket-Pingpong durch Support-Ebenen. Ansprechpartner:innen mit Namen – und im Pilotprojekt nehmen wir die ersten Leser gemeinsam vor Ort in Betrieb.' },
+        { key: 'speed', title: 'Fehlende Schnittstelle? Nächster Sprint.', body: 'Statt einer Roadmap-Folie bauen wir die Anbindung im Pilotprojekt gemeinsam. Umfang, Kosten und Rechte daran werden schriftlich vereinbart.' },
+        { key: 'shape', title: 'Pilotpartner gestalten mit', body: 'Pilotpartner bestimmen direkt mit, was als Nächstes entsteht. Anforderungen landen im Produkt, nicht am Ende einer Wunschliste.' },
+        { key: 'source', title: 'Code, den die IT-Sicherheit lesen kann', body: 'Der Quellcode von Server und Leser-Firmware ist einsehbar und lässt sich prüfen (source-available).' },
+      ],
+      honest: {
+        title: 'Die Fragen des Einkaufs – vorab beantwortet',
+        items: [
+          { q: 'Kein ISO-27001-Zertifikat.', a: 'Sicherheitsfragebögen beantworten wir vollständig – auch dort, wo die Antwort „nein“ lautet – und zeigen, wie wir unsere Abhängigkeiten scannen.' },
+          { q: 'Kein 24/7-Callcenter.', a: 'Supportzeiten, Reaktionszeiten und Eskalation stehen im Vertrag – erreichbar ist direkt jemand aus der Entwicklung.' },
+          { q: 'Und wenn es uns nicht mehr gibt?', a: 'Attraccess läuft auf den eigenen Servern, die Daten liegen vollständig in einem Verzeichnis. Datenexport, Weiternutzung der Lizenz und Quellcode-Hinterlegung (Escrow) können Vertragsbestandteil sein.' },
+        ],
+      },
+    },
+    pages: {
+      kritis: {
+        metaTitle: 'Attraccess für Flughäfen, Versorger und KRITIS-Betreiber',
+        metaDescription:
+          'Vorfeldführerschein, Typschulungen und Abfahrtskontrolle an einem Leser in der Kabine geprüft, bevor der Motor eines Bodenfahrzeugs starten kann. On-Premises, mit Ihren Ausweisen.',
+        card: {
+          title: 'Flughäfen & KRITIS',
+          body: 'Vorfeldführerschein und Typschulung geprüft, bevor der Motor startet. Bodengeräte, Werkstätten von Versorgern und Technikräume – dokumentiert auf eigenen Servern.',
+          tags: ['Bodenverkehrsdienste', 'Startfreigabe', 'Versorger-Werkstätten', 'On-Premises'],
+        },
+        hero: {
+          eyebrow: 'Flughäfen, Versorger & kritische Infrastruktur',
+          title: 'Keine gültige Berechtigung. Kein Motorstart.',
+          lead: 'Ein Leser in der Kabine prüft Vorfeldführerschein, Typschulung und Abfahrtskontrolle, bevor der Motor eines Bodenfahrzeugs starten kann – und Attraccess dokumentiert, wer was wann in welchem Zustand gefahren hat. Dieselben Regeln gelten für Werkstattgeräte. Für Flughäfen, Bodenverkehrsdienste und Versorger, auf Ihren eigenen Servern.',
+          primary: 'Kostenloses Erstgespräch',
+          secondary: 'So funktioniert’s',
+          note: ['On-Premises, ohne Cloud-Konto', 'Ihre DESFire-Ausweise oder unsere', 'Quellcode einsehbar für Ihre IT-Sicherheit'],
+          trace: {
+            label: 'Zugangsentscheidung · Beispiel',
+            pick: 'Person wählen',
+            resource: 'Flugzeugschlepper PB-07',
+            resourceDetail: 'Leser in der Kabine · Startfreigabe über Relais',
+            people: [
+              {
+                name: 'M. Yilmaz',
+                role: 'Vorfeld · Pushback',
+                ok: true,
+                checks: [
+                  { label: 'Vorfeldführerschein', detail: 'Gültig bis 04/2027', ok: true },
+                  { label: 'Typschulung · Flugzeugschlepper', detail: 'Aufgefrischt 02/2026', ok: true },
+                  { label: 'Fahrzeugstatus', detail: 'Keine offene Wartung', ok: true },
+                  { label: 'Abfahrtskontrolle am Leser', detail: '6 von 6 Punkten bestätigt', ok: true },
+                ],
+                result: 'Motorstart freigegeben',
+                resultDetail: '05:42 · Sitzung gestartet und protokolliert',
+              },
+              {
+                name: 'T. Brandt',
+                role: 'Vorfeld · Woche 2',
+                ok: false,
+                checks: [
+                  { label: 'Vorfeldführerschein', detail: 'Gültig bis 09/2028', ok: true },
+                  { label: 'Typschulung · Flugzeugschlepper', detail: 'Noch nicht absolviert', ok: false },
+                  { label: 'Fahrzeugstatus', detail: 'Nicht geprüft', ok: true },
+                  { label: 'Abfahrtskontrolle am Leser', detail: 'Nicht gestartet', ok: true },
+                ],
+                result: 'Motorstart bleibt gesperrt',
+                resultDetail: 'Ausbilder:innen können eine begleitete Fahrt freigeben',
+              },
+            ],
+          },
+        },
+        problems: {
+          eyebrow: 'Heute',
+          title: 'Drei Listen, ein Schlüsselbrett, keine Prüfung.',
+          lead: 'In den meisten Depots und Betriebswerkstätten stimmen die Regeln. Nur werden sie nicht in dem Moment durchgesetzt, in dem jemand den Schlüssel umdreht.',
+          items: [
+            { title: 'Berechtigungen und Schulungen liegen getrennt', body: 'Der Vorfeldführerschein liegt beim Ausweisbüro des Flughafens, Typschulungen und Schweißnachweise in einer Tabelle, die Schlüssel am Brett. Um 5 Uhr vor dem ersten Turnaround gleicht niemand alle drei ab.' },
+            { title: 'Fristen laufen unbemerkt ab', body: 'Eine Auffrischung verfällt, die Person fährt weiter – bis ein Audit oder ein Vorfall es aufdeckt.' },
+            { title: 'Nach einem Vorfall beginnt die Suche', body: 'Wer hatte um 06:10 das Enteisungsfahrzeug? Wurde die Abfahrtskontrolle gemacht? Papierlisten sind lückenhaft, unleserlich oder weg.' },
+          ],
+        },
+        scenario: {
+          eyebrow: 'So funktioniert’s',
+          title: 'Vom Ausweis zum Motorstart in Sekunden.',
+          lead: 'Das Beispiel ist ein Flugzeugschlepper. Dieselben Schritte gelten für Enteisungsfahrzeuge, Hubwagen und Gepäckschlepper – und für Hebebühnen, Reifenmontiergeräte und Schweißgeräte in der GSE-Werkstatt.',
+          steps: [
+            { key: 'qualify', label: 'Vorab', title: 'Berechtigungen und Schulungen mit Ablaufdatum', body: 'Vorfeldführerscheine, Typschulungen und Sicherheitsunterweisungen pro Person erfassen – mit Ablaufdatum oder Auffrischungsintervall. Ausbilder:innen zeichnen in der App ab; auf Wunsch werden begleitete erste Fahrten auf die Einweisung angerechnet.' },
+            { key: 'tap', label: 'In der Kabine', title: 'Ausweis vorhalten vor dem Start', body: 'Ein Attractap-Leser in der Kabine liest DESFire-EV2/EV3-Ausweise – Ihre vorhandenen, wenn Ihr Ausweisaussteller eine Applikation einrichtet, sonst Karten von Attraccess. Er prüft jede Voraussetzung für dieses Fahrzeug.' },
+            { key: 'check', label: 'Am Leser', title: 'Abfahrtskontrolle statt Klemmbrett', body: 'Eine Checkliste auf dem Touchscreen des Lesers: Reifen, Licht, Kupplung, Betriebsstoffe. Pflichtpunkte müssen bestätigt sein, bevor das Fahrzeug freigegeben wird.' },
+            { key: 'enable', label: 'Am Anlasser', title: 'Start freigegeben, nie abgeschaltet', body: 'Ein Relais im Anlasser- oder Startfreigabekreis gibt den Start frei. Läuft der Motor, bleibt er unberührt – Attraccess schaltet kein fahrendes Fahrzeug ab.' },
+            { key: 'record', label: 'Bei Rückgabe', title: 'Zurückgeben, Mängel melden, Wartung auslösen', body: 'Das Sitzungsende dokumentiert Dauer und Rückgabe-Checkliste. Mängel werden zu Wartungsanfragen für die Werkstatt, Betriebsstunden lösen Prüfungen aus – und ein Fahrzeug in Wartung lässt sich nicht ausgeben.' },
+          ],
+        },
+        capabilities: {
+          eyebrow: 'Ehrlicher Stand',
+          title: 'Was heute funktioniert – und was wir mit Ihnen bauen.',
+          lead: 'Kritische Infrastruktur verdient präzise Antworten. Das kann Attraccess heute, das richten wir im Pilotprojekt gemeinsam ein, und das gibt es noch nicht.',
+          note: 'Attraccess entscheidet, wer eine Ressource nutzen darf. Es ist keine Sicherheitsfunktion und hat keine PL- oder SIL-Einstufung.',
+          items: [
+            { status: 'available', title: 'Qualifikationen mit Ablauf und Auffrischung', body: 'Ablauf nach Datum oder nach einer Zeit ohne Nutzung, Ausbilder:innen pro Ressource oder Gruppe, begleitete Sitzungen, die zur Einweisung werden.' },
+            { status: 'available', title: 'Checklisten bei Sitzungsstart und -ende', body: 'Pflicht-Checkboxen und Felder am Leser und in der App – für Abfahrtskontrolle und Rückgabebericht.' },
+            { status: 'available', title: 'Vorhandene Ausweise, mit AES gesichert', body: 'MIFARE DESFire EV2/EV3 mit einer Applikation Ihres Ausweisausstellers, oder DESFire- und NTAG-424-DNA-Karten von Attraccess.' },
+            { status: 'available', title: 'Wartung, die die Nutzung sperrt', body: 'Prüfungen nach Betriebsstunden, Nutzungszahl oder Intervall. Was in Wartung ist, bleibt für alle außer der Werkstatt gesperrt.' },
+            { status: 'available', title: 'Audit-Log und Exporte', body: 'Jede sensible Änderung mit Person, Inhalt und Zeitpunkt – mit einstellbarer Aufbewahrung. Sitzungsexporte pro Ressource als CSV.' },
+            { status: 'available', title: 'On-Premises mit Single Sign-on', body: 'Ein Docker-Container in Ihrem Rechenzentrum, kein Cloud-Konto. OIDC und SAML mit Entra ID, Keycloak & Co., Passkeys und 2FA.' },
+            { status: 'pilot', title: 'Startfreigabe am Fahrzeug', body: 'Leser in der Kabine, Relais im Anlasser- oder Startfreigabekreis, versorgt aus dem Bordnetz. Wir bauen ein, nehmen in Betrieb und testen gemeinsam an den ersten Fahrzeugen einer Klasse.' },
+            { status: 'pilot', title: 'Werkstattgeräte, Schlüsselschränke und Tore', body: 'Relais und SPS-Ausgänge werden über Flows geschaltet. Wir verdrahten, nehmen in Betrieb und testen gemeinsam vor Ort.' },
+            { status: 'pilot', title: 'Ihre Telematik- und Schulungssysteme', body: 'Eine REST-API und MQTT/HTTP-Flows geben Freigaben an Systeme weiter, die Sie schon betreiben. Die Anbindung entwickeln wir mit Ihnen.' },
+            { status: 'notYet', title: 'Offline-Betrieb auf dem Vorfeld', body: 'Heute braucht der Leser beim Vorhalten des Ausweises eine Netzverbindung. Fahrzeuge werden deshalb dort freigegeben, wo sie abgestellt sind: im Depot, an der Ladestation oder überall, wo Ihr WLAN hinreicht. Ein Start ganz ohne Netz ist noch nicht verfügbar.' },
+          ],
+        },
+        faq: {
+          title: 'Fragen von IT-Sicherheit, Betrieb und Betriebsrat.',
+          items: [
+            {
+              q: 'Macht Attraccess uns KRITIS- oder NIS2-konform?',
+              a: 'Das schafft keine Software allein, und wir behaupten es nicht. Attraccess unterstützt Ihre Dokumentation von Pflichten wie der regelmäßigen Unterweisung und der besonderen Beauftragung bei Arbeitsmitteln mit besonderen Gefährdungen (BetrSichV § 12) oder der schriftlichen Beauftragung von Flurförderzeugführer:innen (DGUV Vorschrift 68): wer qualifiziert war, wer was wann genutzt hat und wer welche Regel geändert hat. Beauftragung und ISMS bleiben in Ihrer Verantwortung.',
+            },
+            {
+              q: 'Was passiert, wenn Server oder Netz ausfallen?',
+              a: 'Ein Fahrzeug, das bereits läuft, ist nicht betroffen. Für den Start braucht der Leser eine Verbindung zum Attraccess-Server – einen Offline-Modus gibt es heute nicht, einen Hochverfügbarkeits-Cluster auch nicht. Deshalb werden Fahrzeuge dort freigegeben, wo sie abgestellt sind, und wir legen mit Ihnen ein schriftliches manuelles Rückfallverfahren fest, etwa eine Überbrückung bei der Schichtleitung, das Sie vor dem Go-live testen.',
+            },
+            {
+              q: 'Kann Attraccess ein fahrendes Fahrzeug abschalten?',
+              a: 'Nein. Das Relais sitzt im Anlasser- oder Startfreigabekreis: Es entscheidet nur, ob das Fahrzeug starten darf. Das ist ein Freigabesignal, keine Sicherheitsfunktion – Not-Halt und die Sicherheitssysteme des Fahrzeugs bleiben, wie sie sind.',
+            },
+            {
+              q: 'Was muss der Betriebsrat wissen?',
+              a: 'Attraccess dokumentiert Sitzungen: Person, Ressource, Beginn, Ende und Checklisten-Antworten. Es gibt keine laufende Ortung – erfasst wird nur, wo und wann eine Sitzung begann und endete – und keine Leistungskennzahlen. Rollen regeln, wer Verläufe sieht. Eine einstellbare Löschfrist für Sitzungsverläufe gibt es noch nicht; wir vereinbaren ein Löschverfahren und liefern eine Beschreibung aller gespeicherten Daten für Ihre Betriebsvereinbarung.',
+            },
+            {
+              q: 'Können wir unsere Flughafen- oder Firmenausweise nutzen?',
+              a: 'Wenn es MIFARE-DESFire-EV2/EV3-Karten sind und Ihr Ausweisaussteller eine Applikation einrichtet: ja. Am Flughafen gehört der Ausweis meist dem Ausweisbüro, deshalb starten viele Pilotprojekte mit AES-gesicherten Karten von Attraccess. Der Flughafen stellt weiter die Berechtigungen aus; Attraccess erfasst ihre Gültigkeit und setzt sie am Ort der Nutzung durch.',
+            },
+            {
+              q: 'Braucht Attraccess Internetzugang?',
+              a: 'Es ist kein Cloud-Dienst beteiligt. Attraccess läuft in Ihrem eigenen Netz; die wenigen ausgehenden Anfragen, etwa die Update-Prüfung, dokumentieren wir vor dem Pilotprojekt für Ihre IT.',
+            },
+          ],
+        },
+        cta: {
+          title: 'Starten Sie mit einer Handvoll Fahrzeuge.',
+          lead: 'Wir suchen Pilotpartner: einige Fahrzeuge einer Klasse in einem Depot oder eine Betriebswerkstatt für den Anfang. Entwickler:innen vor Ort zur Inbetriebnahme, Erfolgskriterien, die Sie festlegen – und Mitsprache dabei, was wir als Nächstes bauen.',
+          steps: ['Kostenloses Erstgespräch zu Fahrzeugen, Geräten, Berechtigungen und Ausweisen', 'Vor-Ort-Termin und schriftlicher Pilotplan mit Erfolgskriterien', 'Pilotprojekt an einigen Fahrzeugen einer Klasse oder in einer Werkstatt', 'Sie entscheiden – auf Basis Ihrer Daten, nicht unserer Folien'],
+          primary: 'Über ein Pilotprojekt sprechen',
+        },
+      },
+      industry: {
+        metaTitle: 'Attraccess für die Produktion – nur qualifizierte Bediener:innen, Freigabe über deine SPS',
+        metaDescription:
+          'Sicherheitsunterweisungen und Maschineneinweisungen am Kartenleser geprüft, Maschinen über deine SPS freigegeben, Steuer-PCs per Companion-App gesperrt und jede Sitzung für Audits und Kostenstellen dokumentiert.',
+        card: {
+          title: 'Produktion & Fertigung',
+          body: 'Nur unterwiesene Bediener:innen starten CNC, Laser oder Presse. Freigabe über die vorhandene SPS, Steuer-PCs gesperrt, bis eine Sitzung läuft, jede Sitzung dokumentiert für Audits und Kostenstellen.',
+          tags: ['CNC, Laser & Pressen', 'SPS-Freigabe', 'Schriftliche Beauftragung', 'Kostenstellen'],
+        },
+        hero: {
+          eyebrow: 'Produktion & Fertigung',
+          title: 'Keine Einweisung. Keine Spindel.',
+          lead: 'Attraccess prüft Sicherheitsunterweisungen und Maschineneinweisungen am Kartenleser, gibt die Maschine über deine SPS frei und dokumentiert jede Sitzung – als Nachweis für deine Fachkraft für Arbeitssicherheit, ohne Ordner.',
+          primary: 'Kostenloses Erstgespräch',
+          secondary: 'So funktioniert’s',
+          note: ['30 Tage testen', 'On-Premises, deine Daten', 'Vorhandene DESFire-Ausweise'],
+          trace: {
+            label: 'Zugangsentscheidung · Beispiel',
+            pick: 'Person wählen',
+            resource: 'CNC-Fräse · Halle 2',
+            resourceDetail: 'Freigabe über einen SPS-Ausgang',
+            people: [
+              {
+                name: 'J. Weber',
+                role: 'Bedienung · Spätschicht',
+                ok: true,
+                checks: [
+                  { label: 'Jährliche Sicherheitsunterweisung', detail: 'Gültig bis 03/2027', ok: true },
+                  { label: 'Maschineneinweisung', detail: 'Abgezeichnet von K. Lenz', ok: true },
+                  { label: 'Maschinenstatus', detail: 'Keine offene Wartung', ok: true },
+                  { label: 'Kontrolle bei Schichtbeginn', detail: '4 von 4 Punkten bestätigt', ok: true },
+                ],
+                result: 'Maschine freigegeben',
+                resultDetail: 'SPS-Ausgang an · Sitzung auf Kostenstelle 4711',
+              },
+              {
+                name: 'L. Schulz',
+                role: 'Leiharbeit · Woche 1',
+                ok: false,
+                checks: [
+                  { label: 'Jährliche Sicherheitsunterweisung', detail: 'Gültig bis 10/2027', ok: true },
+                  { label: 'Maschineneinweisung', detail: 'Fehlt', ok: false },
+                  { label: 'Maschinenstatus', detail: 'Nicht geprüft', ok: true },
+                  { label: 'Kontrolle bei Schichtbeginn', detail: 'Nicht gestartet', ok: true },
+                ],
+                result: 'Maschine bleibt gesperrt',
+                resultDetail: 'Einweiser:innen können eine begleitete Sitzung freigeben',
+              },
+            ],
+          },
+        },
+        problems: {
+          eyebrow: 'Heute',
+          title: 'Papier hält keine Maschine an.',
+          lead: 'Die Regeln gibt es. Was fehlt, ist die Prüfung in dem Moment, in dem jemand auf Start drückt.',
+          items: [
+            { title: 'Unterweisungen im Ordner', body: 'Die jährliche Unterweisung wird auf Papier unterschrieben. Ob sie an der Maschine noch gilt, weiß niemand – bis das Audit fragt.' },
+            { title: 'Geteilte Schlüssel und Passwörter', body: 'Der Schlüsselschalter hängt neben der Maschine, das Passwort des Steuer-PCs klebt am Monitor. Jede:r kann alles starten.' },
+            { title: 'Betriebsstunden sind geschätzt', body: 'Wartung läuft nach Kalender, Maschinenzeit wird nach Gefühl auf Kostenstellen verteilt.' },
+          ],
+        },
+        scenario: {
+          eyebrow: 'So funktioniert’s',
+          title: 'Qualifizieren. Tappen. Freigeben. Dokumentieren.',
+          lead: 'Von der Sicherheitsunterweisung bis zum Kostenstellenbericht – ein System statt Ordnern, Schlüsselschaltern und Tabellen.',
+          steps: [
+            { key: 'qualify', label: 'Vorab', title: 'Unterweisungen mit Ablaufdatum', body: 'Jährliche Sicherheitsunterweisung und Maschineneinweisungen mit Ablauf- und Auffrischungsintervall erfassen. Einweiser:innen pro Maschine oder Maschinengruppe benennen.' },
+            { key: 'tap', label: 'An der Maschine', title: 'Mit dem Firmenausweis tappen', body: 'Bediener:innen halten ihren vorhandenen Ausweis an den Attractap neben der Maschine. Attraccess prüft Unterweisung, Einweisung und Maschinenstatus.' },
+            { key: 'enable', label: 'Im Schaltschrank', title: 'Freigabe über deine SPS', body: 'Ein SPS-Ausgang, ein Relais oder eine MQTT-Nachricht schaltet die Maschine ein. Beginnt die Arbeit am Steuer-PC, entsperrt stattdessen die Companion-App den Rechner.' },
+            { key: 'record', label: 'Danach', title: 'Sitzung, Bericht, Wartung', body: 'Jede Sitzung mit Person, Dauer und Kostenstelle. Betriebsstunden lösen Wartung aus, und eine Maschine in Wartung bleibt gesperrt.' },
+          ],
+        },
+        capabilities: {
+          eyebrow: 'Ehrlicher Stand',
+          title: 'Was heute funktioniert – und was als Nächstes kommt.',
+          lead: 'Alles hier ist entweder heute im Produkt, wird im Pilotprojekt mit dir eingerichtet oder ist klar als geplant markiert.',
+          note: 'Attraccess entscheidet, wer eine Maschine nutzen darf. Es ist keine Sicherheitsfunktion: Not-Halt und Schutzeinrichtungen bleiben, wie sie sind.',
+          items: [
+            { status: 'available', title: 'Unterweisungen und Einweisungen mit Ablauf', body: 'Ablauf nach Datum oder nach einer Zeit ohne Nutzung, Einweiser:innen pro Maschine oder Gruppe, begleitete Sitzungen, die zur Einweisung werden.' },
+            { status: 'available', title: 'Companion-App für Steuer-PCs', body: 'Sperrt den Steuer-PC der CNC oder einen geteilten CAD-Arbeitsplatz, bis eine qualifizierte Person eine Sitzung startet. Windows, macOS und Linux.' },
+            { status: 'available', title: 'Wartung nach Betriebsstunden', body: 'Nach Betriebsstunden, Nutzungszahl oder Intervall. Eine Maschine in Wartung bleibt für alle außer der Instandhaltung gesperrt.' },
+            { status: 'available', title: 'Exporte für Audits und Kostenstellen', body: 'Sitzungen pro Maschine, Person oder Projekt als CSV, dazu ein Audit-Log jeder Regeländerung.' },
+            { status: 'pilot', title: 'SPS, Relais und MQTT', body: 'WAGO-SPS-Ausgänge, Modbus, Relais und MQTT/HTTP-Flows. Die ersten Maschinen verdrahten und nehmen wir gemeinsam in Betrieb.' },
+            { status: 'planned', title: 'OPC UA', body: 'Direkt mit Maschinensteuerungen über OPC UA sprechen.' },
+            { status: 'planned', title: 'ERP-/SAP-Export', body: 'Maschinenzeit pro Kostenstelle direkt in dein ERP.' },
+          ],
+        },
+        faq: {
+          title: 'Fragen aus der Halle.',
+          items: [
+            {
+              q: 'Müssen wir in den Sicherheitskreis der Maschine eingreifen?',
+              a: 'Nein. Attraccess schaltet ein Freigabesignal oder einen Steuer-PC – Not-Halt und Schutzeinrichtungen bleiben unberührt. Bei PC-gesteuerten Maschinen braucht es mit der Companion-App gar keine Verdrahtung im Schaltschrank.',
+            },
+            {
+              q: 'Hilft das bei der schriftlichen Beauftragung für Stapler und Krane?',
+              a: 'Ja. Eine Qualifikation mit Ablaufdatum, von Ausbilder:innen abgezeichnet und am Leser durchgesetzt, unterstützt deine Dokumentation, wer wann für welches Gerät beauftragt war. Die Beauftragung selbst bleibt deine Aufgabe.',
+            },
+            {
+              q: 'Was ist mit Leiharbeit und Fremdfirmen?',
+              a: 'Leiharbeitskräfte und Beschäftigte von Fremdfirmen bekommen ein Konto und einen Ausweis wie alle anderen – mit eigenen Unterweisungen und Ablaufdaten. Läuft eine Unterweisung ab, bleibt die Maschine gesperrt.',
+            },
+            {
+              q: 'Was muss der Betriebsrat wissen?',
+              a: 'Attraccess dokumentiert Sitzungen: Person, Maschine, Beginn, Ende und Formularantworten. Keine Leistungskennzahlen, keine laufende Ortung. Rollen regeln, wer Verläufe sieht, und wir liefern eine Beschreibung aller gespeicherten Daten.',
+            },
+          ],
+        },
+        cta: {
+          title: 'Teste es an drei Maschinen.',
+          lead: 'Zum Start ein kostenloses, unverbindliches Gespräch. Wir helfen bei der Auswahl der Maschinen, der SPS-Anbindung und dem Identity Provider – und du entscheidest nach 30 Tagen.',
+          steps: ['Kostenloses Erstgespräch zu deinen Maschinen', 'Drei Maschinen wählen, Kriterien festlegen', 'Verdrahten, SSO anbinden, Bediener:innen einweisen', 'Nach 30 Tagen entscheiden'],
+          primary: 'Kostenloses Erstgespräch',
+        },
+      },
+      research: {
+        metaTitle: 'Attraccess für Labore, Werkstätten und Hochschulen',
+        metaDescription:
+          'Einweisungen für einen ganzen Campus: Campusausweise, Single Sign-on, begleitete erste Sitzungen und Abrechnung für Externe. Im Einsatz an der Technischen Universität Hamburg.',
+        card: {
+          title: 'Labore & Hochschulen',
+          body: 'Studierende und Mitarbeitende nutzen nur, worin sie eingewiesen sind. Campusausweise, Anmeldung mit dem Hochschulkonto, begleitete erste Sitzungen und Abrechnung für Externe.',
+          tags: ['Werkstätten & Labore', 'Campusausweise', 'SAML & OIDC', 'Begleitete Sitzungen'],
+        },
+        hero: {
+          eyebrow: 'Labore, Werkstätten & Hochschulen',
+          title: 'Einmal einweisen. An jeder Maschine prüfen.',
+          lead: 'Jedes Semester Hunderte neue Leute, eine Handvoll Einweiser:innen, teure Maschinen. Attraccess weiß, wer worin eingewiesen ist, lässt Einweiser:innen erste Sitzungen begleiten und gibt die Maschine nur für Qualifizierte frei.',
+          primary: 'Kostenloses Erstgespräch',
+          secondary: 'So funktioniert’s',
+          note: ['Im Einsatz an der TUHH', 'Anmeldung mit dem Hochschulkonto', 'Kostenlos für Gemeinnützige'],
+          trace: {
+            label: 'Zugangsentscheidung · Beispiel',
+            pick: 'Person wählen',
+            resource: 'Lasercutter · Makerspace, Gebäude D',
+            resourceDetail: 'Laser und Absaugung über Flows geschaltet',
+            people: [
+              {
+                name: 'S. Okafor',
+                role: 'Studium · Maschinenbau',
+                ok: true,
+                checks: [
+                  { label: 'Labor-Sicherheitsunterweisung', detail: 'Gültig bis 09/2027', ok: true },
+                  { label: 'Lasereinweisung', detail: 'Zuletzt genutzt vor 3 Wochen', ok: true },
+                  { label: 'Maschinenstatus', detail: 'Keine offene Wartung', ok: true },
+                  { label: 'Material am Leser', detail: 'Sperrholz, 4 mm', ok: true },
+                ],
+                result: 'Laser frei · Absaugung an',
+                resultDetail: 'Sitzung auf das Projekt „Formula Student“ gebucht',
+              },
+              {
+                name: 'P. Lindqvist',
+                role: 'Austauschsemester · Woche 2',
+                ok: false,
+                checks: [
+                  { label: 'Labor-Sicherheitsunterweisung', detail: 'Gültig bis 02/2027', ok: true },
+                  { label: 'Lasereinweisung', detail: '2 von 3 begleiteten Sitzungen', ok: false },
+                  { label: 'Maschinenstatus', detail: 'Nicht geprüft', ok: true },
+                  { label: 'Material am Leser', detail: 'Nicht gestartet', ok: true },
+                ],
+                result: 'Begleitung nötig',
+                resultDetail: 'Einweiser:in tappt dazu – nach der 3. Sitzung gilt die Einweisung automatisch',
+              },
+            ],
+          },
+        },
+        problems: {
+          eyebrow: 'Heute',
+          title: 'Jedes Semester beginnt bei null.',
+          lead: 'Werkstätten wachsen, Tutor:innen wechseln, und wer was nutzen darf, steht in irgendjemandes Kopf.',
+          items: [
+            { title: 'Hunderte neue Leute', body: 'Jedes Semester neue Studierende, jedes Projekt neue externe Partner. Papierlisten kommen nicht hinterher.' },
+            { title: 'Tutor:innen gehen, Wissen geht', body: 'Mit dem Abschluss einer Tutorin geht auch das Wissen, wen sie an welcher Maschine eingewiesen hat.' },
+            { title: 'Externe und Abrechnung', body: 'Partner, Start-ups und andere Fakultäten nutzen die Maschinen mit. Die Maschinenzeit muss irgendwie abgerechnet werden.' },
+          ],
+        },
+        scenario: {
+          eyebrow: 'So funktioniert’s',
+          title: 'Vom Semesterstart bis zur Abrechnung.',
+          lead: 'Studierende melden sich mit dem Hochschulkonto an und tappen den Campusausweis, den sie ohnehin haben.',
+          steps: [
+            { key: 'qualify', label: 'Zum Semesterstart', title: 'Unterweisungen und Einweisungen', body: 'Laborunterweisungen mit Ablaufdatum, Maschineneinweisungen durch Einweiser:innen pro Maschine oder Gruppe. Einweisungen können nach Monaten ohne Nutzung verfallen.' },
+            { key: 'tap', label: 'An der Maschine', title: 'Campusausweis tappen', body: 'Der Attractap liest DESFire-Campusausweise. Noch nicht eingewiesen? Eine Einweiser:in tappt zur Begleitung dazu – nach einer festgelegten Zahl begleiteter Sitzungen gilt die Einweisung automatisch.' },
+            { key: 'enable', label: 'Im Labor', title: 'Maschine und Absaugung an', body: 'Flows schalten Maschine, Abluft oder Späneabsaugung – und nach der Sitzung wieder aus.' },
+            { key: 'record', label: 'Danach', title: 'Projekte, Abrechnung, Wartung', body: 'Sitzungen werden auf Projekte gebucht und für Externe abgerechnet. Betriebsstunden lösen Wartung aus.' },
+          ],
+        },
+        capabilities: {
+          eyebrow: 'Was ihr bekommt',
+          title: 'Entstanden mit einer Hochschulwerkstatt.',
+          lead: 'Attraccess ist in Makerspaces groß geworden und läuft an der Technischen Universität Hamburg. Das sind die Funktionen, die Hochschulen am meisten nutzen.',
+          note: 'Gemeinnützige Organisationen nutzen alle Funktionen kostenlos. Ob eine Hochschule eine kommerzielle Lizenz braucht, hängt davon ab, wie sie Attraccess betreibt – sprecht uns an.',
+          items: [
+            { status: 'available', title: 'Begleitete Sitzungen und automatische Einweisung', body: 'Einweiser:innen bestätigen begleitete Sitzungen am Leser oder in der App; nach einer festgelegten Zahl gilt die Einweisung automatisch.' },
+            { status: 'available', title: 'Single Sign-on mit dem Campuskonto', body: 'SAML und OIDC mit dem Identity Provider eurer Hochschule. Gruppen werden automatisch zu Rollen.' },
+            { status: 'available', title: 'Campusausweise', body: 'MIFARE-DESFire-EV2/EV3-Campusausweise mit einer Applikation eures Ausweisausstellers.' },
+            { status: 'available', title: 'Projekte und Abrechnung', body: 'Sitzungen auf Projekte buchen, Externe pro Nutzung und Minute abrechnen.' },
+            { status: 'available', title: 'Kiosk und druckbare QR-Codes', body: 'Sitzung am geteilten Tablet starten oder per QR-Code an der Maschine.' },
+            { status: 'pilot', title: 'Maschinen, Abluft und Absaugung', body: 'Relais, SPS-Ausgänge und MQTT-Flows – die ersten Maschinen richten wir mit eurem Werkstattteam ein.' },
+          ],
+        },
+        faq: {
+          title: 'Fragen vom Campus.',
+          items: [
+            {
+              q: 'Ist Attraccess für Hochschulen kostenlos?',
+              a: 'Gemeinnützige Organisationen nutzen es kostenlos. Bei Hochschulen kommt es darauf an, wie ihr es betreibt – erzähl uns von eurem Setup, dann finden wir gemeinsam eine faire Lösung.',
+            },
+            {
+              q: 'Können Studierende ihren Campusausweis nutzen?',
+              a: 'Wenn euer Campusausweis eine MIFARE-DESFire-EV2/EV3-Karte ist: ja, mit einer Applikation eures Ausweisausstellers. Sonst gibt Attraccess eigene Karten aus.',
+            },
+            {
+              q: 'Wer betreibt es – unsere IT oder die Werkstatt?',
+              a: 'Meist hostet die zentrale IT den Docker-Container und bindet SSO an; das Werkstattteam verwaltet Maschinen, Einweiser:innen und Einweisungen selbst.',
+            },
+          ],
+        },
+        cta: {
+          title: 'Starte mit einer Werkstatt.',
+          lead: 'Ein kostenloses Gespräch, dann ein Pilotprojekt in einem Labor oder einer Werkstatt mit den Maschinen, auf die es ankommt.',
+          steps: ['Kostenloses Erstgespräch mit Werkstatt und IT', 'Werkstatt und Maschinen auswählen', 'SSO und Campusausweise anbinden', 'Auf weitere Labore ausrollen, wenn es läuft'],
+          primary: 'Kostenloses Erstgespräch',
+        },
+      },
+    },
+  },
   contact: {
     metaTitle: 'Kontakt – Attraccess',
     metaDescription: 'Ein Pilot mit ein paar Maschinen, eine gewerbliche Lizenz oder Fragen zur Integration? Schreib dem Attraccess-Team.',

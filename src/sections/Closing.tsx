@@ -25,7 +25,7 @@ import {
 } from 'lucide-react';
 import { Reveal, SectionHeading } from '../components/primitives';
 import { useSite } from '../lib/site';
-import { pathFor } from '../lib/routes';
+import { USE_CASE_IDS, pathFor } from '../lib/routes';
 
 const TRUST_ICONS: Record<string, LucideIcon> = {
   sso: KeyRound,
@@ -82,7 +82,7 @@ export function Pricing() {
     <section id="pricing" className="relative py-28">
       <div className="mx-auto max-w-5xl px-6">
         <SectionHeading eyebrow={p.eyebrow} title={p.title} lead={p.lead} />
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
           {p.plans.map((plan, index) => {
             const featured = index === 0;
             return (
@@ -96,8 +96,8 @@ export function Pricing() {
                     <span className="absolute -top-3 left-8 rounded-full bg-rose px-3 py-1 text-xs font-semibold text-white">{p.badge}</span>
                   )}
                   <h3 className="font-mono text-sm uppercase tracking-[0.18em] text-muted">{plan.name}</h3>
-                  <p className="mt-4 flex items-baseline gap-2">
-                    <span className="font-display text-5xl font-extrabold tracking-tight">{plan.price}</span>
+                  <p className="mt-4 flex flex-wrap items-baseline gap-x-2">
+                    <span className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">{plan.price}</span>
                     {plan.period && <span className="text-muted">{plan.period}</span>}
                   </p>
                   <p className="mt-3 text-muted">{plan.body}</p>
@@ -207,6 +207,10 @@ export function Footer() {
       ],
     },
     {
+      title: copy.useCases.nav,
+      links: USE_CASE_IDS.map((id) => ({ label: copy.useCases.pages[id].card.title, href: pathFor(id, locale) })),
+    },
+    {
       title: f.resources,
       links: [
         { label: f.docs, href: `https://docs.attraccess.org/#/${locale}/home` },
@@ -227,8 +231,8 @@ export function Footer() {
   ];
   return (
     <footer className="px-6 pb-12 pt-16">
-      <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-3 md:grid-cols-[2fr_1fr_1fr_1fr]">
-        <div className="sm:col-span-3 md:col-span-1">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
+        <div className="col-span-2 md:col-span-4 lg:col-span-1">
           <AttraccessLogo className="h-10 w-auto text-foreground" />
           <p className="mt-4 max-w-sm text-muted">{f.tagline}</p>
           <p className="mt-6 max-w-md text-xs leading-relaxed text-muted">{f.disclaimer}</p>
