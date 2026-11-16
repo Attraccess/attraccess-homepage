@@ -1,0 +1,7 @@
+86,136,295,164	verbinde WLAN
+86,185,328,213	verbinde Ethernet
+86,234,256,262	verbinde API
+86,283,375,311	authentifiziere an API
+40,332,439,352	Server: nicht konfiguriert
+40,359,439,381	Status: INIT  warte auf Netzwerk
+148,412,330,440	Einstellungen

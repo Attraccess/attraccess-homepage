@@ -1,0 +1,42 @@
+{
+  "units": "pixels; origin top-left; width/height extents; axis-aligned front view; clip screen to rounded rectangle",
+  "source": "software/apps/attractap/desktop/src/sdl_display.cpp: Screen{10,70,480,480}, ScreenRadius=12, canvas 500x901",
+  "assets": [
+    {
+      "file": "attractap-homepage.webp",
+      "width": 900,
+      "height": 1622,
+      "screen": {
+        "x": 18,
+        "y": 126,
+        "width": 864,
+        "height": 864,
+        "radius": 22
+      }
+    },
+    {
+      "file": "attractap-homepage.png",
+      "width": 900,
+      "height": 1622,
+      "screen": {
+        "x": 18,
+        "y": 126,
+        "width": 864,
+        "height": 864,
+        "radius": 22
+      }
+    },
+    {
+      "file": "attractap-front-original.png",
+      "width": 1880,
+      "height": 3388,
+      "screen": {
+        "x": 38,
+        "y": 263,
+        "width": 1805,
+        "height": 1805,
+        "radius": 45
+      }
+    }
+  ]
+}

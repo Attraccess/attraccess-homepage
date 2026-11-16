@@ -1,0 +1,6 @@
+# Attraccess checkout the demo tools run against (a worktree or a symlink); see README.md.
+/software
+# Renders: masters, web encodes, posters, QA stills. Recreate with film/scripts/export.sh.
+/out/
+/preview/media/
+/.local/

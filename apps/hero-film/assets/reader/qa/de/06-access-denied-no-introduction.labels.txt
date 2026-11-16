@@ -1,0 +1,8 @@
+36,30,50,56	
+92,34,168,51	Abmelden
+194,20,347,40	Mia Chen
+356,20,383,37	30 s
+20,76,459,118	Laser cutter
+20,119,459,146	North Campus Prototyping Lab
+37,174,442,265	Sie benötigen eine Einweisung, bevor Sie diese Ressource nutzen können. Bitte wenden Sie sich an einen der unten aufgeführten Einweiser.
+37,276,442,298	Alex Morgan

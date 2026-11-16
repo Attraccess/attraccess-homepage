@@ -1,0 +1,7 @@
+86,136,341,164	Connecting to WiFi
+86,185,400,213	Connecting to Ethernet
+86,234,328,262	Connecting to API
+86,283,407,311	Authenticating with API
+40,332,439,352	Server: not configured
+40,359,439,381	Status: INIT  waiting for network
+185,412,293,440	Settings

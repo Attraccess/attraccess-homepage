@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Attraccess — Vorschau Hero-Film</title>
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="data:," />
+    <link rel="preload" as="image" type="image/avif" href="../media/poster-landscape.de.avif" media="(min-width: 641px)" />
+    <link rel="preload" as="image" type="image/avif" href="../media/poster-portrait.de.avif" media="(max-width: 640px)" />
+    <style>
+      /* App tokens, dark appearance (libs/ui/src/tokens.css). */
+      :root {
+        --background: #162124;
+        --foreground: #f4f8f8;
+        --surface: #1e2c2f;
+        --muted: #afc0c3;
+        --border: #42575c;
+        --accent: #82c4ce;
+        --accent-foreground: #142e34;
+        --accent-hover: #a1d5dc;
+        --default: #304348;
+        --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font); }
+      a { color: inherit; }
+
+      .hero { position: relative; overflow: hidden; padding: clamp(6rem, 12vw, 9rem) 1.5rem 5rem; text-align: center; }
+      .eyebrow { margin: 0; font: 600 0.75rem/1.4 var(--mono); letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); }
+      h1 { margin: 1.75rem auto 0; max-width: 16ch; font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: 0.95; letter-spacing: -0.04em; font-weight: 800; }
+      .lead { margin: 1.75rem auto 0; max-width: 40rem; font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.6; color: var(--muted); }
+      .ctas { margin-top: 2.25rem; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+      .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.25rem; border-radius: 0.25rem; font-weight: 600; text-decoration: none; font-size: 1rem; }
+      .btn-primary { background: var(--accent); color: var(--accent-foreground); }
+      .btn-primary:hover { background: var(--accent-hover); }
+      .btn-secondary { background: var(--default); color: var(--foreground); }
+
+      /* Film frame: 16:9 on wide screens, the dedicated 4:5 cut on phones. */
+      .film { position: relative; margin: clamp(3rem, 6vw, 4.5rem) auto 0; max-width: 1280px; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden;
+        border: 1px solid var(--border); background: var(--background);
+        box-shadow: 0 0 0 1px rgb(0 0 0 / 20%), 0 40px 120px -20px rgb(0 0 0 / 60%), 0 0 140px -40px rgb(37 109 123 / 55%); }
+      .film video, .film picture, .film picture img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+      .film video { opacity: 0; transition: opacity 0.6s ease; }
+      .film.is-playing video { opacity: 1; }
+      @media (max-width: 640px) {
+        .hero { padding-inline: 1rem; }
+        .film { aspect-ratio: 4 / 5; border-radius: 8px; }
+      }
+
+      .film-toggle { position: absolute; right: 0.75rem; bottom: 0.75rem; z-index: 2; display: inline-flex; align-items: center; justify-content: center;
+        width: 2.5rem; height: 2.5rem; border-radius: 999px; border: 1px solid rgb(244 248 248 / 18%); background: rgb(22 33 36 / 70%); color: var(--foreground);
+        backdrop-filter: blur(8px); cursor: pointer; opacity: 0.75; transition: opacity 0.2s; }
+      .film-toggle:hover, .film-toggle:focus-visible { opacity: 1; }
+      .film-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .film-toggle svg { width: 1rem; height: 1rem; }
+      .film-toggle .i-play { display: none; }
+      .film.is-paused .film-toggle .i-play { display: block; }
+      .film.is-paused .film-toggle .i-pause { display: none; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .film video, .film-toggle { display: none; }
+      }
+
+      .qa { margin: 3rem auto 0; max-width: 1280px; font: 0.8rem/1.6 var(--mono); color: var(--muted); text-align: left; }
+      .qa summary { cursor: pointer; }
+      .lang { position: absolute; top: 1.25rem; right: 1.5rem; display: flex; gap: 0.25rem; font: 600 0.8rem/1 var(--mono); }
+      .lang a { padding: 0.45rem 0.6rem; border-radius: 0.25rem; color: var(--muted); text-decoration: none; }
+      .lang a[aria-current='page'] { background: var(--default); color: var(--foreground); }
+    </style>
+  </head>
+  <body>
+    <section class="hero" id="top">
+      <nav class="lang" aria-label="Sprache"><a href="../" hreflang="en">EN</a><a href="./" aria-current="page" hreflang="de">DE</a></nav>
+      <p class="eyebrow">Maschinenzugang für Werkstätten, Labore und Hochschulen</p>
+      <h1>Jede Maschine. Jede Fachkraft. Ein Tap.</h1>
+      <p class="lead">
+        Attraccess prüft Einweisungen direkt am Leser, gibt die Ressource über den konfigurierten Steuerpfad frei und dokumentiert jede Sitzung
+        für Abrechnung, Wartung und Audits.
+      </p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#">Kostenloses Erstgespräch →</a>
+        <a class="btn btn-secondary" href="#">Leser ausprobieren</a>
+      </div>
+
+      <figure class="film" id="film" aria-label="Produktfilm: Ein Kartentap am Attractap-Leser wird zur geprüften Einweisung, zur laufenden Sitzung, zu einem Flow, der Strom schaltet und den PC entsperrt, zur Abrechnung und zur geplanten Wartung – dann öffnet sich der Blick auf die Integrationen rund um den Attraccess-Kreislauf.">
+        <picture>
+          <source media="(max-width: 640px)" type="image/avif" srcset="../media/poster-portrait.de.avif" />
+          <source media="(max-width: 640px)" type="image/webp" srcset="../media/poster-portrait.de.webp" />
+          <source media="(max-width: 640px)" type="image/jpeg" srcset="../media/poster-portrait.de.jpg" />
+          <source type="image/avif" srcset="../media/poster-landscape.de.avif" />
+          <source type="image/webp" srcset="../media/poster-landscape.de.webp" />
+          <img src="../media/poster-landscape.de.jpg" alt="" width="1920" height="1080" decoding="async" />
+        </picture>
+        <video muted playsinline loop preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video>
+        <button class="film-toggle" type="button" aria-label="Film pausieren" aria-pressed="false">
+          <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+          <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" /></svg>
+        </button>
+      </figure>
+
+      <details class="qa" id="qa">
+        <summary>Embed-Diagnose</summary>
+        <pre id="qa-out"></pre>
+      </details>
+    </section>
+
+    <script>
+      (() => {
+        const film = document.getElementById('film');
+        const video = film.querySelector('video');
+        const toggle = film.querySelector('.film-toggle');
+        const out = document.getElementById('qa-out');
+
+        // Both cuts share one timeline, so switching orientation keeps the current time.
+        const SOURCES = {
+          landscape: [
+            { src: '../media/hero-landscape.de.av1.mp4', type: 'video/mp4; codecs="av01.0.09M.08"' },
+            { src: '../media/hero-landscape.de.vp9.webm', type: 'video/webm; codecs="vp9"' },
+            { src: '../media/hero-landscape.de.h264.mp4', type: 'video/mp4; codecs="avc1.640032"' },
+          ],
+          portrait: [
+            { src: '../media/hero-portrait.de.av1.mp4', type: 'video/mp4; codecs="av01.0.09M.08"' },
+            { src: '../media/hero-portrait.de.vp9.webm', type: 'video/webm; codecs="vp9"' },
+            { src: '../media/hero-portrait.de.h264.mp4', type: 'video/mp4; codecs="avc1.640028"' },
+          ],
+        };
+        const narrow = matchMedia('(max-width: 640px)');
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+        let userPaused = false;
+        let visible = true;
+        let current = null;
+
+        // WebKit can keep showing a stale frame after seeking AV1 (orientation switches seek), and it decodes
+        // H.264 in hardware everywhere, so Safari/iOS take the H.264 cut first.
+        const webkit = /AppleWebKit/.test(navigator.userAgent) && !/Chrome|Chromium|Edg|Firefox|FxiOS/.test(navigator.userAgent);
+        const pick = () => {
+          const list = SOURCES[narrow.matches ? 'portrait' : 'landscape'];
+          const ordered = webkit ? [list[2], list[0], list[1]] : list;
+          return ordered.find((s) => video.canPlayType(s.type) === 'probably') || ordered.find((s) => video.canPlayType(s.type)) || list[list.length - 1];
+        };
+
+        const load = () => {
+          const next = pick();
+          if (current && current.src === next.src) return;
+          const t = video.currentTime || 0;
+          current = next;
+          video.src = next.src;
+          video.preload = 'auto';
+          if (t) video.addEventListener('loadedmetadata', () => { video.currentTime = t % (video.duration || 30); }, { once: true });
+          report();
+        };
+
+        const shouldPlay = () => !reduce.matches && !userPaused && visible && !document.hidden;
+
+        const sync = () => {
+          if (reduce.matches) {
+            video.pause();
+            film.classList.remove('is-playing');
+            report();
+            return;
+          }
+          load();
+          if (shouldPlay()) {
+            video.play().catch((error) => {
+              // Source changes and visibility pauses can cancel a pending play().
+              if (error.name === 'AbortError' || !shouldPlay()) return;
+              userPaused = true;
+              sync();
+            });
+          } else {
+            video.pause();
+          }
+          film.classList.toggle('is-paused', userPaused);
+          toggle.setAttribute('aria-pressed', String(userPaused));
+          toggle.setAttribute('aria-label', userPaused ? 'Film abspielen' : 'Film pausieren');
+        };
+
+        video.addEventListener('playing', () => { film.classList.add('is-playing'); report(); });
+        toggle.addEventListener('click', () => { userPaused = !userPaused; sync(); });
+        narrow.addEventListener('change', sync);
+        reduce.addEventListener('change', sync);
+        document.addEventListener('visibilitychange', sync);
+        new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); }, { threshold: 0.15 }).observe(film);
+
+        function report() {
+          out.textContent = JSON.stringify({
+            source: current && current.src,
+            reducedMotion: reduce.matches,
+            narrow: narrow.matches,
+            muted: video.muted,
+            loop: video.loop,
+            playing: !video.paused,
+            size: [video.videoWidth, video.videoHeight],
+          }, null, 2);
+        }
+        window.__heroFilm = { video, report: () => (report(), JSON.parse(out.textContent)) };
+        sync();
+      })();
+    </script>
+  </body>
+</html>

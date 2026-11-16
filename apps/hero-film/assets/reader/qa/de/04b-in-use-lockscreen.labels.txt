@@ -1,0 +1,7 @@
+36,30,50,56	
+223,20,459,42	Laser cutter
+223,43,459,65	In Verwendung: Mia Chen
+133,72,345,154	14:32
+129,151,350,175	Mittwoch, 14. Oktober
+124,411,136,432	
+147,409,356,433	RFID-Karte auflegen

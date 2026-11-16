@@ -1,0 +1,2 @@
+import {open,browser,delay,ports,OUT} from './capture.mjs';
+try{ const p=await open('/resources/1',{time:Date.now()});await delay(4000);console.log('URL',p.url());console.log('BODY',await p.locator('body').innerText());console.log('API',await (await p.request.get(ports.frontend.url+'/api/resources/1/usage/active')).text());await p.screenshot({path:OUT+'/end2-probe.png'}); } catch(e){console.log('ERROR',e.message)}finally{await browser.close()}
