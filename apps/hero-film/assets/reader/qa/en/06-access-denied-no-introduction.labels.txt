@@ -1,0 +1,8 @@
+36,30,50,56	
+99,34,160,51	Sign out
+194,20,347,40	Mia Chen
+356,20,383,37	30 s
+20,76,459,118	Laser cutter
+20,119,459,146	North Campus Prototyping Lab
+37,174,442,242	You need an introduction before using this resource. Please contact one of the trainers listed below.
+37,253,442,275	Alex Morgan

@@ -1,0 +1,19 @@
+36,30,50,56	
+92,34,168,51	Abmelden
+194,20,347,40	Mia Chen
+356,20,383,37	30 s
+20,76,459,118	Laser cutter
+20,119,459,146	North Campus Prototyping Lab
+20,157,95,177	Startzeit
+20,178,113,198	14.10. 14:32
+228,157,288,177	Nutzer
+124,178,393,200	Mia Chen
+404,157,459,177	Dauer
+408,178,459,198	00:00
+163,226,316,246	Sitzung beenden
+33,304,191,326	Aktuelle Nutzung
+33,335,85,355	Zähler
+191,335,446,355	Energy (kWh): 0.000
+33,364,129,384	Betriebszeit
+191,364,446,384	00:00 · Läuft
+33,417,199,437	Nutzung gestartet

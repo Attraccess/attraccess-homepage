@@ -1,0 +1,8 @@
+PASS: 20 native PNGs decode byte-for-byte to the production LVGL RGBA framebuffers.
+PASS: All 20 1440x1440 upscales contain exactly 3x3 identical pixels per native pixel.
+PASS: Both copied hardware source files match originals byte-for-byte.
+PASS: All 3 upstream CTests (17 display groups, 59,331 checks, 60 original LVGL frames; repeatability; parser).
+PASS: Film harness: 10 frames per language, 35 checks per run, no LVGL errors.
+PASS: Both film languages rendered in fresh processes twice; every raw framebuffer identical.
+Visual QA: all 20 native frames, representative 3x frame, and hardware composite inspected; no broken/clipped text.
+Source integrity: git -C software status --short was empty after generation.

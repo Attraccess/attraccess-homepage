@@ -1,0 +1,3 @@
+import {spawnSync} from 'node:child_process';import path from 'node:path';
+const steps=[['stills.mjs','--only','laser-introduction-history,devices-shelly,companion2-locked,companion2-unlocked'],['prepare-start.mjs'],['stills.mjs','--only','laser-active'],['sequences.mjs','--only','seq-start'],['post-start.mjs'],['round2-flow.mjs'],['maintenance.mjs'],['snapshot-stills.mjs'],['verify.mjs']];
+for(const [name,...args] of steps){console.log('German capture:',name);const r=spawnSync(process.execPath,[path.join(import.meta.dirname,name),...args],{stdio:'inherit'});if(r.status)throw Error(name+' failed');}

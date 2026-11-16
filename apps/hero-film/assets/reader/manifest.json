@@ -1,0 +1,233 @@
+{
+  "productionCommit": "a4d5e3b772686164dc353f2449edf0617a3509f5",
+  "renderer": "LVGL 9.3.0 software renderer; untouched production screen C++/fonts/raw assets; RGB565 framebuffer",
+  "theme": "current production dark only",
+  "variant": "Attractap Touch WiFi; same 480x480 layouts as Touch V2/Ethernet",
+  "nativeResolution": [
+    480,
+    480
+  ],
+  "upscale": "3x nearest neighbour; not a higher DPI render",
+  "screens": [
+    {
+      "file": "dark-en/01-idle-ready.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-en/01-idle-ready@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "capture-only English label substitution",
+      "rgbaSha256": "bdddfb08e67972c3f547f6863313d6f4b7d5c7d4c315bbe5e5a49eb32c1521de"
+    },
+    {
+      "file": "dark-en/02-authenticating.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-en/02-authenticating@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "capture-only English label substitution",
+      "rgbaSha256": "9483fc411aba015ad3d2bd32278654e2c2be01621a5dd7214f7fefb73c71b5f4"
+    },
+    {
+      "file": "dark-en/03-session-started.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-en/03-session-started@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "capture-only English label substitution",
+      "rgbaSha256": "22dcd3f1ceb388dbb50c55e7db9e54917eed49c0ca3f9abe3b6670da777692f8"
+    },
+    {
+      "file": "dark-en/04-session-active.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-en/04-session-active@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "capture-only English label substitution",
+      "rgbaSha256": "cd13710b5451d0967d8fba3326345be1c320c20450e72ac98bfb69e5dcb5c765"
+    },
+    {
+      "file": "dark-en/04b-in-use-lockscreen.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-en/04b-in-use-lockscreen@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "capture-only English label substitution",
+      "rgbaSha256": "f6d99c108f03b4b34ae4ad0a7f127ac9f6067480c6751d068a04f46580eb62ad"
+    },
+    {
+      "file": "dark-en/05-session-ended.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-en/05-session-ended@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "capture-only English label substitution",
+      "rgbaSha256": "b463c736ec01e26e4853d0286a4ec4993069b0a5a5a9f983562d39d32c63430d"
+    },
+    {
+      "file": "dark-en/06-access-denied-no-introduction.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-en/06-access-denied-no-introduction@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "capture-only English label substitution",
+      "rgbaSha256": "31f67d2c271bb451fda78fe5a0be93a64f377070930ac4a0ed0de27bccd1a02e"
+    },
+    {
+      "file": "dark-en/07-supervision-required.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-en/07-supervision-required@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "capture-only English label substitution",
+      "rgbaSha256": "9e59d3464aba266d4c2e13b133d29a45928c241ed60989ef61146eb6cbd4de72"
+    },
+    {
+      "file": "dark-en/08-init-logo.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-en/08-init-logo@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "capture-only English label substitution",
+      "rgbaSha256": "8d886702fa7a2513758ab08ad29a2ceb39de25ce8dbf2d3512bed8283d1d7f2d"
+    },
+    {
+      "file": "dark-en/08b-boot-title.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-en/08b-boot-title@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "capture-only English label substitution",
+      "rgbaSha256": "440d587e1ba7481f4507e2d6a71e259002fbf7305e2340f4b6b36e64d2b8df06"
+    },
+    {
+      "file": "dark-production-de/01-idle-ready.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-production-de/01-idle-ready@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "unchanged production German",
+      "rgbaSha256": "e0f94b6063be5e827c3fcefba9d03d809c0d32c0f17a2b71494f90bfad14de6d"
+    },
+    {
+      "file": "dark-production-de/02-authenticating.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-production-de/02-authenticating@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "unchanged production German",
+      "rgbaSha256": "f25229adf30ea67000d2b8cca5307911f0299cd1c9723379dc62ce8f502ae755"
+    },
+    {
+      "file": "dark-production-de/03-session-started.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-production-de/03-session-started@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "unchanged production German",
+      "rgbaSha256": "756a4ed78df0ec483a0d88d64eaf6676a607cd9d405200dd379c2e8e8a2fba80"
+    },
+    {
+      "file": "dark-production-de/04-session-active.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-production-de/04-session-active@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "unchanged production German",
+      "rgbaSha256": "202dbc19f8d3dbb1b4dcf8b16035c6aa7e061325a7a99862958fc580cf96b0c8"
+    },
+    {
+      "file": "dark-production-de/04b-in-use-lockscreen.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-production-de/04b-in-use-lockscreen@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "unchanged production German",
+      "rgbaSha256": "640d70a63576843c720c3c6aa46f89b95b5b2b3e0c3428fea545c8f204b4bcde"
+    },
+    {
+      "file": "dark-production-de/05-session-ended.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-production-de/05-session-ended@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "unchanged production German",
+      "rgbaSha256": "a96f67adc2dbad21dfd27954075a6ce02880b6fba704f7d64eb96966e8362eed"
+    },
+    {
+      "file": "dark-production-de/06-access-denied-no-introduction.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-production-de/06-access-denied-no-introduction@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "unchanged production German",
+      "rgbaSha256": "c6efbe469a7022a5ed1fa62935039bb7df33ffd5746cd95736fdeedd304aee3e"
+    },
+    {
+      "file": "dark-production-de/07-supervision-required.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-production-de/07-supervision-required@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "unchanged production German",
+      "rgbaSha256": "b13e190016c739b024b04aa3700d8f18df663891591119f38db5faba2348e1eb"
+    },
+    {
+      "file": "dark-production-de/08-init-logo.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-production-de/08-init-logo@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "unchanged production German",
+      "rgbaSha256": "3a4aa7e6c814d7f3d7e3f828cb0f55708ab946fe2437db7cd913b535a9769d28"
+    },
+    {
+      "file": "dark-production-de/08b-boot-title.png",
+      "width": 480,
+      "height": 480,
+      "upscale": "dark-production-de/08b-boot-title@3x.png",
+      "upscaleWidth": 1440,
+      "upscaleHeight": 1440,
+      "genuineProductionCode": true,
+      "copy": "unchanged production German",
+      "rgbaSha256": "440d587e1ba7481f4507e2d6a71e259002fbf7305e2340f4b6b36e64d2b8df06"
+    }
+  ]
+}
