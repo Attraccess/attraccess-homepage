@@ -5,7 +5,7 @@ export function TermsContent() {
     <>
                     <header>
             <h1>
-              Allgemeine Geschäftsbedingungen (AGB)
+              Allgemeine Geschäfts&shy;bedingungen (AGB)
             </h1>
             <p>
               Stand: 16. Januar 2026
@@ -19,7 +19,7 @@ export function TermsContent() {
                 <p>22529 Hamburg</p>
                 <p>Deutschland</p>
                 <p>
-                  (Einzelunternehmer, Kleinunternehmer gemäß § 19 UStG – keine Umsatzsteuer ausweisbar)
+                  (Einzelunternehmer, Kleinunternehmer gemäß § 19 UStG&nbsp;– keine Umsatzsteuer ausweisbar)
                 </p>
               </div>
             </div>
@@ -117,7 +117,7 @@ export function TermsContent() {
               <h2>10. Schlussbestimmungen</h2>
               <ol>
                 <li>Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts.</li>
-                <li>Gerichtsstand für Kaufleute ist – soweit gesetzlich zulässig – der Sitz des Anbieters.</li>
+                <li>Gerichtsstand für Kaufleute ist&nbsp;– soweit gesetzlich zulässig&nbsp;– der Sitz des Anbieters.</li>
                 <li>Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Regelungen unberührt.</li>
               </ol>
             </section>

@@ -15,6 +15,8 @@ const template = readFileSync(path.join(dist, 'index.html'), 'utf8');
 const escape = (value) => String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 function titleFor(id, copy) {
+  const useCase = copy.useCases.pages[id];
+  if (useCase) return { title: useCase.metaTitle, description: useCase.metaDescription };
   switch (id) {
     case 'home':
       return { title: copy.meta.title, description: copy.meta.description };
@@ -28,8 +30,11 @@ function titleFor(id, copy) {
       return { title: 'AGB – Attraccess', description: 'Allgemeine Geschäftsbedingungen für Attraccess.' };
     case 'imprint':
       return { title: 'Impressum – Attraccess', description: 'Impressum von attraccess.org.' };
-    default:
+    case 'notFound':
       return { title: `404 – ${copy.notFound.title}`, description: copy.notFound.lead };
+    default:
+      // A new page without a title here would otherwise ship with the 404 title.
+      throw new Error(`No title for page "${id}" in scripts/prerender.mjs`);
   }
 }
 
@@ -89,13 +94,14 @@ for (const route of ROUTES) {
       ...(route.id === 'home' ? [`<script type="application/ld+json">${structuredData(locale)}</script>`] : []),
     ].join('\n    ');
 
+    // Replacement functions, not strings: copy containing "$&" or "$'" must be inserted literally.
     const html = template
-      .replace('<html lang="en">', `<html lang="${route.contentLocale ?? locale}">`)
-      .replace(/<title>[^<]*<\/title>/, `<title>${escape(title)}</title>`)
-      .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${escape(description)}" />`)
-      .replace('<!--head-meta-->', head)
-      .replace(/\/\*language-pairs\*\/ \{[^}]*\}/, JSON.stringify(languagePairs))
-      .replace('<div id="root"><!--app-html--></div>', `<div id="root" data-page="${route.id}" data-locale="${locale}">${render(route.id, locale)}</div>`);
+      .replace('<html lang="en">', () => `<html lang="${route.contentLocale ?? locale}">`)
+      .replace(/<title>[^<]*<\/title>/, () => `<title>${escape(title)}</title>`)
+      .replace(/<meta name="description" content="[^"]*" \/>/, () => `<meta name="description" content="${escape(description)}" />`)
+      .replace('<!--head-meta-->', () => head)
+      .replace(/\/\*language-pairs\*\/ \{[^}]*\}/, () => JSON.stringify(languagePairs))
+      .replace('<div id="root"><!--app-html--></div>', () => `<div id="root" data-page="${route.id}" data-locale="${locale}">${render(route.id, locale)}</div>`);
     if (html.includes('<!--app-html-->') || html.includes('/*language-pairs*/')) throw new Error(`Template placeholders left in ${urlPath}`);
 
     const file = outputFile(urlPath);

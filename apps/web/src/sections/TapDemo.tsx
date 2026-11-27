@@ -209,9 +209,9 @@ export function TapDemo() {
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center gap-3 rounded-xl bg-white/[0.05] p-3">
+              <div className="mt-4 flex flex-wrap items-center gap-3 rounded-xl bg-white/[0.05] p-3">
                 <img src="/demo/laser-cutter.webp" alt="" className="size-12 rounded-lg object-cover" />
-                <div className="min-w-0 flex-1">
+                <div className="flex-1">
                   <div className="font-semibold">{t.device.resources.laser}</div>
                   <div className="font-mono text-xs tabular-nums text-white/60">
                     {inUse && state.startedAt ? `${copy.demo.cards[state.sessionUser as CardKey].name} · ${sessionMinutes(state.startedAt, now)} min` : '—'}
@@ -219,7 +219,7 @@ export function TapDemo() {
                 </div>
                 <motion.span
                   layout
-                  className={`rounded-full px-2.5 py-1 text-xs font-semibold ${inUse ? 'bg-fw-warning/20 text-fw-warning' : 'bg-fw-success/20 text-fw-success'}`}
+                  className={`ml-auto rounded-full px-2.5 py-1 text-xs font-semibold ${inUse ? 'bg-fw-warning/20 text-fw-warning' : 'bg-fw-success/20 text-fw-success'}`}
                 >
                   {inUse ? t.device.inUse : t.device.available}
                 </motion.span>

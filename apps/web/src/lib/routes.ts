@@ -2,7 +2,11 @@
 // redirect in index.html are all driven by this list, so a new page only has to be added here.
 import type { Locale } from './site';
 
-export type PageId = 'home' | 'contact' | 'credits' | 'privacy' | 'terms' | 'imprint' | 'notFound';
+export type UseCaseId = 'kritis' | 'industry' | 'research';
+export type PageId = 'home' | UseCaseId | 'contact' | 'credits' | 'privacy' | 'terms' | 'imprint' | 'notFound';
+
+/** Use-case pages in the order the home page, nav and footer list them. */
+export const USE_CASE_IDS: UseCaseId[] = ['kritis', 'industry', 'research'];
 
 export interface PageRoute {
   id: PageId;
@@ -15,6 +19,9 @@ export interface PageRoute {
 
 export const ROUTES: PageRoute[] = [
   { id: 'home', paths: { en: '/', de: '/de/' }, indexable: true },
+  { id: 'kritis', paths: { en: '/use-cases/critical-infrastructure', de: '/de/einsatzbereiche/kritis' }, indexable: true },
+  { id: 'industry', paths: { en: '/use-cases/manufacturing', de: '/de/einsatzbereiche/produktion' }, indexable: true },
+  { id: 'research', paths: { en: '/use-cases/labs-and-universities', de: '/de/einsatzbereiche/labore-und-hochschulen' }, indexable: true },
   { id: 'contact', paths: { en: '/contact', de: '/de/contact' }, indexable: true },
   { id: 'credits', paths: { en: '/credits', de: '/de/credits' }, indexable: true },
   { id: 'privacy', paths: { en: '/datenschutz', de: '/datenschutz' }, contentLocale: 'de', indexable: false },

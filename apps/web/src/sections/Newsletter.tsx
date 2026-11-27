@@ -14,7 +14,7 @@ export function Newsletter() {
   const n = copy.newsletter;
   return (
     <section id="newsletter" className="px-4 py-24">
-      <Reveal className="mx-auto grid max-w-5xl gap-10 rounded-[2rem] border border-border bg-surface p-8 shadow-float sm:p-12 lg:grid-cols-[1fr_1.1fr]">
+      <Reveal className="mx-auto grid max-w-5xl grid-cols-1 gap-10 rounded-[2rem] border border-border bg-surface p-6 shadow-float sm:p-12 lg:grid-cols-[1fr_1.1fr]">
         <div>
           <span className="flex size-12 items-center justify-center rounded-2xl bg-accent/15 text-accent">
             <Mail className="size-6" aria-hidden />

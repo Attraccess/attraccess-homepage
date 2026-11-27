@@ -2,11 +2,13 @@ import { createContext, useCallback, useContext, useMemo, useSyncExternalStore, 
 import { en, type Copy } from '../i18n/en';
 import type { PageId } from './routes';
 import { de } from '../i18n/de';
+import { keepDashes } from './text';
 
 export type Locale = 'en' | 'de';
 export type Theme = 'light' | 'dark';
 
-const COPY: Record<Locale, Copy> = { en, de };
+// On-screen copy only: page titles and descriptions are prerendered from the untouched dictionaries.
+const COPY: Record<Locale, Copy> = { en: keepDashes(en), de: keepDashes(de) };
 // Storage keys are documented in the privacy policy (Datenschutz, section 3) – keep them in sync.
 export const THEME_KEY = 'theme';
 export const LANGUAGE_KEY = 'language';

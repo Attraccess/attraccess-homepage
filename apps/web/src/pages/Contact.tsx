@@ -38,7 +38,7 @@ export function ContactPage() {
           <h1 className="mt-4 text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl">{c.title}</h1>
           <p className="mt-5 text-lg leading-relaxed text-muted">{c.lead}</p>
         </Reveal>
-        <div className="mt-14 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+        <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[1.4fr_1fr]">
           <Reveal delay={0.1}>
             <form onSubmit={submit} className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-6 shadow-float sm:p-8" aria-describedby="contact-privacy">
               <h2 className="text-2xl font-bold">{c.formTitle}</h2>

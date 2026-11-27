@@ -53,7 +53,7 @@
           const match = preferred.map((tag) => String(tag).toLowerCase().slice(0, 2)).find((tag) => tag === 'de' || tag === 'en');
           language = match || 'en';
         }
-        const pairs = /*language-pairs*/ { '/': '/de/', '/contact': '/de/contact', '/credits': '/de/credits' };
+        const pairs = /*language-pairs*/ { '/': '/de/', '/use-cases/critical-infrastructure': '/de/einsatzbereiche/kritis', '/use-cases/manufacturing': '/de/einsatzbereiche/produktion', '/use-cases/labs-and-universities': '/de/einsatzbereiche/labore-und-hochschulen', '/contact': '/de/contact', '/credits': '/de/credits' };
         let path = url.pathname.replace(/index\.html$/, '');
         if (path === '/de') path = '/de/';
         else if (path.length > 1 && path.endsWith('/') && path !== '/de/') path = path.slice(0, -1);
