@@ -334,24 +334,25 @@ export const de: Copy = {
       kritis: {
         metaTitle: 'Attraccess für Flughäfen, Versorger und KRITIS-Betreiber',
         metaDescription:
-          'Vorfeldführerschein, Typschulungen und Abfahrtskontrolle an einem Leser in der Kabine geprüft, bevor der Motor eines Bodenfahrzeugs starten kann. On-Premises, mit Ihren Ausweisen.',
+          'Vorfeldführerschein, Typschulungen und Abfahrtskontrolle, dokumentiert auf Ihren eigenen Servern. Die Startfreigabe über einen Leser in der Kabine ist geplant.',
         card: {
           title: 'Flughäfen & KRITIS',
-          body: 'Vorfeldführerschein und Typschulung geprüft, bevor der Motor startet. Bodengeräte, Werkstätten von Versorgern und Technikräume – dokumentiert auf eigenen Servern.',
-          tags: ['Bodenverkehrsdienste', 'Startfreigabe', 'Versorger-Werkstätten', 'On-Premises'],
+          body: 'Vorfeldführerschein und Typschulungen für Bodengeräte, Werkstätten von Versorgern und Technikräume – dokumentiert auf eigenen Servern. Die Startfreigabe ist geplant.',
+          tags: ['Bodenverkehrsdienste', 'Startfreigabe (geplant)', 'Versorger-Werkstätten', 'On-Premises'],
         },
         hero: {
           eyebrow: 'Flughäfen, Versorger & kritische Infrastruktur',
           title: 'Keine gültige Berechtigung. Kein Motorstart.',
-          lead: 'Ein Leser in der Kabine prüft Vorfeldführerschein, Typschulung und Abfahrtskontrolle, bevor der Motor eines Bodenfahrzeugs starten kann – und Attraccess dokumentiert, wer was wann in welchem Zustand gefahren hat. Dieselben Regeln gelten für Werkstattgeräte. Für Flughäfen, Bodenverkehrsdienste und Versorger, auf Ihren eigenen Servern.',
+          lead: 'Das Ziel: Ein Leser in der Kabine prüft Vorfeldführerschein, Typschulung und Abfahrtskontrolle, bevor der Motor eines Bodenfahrzeugs starten kann. Diese Startfreigabe ist geplant. Qualifikationen, Checklisten und Nutzungsdokumentation bietet Attraccess schon heute. Für Flughäfen, Bodenverkehrsdienste und Versorger, auf Ihren eigenen Servern.',
           primary: 'Kostenloses Erstgespräch',
           secondary: 'So funktioniert’s',
           note: ['On-Premises, ohne Cloud-Konto', 'Ihre DESFire-Ausweise oder unsere', 'Quellcode einsehbar für Ihre IT-Sicherheit'],
           trace: {
             label: 'Zugangsentscheidung · Beispiel',
             pick: 'Person wählen',
+            plannedNote: 'Die Startfreigabe wird mit Pilotpartnern erarbeitet. Das Beispiel zeigt den vorgesehenen Ablauf.',
             resource: 'Flugzeugschlepper PB-07',
-            resourceDetail: 'Leser in der Kabine · Startfreigabe über Relais',
+            resourceDetail: 'Leser in der Kabine · Startfreigabe',
             people: [
               {
                 name: 'M. Yilmaz',
@@ -394,13 +395,13 @@ export const de: Copy = {
         },
         scenario: {
           eyebrow: 'So funktioniert’s',
-          title: 'Vom Ausweis zum Motorstart in Sekunden.',
-          lead: 'Das Beispiel ist ein Flugzeugschlepper. Dieselben Schritte gelten für Enteisungsfahrzeuge, Hubwagen und Gepäckschlepper – und für Hebebühnen, Reifenmontiergeräte und Schweißgeräte in der GSE-Werkstatt.',
+          title: 'Das Ziel: in Sekunden vom Ausweis zum Motorstart.',
+          lead: 'Das Beispiel ist ein Flugzeugschlepper. Der Teil am Fahrzeug – ein Leser in der Kabine, der den Motorstart freigibt – ist geplant. Derselbe Ablauf ist für Enteisungsfahrzeuge, Hubwagen und Gepäckschlepper vorgesehen. Für Hebebühnen, Reifenmontiergeräte und Schweißgeräte in der GSE-Werkstatt richten wir ihn im Pilotprojekt mit Ihnen ein.',
           steps: [
             { key: 'qualify', label: 'Vorab', title: 'Berechtigungen und Schulungen mit Ablaufdatum', body: 'Vorfeldführerscheine, Typschulungen und Sicherheitsunterweisungen pro Person erfassen – mit Ablaufdatum oder Auffrischungsintervall. Ausbilder:innen zeichnen in der App ab; auf Wunsch werden begleitete erste Fahrten auf die Einweisung angerechnet.' },
-            { key: 'tap', label: 'In der Kabine', title: 'Ausweis vorhalten vor dem Start', body: 'Ein Attractap-Leser in der Kabine liest DESFire-EV2/EV3-Ausweise – Ihre vorhandenen, wenn Ihr Ausweisaussteller eine Applikation einrichtet, sonst Karten von Attraccess. Er prüft jede Voraussetzung für dieses Fahrzeug.' },
-            { key: 'check', label: 'Am Leser', title: 'Abfahrtskontrolle statt Klemmbrett', body: 'Eine Checkliste auf dem Touchscreen des Lesers: Reifen, Licht, Kupplung, Betriebsstoffe. Pflichtpunkte müssen bestätigt sein, bevor das Fahrzeug freigegeben wird.' },
-            { key: 'enable', label: 'Am Anlasser', title: 'Start freigegeben, nie abgeschaltet', body: 'Ein Relais im Anlasser- oder Startfreigabekreis gibt den Start frei. Läuft der Motor, bleibt er unberührt – Attraccess schaltet kein fahrendes Fahrzeug ab.' },
+            { key: 'tap', label: 'In der Kabine', title: 'Ausweis vorhalten vor dem Start', body: 'Im geplanten Aufbau liest ein Leser in der Kabine den Ausweis und prüft jede Voraussetzung für dieses Fahrzeug. Attractap-Leser lesen heute DESFire-EV2/EV3-Ausweise – Ihre vorhandenen, wenn Ihr Ausweisaussteller eine Applikation einrichtet, sonst Karten von Attraccess.' },
+            { key: 'check', label: 'Am Leser', title: 'Abfahrtskontrolle statt Klemmbrett', body: 'Eine Checkliste auf dem Touchscreen des Lesers: Reifen, Licht, Kupplung, Betriebsstoffe. Pflichtpunkte müssen bestätigt sein, bevor die Sitzung startet.' },
+            { key: 'enable', label: 'Am Anlasser · geplant', title: 'Start freigegeben, nie abgeschaltet', body: 'Der geplante Aufbau gibt nur den Start frei. Läuft der Motor, soll er unberührt bleiben – Attraccess soll nie ein laufendes Fahrzeug abschalten.' },
             { key: 'record', label: 'Bei Rückgabe', title: 'Zurückgeben, Mängel melden, Wartung auslösen', body: 'Das Sitzungsende dokumentiert Dauer und Rückgabe-Checkliste. Mängel werden zu Wartungsanfragen für die Werkstatt, Betriebsstunden lösen Prüfungen aus – und ein Fahrzeug in Wartung lässt sich nicht ausgeben.' },
           ],
         },
@@ -416,10 +417,10 @@ export const de: Copy = {
             { status: 'available', title: 'Wartung, die die Nutzung sperrt', body: 'Prüfungen nach Betriebsstunden, Nutzungszahl oder Intervall. Was in Wartung ist, bleibt für alle außer der Werkstatt gesperrt.' },
             { status: 'available', title: 'Audit-Log und Exporte', body: 'Jede sensible Änderung mit Person, Inhalt und Zeitpunkt – mit einstellbarer Aufbewahrung. Sitzungsexporte pro Ressource als CSV.' },
             { status: 'available', title: 'On-Premises mit Single Sign-on', body: 'Ein Docker-Container in Ihrem Rechenzentrum, kein Cloud-Konto. OIDC und SAML mit Entra ID, Keycloak & Co., Passkeys und 2FA.' },
-            { status: 'pilot', title: 'Startfreigabe am Fahrzeug', body: 'Leser in der Kabine, Relais im Anlasser- oder Startfreigabekreis, versorgt aus dem Bordnetz. Wir bauen ein, nehmen in Betrieb und testen gemeinsam an den ersten Fahrzeugen einer Klasse.' },
             { status: 'pilot', title: 'Werkstattgeräte, Schlüsselschränke und Tore', body: 'Relais und SPS-Ausgänge werden über Flows geschaltet. Wir verdrahten, nehmen in Betrieb und testen gemeinsam vor Ort.' },
-            { status: 'pilot', title: 'Ihre Telematik- und Schulungssysteme', body: 'Eine REST-API und MQTT/HTTP-Flows geben Freigaben an Systeme weiter, die Sie schon betreiben. Die Anbindung entwickeln wir mit Ihnen.' },
-            { status: 'notYet', title: 'Offline-Betrieb auf dem Vorfeld', body: 'Heute braucht der Leser beim Vorhalten des Ausweises eine Netzverbindung. Fahrzeuge werden deshalb dort freigegeben, wo sie abgestellt sind: im Depot, an der Ladestation oder überall, wo Ihr WLAN hinreicht. Ein Start ganz ohne Netz ist noch nicht verfügbar.' },
+            { status: 'pilot', title: 'Ihre Telematik- und Schulungssysteme', body: 'Eine REST-API und MQTT/HTTP-Flows geben Freigaben an Systeme weiter, die Sie schon betreiben. Die Anbindung entwickeln wir mit Ihnen – Umfang und Kosten werden vorab vereinbart, sie kann kostenpflichtig sein.' },
+            { status: 'planned', title: 'Startfreigabe am Fahrzeug', body: 'Die Freigabe des Motorstarts über einen Leser in der Kabine ist geplant. Wir erarbeiten sie mit Pilotpartnern.' },
+            { status: 'notYet', title: 'Offline-Betrieb auf dem Vorfeld', body: 'Heute braucht der Leser beim Vorhalten des Ausweises eine Netzverbindung. Fahrzeuge sollen deshalb dort freigegeben werden, wo sie abgestellt sind: im Depot, an der Ladestation oder überall, wo Ihr WLAN hinreicht. Ein Start ganz ohne Netz ist noch nicht verfügbar.' },
           ],
         },
         faq: {
@@ -431,11 +432,11 @@ export const de: Copy = {
             },
             {
               q: 'Was passiert, wenn Server oder Netz ausfallen?',
-              a: 'Ein Fahrzeug, das bereits läuft, ist nicht betroffen. Für den Start braucht der Leser eine Verbindung zum Attraccess-Server – einen Offline-Modus gibt es heute nicht, einen Hochverfügbarkeits-Cluster auch nicht. Deshalb werden Fahrzeuge dort freigegeben, wo sie abgestellt sind, und wir legen mit Ihnen ein schriftliches manuelles Rückfallverfahren fest, etwa eine Überbrückung bei der Schichtleitung, das Sie vor dem Go-live testen.',
+              a: 'Die Startfreigabe ist geplant und so ausgelegt, dass ein laufendes Fahrzeug nicht betroffen ist. Für eine Freigabe braucht der Leser eine Verbindung zum Attraccess-Server – einen Offline-Modus gibt es heute nicht, einen Hochverfügbarkeits-Cluster auch nicht. Deshalb planen wir Freigaben dort, wo die Fahrzeuge abgestellt sind, und wir legen mit Ihnen ein schriftliches manuelles Rückfallverfahren fest, etwa eine Überbrückung bei der Schichtleitung, das Sie vor dem Go-live testen.',
             },
             {
               q: 'Kann Attraccess ein fahrendes Fahrzeug abschalten?',
-              a: 'Nein. Das Relais sitzt im Anlasser- oder Startfreigabekreis: Es entscheidet nur, ob das Fahrzeug starten darf. Das ist ein Freigabesignal, keine Sicherheitsfunktion – Not-Halt und die Sicherheitssysteme des Fahrzeugs bleiben, wie sie sind.',
+              a: 'Nein. Die Startfreigabe ist geplant und so ausgelegt, dass sie nur den Start freigibt: Sie entscheidet allein, ob das Fahrzeug starten darf, und schaltet nie ein laufendes Fahrzeug ab. Vorgesehen ist ein Freigabesignal, keine Sicherheitsfunktion – Not-Halt und die Sicherheitssysteme des Fahrzeugs bleiben, wie sie sind.',
             },
             {
               q: 'Was muss der Betriebsrat wissen?',
@@ -443,7 +444,7 @@ export const de: Copy = {
             },
             {
               q: 'Können wir unsere Flughafen- oder Firmenausweise nutzen?',
-              a: 'Wenn es MIFARE-DESFire-EV2/EV3-Karten sind und Ihr Ausweisaussteller eine Applikation einrichtet: ja. Am Flughafen gehört der Ausweis meist dem Ausweisbüro, deshalb starten viele Pilotprojekte mit AES-gesicherten Karten von Attraccess. Der Flughafen stellt weiter die Berechtigungen aus; Attraccess erfasst ihre Gültigkeit und setzt sie am Ort der Nutzung durch.',
+              a: 'Wenn es MIFARE-DESFire-EV2/EV3-Karten sind und Ihr Ausweisaussteller eine Applikation einrichtet: ja. Am Flughafen gehört der Ausweis meist dem Ausweisbüro, deshalb starten viele Pilotprojekte mit AES-gesicherten Karten von Attraccess. Der Flughafen stellt weiter die Berechtigungen aus; Attraccess erfasst ihre Gültigkeit und prüft sie, wenn jemand den Ausweis an einen Leser hält.',
             },
             {
               q: 'Braucht Attraccess Internetzugang?',
@@ -453,7 +454,7 @@ export const de: Copy = {
         },
         cta: {
           title: 'Starten Sie mit einer Handvoll Fahrzeuge.',
-          lead: 'Wir suchen Pilotpartner: einige Fahrzeuge einer Klasse in einem Depot oder eine Betriebswerkstatt für den Anfang. Entwickler:innen vor Ort zur Inbetriebnahme, Erfolgskriterien, die Sie festlegen – und Mitsprache dabei, was wir als Nächstes bauen.',
+          lead: 'Wir suchen Pilotpartner: einige Fahrzeuge einer Klasse in einem Depot oder eine Betriebswerkstatt für den Anfang. Entwickler:innen vor Ort zur Inbetriebnahme, Erfolgskriterien, die Sie festlegen – und Mitsprache dabei, was wir als Nächstes bauen. Die Startfreigabe ist geplant; wir erarbeiten sie mit Pilotpartnern.',
           steps: ['Kostenloses Erstgespräch zu Fahrzeugen, Geräten, Berechtigungen und Ausweisen', 'Vor-Ort-Termin und schriftlicher Pilotplan mit Erfolgskriterien', 'Pilotprojekt an einigen Fahrzeugen einer Klasse oder in einer Werkstatt', 'Sie entscheiden – auf Basis Ihrer Daten, nicht unserer Folien'],
           primary: 'Über ein Pilotprojekt sprechen',
         },

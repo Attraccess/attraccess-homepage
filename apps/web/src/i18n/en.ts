@@ -330,24 +330,25 @@ export const en = {
       kritis: {
         metaTitle: 'Attraccess for airports, utilities and critical infrastructure',
         metaDescription:
-          'Apron permits, vehicle-type trainings and departure checks verified at a reader in the cab before a ground vehicle’s engine can start. On-premises, with your badges.',
+          'Apron permits, vehicle-type trainings and departure checks, documented on your own servers. Engine-start release from a reader in the cab is planned.',
         card: {
           title: 'Airports & critical infrastructure',
-          body: 'Apron permits and type trainings checked before the engine starts. Ground support equipment, utility workshops and plant rooms – documented on your own servers.',
-          tags: ['Ground support equipment', 'Engine start release', 'Utility workshops', 'On-premises'],
+          body: 'Apron permits and type trainings for ground support equipment, utility workshops and plant rooms – documented on your own servers. Engine start release is planned.',
+          tags: ['Ground support equipment', 'Engine start release (planned)', 'Utility workshops', 'On-premises'],
         },
         hero: {
           eyebrow: 'Airports, utilities & critical infrastructure',
           title: 'No valid permit. No engine start.',
-          lead: 'A reader in the cab checks apron permit, type training and departure check before a ground vehicle’s engine can start – and Attraccess records who drove what, when and in what condition. The same rules cover workshop equipment. For airports, ground handlers and utilities, on your own servers.',
+          lead: 'The goal: a reader in the cab checks apron permit, type training and departure check before a ground vehicle’s engine can start. This engine start release is planned. Qualifications, checklists and usage records are in Attraccess today. For airports, ground handlers and utilities, on your own servers.',
           primary: 'Book a free intro call',
           secondary: 'See how it works',
           note: ['On-premises, no cloud account', 'Your DESFire badges or ours', 'Source code available to your security review'],
           trace: {
             label: 'Access decision · example',
             pick: 'Choose a person',
+            plannedNote: 'Engine start release is being worked out with pilot partners. This example shows the intended flow.',
             resource: 'Pushback tug PB-07',
-            resourceDetail: 'Reader in the cab · start released via relay',
+            resourceDetail: 'Reader in the cab · start-enable',
             people: [
               {
                 name: 'M. Yilmaz',
@@ -390,13 +391,13 @@ export const en = {
         },
         scenario: {
           eyebrow: 'How it works',
-          title: 'From badge to engine start in seconds.',
-          lead: 'The example is a pushback tug. The same steps work for de-icers, high loaders and baggage tractors – and for the lifts, tyre changers and welding gear in the GSE workshop.',
+          title: 'The goal: from badge to engine start in seconds.',
+          lead: 'The example is a pushback tug. The vehicle part – a reader in the cab that releases the engine start – is planned. The same flow is meant for de-icers, high loaders and baggage tractors. For the lifts, tyre changers and welding gear in the GSE workshop, we set it up with you in the pilot.',
           steps: [
             { key: 'qualify', label: 'Beforehand', title: 'Permits and trainings, with expiry', body: 'Record apron permits, vehicle-type trainings and safety briefings per person, with an expiry date or a refresher interval. Trainers sign off in the app; if you want, supervised first drives count towards the introduction.' },
-            { key: 'tap', label: 'In the cab', title: 'Tap before you start', body: 'An Attractap reader in the cab reads DESFire EV2/EV3 badges – your existing ones if your issuer provisions an application, otherwise cards issued by Attraccess. It checks every requirement for this vehicle.' },
-            { key: 'check', label: 'On the reader', title: 'A departure check, not a clipboard', body: 'A checklist on the reader’s touchscreen: tyres, lights, hitch, fluids. Required items have to be confirmed before the vehicle is released.' },
-            { key: 'enable', label: 'At the starter', title: 'Start released, never cut', body: 'A relay in the starter or start-enable circuit releases the start. Once the engine runs it stays untouched – Attraccess never switches off a moving vehicle.' },
+            { key: 'tap', label: 'In the cab', title: 'Tap before you start', body: 'In the planned setup, a reader in the cab reads the badge and checks every requirement for this vehicle. Attractap readers read DESFire EV2/EV3 badges today – your existing ones if your issuer provisions an application, otherwise cards issued by Attraccess.' },
+            { key: 'check', label: 'On the reader', title: 'A departure check, not a clipboard', body: 'A checklist on the reader’s touchscreen: tyres, lights, hitch, fluids. Required items have to be confirmed before the session starts.' },
+            { key: 'enable', label: 'At the starter · planned', title: 'Start released, never cut', body: 'The planned design only enables the start. Once the engine runs, it is to stay untouched – Attraccess is never meant to switch off a running vehicle.' },
             { key: 'record', label: 'On return', title: 'Return, report, maintain', body: 'Ending the session records duration and the return checklist. Defects become maintenance requests for the workshop, usage hours trigger inspections – and a vehicle in maintenance can’t be checked out.' },
           ],
         },
@@ -412,10 +413,10 @@ export const en = {
             { status: 'available', title: 'Maintenance that blocks use', body: 'Inspections by usage hours, number of uses or interval. Anything in maintenance stays locked for everyone except the workshop.' },
             { status: 'available', title: 'Audit log and exports', body: 'Every sensitive change with who, what and when, with configurable retention. Session exports per resource as CSV.' },
             { status: 'available', title: 'On-premises with single sign-on', body: 'One Docker container in your data centre, no cloud account. OIDC and SAML with Entra ID, Keycloak & co., passkeys and 2FA.' },
-            { status: 'pilot', title: 'Engine start release on the vehicle', body: 'Reader in the cab, relay in the starter or start-enable circuit, powered from the vehicle. We fit, commission and test it with you on the first vehicles of one class.' },
             { status: 'pilot', title: 'Workshop equipment, lockers and gates', body: 'Relays and PLC outputs switched by flows. We wire, commission and test them with you on site.' },
-            { status: 'pilot', title: 'Your telematics and training systems', body: 'A REST API and MQTT/HTTP flows pass go/no-go decisions to systems you already run. We build the connector with you.' },
-            { status: 'notYet', title: 'Offline operation on the apron', body: 'Today the reader needs network at the moment someone taps, so vehicles are released where they park: at the depot, the charging point or wherever your WiFi reaches. Starting without any network isn’t available yet.' },
+            { status: 'pilot', title: 'Your telematics and training systems', body: 'A REST API and MQTT/HTTP flows pass go/no-go decisions to systems you already run. We build the connector with you – scope and cost are agreed upfront, and it may be paid work.' },
+            { status: 'planned', title: 'Engine start release on the vehicle', body: 'Releasing the engine start from a reader in the cab is planned. We’re working it out with pilot partners.' },
+            { status: 'notYet', title: 'Offline operation on the apron', body: 'Today the reader needs network at the moment someone taps, so the plan is to release vehicles where they park: at the depot, the charging point or wherever your WiFi reaches. Starting without any network isn’t available yet.' },
           ],
         },
         faq: {
@@ -427,11 +428,11 @@ export const en = {
             },
             {
               q: 'What happens if the server or network is down?',
-              a: 'A vehicle that is already running is not affected. To start, the reader needs a connection to the Attraccess server – there is no offline mode today, and no high-availability cluster either. That’s why vehicles are released where they park, and we define a written manual fallback with you, such as an override held by the shift lead, that you test before go-live.',
+              a: 'Engine start release is planned and designed to leave a running vehicle unaffected. To release a start, the reader needs a connection to the Attraccess server – there is no offline mode today, and no high-availability cluster either. That’s why we plan releases where vehicles park, and we define a written manual fallback with you, such as an override held by the shift lead, that you test before go-live.',
             },
             {
               q: 'Can Attraccess switch off a vehicle while it’s moving?',
-              a: 'No. The relay sits in the starter or start-enable circuit: it decides whether the vehicle may start, nothing more. It is an enable signal, not a safety function – emergency stops and the vehicle’s own safety systems stay as they are.',
+              a: 'No. Engine start release is planned, and by design it only enables the start: it decides whether the vehicle may start, nothing more, and never switches off a running vehicle. It is meant as an enable signal, not a safety function – emergency stops and the vehicle’s own safety systems stay as they are.',
             },
             {
               q: 'What does the works council need to know?',
@@ -439,7 +440,7 @@ export const en = {
             },
             {
               q: 'Can we use our airport or company ID badges?',
-              a: 'If they are MIFARE DESFire EV2/EV3 and your badge issuer provisions an application, yes. At airports the ID office usually owns the badge, so many pilots start with AES-secured cards issued by Attraccess. The airport keeps issuing permits; Attraccess records their validity and enforces it at the point of use.',
+              a: 'If they are MIFARE DESFire EV2/EV3 and your badge issuer provisions an application, yes. At airports the ID office usually owns the badge, so many pilots start with AES-secured cards issued by Attraccess. The airport keeps issuing permits; Attraccess records their validity and checks it when someone taps at a reader.',
             },
             {
               q: 'Does it need internet access?',
@@ -449,7 +450,7 @@ export const en = {
         },
         cta: {
           title: 'Start with a handful of vehicles.',
-          lead: 'We’re looking for pilot partners: a few vehicles of one class at one depot, or one plant workshop. Engineers on site for commissioning, success criteria you define – and a say in what we build next.',
+          lead: 'We’re looking for pilot partners: a few vehicles of one class at one depot, or one plant workshop. Engineers on site for commissioning, success criteria you define – and a say in what we build next. Engine start release is planned; we’re working it out with pilot partners.',
           steps: ['Free intro call about vehicles, equipment, permits and badges', 'Site visit and a written pilot plan with success criteria', 'Pilot on a few vehicles of one class or in one workshop', 'You decide – based on your data, not our slides'],
           primary: 'Talk to us about a pilot',
         },

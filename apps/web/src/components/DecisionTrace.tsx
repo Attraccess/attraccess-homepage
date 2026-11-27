@@ -5,15 +5,17 @@ import type { Copy } from '../i18n/en';
 import { useSite } from '../lib/site';
 import { EASE } from './primitives';
 
-type Trace = Copy['useCases']['pages']['kritis']['hero']['trace'];
+// `plannedNote` marks an example whose last step isn't built yet; the other traces leave it out.
+type Trace = Copy['useCases']['pages']['industry']['hero']['trace'] & { plannedNote?: string };
 
 /**
  * What Attraccess checks between a badge tap and the output it switches, for one resource. Visitors
  * pick a person and watch each check resolve; one person passes, the other is stopped at a check.
  */
 export function DecisionTrace({ trace }: { trace: Trace }) {
-  const states = useSite().copy.useCases.checkStates;
+  const { checkStates: states, status } = useSite().copy.useCases;
   const [index, setIndex] = useState(0);
+  const [announce, setAnnounce] = useState(false);
   const reduce = useReducedMotion();
   const person = trace.people[index];
   const step = reduce ? 0 : 0.28;
@@ -31,6 +33,15 @@ export function DecisionTrace({ trace }: { trace: Trace }) {
         <Nfc className="mt-1 size-6 shrink-0 text-neon" aria-hidden />
       </div>
 
+      {trace.plannedNote && (
+        <p className="mt-4 flex items-start gap-2.5 rounded-xl border border-dashed border-white/30 px-3 py-2.5 text-xs leading-relaxed text-white/75">
+          <span className="shrink-0 rounded-full border border-dashed border-white/50 px-2 font-mono text-[11px] uppercase tracking-wider text-white">
+            {status.planned}
+          </span>
+          {trace.plannedNote}
+        </p>
+      )}
+
       <p id="trace-pick" className="mt-5 text-xs text-white/55">
         {trace.pick}
       </p>
@@ -40,7 +51,10 @@ export function DecisionTrace({ trace }: { trace: Trace }) {
             key={p.name}
             type="button"
             aria-pressed={i === index}
-            onClick={() => setIndex(i)}
+            onClick={() => {
+              setIndex(i);
+              setAnnounce(true);
+            }}
             className={`rounded-xl border px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon ${
               i === index ? 'border-neon/60 bg-neon/10' : 'border-white/10 hover:border-white/25 hover:bg-white/5'
             }`}
@@ -50,6 +64,11 @@ export function DecisionTrace({ trace }: { trace: Trace }) {
           </button>
         ))}
       </div>
+
+      {/* Stays mounted while the panel below is swapped, so picking a person gets announced. */}
+      <p aria-live="polite" className="sr-only">
+        {announce ? `${person.result}. ${person.resultDetail}` : ''}
+      </p>
 
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={person.name} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
@@ -85,7 +104,6 @@ export function DecisionTrace({ trace }: { trace: Trace }) {
             })}
           </ol>
           <motion.div
-            aria-live="polite"
             initial={reduce ? false : { opacity: 0, y: 8, scale: 0.97 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
