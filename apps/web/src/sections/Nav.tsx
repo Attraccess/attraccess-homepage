@@ -149,7 +149,10 @@ function UseCaseMenu() {
   useEffect(() => {
     if (!open) return;
     const close = (event: Event) => {
-      if (event instanceof KeyboardEvent ? event.key === 'Escape' : !ref.current?.contains(event.target as Node)) setOpen(false);
+      if (event instanceof KeyboardEvent ? event.key !== 'Escape' : ref.current?.contains(event.target as Node)) return;
+      // The links unmount on close, so focus inside the menu goes back to its button.
+      if (event instanceof KeyboardEvent && ref.current?.contains(document.activeElement)) ref.current.querySelector('button')?.focus();
+      setOpen(false);
     };
     document.addEventListener('pointerdown', close);
     document.addEventListener('keydown', close);
