@@ -1,0 +1,5 @@
+24,131,455,160	Aufsicht erforderlich
+24,175,455,217	Mia Chen
+24,232,455,266	Aufsichts-Karte auflegen
+24,281,455,303	Aufsicht kann auch im Web freigeben.
+171,333,306,359	Abbrechen

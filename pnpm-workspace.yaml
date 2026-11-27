@@ -1,0 +1,7 @@
+packages:
+  - apps/web
+  - apps/hero-film/film
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
