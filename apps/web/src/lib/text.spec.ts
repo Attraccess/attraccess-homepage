@@ -15,8 +15,9 @@ describe('spaced dashes', () => {
   it.each(ROUTES.flatMap((route) => (['en', 'de'] as const).map((locale) => [route.id, locale] as const)))(
     'never renders a breakable space before a dash (%s, %s)',
     (page, locale) => {
-      const text = render(page, locale).replace(/<(script|style)[\s\S]*?<\/\1>/g, '').replace(/<!-- -->/g, '').replace(/<[^>]+>/g, '|');
-      expect(text.match(/.{0,40}[ \n\t][–—] .{0,20}/g)).toBeNull();
+      // Text between tags; React's empty comments only separate adjacent strings of one text run.
+      const chunks = render(page, locale).split('<!-- -->').join('').split(/<[^>]+>/);
+      expect(chunks.filter((chunk) => /[ \n\t][–—] /.test(chunk))).toEqual([]);
     },
   );
 });
