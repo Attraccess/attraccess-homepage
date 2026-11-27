@@ -109,6 +109,8 @@ export function Nav() {
       <AnimatePresence>
         {open && (
           <motion.div
+            // The menu scrolls by itself; without this the smooth scroll takes the wheel and moves the page behind it.
+            data-lenis-prevent
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -163,7 +165,13 @@ function UseCaseMenu() {
   }, [open]);
 
   return (
-    <div ref={ref} className="relative" onBlur={(event) => !ref.current?.contains(event.relatedTarget as Node) && setOpen(false)}>
+    <div
+      ref={ref}
+      className="relative"
+      // Only a real focus move closes it: Safari doesn't focus clicked links, and closing then would swallow the click.
+      // Clicks outside are handled by the pointerdown listener above.
+      onBlur={(event) => event.relatedTarget && !event.currentTarget.contains(event.relatedTarget) && setOpen(false)}
+    >
       <button
         type="button"
         aria-expanded={open}
