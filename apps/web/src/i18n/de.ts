@@ -436,7 +436,7 @@ export const de: Copy = {
             },
             {
               q: 'Kann Attraccess ein fahrendes Fahrzeug abschalten?',
-              a: 'Nein. Die Startfreigabe ist geplant und so ausgelegt, dass sie nur den Start freigibt: Sie entscheidet allein, ob das Fahrzeug starten darf, und schaltet nie ein laufendes Fahrzeug ab. Vorgesehen ist ein Freigabesignal, keine Sicherheitsfunktion – Not-Halt und die Sicherheitssysteme des Fahrzeugs bleiben, wie sie sind.',
+              a: 'Nein. Die Startfreigabe ist geplant und so ausgelegt, dass sie nur den Start freigibt: Sie entscheidet lediglich, ob das Fahrzeug starten darf, und schaltet nie ein laufendes Fahrzeug ab. Vorgesehen ist ein Freigabesignal, keine Sicherheitsfunktion – Not-Halt und die Sicherheitssysteme des Fahrzeugs bleiben, wie sie sind.',
             },
             {
               q: 'Was muss der Betriebsrat wissen?',
