@@ -12,7 +12,7 @@ import { ArrowRight, ArrowUpRight, Check, Info, ShieldAlert } from 'lucide-react
 import { motion } from 'motion/react';
 import { DecisionTrace } from '../components/DecisionTrace';
 import { REFERENCE_KEYS, ReferenceLogo } from '../components/ReferenceLogo';
-import { EASE, Reveal, SectionHeading, keepDash } from '../components/primitives';
+import { EASE, Reveal, SectionHeading } from '../components/primitives';
 import { USE_CASE_ICONS, USE_CASE_STEP_ICONS, SMALL_TEAM_ICONS } from '../components/useCaseIcons';
 import { USE_CASE_IDS, pathFor, type UseCaseId } from '../lib/routes';
 import { useSite } from '../lib/site';
@@ -51,7 +51,7 @@ export function UseCasePage({ id }: { id: UseCaseId }) {
                     </AccordionTrigger>
                   </AccordionHeading>
                   <AccordionPanel>
-                    <AccordionBody className="pb-5 text-base leading-relaxed text-muted">{keepDash(item.a)}</AccordionBody>
+                    <AccordionBody className="pb-5 text-base leading-relaxed text-muted">{item.a}</AccordionBody>
                   </AccordionPanel>
                 </AccordionItem>
               ))}
@@ -105,7 +105,7 @@ function UseCaseHero({ id }: { id: UseCaseId }) {
             transition={{ duration: 0.8, ease: EASE, delay: 0.25 }}
             className="mt-7 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg"
           >
-            {keepDash(h.lead)}
+            {h.lead}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -171,7 +171,7 @@ function Problems({ id }: { id: UseCaseId }) {
               <div className="h-full rounded-2xl border border-border bg-surface p-6">
                 <p className="font-mono text-sm text-muted">0{index + 1}</p>
                 <h3 className="mt-4 text-xl font-bold">{item.title}</h3>
-                <p className="mt-2 leading-relaxed text-muted">{keepDash(item.body)}</p>
+                <p className="mt-2 leading-relaxed text-muted">{item.body}</p>
               </div>
             </Reveal>
           ))}
@@ -209,7 +209,7 @@ function Scenario({ id }: { id: UseCaseId }) {
                     {step.label}
                   </p>
                   <h3 className="mt-2 text-2xl font-bold tracking-tight">{step.title}</h3>
-                  <p className="mt-2 leading-relaxed text-muted">{keepDash(step.body)}</p>
+                  <p className="mt-2 leading-relaxed text-muted">{step.body}</p>
                 </Reveal>
               </li>
             );
@@ -233,7 +233,7 @@ function Capabilities({ id }: { id: UseCaseId }) {
             <div key={item.title} className="grid gap-3 p-5 sm:p-6 md:grid-cols-[13rem_1fr] md:items-start md:gap-8 md:p-8">
               <div>
                 <h3 className="text-lg font-bold">{item.title}</h3>
-                <p className="mt-1.5 text-muted">{keepDash(item.body)}</p>
+                <p className="mt-1.5 text-muted">{item.body}</p>
               </div>
               <span
                 className={`order-first justify-self-start whitespace-nowrap rounded-full px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider ${STATUS_STYLES[item.status as Status]}`}
@@ -277,7 +277,7 @@ export function SmallTeam({ withAnswers = false }: { withAnswers?: boolean }) {
                 <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6">
                   <Icon className="size-6 text-neon" aria-hidden />
                   <h3 className="mt-5 text-xl font-bold text-white">{item.title}</h3>
-                  <p className="mt-2 leading-relaxed text-white/65">{keepDash(item.body)}</p>
+                  <p className="mt-2 leading-relaxed text-white/65">{item.body}</p>
                 </div>
               </Reveal>
             );
@@ -285,11 +285,11 @@ export function SmallTeam({ withAnswers = false }: { withAnswers?: boolean }) {
         </div>
         {withAnswers && (
           <Reveal delay={0.1} className="mt-6 rounded-2xl border border-dashed border-white/20 p-6 sm:p-8">
-            <h3 className="text-lg font-bold text-white">{keepDash(t.honest.title)}</h3>
+            <h3 className="text-lg font-bold text-white">{t.honest.title}</h3>
             <ul className="mt-4 grid gap-4 md:grid-cols-3">
               {t.honest.items.map((item) => (
                 <li key={item.q} className="text-white/65">
-                  <span className="block font-semibold text-white">{keepDash(item.q)}</span> {keepDash(item.a)}
+                  <span className="block font-semibold text-white">{item.q}</span> {item.a}
                 </li>
               ))}
             </ul>
@@ -311,7 +311,7 @@ function UseCaseCta({ id }: { id: UseCaseId }) {
         <div className="relative max-w-xl">
           <Reveal>
             <h2 className="text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl">{c.title}</h2>
-            <p className="mt-5 text-lg text-white/70">{keepDash(c.lead)}</p>
+            <p className="mt-5 text-lg text-white/70">{c.lead}</p>
             <ol className="mt-6 space-y-2 text-white/80">
               {c.steps.map((step, index) => (
                 <li key={step} className="flex gap-3">
@@ -368,7 +368,7 @@ export function UseCaseCard({ id, compact = false }: { id: UseCaseId; compact?: 
         <ArrowUpRight className="size-5 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden />
       </span>
       <span className="mt-5 block text-xl font-bold">{card.title}</span>
-      <span className="mt-2 block flex-1 leading-relaxed text-muted">{keepDash(card.body)}</span>
+      <span className="mt-2 block flex-1 leading-relaxed text-muted">{card.body}</span>
       {!compact && (
         <span className="mt-5 flex flex-wrap gap-1.5">
           {card.tags.map((tag) => (

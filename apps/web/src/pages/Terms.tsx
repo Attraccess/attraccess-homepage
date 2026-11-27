@@ -117,7 +117,7 @@ export function TermsContent() {
               <h2>10. Schlussbestimmungen</h2>
               <ol>
                 <li>Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts.</li>
-                <li>Gerichtsstand für Kaufleute ist – soweit gesetzlich zulässig – der Sitz des Anbieters.</li>
+                <li>Gerichtsstand für Kaufleute ist&nbsp;– soweit gesetzlich zulässig&nbsp;– der Sitz des Anbieters.</li>
                 <li>Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Regelungen unberührt.</li>
               </ol>
             </section>

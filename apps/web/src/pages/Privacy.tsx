@@ -44,7 +44,7 @@ export function PrivacyContent() {
                 Diese Datenschutzerklärung gilt für die Website{" "}
                 <span>attraccess.org</span> und die dort eingebundenen
                 Funktionen. Sie gilt nicht für die selbst gehostete Attraccess-Software, die auf
-                Servern der jeweiligen Betreiber läuft – dort ist der jeweilige Betreiber
+                Servern der jeweiligen Betreiber läuft&nbsp;– dort ist der jeweilige Betreiber
                 Verantwortlicher.
               </p>
               <p>
@@ -185,7 +185,7 @@ export function PrivacyContent() {
                 Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse
                 besteht in der bedarfsgerechten Gestaltung und der Optimierung unseres
                 Web-Angebots. Sie können der Verarbeitung nach Art. 21 DSGVO jederzeit
-                widersprechen – formlos per E-Mail an{" "}
+                widersprechen&nbsp;– formlos per E-Mail an{" "}
                 <a
                   href="mailto:contact@attraccess.org"
                 >
