@@ -64,6 +64,12 @@
     -webkit-hyphenate-limit-after: 5;
   }
 
+  /* Headings, buttons and footer links inside a list item would inherit it from the item. */
+  :lang(de) :is(h1, h2, h3, h4, h5, h6, button, footer li) {
+    -webkit-hyphens: manual;
+    hyphens: manual;
+  }
+
   p,
   li,
   dd,

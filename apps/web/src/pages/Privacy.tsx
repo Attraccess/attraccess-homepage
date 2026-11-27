@@ -5,7 +5,7 @@ export function PrivacyContent() {
     <>
                     <header>
             <h1>
-              Datenschutzerklärung
+              Datenschutz&shy;erklärung
             </h1>
             <p>
               Stand: 7. Oktober 2026

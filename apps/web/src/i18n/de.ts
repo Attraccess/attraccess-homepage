@@ -104,7 +104,7 @@ export const de: Copy = {
   },
   integrations: {
     eyebrow: 'Integrationen',
-    title: 'Industriestandards zuerst.',
+    title: 'Industrie\u00adstandards zuerst.',
     lead: 'SPS, Single Sign-on und sichere Ausweise für die Produktion. Smarte Relais und Hausautomation funktionieren für kleinere Setups trotzdem.',
     planned: 'Geplant',
     groups: {
@@ -283,7 +283,7 @@ export const de: Copy = {
   },
   newsletter: {
     eyebrow: 'Newsletter',
-    title: 'Produktneuigkeiten, ab und zu.',
+    title: 'Produkt\u00adneuigkeiten, ab und zu.',
     lead: 'Gelegentliche Updates zu neuen Funktionen, Hardware und Integrationen. Kein Spam, kein Blog-Digest.',
     email: 'E-Mail-Adresse',
     name: 'Name (optional)',
@@ -611,7 +611,7 @@ export const de: Copy = {
               },
               {
                 name: 'P. Lindqvist',
-                role: 'Austauschsemester · Woche 2',
+                role: 'Austausch\u00adsemester · Woche 2',
                 ok: false,
                 checks: [
                   { label: 'Labor-Sicherheitsunterweisung', detail: 'Gültig bis 02/2027', ok: true },
@@ -648,7 +648,7 @@ export const de: Copy = {
         },
         capabilities: {
           eyebrow: 'Was ihr bekommt',
-          title: 'Entstanden mit einer Hochschulwerkstatt.',
+          title: 'Entstanden mit einer Hochschul\u00adwerkstatt.',
           lead: 'Attraccess ist in Makerspaces groß geworden und läuft an der Technischen Universität Hamburg. Das sind die Funktionen, die Hochschulen am meisten nutzen.',
           note: 'Gemeinnützige Organisationen nutzen alle Funktionen kostenlos. Ob eine Hochschule eine kommerzielle Lizenz braucht, hängt davon ab, wie sie Attraccess betreibt – sprecht uns an.',
           items: [

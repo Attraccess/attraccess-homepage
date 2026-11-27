@@ -5,7 +5,7 @@ export function TermsContent() {
     <>
                     <header>
             <h1>
-              Allgemeine Geschäftsbedingungen (AGB)
+              Allgemeine Geschäfts&shy;bedingungen (AGB)
             </h1>
             <p>
               Stand: 16. Januar 2026
