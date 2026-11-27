@@ -29,7 +29,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import type { ComponentType } from 'react';
-import { Reveal, SectionHeading } from '../components/primitives';
+import { Reveal, SectionHeading, keepDash } from '../components/primitives';
 import type { Copy } from '../i18n/en';
 import { useSite } from '../lib/site';
 
@@ -139,7 +139,7 @@ export function Integrations() {
                   <Icon className="size-5 text-accent" aria-hidden />
                   <h3 className="text-lg font-bold">{t.groups[key].title}</h3>
                 </div>
-                <p className="mt-2 text-sm text-muted">{t.groups[key].body}</p>
+                <p className="mt-2 text-sm text-muted">{keepDash(t.groups[key].body)}</p>
               </div>
               <ul className="flex flex-wrap content-start gap-2">
                 {items.map((item) => (

@@ -23,7 +23,7 @@ import {
   ShieldCheck,
   type LucideIcon,
 } from 'lucide-react';
-import { Reveal, SectionHeading } from '../components/primitives';
+import { Reveal, SectionHeading, keepDash } from '../components/primitives';
 import { useSite } from '../lib/site';
 import { USE_CASE_IDS, pathFor } from '../lib/routes';
 
@@ -58,7 +58,7 @@ export function Trust() {
                 >
                   <Icon className={`size-6 ${branded ? '' : 'text-accent'}`} aria-hidden />
                   <h3 className="mt-6 text-xl font-bold">{item.title}</h3>
-                  <p className={`mt-2 ${branded ? 'text-accent-foreground/80' : 'text-muted'}`}>{item.body}</p>
+                  <p className={`mt-2 ${branded ? 'text-accent-foreground/80' : 'text-muted'}`}>{keepDash(item.body)}</p>
                   {wide && (
                     <Icon
                       className={`absolute -bottom-6 -right-6 size-36 transition-transform ${branded ? 'opacity-10' : 'text-accent opacity-[0.07]'} duration-700 group-hover:rotate-12 group-hover:scale-110`}
@@ -149,7 +149,7 @@ export function Faq() {
                   </AccordionTrigger>
                 </AccordionHeading>
                 <AccordionPanel>
-                  <AccordionBody className="pb-5 text-base leading-relaxed text-muted">{item.a}</AccordionBody>
+                  <AccordionBody className="pb-5 text-base leading-relaxed text-muted">{keepDash(item.a)}</AccordionBody>
                 </AccordionPanel>
               </AccordionItem>
             ))}

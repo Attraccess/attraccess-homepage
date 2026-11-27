@@ -19,7 +19,7 @@ export function TermsContent() {
                 <p>22529 Hamburg</p>
                 <p>Deutschland</p>
                 <p>
-                  (Einzelunternehmer, Kleinunternehmer gemäß § 19 UStG – keine Umsatzsteuer ausweisbar)
+                  (Einzelunternehmer, Kleinunternehmer gemäß § 19 UStG&nbsp;– keine Umsatzsteuer ausweisbar)
                 </p>
               </div>
             </div>

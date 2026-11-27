@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { Monitor, Nfc, Smartphone, Tablet, type LucideIcon } from 'lucide-react';
 import { AttractapMock, LaptopFrame, PhoneFrame, TabletFrame } from '../components/DeviceFrames';
-import { EASE, SectionHeading, Shot } from '../components/primitives';
+import { EASE, SectionHeading, Shot, keepDash } from '../components/primitives';
 import { shotSrc, useSite } from '../lib/site';
 
 const ICONS: Record<string, LucideIcon> = { desktop: Monitor, tablet: Tablet, phone: Smartphone, reader: Nfc };
@@ -68,7 +68,7 @@ export function Devices() {
                   <Icon className="size-4 text-accent" aria-hidden />
                   <h3 className="text-lg font-bold">{item.title}</h3>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{keepDash(item.body)}</p>
               </div>
             );
           })}

@@ -51,7 +51,7 @@ export function UseCasePage({ id }: { id: UseCaseId }) {
                     </AccordionTrigger>
                   </AccordionHeading>
                   <AccordionPanel>
-                    <AccordionBody className="pb-5 text-base leading-relaxed text-muted">{item.a}</AccordionBody>
+                    <AccordionBody className="pb-5 text-base leading-relaxed text-muted">{keepDash(item.a)}</AccordionBody>
                   </AccordionPanel>
                 </AccordionItem>
               ))}
@@ -171,7 +171,7 @@ function Problems({ id }: { id: UseCaseId }) {
               <div className="h-full rounded-2xl border border-border bg-surface p-6">
                 <p className="font-mono text-sm text-muted">0{index + 1}</p>
                 <h3 className="mt-4 text-xl font-bold">{item.title}</h3>
-                <p className="mt-2 leading-relaxed text-muted">{item.body}</p>
+                <p className="mt-2 leading-relaxed text-muted">{keepDash(item.body)}</p>
               </div>
             </Reveal>
           ))}
@@ -277,7 +277,7 @@ export function SmallTeam({ withAnswers = false }: { withAnswers?: boolean }) {
                 <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6">
                   <Icon className="size-6 text-neon" aria-hidden />
                   <h3 className="mt-5 text-xl font-bold text-white">{item.title}</h3>
-                  <p className="mt-2 leading-relaxed text-white/65">{item.body}</p>
+                  <p className="mt-2 leading-relaxed text-white/65">{keepDash(item.body)}</p>
                 </div>
               </Reveal>
             );
@@ -285,11 +285,11 @@ export function SmallTeam({ withAnswers = false }: { withAnswers?: boolean }) {
         </div>
         {withAnswers && (
           <Reveal delay={0.1} className="mt-6 rounded-2xl border border-dashed border-white/20 p-6 sm:p-8">
-            <h3 className="text-lg font-bold text-white">{t.honest.title}</h3>
+            <h3 className="text-lg font-bold text-white">{keepDash(t.honest.title)}</h3>
             <ul className="mt-4 grid gap-4 md:grid-cols-3">
               {t.honest.items.map((item) => (
                 <li key={item.q} className="text-white/65">
-                  <span className="block font-semibold text-white">{item.q}</span> {item.a}
+                  <span className="block font-semibold text-white">{keepDash(item.q)}</span> {keepDash(item.a)}
                 </li>
               ))}
             </ul>
@@ -368,7 +368,7 @@ export function UseCaseCard({ id, compact = false }: { id: UseCaseId; compact?: 
         <ArrowUpRight className="size-5 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden />
       </span>
       <span className="mt-5 block text-xl font-bold">{card.title}</span>
-      <span className="mt-2 block flex-1 leading-relaxed text-muted">{card.body}</span>
+      <span className="mt-2 block flex-1 leading-relaxed text-muted">{keepDash(card.body)}</span>
       {!compact && (
         <span className="mt-5 flex flex-wrap gap-1.5">
           {card.tags.map((tag) => (
