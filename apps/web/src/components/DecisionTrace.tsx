@@ -75,7 +75,7 @@ export function DecisionTrace({ trace }: { trace: Trace }) {
           <ol className="mt-4 space-y-2">
             {person.checks.map((check, i) => {
               const skipped = firstFail !== -1 && i > firstFail;
-              const state = skipped ? states.skipped : check.ok ? states.passed : states.failed;
+              const state = check.ok ? states.passed : states.failed;
               return (
                 <motion.li
                   key={check.label}
@@ -95,7 +95,8 @@ export function DecisionTrace({ trace }: { trace: Trace }) {
                   <span className="min-w-0">
                     <span className="block text-sm font-medium">
                       {check.label}
-                      <span className="sr-only">: {state}</span>
+                      {/* A skipped check already reads “Not checked” in its detail line. */}
+                      {!skipped && <span className="sr-only">: {state}</span>}
                     </span>
                     <span className="block text-xs text-white/60">{skipped ? states.skipped : check.detail}</span>
                   </span>

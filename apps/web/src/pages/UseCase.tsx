@@ -9,6 +9,7 @@ import {
   buttonVariants,
 } from '@heroui/react';
 import { ArrowRight, ArrowUpRight, Check, Info, ShieldAlert } from 'lucide-react';
+import { Fragment } from 'react';
 import { motion } from 'motion/react';
 import { DecisionTrace } from '../components/DecisionTrace';
 import { REFERENCE_KEYS, ReferenceLogo } from '../components/ReferenceLogo';
@@ -94,10 +95,12 @@ function UseCaseHero({ id }: { id: UseCaseId }) {
             className="mt-6 text-[clamp(2.6rem,6vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.04em] text-white"
           >
             {/* One line per sentence: “No valid permit. / No engine start.” never breaks mid-claim. */}
-            {h.title.split(/(?<=\.)\s+/).map((sentence) => (
-              <span key={sentence} className="block">
-                {sentence}
-              </span>
+            {h.title.split(/(?<=\.)\s+/).map((sentence, i) => (
+              <Fragment key={sentence}>
+                {/* Keeps the sentences apart in the accessible name and in copied text. */}
+                {i > 0 && ' '}
+                <span className="block">{sentence}</span>
+              </Fragment>
             ))}
           </motion.h1>
           <motion.p
@@ -342,7 +345,7 @@ function OtherUseCases({ current }: { current: UseCaseId }) {
   return (
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-6">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{copy.useCases.other}</p>
+        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{copy.useCases.other}</h2>
         <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
           {USE_CASE_IDS.filter((id) => id !== current).map((id) => (
             <UseCaseCard key={id} id={id} compact />
@@ -368,7 +371,7 @@ export function UseCaseCard({ id, compact = false }: { id: UseCaseId; compact?: 
         </span>
         <ArrowUpRight className="size-5 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden />
       </span>
-      <span className="mt-5 block text-xl font-bold">{card.title}</span>
+      <h3 className="mt-5 text-xl font-bold">{card.title}</h3>
       <span className="mt-2 block flex-1 leading-relaxed text-muted">{card.body}</span>
       {!compact && (
         <span className="mt-5 flex flex-wrap gap-1.5">
