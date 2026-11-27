@@ -381,11 +381,11 @@ export const en = {
         },
         problems: {
           eyebrow: 'Today',
-          title: 'Three lists, one key board, no check.',
+          title: 'Three lists, one key rack, no check.',
           lead: 'In most depots and plant workshops the rules are right. They just aren’t enforced at the moment someone turns the key.',
           items: [
-            { title: 'Permits and trainings live apart', body: 'The apron permit sits with the airport’s ID office, type trainings and welding certificates in a spreadsheet, keys on a board. Nobody cross-checks all three at 5 a.m. before the first turnaround.' },
-            { title: 'Expiry dates expire silently', body: 'A refresher lapses and the person keeps driving – until an audit or an incident finds out.' },
+            { title: 'Permits and trainings live apart', body: 'The apron permit sits with the airport’s ID office, type trainings and welding certificates in a spreadsheet, keys on a rack. Nobody cross-checks all three at 5 a.m. before the first turnaround.' },
+            { title: 'Deadlines pass silently', body: 'A refresher lapses and the person keeps driving – until an audit or an incident finds out.' },
             { title: 'After an incident, everyone searches', body: 'Who had the de-icer at 06:10? Was the departure check done? Paper logs are incomplete, illegible or missing.' },
           ],
         },
@@ -397,14 +397,14 @@ export const en = {
             { key: 'qualify', label: 'Beforehand', title: 'Permits and trainings, with expiry', body: 'Record apron permits, vehicle-type trainings and safety briefings per person, with an expiry date or a refresher interval. Trainers sign off in the app; if you want, supervised first drives count towards the introduction.' },
             { key: 'tap', label: 'In the cab', title: 'Tap before you start', body: 'In the planned setup, a reader in the cab reads the badge and checks every requirement for this vehicle. Attractap readers read DESFire EV2/EV3 badges today – your existing ones if your issuer provisions an application, otherwise cards issued by Attraccess.' },
             { key: 'check', label: 'On the reader', title: 'A departure check, not a clipboard', body: 'A checklist on the reader’s touchscreen: tyres, lights, hitch, fluids. Required items have to be confirmed before the session starts.' },
-            { key: 'enable', label: 'At the starter · planned', title: 'Start released, never cut', body: 'The planned design only enables the start. Once the engine runs, it is to stay untouched – Attraccess is never meant to switch off a running vehicle.' },
+            { key: 'enable', label: 'At the starter · planned', title: 'Start released, never cut', body: 'The planned design only enables the start. Once the engine runs, it stays untouched by design – Attraccess is never meant to switch off a running vehicle.' },
             { key: 'record', label: 'On return', title: 'Return, report, maintain', body: 'Ending the session records duration and the return checklist. Defects become maintenance requests for the workshop, usage hours trigger inspections – and a vehicle in maintenance can’t be checked out.' },
           ],
         },
         capabilities: {
           eyebrow: 'Honest status',
           title: 'What works today – and what we build with you.',
-          lead: 'Critical infrastructure deserves precise answers. Here is what Attraccess does now, what we set up together in a pilot, and what doesn’t exist yet.',
+          lead: 'Critical infrastructure deserves precise answers. Here is what Attraccess does now, what we set up together in a pilot, what is planned, and what doesn’t exist yet.',
           note: 'Attraccess decides who may use a resource. It is not a safety function and has no PL or SIL rating.',
           items: [
             { status: 'available', title: 'Qualifications with expiry and refreshers', body: 'Expiry by date or after a period without use, trainers per resource or group, supervised sessions that turn into an introduction.' },
@@ -467,7 +467,7 @@ export const en = {
         hero: {
           eyebrow: 'Manufacturing & production',
           title: 'No briefing. No spindle.',
-          lead: 'Attraccess checks safety briefings and machine introductions at the badge reader, enables the machine through your PLC and records every session – the written assignment your safety officer needs, without a binder.',
+          lead: 'Attraccess checks safety briefings and machine introductions at the badge reader, enables the machine through your PLC and records every session – the records your safety officer asks for, without a binder.',
           primary: 'Book a free intro call',
           secondary: 'See how it works',
           note: ['30-day evaluation', 'On-premises, your data', 'Existing DESFire badges'],

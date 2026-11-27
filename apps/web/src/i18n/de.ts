@@ -345,7 +345,7 @@ export const de: Copy = {
           title: 'Keine gültige Berechtigung. Kein Motorstart.',
           lead: 'Das Ziel: Ein Leser in der Kabine prüft Vorfeldführerschein, Typschulung und Abfahrtskontrolle, bevor der Motor eines Bodenfahrzeugs starten kann. Diese Startfreigabe ist geplant. Qualifikationen, Checklisten und Nutzungsdokumentation bietet Attraccess schon heute. Für Flughäfen, Bodenverkehrsdienste und Versorger, auf Ihren eigenen Servern.',
           primary: 'Kostenloses Erstgespräch',
-          secondary: 'So funktioniert’s',
+          secondary: 'Ablauf ansehen',
           note: ['On-Premises, ohne Cloud-Konto', 'Ihre DESFire-Ausweise oder unsere', 'Quellcode einsehbar für Ihre IT-Sicherheit'],
           trace: {
             label: 'Zugangsentscheidung · Beispiel',
@@ -408,7 +408,7 @@ export const de: Copy = {
         capabilities: {
           eyebrow: 'Ehrlicher Stand',
           title: 'Was heute funktioniert – und was wir mit Ihnen bauen.',
-          lead: 'Kritische Infrastruktur verdient präzise Antworten. Das kann Attraccess heute, das richten wir im Pilotprojekt gemeinsam ein, und das gibt es noch nicht.',
+          lead: 'Kritische Infrastruktur verdient präzise Antworten. Das kann Attraccess heute, das richten wir im Pilotprojekt gemeinsam ein, das ist geplant, und das gibt es noch nicht.',
           note: 'Attraccess entscheidet, wer eine Ressource nutzen darf. Es ist keine Sicherheitsfunktion und hat keine PL- oder SIL-Einstufung.',
           items: [
             { status: 'available', title: 'Qualifikationen mit Ablauf und Auffrischung', body: 'Ablauf nach Datum oder nach einer Zeit ohne Nutzung, Ausbilder:innen pro Ressource oder Gruppe, begleitete Sitzungen, die zur Einweisung werden.' },
@@ -418,7 +418,7 @@ export const de: Copy = {
             { status: 'available', title: 'Audit-Log und Exporte', body: 'Jede sensible Änderung mit Person, Inhalt und Zeitpunkt – mit einstellbarer Aufbewahrung. Sitzungsexporte pro Ressource als CSV.' },
             { status: 'available', title: 'On-Premises mit Single Sign-on', body: 'Ein Docker-Container in Ihrem Rechenzentrum, kein Cloud-Konto. OIDC und SAML mit Entra ID, Keycloak & Co., Passkeys und 2FA.' },
             { status: 'pilot', title: 'Werkstattgeräte, Schlüsselschränke und Tore', body: 'Relais und SPS-Ausgänge werden über Flows geschaltet. Wir verdrahten, nehmen in Betrieb und testen gemeinsam vor Ort.' },
-            { status: 'pilot', title: 'Ihre Telematik- und Schulungssysteme', body: 'Eine REST-API und MQTT/HTTP-Flows geben Freigaben an Systeme weiter, die Sie schon betreiben. Die Anbindung entwickeln wir mit Ihnen – Umfang und Kosten werden vorab vereinbart, sie kann kostenpflichtig sein.' },
+            { status: 'pilot', title: 'Ihre Telematik- und Schulungssysteme', body: 'Eine REST-API und MQTT/HTTP-Flows geben Freigaben an Systeme weiter, die Sie schon betreiben. Die Anbindung entwickeln wir mit Ihnen – Umfang und Kosten werden vorab vereinbart; die Entwicklung kann kostenpflichtig sein.' },
             { status: 'planned', title: 'Startfreigabe am Fahrzeug', body: 'Die Freigabe des Motorstarts über einen Leser in der Kabine ist geplant. Wir erarbeiten sie mit Pilotpartnern.' },
             { status: 'notYet', title: 'Offline-Betrieb auf dem Vorfeld', body: 'Heute braucht der Leser beim Vorhalten des Ausweises eine Netzverbindung. Fahrzeuge sollen deshalb dort freigegeben werden, wo sie abgestellt sind: im Depot, an der Ladestation oder überall, wo Ihr WLAN hinreicht. Ein Start ganz ohne Netz ist noch nicht verfügbar.' },
           ],
@@ -473,7 +473,7 @@ export const de: Copy = {
           title: 'Keine Einweisung. Keine Spindel.',
           lead: 'Attraccess prüft Sicherheitsunterweisungen und Maschineneinweisungen am Kartenleser, gibt die Maschine über deine SPS frei und dokumentiert jede Sitzung – als Nachweis für deine Fachkraft für Arbeitssicherheit, ohne Ordner.',
           primary: 'Kostenloses Erstgespräch',
-          secondary: 'So funktioniert’s',
+          secondary: 'Ablauf ansehen',
           note: ['30 Tage testen', 'On-Premises, deine Daten', 'Vorhandene DESFire-Ausweise'],
           trace: {
             label: 'Zugangsentscheidung · Beispiel',
@@ -588,7 +588,7 @@ export const de: Copy = {
           title: 'Einmal einweisen. An jeder Maschine prüfen.',
           lead: 'Jedes Semester Hunderte neue Leute, eine Handvoll Einweiser:innen, teure Maschinen. Attraccess weiß, wer worin eingewiesen ist, lässt Einweiser:innen erste Sitzungen begleiten und gibt die Maschine nur für Qualifizierte frei.',
           primary: 'Kostenloses Erstgespräch',
-          secondary: 'So funktioniert’s',
+          secondary: 'Ablauf ansehen',
           note: ['Im Einsatz an der TUHH', 'Anmeldung mit dem Hochschulkonto', 'Kostenlos für Gemeinnützige'],
           trace: {
             label: 'Zugangsentscheidung · Beispiel',
@@ -665,7 +665,7 @@ export const de: Copy = {
           items: [
             {
               q: 'Ist Attraccess für Hochschulen kostenlos?',
-              a: 'Gemeinnützige Organisationen nutzen es kostenlos. Bei Hochschulen kommt es darauf an, wie ihr es betreibt – erzähl uns von eurem Setup, dann finden wir gemeinsam eine faire Lösung.',
+              a: 'Gemeinnützige Organisationen nutzen es kostenlos. Bei Hochschulen kommt es darauf an, wie ihr es betreibt – erzählt uns von eurem Setup, dann finden wir gemeinsam eine faire Lösung.',
             },
             {
               q: 'Können Studierende ihren Campusausweis nutzen?',
