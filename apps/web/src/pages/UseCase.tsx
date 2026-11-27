@@ -20,7 +20,8 @@ import { useSite } from '../lib/site';
 // Copy strings are widened to `string`, so the status keys are listed here.
 type Status = 'available' | 'pilot' | 'planned' | 'notYet';
 const STATUS_STYLES: Record<Status, string> = {
-  available: 'bg-success-soft text-success-soft-foreground',
+  // The plain soft foreground is below 4.5:1 at badge size in light mode; mixing in the text colour fixes both themes.
+  available: 'bg-success-soft text-[color-mix(in_oklab,var(--color-success-soft-foreground)_80%,var(--foreground))]',
   pilot: 'bg-accent-soft text-accent-soft-foreground',
   planned: 'border border-dashed border-border text-muted',
   notYet: 'bg-warning-soft text-warning-soft-foreground',
@@ -150,7 +151,7 @@ function UseCaseHero({ id }: { id: UseCaseId }) {
         {REFERENCE_KEYS.map((key) => (
           <span key={key} className="flex items-center gap-3">
             <ReferenceLogo reference={key} className="text-lg" />
-            <span className="hidden text-xs text-white/45 md:inline">{copy.references[key].sector}</span>
+            <span className="hidden text-xs text-white/50 md:inline">{copy.references[key].sector}</span>
           </span>
         ))}
       </div>
@@ -230,7 +231,7 @@ function Capabilities({ id }: { id: UseCaseId }) {
         <SectionHeading eyebrow={c.eyebrow} title={c.title} lead={c.lead} align="left" />
         <Reveal delay={0.1} className="mt-12 divide-y divide-border rounded-3xl border border-border bg-surface">
           {c.items.map((item) => (
-            <div key={item.title} className="grid gap-3 p-5 sm:p-6 md:grid-cols-[13rem_1fr] md:items-start md:gap-8 md:p-8">
+            <div key={item.title} className="grid gap-3 p-5 sm:p-6 md:grid-cols-[15rem_1fr] md:items-start md:gap-8 md:p-8">
               <div>
                 <h3 className="text-lg font-bold">{item.title}</h3>
                 <p className="mt-1.5 text-muted">{item.body}</p>

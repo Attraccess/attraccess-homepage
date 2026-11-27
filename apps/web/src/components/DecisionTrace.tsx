@@ -80,7 +80,7 @@ export function DecisionTrace({ trace }: { trace: Trace }) {
                 <motion.li
                   key={check.label}
                   initial={reduce ? false : { opacity: 0, x: -8 }}
-                  whileInView={{ opacity: skipped ? 0.6 : 1, x: 0 }}
+                  whileInView={{ opacity: skipped ? 0.8 : 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.35, ease: EASE, delay: 0.2 + i * step }}
                   className="flex items-start gap-3 rounded-xl bg-black/20 px-3 py-2.5"
